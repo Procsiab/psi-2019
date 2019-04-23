@@ -1,0 +1,10 @@
+# Ignora file intermedi generati dal compilatore LaTeX
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+# Ignora file temporanei i VIM
+*.swp
