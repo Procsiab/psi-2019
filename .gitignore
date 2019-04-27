@@ -6,5 +6,6 @@
 *.out
 *.synctex.gz
 *.toc
-# Ignora file temporanei i VIM
+# Ignora file temporanei e di sessione di VIM
 *.swp
+*.vim
