@@ -1,0 +1,78 @@
+%! TEX root = main.tex
+% Stile del documento
+\documentclass[12pt,openany]{amsbook}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=1.8cm,bmargin=2cm,lmargin=2cm,rmargin=2cm,headheight=1.8cm,headsep=1cm,footskip=1cm}
+% Localizzazione (traduce nomi automatici nella lingua selezionata)
+\usepackage[italian]{babel}
+% Altri pacchetti per la formattazione
+\usepackage{lmodern}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{cancel}
+\usepackage{enumerate}
+\usepackage{graphicx}
+ % Impostazioni dei metadati del PDF
+\usepackage[unicode=true,
+ bookmarks=true,bookmarksnumbered=true,bookmarksopen=true,bookmarksopenlevel=1,
+ breaklinks=false,pdfborder={0 0 0},pdfborderstyle={},backref=page,colorlinks=false]
+ {hyperref}
+\hypersetup{
+    pdftitle={Appunti di Probbilità e Statistica},
+    pdfauthor={Lorenzo Prosseda},
+    pdfsubject={Corso di Probabilità e Statistica del prof. Barchielli, Politecnico di Milano 2018\---2019},
+    pdfkeywords={probabilità, statistica}
+}
+% Percorso della cartella contenente le immagini
+\graphicspath{ {./img/} }
+% Impostazioni di stile per gli ambienti teorema, definizione, esempio, ecc
+\theoremstyle{plain}
+\newtheorem{thm}{Teorema}[section] % resetta numerazione ad ogni capitolo
+\renewcommand{\thethm}{\arabic{chapter}.\arabic{section}.\arabic{thm}} % numerazione ambienti teorema
+\numberwithin{equation}{section} % numerazione equazioni
+% Definizione ambienti personalizzati
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definizione}
+\newtheorem{prty}[thm]{Proprietà}
+\newtheorem{exmp}[thm]{Esempio}
+\newtheorem{obsv}[thm]{Osservazione}
+% Numerazione personalizzata sezioni e sottosezioni
+\renewcommand\thesection{\thechapter.\arabic{section}}
+\renewcommand\thesubsection{\thechapter.\thesection.\arabic{subsection}}
+% Comando trattino "non spezzante" evita sillabazione sul trattino
+\newcommand\nbdash{\nobreakdash-\hspace{0pt}}
+
+% In questo ambiente risiede il contenuto del documento
+\begin{document}
+    % Pagina del titolo
+    \begin{titlepage}
+        \centering % centra tutto in questo ambiente
+        \vspace*{\stretch{0.8}}
+        \Huge\textbf{Appunti di Probabilità e Statistica}\\
+        \vspace*{\stretch{0.6}}
+        \Large\textit{Lorenzo Prosseda}\\
+        \bigskip
+        \large a.a. 2018\---2019 \\
+        \vspace*{\stretch{5.0}}
+        \begin{figure}[h] % inserisci logo ed estratto della licenza GFDL
+            \includegraphics[width=2cm]{gfdl-logo.pdf}
+            \bigskip \\
+            \small\textit{Copyright \textcopyright\,2019 Lorenzo Prosseda. Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.3 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A copy of the license is included in the file called ``LICENSE''.}
+        \end{figure}
+        \vspace*{\stretch{1.0}}
+    \end{titlepage}
+
+    % Genera indice di capitoli e sezioni
+    \tableofcontents
+
+    % Includi file dei capitoli
+    \input{chap1}
+    \input{chap2}
+    \input{chap3}
+    \input{chap4}
+
+\end{document}

@@ -1,0 +1,300 @@
+%! TEX root = main.tex
+% Capitolo 1
+
+\chapter{Teoria della Probabilità}
+    \section{Spazio dei campioni}
+        \begin{defn}
+            Sia dato un esperimento \textit{aleatorio} (impossibile prevederne risultato), i cui risultati siano rappresentati da $\omega \in \Omega$; chiamiamo l'insieme $\Omega$:
+            \begin{itemize}
+                \item spazio campionario;
+                \item spazio dei campioni;
+                \item spazio degli eventi \underline{elementari};
+                \item spazio degli esiti;
+            \end{itemize}
+            diciamo inoltre che $\Omega$ è relativo all'esperimento effettuato, e chiamiamo i suoi elementi $\omega$ \textit{eventi \underline{elementari}}.
+        \end{defn}
+        \section{Eventi}\label{sec:Eventi}
+        \begin{defn}
+            I sotto-insiemi dello spazio campionario e le loro combinazioni (in termini di eventi elementari) tramite operatori logici di unione ($\cup$), intersezione ($\cap$) e negazione ($^{\text{C}}$) sono chiamati \textit{eventi} (non sono più elementari).
+        \end{defn}
+        \begin{obsv}
+            Gli eventi \textit{elementari} sono rappresentati da sottoinsiemi di $\Omega$ di cardinalità 1: un evento elementare $E$ è definito come $\{\omega_E\} \in \Omega \land |\{\omega_E\}| = 1$.
+        \end{obsv}
+        \begin{defn}
+            Gli eventi $E_i$ possono essere rappresentati con sottoinsiemi dello spazio campionario $\Omega$, dunque essi formano una \textit{famiglia} o \textit{collezione} di sottoinsiemi di $\Omega$, che indichiamo con $\mathscr{F}$.
+
+            Questo implica che un evento che faccia parte di questa famiglia di sottoinsiemi contenga lo spazio campionario ($E \in \mathscr{F} \implies E \subset \Omega$).
+
+            Diremo che si è \textit{verificato} un evento $E$ nel contesto di un esperimento aleatorio, se almeno uno degli esiti è contenuto in esso ($\omega \in E$).
+        \end{defn}
+        \begin{defn}
+            Dati due eventi $E$ ed $F$, sono definite le operazioni di unione $E \cup F$ (gli eventi elementari in $E$ o in $F$) e intersezione $E \cap F$ (gli eventi elementari presenti sia in $E$ che in $F$).
+            \begin{itemize}
+                \item Gli eventi che non contengono alcun evento elementare sono chiamati \textit{eventi vuoti} e si indicano con \O. Se due eventi non hanno eventi elementari in comune ($E \cap F = \text{\O}$), essi si dicono \textit{disgiunti}.
+                \item Per ogni evento $E \in \mathscr{F}$ è definito il complementare $E^{\text{C}}$ come l'insieme degli eventi elementari di $\mathscr{F}$ che non stanno in $E$.
+                \item Se tutti gli eventi elementari di un evento $E$ sono anche in un evento  $F$, diremo che $E$ \textit{è contenuto} in  $F$ ($E \subset F$); se vale anche l'inverso $E \supset F$ allora diremo che i due eventi sono \textit{uguali} ($E \equiv F$).
+            \end{itemize}
+            Indichiamo l'unione di $n$ eventi con  $\bigcup_{k=1}^{n} E_k$ e l'intersezione di  $n$ eventi con $\bigcap_{k=1}^{n} E_k$.
+        \end{defn}
+        \begin{defn}
+            Sia $\Omega$ uno spazio campionario e $\mathscr{F}$ una famiglia di sottoinsiemi di $\Omega$; diremo che $\mathscr{F}$ è un'\textit{algebra di sottoinsiemi} di $\Omega$ se soddisfa le seguenti proprietà:
+            \begin{enumerate}
+                \item $\Omega \in \mathscr{F}$;
+                \item $E \in \mathscr{F} \implies E^{\text{C}} \coloneqq \Omega \backslash E \in \mathscr{F}$;
+                \item $E,\,F \in \mathscr{F} \implies \{E \cup F\} \in \mathscr{F}$.
+            \end{enumerate}
+        \end{defn}
+        \begin{defn}
+            Sia $\Omega$ uno spazio campionario e $\mathscr{F}$ una famiglia di sottoinsiemi di $\Omega$; diremo che $\mathscr{F}$ è una \textit{$\sigma$\nbdash algebra di sottoinsiemi} di $\Omega$ se soddisfa le seguenti proprietà:
+            \begin{enumerate}
+                \item $\Omega \in \mathscr{F}$;
+                \item $E \in \mathscr{F} \implies E^{\text{C}} \coloneqq \Omega \backslash E \in \mathscr{F}$;
+                \item $E_1,\,E_2,\,\ldots \in \mathscr{F} \implies \bigcup_{k=1}^{+\infty}E_k \in \mathscr{F}$.
+            \end{enumerate}
+        \end{defn}
+        \begin{defn}
+            La coppia di spazio campionario e famiglia di suoi sottoinsiemi ($\sigma$\nbdash algebra) $(\Omega,\,\mathscr{F})$ è chiamata \textit{spazio probabilizzabile}.
+        \end{defn}
+    \section{Spazio di probabilità}
+        \begin{defn}\label{defn:Probabilità_impostazione_assiomatica}
+            Sia dato uno spazio probabilizabile $(\Omega,\,\mathscr{F})$; chiamiamo \textit{probabilità} su $(\Omega,\,\mathscr{F})$ una funzione $P$ su $\mathscr{F}$ tale che:
+            \begin{enumerate}
+                \item $\forall E \in \mathscr{F}\,:\,P(E) \geq 0$;
+                \item $P(\Omega) = 1$;
+                \item $\forall h,k\,:\,h \neq k \implies \forall E \in \mathscr{F}\,:\,E_h \cap E_k = 0$ ($\sigma$\nbdash additività o \textit{additività completa}).
+            \end{enumerate}
+            La terna $(\Omega,\,\mathscr{F},\,P)$ si chiama \textit{spazio di probabilità} (impostazione assiomatica).
+        \end{defn}
+        \begin{prty}\label{prty:Spazio_di_probabilità}
+            Sia $(\Omega,\,\mathscr{F},\,P)$ uno spazio di probabilità; allora vale:
+            \begin{enumerate}
+                \item $P(\text{\O}) = 0$ (\textit{evento impossibile});
+                \item $\forall h,k\,:\,h \neq k \implies \forall E \in \mathscr{F}\,:\,E_h \cap E_k = \text{\O} \implies P(\bigcup_{k=1}^{n} E_k) = \sum_{k=1}^{n} P(E_k)$ (\textit{additività finita}).
+            \end{enumerate}
+        \end{prty}
+        \begin{proof}
+            \hfill
+            \begin{enumerate}
+                \item $\forall k \in [1,\,n]\,:\,E_k \coloneqq \text{\O} \implies \bigcup_{k=1}^{+\infty} E_k = \text{\O}$, inoltre $E_1,\,\ldots,\,E_n$ è una successione di eventi disgiunti a coppie; per l'assioma $(3)$ della Definizione~\ref{defn:Probabilità_impostazione_assiomatica} vale inoltre: \[
+                        P\left(\text{\O}\right) = P\left(\bigcup_{k=1}^{+\infty} E_k\right) = \sum_{k=1}^{+\infty} P\left(\text{\O}\right)
+                .\] 
+            \item Se $\forall k \in [n+1,\,\infty)\,:\,E_k = \text{\O}$, allora $E_1,\,E_2,\,\ldots$ è una successione di eventi disgiunti a coppie, e vale $\bigcup_{k=1}^{+\infty} E_k = \bigcup_{k=1}^{n} E_k$; per l'assioma $(3)$ della Definizione~\ref{defn:Probabilità_impostazione_assiomatica} vale inoltre: \[
+                    P(\bigcup_{k=1}^{n} E_k) = (\bigcup_{k=1}^{+\infty} E_k) = \sum_{k=1}^{n} E_k + \underset{E_k = \text{\O}}{\underbrace{\cancel{\sum_{k=n+1}^{+\infty} E_k}}} = \sum_{k=1}^{n} E_k
+            . \qedhere\]
+            \end{enumerate}
+        \end{proof}
+    \section{Definizione assiomatica di Probabilità}
+        \begin{defn}
+            Se assegnamo a ogni evento in uno spazio di probabilità $E_k \in (\Omega,\,\mathscr{F},\,P)$ un valore $x = P(E_k)$, chiamiamo probabilità dell'evento $E$; esso deve rispettare i seguenti assiomi, dedotti dalla Definizione~\ref{defn:Probabilità_impostazione_assiomatica}:
+            \begin{enumerate}[I)]
+                \item $0 \leq P(E_k) \leq 1$;
+                \item $P(\Omega) = 1$;
+                \item  se gli eventi dello spazio di probabilità sono disgiunti a coppie otteniamo: \[
+                \forall n \in [1,\,\infty)\,:\,P(\bigcup_{k=1}^{n} E_k) = \sum_{k=1}^{n} P(E_k)
+                .\] 
+            \end{enumerate}
+        \end{defn}
+    \section{Proprietà della funzione Probabilità}
+    \begin{prty}\label{prty:Proprietà_funzione_probabilità}
+            Sia $(\Omega,\,\mathscr{F},\,P)$ uno spazio di probabilità; su di esso possiamo osservare le seguenti proprietà:
+            \begin{enumerate}
+                \item $E \in \mathscr{F} \implies P(E^{\text{C}}) = 1 - P(E)$ (\textit{probabilità del complementare});
+                \item $E \in \mathscr{F} \implies P(E) \leq 1$;
+                \item $E,F \in \mathscr{F} \land F \subset E \implies P(E \backslash F) = P(E) - P(F)$;
+                \item $E,F \in \mathscr{F} \land F \subset E \implies P(F) \leq P(E)$ (\textit{monotonia});
+                \item $E,F \in \mathscr{F} \implies P(E \cup F) = P(E) + P(F) - P(E \cap F)$ (\textit{probabilità dell'unione}).
+            \end{enumerate}
+        \end{prty}
+        \begin{proof}
+            \hfill
+            \begin{enumerate}
+                \item Osserviamo che, per l'assioma $(2)$ della Definizione~\ref{defn:Probabilità_impostazione_assiomatica}, vale $\Omega = E \cup E^{\text{C}}$ e sapendo che un evento e il suo complementare sono disgiunti: \[
+                    1 = P(\Omega)= P(E) + P(E^{\text{C}}) \implies P(E^{\text{C}}) = 1 - P(E)
+                .\] 
+                \item Dalla precedente considerazione sappiamo che $P(E) = 1 - P(E^{\text{C}})$; aggiungendo l'assioma $(1)$ della Definizione~\ref{defn:Probabilità_impostazione_assiomatica} ($P(E^{\text{C}}) \geq 0$) segue che deve valere $P(E) \leq 1$.
+                \item Vale $F \subset E \implies E = (E \backslash F) \cup F$ da cui deduciamo, per l'assioma $(2)$ della Proprietà~\ref{prty:Spazio_di_probabilità}, la seguente scrittura: \[
+                    P(E) = P(E \backslash F) + P(F) \implies P(E \backslash F) = P(E) - P(F)
+                .\] 
+                \item Dalla precedente ricaviamo immediatamente $P(E) = P(E \backslash F) + P(F)$ e  $P(F) = P(E) - P(E \backslash F)$; sapendo dall'assioma $(1)$ della Definizione~\ref{defn:Probabilità_impostazione_assiomatica} che tutti e tre i termini dell'uguaglianza sono positivi o al più nulli, abbiamo necessariamente $P(F) \leq P(E)$.
+                \item Scriviamo l'unione disgiunta dei due eventi $E$ ed  $F$ nel modo seguente:  \[
+                    E \cup F = (E \cap F^{\text{C}}) \cup (E \cap F) \cup (E^{\text{C}} \cap F)
+                .\] Per il punto $(2)$ della Proprietà~\ref{prty:Spazio_di_probabilità} la probabilità dell'unione vale: \[
+                    P(E \cup F) = P(E \cap F^{\text{C}}) + P(E \cap F) + P(E^{\text{C}} \cap F)
+                .\] Riscriviamo la precedente come:
+                \begin{align*}
+                    P(E \cup F) + P(E \cap F) &= \overset{P(E)}{\overbrace{P(E \cap F^{\text{C}}) + P(E \cup F)}} + \overset{P(F)}{\overbrace{P(E \cup F) + P(E^{\text{C}} \cap F)}} \\ {}&= P(E) + P(F)
+                .
+                \end{align*}
+                Per ottenere le semplificazioni evidenziate con le graffe abbiamo usato le proprietà delle operazioni tra eventi (§~\ref{sec:Eventi}). \qedhere
+            \end{enumerate}
+        \end{proof}
+    \section{Spazi finiti e numerabili}
+    \begin{prty}\label{prty:Spazi_numerabili}
+        Sia $\Omega$ uno spazio campionario \underline{numerabile} e  $\{\omega_1,\,\omega_2,\,\ldots\}$ una numera\-zione dei suoi punti (eventi elementari); scegliamo come $\sigma$\nbdash algebra  $\mathscr{F}$ l'insieme di tutti i sottoinsiemi (\textit{insieme delle parti}) dello spazio campionario  $\mathscr{P}(\Omega)$; si ha che:
+            \begin{enumerate}
+                \item Ogni probabilità $P({\omega_k})$ di un evento $E_k = \{\omega_k\} \in \mathscr{F}$ su uno spazio probabiliz\-zabile $(\Omega,\,\mathscr{F})$ individua una successione di numeri reali $p_1,\,p_2,\,\ldots$ che soddisfano la Proprietà~\ref{prty:Spazi_numerabili} se scriviamo che $\forall k \in [1,\,\infty)\,\:\,P({\omega_k}) = p_k$;
+                \item Data una successione $p_1,\,p_2,\,\ldots$ che soddisfa la Proprietà~\ref{prty:Spazi_numerabili} esiste un'unica probabilità su $(\Omega,\,\mathscr{F})$ tale che  $P({\omega_k}) = p_k$ per ogni  $k$; essa è data da: \[
+                        \forall E \subset \Omega\,:\,P(E) = \sum_{k\,:\,\omega_k \in E} p_k
+                .\] 
+            \end{enumerate}
+        \end{prty}
+        \begin{obsv}
+            Nel caso di $\Omega$ spazio campionario \underline{finito} e numerabile, la Proprietà~\ref{prty:Spazi_numerabili} continua a valere, rispetto alla cardinalità di $\Omega$.
+        \end{obsv}
+    \section{Probabilità condizionata}
+    \begin{defn}\label{defn:Probabilità_condizionata}
+            Sia dato uno spazio di probabilità $(\Omega,\,\mathscr{F},\,P)$ e un evento $F \in \mathscr{F}$ tale che $P(F) > 0$; preso un qualsiasi altro evento $E \in \mathscr{F}$, si chiama \textit{probabilità condizionata} dell'evento $E$ dato il verificarsi di $F$:
+            \begin{equation}\label{eq:Formula_probabilità_condizionata}
+                P(E|F) = \frac{P(E \cap F)}{P(F)}
+            .
+            \end{equation}
+        \end{defn}
+    \section{Formula delle probabilità totali}
+        \begin{defn}\label{defn:Probabilità_totali}
+            Consideriamo uno spazio di probabilità $(\Omega,\,\mathscr{F},\,P)$ e una partizione finita $F_1,\,\ldots,\,F_n \in \mathscr{F}$ di $\Omega$; valga inoltre $\bigcup_{k=1}^{n} F_k = \Omega$ e infine $\forall h,k \in [1,\,n] \,:\, F_h \cap F_k = \text{\O} \land P(F_k) > 0$.
+            Allora per qualunque evento $E \in \mathscr{F}$ la sua probabilità è definita come:
+            \begin{equation}\label{eq:Formula_probabilità_totali}
+                P(E) = \sum_{k=1}^{n} P(E|F_k) \cdot P(F_k)
+            . 
+            \end{equation}
+        \end{defn}
+        \begin{proof}
+            Prendiamo l'evento $E \in \mathscr{F}$; dalle considerazioni fatte sopra abbiamo la seguente implicazione:  \[
+                \Omega = \bigcup_{k=1}^{n} F_k \land E \subset \Omega \implies E = E \cap \Omega = \bigcup_{k=1}^{n} (E \cap F_k)
+            .\] 
+            Inoltre, poiché gli eventi $F_1,\,\ldots,\,F_n$ sono disgiunti a coppie, la precedente $\bigcup_{k=1}^{n} (E \cap F_k)$ è un'unione disgiunta e applicando il punto $(2)$ della Proprietà~\ref{prty:Spazio_di_probabilità} otteniamo: \[
+                P(E) = \sum_{k=1}^{n} P(E \cap F_k) = \sum_{k=1}^{n} P(E|F_k) \cdot P(F_k)
+            .\] 
+            Abbiamo così ottenuto la formula \eqref{eq:Formula_probabilità_totali}.
+        \end{proof}
+        \begin{obsv}
+            La formula delle probabilità totali è utile quando le condizioni di preparazione di un esperimento aleatorio sono anch'esse casuali, e determinano una partizione dello spazio di probabilità dell'esperimento.
+        \end{obsv}
+    \section{Formula di Bayes}
+        \begin{defn}\label{defn:Formula_Bayes}
+            Consideriamo uno spazio di probabilità $(\Omega,\,\mathscr{F},\,P)$ e una partizione finita $F_1,\,\ldots,\,F_n \in \mathscr{F}$ di $\Omega$ tale che $\forall k \in [1,\,n] \,:\, P(F_k) > 0$; se abbiamo un evento $E \in \mathscr{F}$ per il quale $P(E) > 0$ allora otteniamo:
+            \begin{align}\label{eq:Formula_Bayes}
+                P(F_h|E) &= \frac{P(E|F_h) \cdot P(F_h)}{\sum_{k=1}^{n} P(E|F_k) \cdot P(F_k)} & h &= 1,\,\ldots,\,n
+            .
+            \end{align}
+        \end{defn}
+        \begin{proof}
+            Usando \eqref{eq:Formula_probabilità_condizionata} possiamo scrivere: \[
+                P(F_h|E) = \frac{P(F_h \cap E)}{P(E)} = \frac{P(E|F_h) \cdot P(F_h)}{P(E)}
+            .\] 
+            Applicando al denominatore \eqref{eq:Formula_probabilità_totali} otteniamo proprio la scrittura \eqref{eq:Formula_Bayes}.
+        \end{proof}
+        \begin{obsv}
+            La formula di Bayes è utile quando possediamo informazioni a posteriori su un esperimento aleatorio e vogliamo determinare le condizioni entro le quali si sia verificato un certo evento.
+        \end{obsv}
+    \section{Formula di moltiplicazione}
+        \begin{defn}\label{defn:Formula_moltiplicazione}
+            Consideriamo uno spazio di probabilità $(\Omega,\,\mathscr{F},\,P)$ e una successione di eventi al suo interno $E_1,\,\ldots,\,E_n \in \mathscr{F}$, per i quali valga $P(\bigcap_{k=1}^{n-1} E_k) > 0$; allora possiamo scrivere:
+            \begin{equation}\label{eq:Formula_moltiplicazione}
+                P(E_1 \cap \dotsm \cap E_n) = P(E_1) \cdot P(E_2|E_1) \cdot P(E_3|E_2 \cap E_1) \cdot \ldots \cdot P(E_n|E_1 \cap \dotsm \cap E_{n-1})
+            .
+            \end{equation}
+        \end{defn}
+        \begin{proof}
+            Dato che $(E_1 \cap \dotsm \cap E_{n-1}) \subset (E_1 \cap \dotsm \cap E_{n-2}) \subset \dotsm \subset E_1$ usando il punto $(4)$ della Proprietà~\ref{prty:Proprietà_funzione_probabilità} vale: \[
+                0 < P(E_1 \cap \dotsm \cap E_{n-1}) \leq P(E_1 \cap \dotsm \cap E_{n-2}) \leq \dotsm \leq P(E_1)
+            .\]
+            Otteniamo quindi il seguente prodotto:
+            \begin{align*}
+                P(E_1 \cap \dotsm \cap E_n) &= P(E_1) \cdot \frac{P(E_1 \cap E_2)}{P(E_1)} \cdot \frac{P(E_1 \cap E_2 \cap E_3)}{P(E_1 \cap E_2)} \cdot \ldots \cdot \frac{P(E_1 \cap \dotsm \cap E_n)}{P(E_1 \cap \dotsm \cap E_{n-1})} \\ &= P(E_1) \cdot P(E_2|E_1) \cdot P(E_3|E_2 \cap E_1) \cdot \ldots \cdot P(E_n|E_1 \cap \dotsm \cap E_{n-1})
+            .
+            \end{align*}
+            Si noti che abbiamo usato \eqref{eq:Formula_probabilità_condizionata} per riscrivere il prodotto precedente, ottenendo \eqref{eq:Formula_moltiplicazione}.
+        \end{proof}
+    \section{Eventi indipendenti}
+        \begin{defn}\label{defn:Eventi_indipendenti}
+            Sia $(\Omega,\,\mathscr{F},\,P)$ uno spazio di probabilità; gli eventi $E,\,F \in \mathscr{F}$ sono \textit{indipendenti} se vale: \[
+                P(E \cup F) = P(E) \cdot P(F)
+            .\] 
+        \end{defn}
+        \begin{obsv}
+            Se due eventi $E$ ed $F$, presi dallo stesso spazio di probabilità, sono indipendenti allora valgono le seguenti uguaglianze:
+            \begin{itemize}
+                \item $P(E|F) = P(E)$;
+                \item $P(F|E) = P(F)$.
+            \end{itemize}
+        \end{obsv}
+        \begin{defn}
+            Sia $(\Omega,\,\mathscr{F},\,P)$ uno spazio di probabilità; diciamo che gli eventi $E_1,\, \ldots,\, E_n$ sono \textit{indipendenti} se comunque preso un sottoinsieme $\{h_1,\, \ldots,\, h_k\} \subset \{1,\, \ldots,\, n\}$ con $k \geq 2$ vale la seguente uguaglianza: \[
+                P(E_{h_1} \cap \dotsm \cap E_{h_k}) = P(E_{h_1}) \cdot \ldots \cdot P(E_{h_k})
+            .\] 
+        \end{defn}
+        \begin{obsv}
+            Per testare l'indipendenza di $m$ eventi, sarà necessario provare $2^{m} - m - 1$ uguaglianze (in dipendenza dalle possibili combinazioni di intersezioni tra gli eventi da testare).
+        \end{obsv}
+        \begin{defn}
+            Preso uno spazio di probabilità e considerata una successione dei suoi eventi, diremo che essa è costituita da eventi indipendenti se, comunque scelto un sottoinsieme finito di eventi dalla successione, esso è costituito da eventi indipendenti.
+        \end{defn}
+        \begin{defn}
+            Consideriamo uno spazio di probabilità $(\Omega,\,\mathscr{F},\,P)$, una successione di eventi $A_1,\, \ldots,\, A_n$ e un evento $F$ tale che $P(F) > 0$; gli eventi della successione si dicono \textit{condizionatamente indipendenti} dato $F$ se essi sono indipendenti rispetto alla probabilità $P(F)$.
+        \end{defn}
+    \section{Affidabilità dei sistemi}
+        \begin{defn}
+            La probabilità che un componente di un sistema non si guasti durante il periodo di tempo in cui deve operare è detta \textit{affidabilità} del componente; essa viene espressa rispetto all'interazione che i componenti hanno tra loro:
+            \begin{itemize}
+                \item \textbf{serie}: per garantire il funzionamento del sistema tutti i componenti collegati in serie devono funzionare correttamente; in questo caso vale \[
+                    r = r_1 \cdot \ldots \cdot r_k
+                ,\] per un sistema con $k$ componenti in serie;
+            \item \textbf{parallelo}: per garantire il funzionamento del sistema basta che almeno un componente funzioni correttamente; in questo caso vale \[
+                        r = 1 - (1 - r_1) \cdot \ldots \cdot (1 - r_k)
+                ,\] per un sistema con $k$ componenti in parallelo.
+            \end{itemize}
+            In entrambi i casi appena mostrati, $r_i$ rappresenta l'affidabilità dell'$i$\nbdash esimo componente del sistema.
+        \end{defn}
+        \begin{obsv}
+            Per analizzare problemi sull'affidabilità è conveniente scomporre un sistema complesso in sottosistemi che abbiano solo componenti in serie o solo in parallelo.
+        \end{obsv}
+    \section{Prove di Bernoulli}
+        \begin{defn}
+            Siano $n \in \mathbb{N}$ e $p \in (0,\,1)$; consideriamo il seguente spazio campionario: \[
+                \Omega \coloneqq \{(a_1,\,\ldots,\,a_n)\,:\,a_k \in \{0,\,1\},\, k \in [1,\,n]\}
+                ,\] la $\sigma$\nbdash algebra $\mathscr{F} = \mathscr{P}(\Omega)$ e la funzione di probabilità: \[
+                \forall (a_1,\, \ldots,\, a_n) \in \Omega \,:\, P(\{a_1,\, \ldots,\, a_n\}) = p^{\left[\sum_{k=1}^{n} a_k\right]} \cdot (1 - p)^{\left[n - \sum_{k=1}^{n} a_k\right]}
+            ;\] 
+            la terna $(\Omega,\,\mathscr{F},\,P)$ si chiama \textit{spazio di probabilità di Bernoulli} oppure spazio di probabilità di $n$ prove di Bernoulli.
+        \end{defn}
+        \begin{prty}
+            Consideriamo uno spazio di probabilità di Bernoulli nel quale la probabilità di successo della singola prova è $p \in (0,\,1)$; la probabilità di osservare $k \leq n$ successi in una sequenza di $n \geq 1$ prove di Bernoulli in questo spazio è data da:
+            \begin{align}\label{eq:Probabilità_Bayes}
+                \binom{n}{k} \cdot p^{k} \cdot (1 - p)^{n-k}
+            .
+            \end{align}
+        \end{prty}
+        \begin{proof}
+            Sia $(\Omega,\,\mathscr{F},\,P )$ uno spazio di probabilità di $n$ prove Bernoulli e $B_k \in \mathscr{F}$ l'evento `osserviamo $k$ successi in $n$ prove', ovvero: \[
+                B_k = \left\{ (a_1,\, \ldots,\, a_n) \in \Omega \,:\, \sum_{h=1}^{n} a_h = k \right\} 
+            ;\] la probabilità di questo evento è definita come: \[
+                P(B_k) = \sum_{\omega \in B_k} P(\{\omega\}) = \sum_{\omega \in B_k} p^{k}(1 - p)^{n - k} = |B_k|p^{k}(1 - p)^{n - k}
+            .\] Osservando che $|B_k| = \binom{n}{k}$ (tutte le stringhe di $n$ bit contenenti $k$ zeri e $n - k$ uni) otteniamo l'equazione \eqref{eq:Probabilità_Bayes}
+        \end{proof}
+    \begin{obsv}
+        Gli eventi $B_k$ che fissano $k$ successi in $n$ prove di Bernoulli hanno delle probabilità che corrispondono al modello binomiale $p_k$; possiamo affermare che, preso lo spazio campionario $\hat{\Omega} = \{0,\,\ldots,\,n\}$ dell'esperimento che considera $k$ successi in $n$ prove, lo spazio di probabilità di Bernoulli induce su $\hat{\Omega}$ un modello binomiale di parametri $n$ e $p$.
+    \end{obsv} 
+    \section{Serie geometrica}
+    \begin{defn}[Serie]
+        Data una successione $\{a_{n}\}$, se sommiamo gli infiniti termini otteniamo una \textit{serie}, definita come $\sum_{n=0}^{\infty} a_n$ (serie di a con n da 0 a infinito).
+
+        Si dice somma parziale $n$\nbdash esima di una serie $s_{n}=\sum_{i=0}^{\infty} a_i\,n \in \mathbb{N}$ (la serie $\sum_{i=0}^{\infty} a_n$ converge, diverge o è irregolare se la successione delle sue somme parziali converge, diverge o è irregolare).
+
+        Si dice somma di una serie il limite, se esiste finito, della successione delle sue somme parziali: $\lim_{n \to \infty} s_n = s$
+
+        Condizione \underline{necessaria} (non sufficiente) affinché una serie converga è che il suo termine generale ($a_n$) tenda a 0
+    \end{defn}
+    \begin{defn}[Serie geometrica]\label{defn:Serie_geometrica}
+        Chiamiamo \textit{geometrica} la serie col seguente termine generale:
+        \begin{align*}
+            \sum_{i=0}^{n} q^{i} \cdot \frac{1 - q^{n+1}}{1 - q} & &q\neq 1
+        .\end{align*}
+        La somma della serie con ragione $q \in (0,\,1)$ vale: \[
+            \sum_{i=0}^{n} q^{i} = \begin{cases}
+                \frac{1}{1-q} & \text{se $|q| < 1$}; \\
+                +\infty & \text{se $q \geq 1$}; \\
+                \text{indeterminata} & \text{altrimenti}
+            \end{cases}
+        .\] 
+    \end{defn}

@@ -9,3 +9,5 @@
 # Ignora file temporanei e di sessione di VIM
 *.swp
 *.vim
+# Ignora i file PDF
+*.pdf
