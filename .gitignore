@@ -11,3 +11,5 @@
 *.vim
 # Ignora i file PDF
 *.pdf
+# Ignora la cartella di lavoro del makefile
+pdf/
