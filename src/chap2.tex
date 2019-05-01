@@ -2,3 +2,143 @@
 % Capitolo 2
 
 \chapter{Variabili Aleatorie}
+    \section{Variabile aleatoria o casuale}
+        \begin{defn}\label{defn:Variabile_aleatoria}
+            Consideriamo lo spazio di probabilità $(\Omega,\,\mathscr{F},\,P)$; una \textit{variabile aleatoria} $X$ è una funzione da $\Omega$ in $\mathbb{R}$ tale che: \[
+                \forall x \in \mathbb{R} \,:\, \{X \leq x\} \coloneqq \{\omega \in \Omega \,:\, X(\omega) \leq x\} \in \mathscr{F}
+            .\]
+        \end{defn}
+        \begin{prty}\label{prty:Variabile_aleatoria}
+            Se $X$ è una variabile aleatoria allora i seguenti insiemi sono eventi, ovvero sottoinsiemi di $\Omega$ che appartengono a $\mathscr{F}$:
+            \begin{align*}
+                &\{X < x\}, & &\{X \geq x\}, & &\{X > x\}, \\
+                &\{x < X < y\}, & &\{x \leq X < y\}, & &\{x < X \leq y\}, \\
+                &\{x \leq X \leq y\}, & &\{X = x\}, & &\{X \neq x\}
+            .\end{align*}
+        \end{prty}
+    \section{Funzione di ripartizione}
+        \begin{defn}\label{defn:Funzione_ripartizione}
+            Sia $X$ una variabile aleatoria definita su uno spazio di probabilità $(\Omega,\,\mathscr{F},\,P)$; chiamiamo \textit{funzione di ripartizione} di $X$ la funzione $F_X\,:\, \mathbb{R} \mapsto [0,\,1]$ definita come: \[
+                \forall x \in \mathbb{R} \,:\, F_X(x) \coloneqq P(X \leq x)
+            .\]
+        \end{defn}
+        \begin{obsv}\label{obsv:Funzione_ripartizione}
+            Sia $X$ una variabile aleatoria definita sullo spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$ e sia dato $x \in \mathbb{R}$ che definisce la funzione di ripartizione $F_X(x) \coloneqq P(X \leq x)$; per il punto $(2)$ della Proprietà~\ref{prty:Spazio_di_probabilità} possiamo scrivere:
+            \begin{enumerate}[\indent (a)]
+                \item Consideriamo la probabilità inversa della funzione di ripartizione:
+                    \begin{align*}
+                        P(X > x) &= P(\{\omega \in \Omega \,:\, X(\omega) > x\}) = P(\{\omega \in \Omega \,:\, X(\omega) \leq x\}^{\text{C}}) \\
+                                 &= 1 - P(\{\omega \in \Omega \,:\, X(\omega) \leq x\}) \\
+                                 &= 1 - P(X \leq x)
+                    .\end{align*}
+                \item Se invece abbiamo $x,\,y \in \mathbb{R}$ con $x < y$, per il punto $(3)$ della Proprietà~\ref{prty:Proprietà_funzione_probabilità} vale:
+                    \begin{align*}
+                        P(x < X \leq y) &= P(\{\omega \in \Omega \,:\, x < X(\omega) \leq y\}) \\
+                                     &= P(\{\omega \in \Omega \,:\, X(\omega) \leq y\} \backslash \{\omega \in \Omega \,:\, X(\omega) \leq x\}) \\
+                                     &= P(\{\omega \in \Omega \,:\, X(\omega) \leq y\} - \{\omega \in \Omega \,:\, X(\omega) \leq x\}) \\
+                                     &= P(X \leq y) - P(X \leq x)
+                    .\end{align*}
+            \end{enumerate}
+            Osserviamo che la conoscenza della funzione di ripartizione di $X$ ci permette di calcolare le probabilità di eventi ad essa associati.
+            \begin{prty}\label{prty:Funzione_ripartizione}
+                Sia $X$ una variabile aleatoria definita sullo spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$ e la sua funzione di ripartizione $F_X(x) = P(X \leq x)$; allora possiamo affermare che:
+                \begin{itemize}
+                    \item $F_X(x)$ è una funzione \textit{monotona non decrescente};
+                    \item $F_X(x)$ è \textit{continua} da destra: $\forall x_0 \in \mathbb{R} \,:\, \lim_{x \downarrow x_0} F_X(x) = F_X(x_0)$;
+                    \item il limite destro ($x \rightarrow +\infty$) di $F_X(x)$ vale 1, il limite sinistro ($x \rightarrow -\infty$) vale 0.
+                \end{itemize}
+            \end{prty}
+            \begin{obsv}
+                Si può dimostrare che, data una funzione $F$ che soddisfa le Proprietà~\ref{prty:Funzione_ripartizione}, esiste uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$ e una variabile aleatoria $X$ definita su di esso che abbia $F$ come funzione di ripartizione; possiamo trattare il problema della A variabile aleatoria $X$ con funzione di ripartizione $F$ senza dover costruire lo spazio di probabilità che contiene $X$.
+            \end{obsv}
+        \end{obsv}
+    \section{Variabili aleatorie discrete}
+    \begin{defn}\label{defn:Variabili_aleatorie_discrete}
+            La variabile aleatoria $X$ definita su uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$ è una variabile aleatoria \textit{discreta} se assume con probabilità 1 i valori all'interno di un insieme $S$ al più numerabile: \[
+                P(X \in S) = 1
+            .\] 
+        \end{defn}
+        \begin{defn}\label{defn:Densità_discreta}
+            Sia $X$ una variabile aleatoria \underline{discreta} su uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; allora chiamiamo \textit{densità discreta} di $X$ la funzione definita come segue: \[
+                p_X(x) \coloneqq P(X = x)
+            .\]
+        \end{defn}
+        \begin{prty}\label{prty:Densità_discreta}
+            Sia  $p_X(x)$ la densità della variabile aleatoria discreta $X$, che assume con probabilità 1 i valori in $S = \{x_k \,:\, k \in I \subset \mathbb{Z}\}$; allora possiamo affermare che:
+            \begin{enumerate}
+                \item $\forall x \notin S \,:\, p_X(x) = 0 \;\land\; \forall x \in S \,:\, 0 \leq p_X(x) \leq 1$;
+                \item $\sum_{k \in I} p_X(x_k) = 1$;
+                \item se la funzione di ripartizione di $X$ è $F_X(x)$ allora vale:  \[
+                    \forall x \in \mathbb{R} \,:\, F_X(x) = \sum_{k\,:\,x_k \leq x} p_X(x_k)
+                ;\]
+                \item se possiamo numerare i punti di S prendendo $x_k,\,x_h \in S \,:\, h < k \implies x_h < x_k$ allora vale: \[
+                    \forall k \in I \,:\, p_X(x_k) = F_X(x_k) - F_X(x_{k-1})
+                ;\]
+                \item se consideriamo un sottoinsieme $B \subset \mathbb{R}$ vale: \[
+                    P(X \in B) = \sum_{k \,:\, x_k \in B} p_X(x_k)
+                .\]
+            \end{enumerate}
+        \end{prty}
+        \begin{proof}
+            \hfill
+            \begin{enumerate}
+                \item Dalla Definizione~\ref{defn:Densità_discreta} segue direttamente che, data la probabilità $p_X(x) = P(X = x)$ e sapendo che $x$ assume valori in un insieme numerabile $S$, otteniamo la prova di $(1)$.
+                \item abbiamo enunciato l'ipotesi per cui $P(X \in S) = 1$; possiamo scrivere  \[
+                        1 = P(X \in S) = P\left( \bigcup_{k \in I} {X = x_k} \right) = \sum_{k \in I} P(X = x_k) = \sum_{k \in I} p_X(x_k)
+                .\]
+                \item Osservando che la funzione di ripartizione di $X$ vale $F_X(x) = P(X \leq x)$ e ricordando l'ipotesi $P(X \in S) = 1$ otteniamo:
+                \begin{align*}
+                    F_X(x) &= P(X \leq x) = P(X \in (-\infty,\,x] \cap S) \\
+                           &= P\left( \bigcup_{k \,:\, x_k \leq x} {X = x_k}\right) = \sum_{k \,:\, x_k \leq x} P(X \leq x_k) = \sum_{k \,:\, x_k \leq x} p_X(x_k)
+                .\end{align*}
+                \item Per il punto (b) dell'Osservazione~\ref{obsv:Funzione_ripartizione} segue che: \[
+                    F_X(x_k) - F_X(x_{k-1}) = P(x_{k-1} < X \leq x_k)
+                ;\] se i punti di $S$ sono numerati come nell'ipotesi $h < k \implies x_h < x_k$ allora otteniamo: \[
+                    P(x_{k-1} < X \leq x_k) = P(X = x_k) \coloneqq p_X(x_k)
+                .\]
+            \item Riprendiamo l'ipotesi $P(X \in S) = 1$:
+                \begin{align*}
+                    P(X \in B) &= P(X \in B \cap S) \\
+                               &= P\left(\bigcup_{k\,:\,x_k \in B \cap S} \{X = x_k\}\right) = \sum_{k\,:\,x_k \in B \cap S} P(X = x_k) = \sum_{k\,:\,x_k \in B \cap S} p_X(x_k)
+                .\qedhere
+                \end{align*}
+            \end{enumerate}
+        \end{proof}
+        \begin{obsv}
+            Sia $S = \{x_k\,:\,k \in I \subset \mathbb{Z}\} \subset \mathbb{R}$; una funzione $p\,:\, \mathbb{R} \mapsto \mathbb{R}$ è una densità discreta su $S$ se essa soddisfa gli assiomi $(1)$ e $(2)$  della Proprietà~\ref{prty:Densità_discreta}.
+        \end{obsv}
+    \section{Densità notevoli}
+        \subsection{Binomiale}
+
+        \subsection{Bernoulliana}
+        \subsection{Geometrica}
+        \subsection{Poisson}
+        \subsection{Ipergeometrica}
+    \section{Variabili aleatorie continue}
+    \section{Struttura della distribuzione geometrica}
+    \section{Valore atteso e varianza}
+    \section{Deviazione standard}
+    \section{Distribuzioni notevoli}
+        \subsection{Bernoulli}
+        \subsection{Binomiale}
+        \subsection{Geometrica}
+        \subsection{Poisson}
+        \subsection{Ipergeometrica}
+        \subsection{Uniforme}
+        \subsection{Esponenziale}
+        \subsection{Normale}
+        \subsection{Normale Standard}
+        \subsection*{Assenza di memoria di geometrica ed esponenziale}
+    \section{Funzioni di variabili aleatorie}
+    \section{Trasformazioni affini di variabili aleatorie}
+    \section{Standardizzazione di variabile aleatoria}
+    \section{Probabilità della normale standard}
+    \section{Disuguaglianza di Chebichev}
+    \section{Teorema di De Moivre-Laplace}
+        \subsection{Approssimazione normale della binomiale}
+        \subsection*{Correzione del continuo}
+    \section{Momenti}
+    \section{Affidabilità}
+        \subsection{Tempi di vita}
+        \subsection{Intensità di guasto}
+        \subsection{Distribuzione di Weibull}
