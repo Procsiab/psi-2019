@@ -109,12 +109,139 @@
         \end{obsv}
     \section{Densità notevoli}
         \subsection{Binomiale}
-
-        \subsection{Bernoulliana}
+            \begin{defn}\label{defn:Densità_Binomiale}
+                Definiamo la variabile aleatoria $X$ come il numero di successi ottenuti in $n$ prove di Bernoulli; tale variabile aleatoria potrà assumere solamente i valori $0,\, \ldots,\, n$ (è una variabile aleatoria discreta).
+                La sua densità vale:
+                \begin{equation}\label{eq:Densità_Binomiale}
+                    p_X(k) = P(X = k) = \begin{cases}
+                        \binom{n}{k}\cdot p^k\cdot (1-p)^{n-k} & \text{se $k \in {0,\, \ldots,\, n}$;}\\
+                        0 & \text{se $k \notin {0,\, \ldots,\, n}$.}
+                    \end{cases}
+                \end{equation}
+                Chiamiamo la \eqref{eq:Densità_Binomiale} \textit{densità binomiale di parametri $n$ e $p$} o in modo equivalente indichiamo: \[
+                    X \sim \mathcal{B}i(n,\,p)
+                .\]
+            \end{defn}
+            \begin{defn}\label{defn:Densità_Bernoulliana}
+                Consideriamo una variabile aleatoria con densità binomiale $X \sim \mathcal{B}i(n,\,p)$ dove $n = 1$; questa variabile rappresenta il numero di successi in una sola prova, ovvero $X \in {0,\, 1}$ e la sua densità vale:
+                \begin{equation}\label{eq:Densità_Bernoulliana}
+                    \begin{cases}
+                        1-p & \text{se $k=0$;} \\
+                        p & \text{se $k=1$;} \\
+                        0 & \text{se $k \notin {0,\, 1}$.}
+                    \end{cases}
+                \end{equation}
+                Chiamiamo la \eqref{eq:Densità_Binomiale} \textit{densità bernoulliana di parametro $p$} o in modo equivalente indichiamo: \[
+                    X \sim \mathcal{B}e(p)
+                .\] 
+            \end{defn}
+            \begin{obsv}
+                La variabile aleatoria costante di valore 1 si indica come una variabile aleatoria con densità bernoulliana di parametro 0 ($X \equiv 0 \implies X \sim \mathcal{B}e(0)$); la variabile aleatoria costante di valore 0 si indica come una variabile aleatoria con densità bernoulliana di parametro 1 ($X \equiv 1 \implies X \sim \mathcal{B}e(1)$).
+            \end{obsv}
         \subsection{Geometrica}
+            \begin{defn}
+                Definiamo la variabile aleatoria $X$ l'istante di tempo discreto in cui si verifica un evento, e tale evento sia indipendente dal tempo al quale si verifica; fissato un istante di tempo $k$ possiamo scrivere: \[
+                    \forall k \in \mathbb{N} \,:\, P(X > k + 1 | X > k) = P(X > 1)
+                .\] Se conosciamo la probabilità $q \coloneqq P(X > 1)$ possiamo ottenere la densità di $X$; usiamo \eqref{eq:Formula_probabilità_condizionata} per riscrivere $q$: \[
+                    \forall k \in \mathbb{N} \,:\, q = P(X > 1) = \frac{P(X > k + 1 \cap X > k)}{P(X > k)} = \frac{P(X > k + 1)}{P(X > k)}
+                .\] Ora invertiamo la precedente in questo modo:
+                \begin{align*}
+                    \forall k \in \mathbb{N} \,:\, P(X > k + 1) &= P(X > 1) \cdot P(X > k) \\
+                                                        &= P(X > 1)^{k+1} = q^{k+1}
+                .\end{align*}
+                Sapendo che la funzione di ripartizione di $X$ vale $F_X(k) = 1 - P(X > k) = 1 - q^k$, possiamo ottenere la densità usando il punto $(4)$ della Proprietà~\ref{prty:Densità_discreta}: \[
+                    P(X = k) = F_X(k) - F_X(k-1) = q^{k-1} - q^k = q^{k-1}(1-q)
+                .\] Definendo l'\textit{intensità di guasto} come la quantità $p \coloneqq 1-q = P(X \leq 1)$ otteniamo la seguente scrittura della densità:
+                \begin{align*}
+                    P(X = k) = p \cdot (1-p)^{k-1} & &\forall k \in \mathbb{N}
+                .\end{align*}
+            \end{defn}
+            \begin{obsv}
+                Richiamiamo la Definizione~\ref{defn:Serie_geometrica}, e dalla somma della serie geometrica otteniamo: \[
+                    P(X \in \mathbb{N}) = \sum_{k=1}^{\infty} P(X = k) = \sum_{k=1}^{\infty} p \cdot (1-p)^{k-1} = p \cdot \sum_{k=0}^{\infty} (1-p)^k = p \cdot \frac{1}{1-(1-p)} = 1
+                .\] 
+            \end{obsv}
+            \begin{defn}
+                Dalla precedente osservazione e dalla Definizione~\ref{defn:Densità_discreta} concludiamo che $X$ è una variabile aleatoria con la seguente densità:
+                \begin{equation}\label{eq:Densità_Geometrica}
+                    p_X(k) = \begin{cases}
+                        p \cdot (1-p)^{k-1} & \text{se $k \in \mathbb{N}$;} \\
+                        0 & \text{se $k \notin \mathbb{N}$.}
+                    \end{cases}
+                \end{equation}
+                Chiamiamo la \eqref{eq:Densità_Geometrica} \textit{densità geometrica di parametro $p$} o in modo equivalente indichiamo: \[
+                    X \sim \mathcal{G}(p)
+                .\] 
+            \end{defn}
         \subsection{Poisson}
+            \begin{defn}
+                Consideriamo una variabile aleatoria $X \sim \mathcal{B}i(n,\,p)$ con parametro $n \gg 1$ e parametro  $p \ll 1 \land p \in (0,\, 1)$; definiamo inoltre $\lambda \coloneqq n \cdot p$, il quale non dovrà risultare eccessivamente grande (rispetto a $n$).
+
+                Nelle ipotesi appena dettate, perché con un numero grande $n$ di prove indipendenti, aventi ciascuna probabilità di successo $p$ bassa, si abbia un successo, una condizione fondamentale è il valore di $\lambda$, legato alla densità della variabile aleatoria nel modo seguente: \[
+                    X \sim \mathcal{B}i(n,\, \lambda / n)
+                .\] La probabilità sottostante si scrive come:
+                \begin{align*}
+                    P(X = x) &= \binom{n}{k} \left(\frac{\lambda}{n}\right)^k \left(1-\frac{\lambda}{n}\right)^{n-k} \\
+                             &= \frac{n!}{(n-k)!k!} \cdot \left(\frac{\lambda}{n}\right)^k \cdot \left(1-\frac{\lambda}{n}\right)^{n-k} \\
+                             &= \underset{(1)}{\underbrace{\frac{n!}{(n-k)!n^k}}} \cdot \underset{(2)}{\underbrace{\left(1-\frac{\lambda}{n}\right)^{-k}}} \cdot \frac{\lambda^k}{k!}\underset{(3)}{\underbrace{\left(1-\frac{\lambda}{n}\right)^{n}}}
+                .\end{align*}
+                Analizziamo i tre termini evidenziati, al limite per $n$ grande:
+                \begin{enumerate}
+                    \item $\lim_{n \to \infty} \frac{n!}{(n-k)!n^k} = 1$;
+                    \item $\lim_{n \to \infty} \left(1-\frac{\lambda}{n}\right)^{-k} = 1$;
+                    \item $\lim_{n \to \infty} \left(1-\frac{\lambda}{n}\right)^{n} = e^{-\lambda}$.
+                \end{enumerate}
+                Concludiamo che la densità può essere approssimata nel modo seguente, sotto le nostre ipotesi:
+                \begin{align}\label{eq:Approssimazione_Binomiale_Poisson}
+                        P(X = k) \simeq \frac{\lambda^k}{k!} & &k \in \mathbb{N},\, \lambda = n \cdot p
+                    .
+                \end{align}
+
+                Per $\lambda > 0$ possiamo dire che $X$ è una variabile aleatoria con la seguente densità:
+                \begin{equation}\label{eq:Densità_Poisson}
+                    p_X(k) = \begin{cases}
+                        \frac{e^{-k}\lambda^k}{k!} & \text{se $k \in \mathbb{N}$;} \\
+                        0 & \text{se $k \notin \mathbb{N}$.}
+                    \end{cases}
+                \end{equation}
+                Chiamiamo la \eqref{eq:Densità_Poisson} \textit{densità di Poisson di parametro $\lambda$} o in modo equivalente indichiamo: \[
+                    X \sim \mathcal{P}(\lambda)
+                .\] 
+            \end{defn}
+            \begin{obsv}
+                Possiamo usare \eqref{eq:Approssimazione_Binomiale_Poisson} per il calcolo approssimato di $P(X = k)$ quando abbiamo:
+                \begin{itemize}
+                    \item $X \sim \mathcal{B}i(n,\,p)$;
+                    \item $n \gg 1$;
+                    \item $p \ll 1$.
+                \end{itemize}
+                In questo modo si evita il calcolo dei coefficienti binomiali per ciascun $k$.
+            \end{obsv}
         \subsection{Ipergeometrica}
+            \begin{defn}
+                Consideriamo una variabile aleatoria $X$ che conta in numero di successi in $n$ prove, con probabilità di successo determinata da $r$ esiti favorevoli e $b$ esiti sfavorevoli; inoltre, ogni prova determina l'estrazione dallo spazio campionario di un $r$ o di un $b$.
+                Ricaviamo la seguente considerazione: \[
+                    X < \scriptstyle{\text{MIN}}(n,\,r) \land X > \scriptstyle{\text{MAX}}(0,\,n-b) \implies X \in S = \{\scriptstyle{\text{MAX}}(0,\,n-b),\, \scriptstyle{\text{MAX}}(0,\,n-b) + 1,\, \ldots,\, \scriptstyle{\text{MIN}}(n,\,r)\}
+                .\] Scegliendo un $k \in S$ possiamo calcolare la densità $P(X = k)$ come casi favorevoli su casi possibili:
+                \begin{equation}\label{eq:Densità_Ipergeometrica}
+                    p_X(k) = P(X = k) = \begin{cases}
+                        \frac{\binom{r}{k} \cdot \binom{b}{n-k}}{\binom{r+b}{n}} & \text{se $k \in S$;} \\
+                        0 & \text{se $k \notin S$.}
+                    \end{cases}
+                \end{equation}
+                Chiamiamo la \eqref{eq:Densità_Ipergeometrica} \textit{densità ipergeometrica di parametri $b+r$, $r$ e $n$} o in modo equivalente indichiamo: \[
+                    X \sim \mathcal{I}(b+r,\, r,\, n)
+                .\] 
+            \end{defn}
+            \begin{obsv}
+                Se il valore $r+b$ è molto grande (tende a $+\infty$) allora la dipendenza tra le prove successive si attenua e, in opportune condizioni, è possibile approssimare una variabile aleatoria $X$ con densità ipergeometrica tramite la densità binomiale: \[
+                    X \sim \mathcal{I}(b+r,\, r,\, n) \simeq \mathcal{B}i(n,\, r / (r+b))
+                .\] 
+            \end{obsv}
     \section{Variabili aleatorie continue}
+        \begin{defn}
+            
+        \end{defn}
     \section{Struttura della distribuzione geometrica}
     \section{Valore atteso e varianza}
     \section{Deviazione standard}
