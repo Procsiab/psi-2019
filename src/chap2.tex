@@ -193,7 +193,7 @@
                 \end{enumerate}
                 Concludiamo che la densità può essere approssimata nel modo seguente, sotto le nostre ipotesi:
                 \begin{align}\label{eq:Approssimazione_Binomiale_Poisson}
-                        P(X = k) \simeq \frac{\lambda^k}{k!} & &k \in \mathbb{N},\, \lambda = n \cdot p
+                        P(X = k) \simeq \frac{\lambda^k}{k!} \cdot e^{-\lambda} & &k \in \mathbb{N},\, \lambda = n \cdot p
                     .
                 \end{align}
 
@@ -221,7 +221,7 @@
             \begin{defn}
                 Consideriamo una variabile aleatoria $X$ che conta in numero di successi in $n$ prove, con probabilità di successo determinata da $r$ esiti favorevoli e $b$ esiti sfavorevoli; inoltre, ogni prova determina l'estrazione dallo spazio campionario di un $r$ o di un $b$.
                 Ricaviamo la seguente considerazione: \[
-                    X < \scriptstyle{\text{MIN}}(n,\,r) \land X > \scriptstyle{\text{MAX}}(0,\,n-b) \implies X \in S = \{\scriptstyle{\text{MAX}}(0,\,n-b),\, \scriptstyle{\text{MAX}}(0,\,n-b) + 1,\, \ldots,\, \scriptstyle{\text{MIN}}(n,\,r)\}
+                    X < \scriptstyle\text{MIN}\textstyle(n,\,r) \land X > \scriptstyle\text{MAX}\textstyle(0,\,n-b) \implies X \in S = \{\scriptstyle\text{MAX}\textstyle(0,\,n-b),\, \scriptstyle\text{MAX}\textstyle(0,\,n-b) + 1,\, \ldots,\, \scriptstyle\text{MIN}\textstyle(n,\,r)\}
                 .\] Scegliendo un $k \in S$ possiamo calcolare la densità $P(X = k)$ come casi favorevoli su casi possibili:
                 \begin{equation}\label{eq:Densità_Ipergeometrica}
                     p_X(k) = P(X = k) = \begin{cases}
@@ -239,13 +239,65 @@
                 .\] 
             \end{obsv}
     \section{Variabili aleatorie continue}
-        \begin{defn}
-            
+        \begin{defn}\label{defn:Variabile_aleatoria_continua}
+            Consideriamo una variabile aleatoria $X$ definita su uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; essa è chiamata variabile aleatoria \textit{assolutamente continua} se esiste una funzione $f_X\,:\, \mathbb{R} \mapsto \mathbb{R^+}$, che sia integrabile e la primitiva della funzione di ripartizione di $X$; inoltre deve essere possibile scrivere $F_X(x)$ nel modo seguente:
+            \begin{equation}
+                F_X(x) = \int_{-\infty}^{x} f_X(s)\, ds 
+            \end{equation}
+            Chiamiamo \textit{densità} di $X$ la funzione $f_X(x)$.
         \end{defn}
-    \section{Struttura della distribuzione geometrica}
-    \section{Valore atteso e varianza}
-    \section{Deviazione standard}
-    \section{Distribuzioni notevoli}
+        \begin{prty}\label{prty:Variabile_aleatoria_continua}
+            Se $f_x(x)$ è la densità di una variabile aleatoria $X$ assolutamente continua, allora possiamo affermare che:
+            \begin{enumerate}
+                \item $\int_{\mathbb{R}} f_X(x)\, dx = 1$;
+                \item se risulta che la primitiva di $f_X(x)$ è la funzione di ripartizione di $X$, allora vale: \[
+                        \forall x \in \mathbb{R} \,:\, \exists F^{\prime}_X(x) \implies f_X(x) = F_X^{\prime}(x)
+                ;\]
+            \item se presi $a,\, b \in \mathbb{R}$ si verifica che $-\infty < a < b < +\infty$, allora vale:
+                \begin{align*}
+                    P\left(X \in (a,\,b)\right) &= P\left(X \in (a,\,b]\right) = P\left(X \in [a,\,b)\right) = P\left(X \in [a,\,b]\right) \\
+                                   &= \int_{a}^{b} f_X(x)\, dx
+                .\end{align*}
+            \end{enumerate}
+            \begin{proof}
+                \hfill
+                \begin{enumerate}
+                    \item $1 = \lim_{x \to +\infty} F_X(x) = \lim_{x \to +\infty} \left(\int_{-\infty}^{x} f_X(s)\, ds\right) = \int_{\mathbb{R}} f_X(s)\, ds$;
+                    \item conseguenza del teorema fondamentale del calcolo integrale;
+                    \item sapendo che $\forall x \in \mathbb{R} \,:\, P(X = x) = 0$ otteniamo: \[
+                        P(X \in (a,\,b]) = P({X \in (a,\,b)} \cup {X = b}) = P(X \in (a,\,b)) + \cancel{P(X = b)} = P(X \in (a,\,b))
+                    .\] In modo analogo possiamo dimostrare che vale:\[
+                        P(X \in (a\,b)) = P(X \in [a\,b)) = P(X \in [a\,b]) 
+                    .\] Consideriamo l'intervallo $(a\,b]$:
+                    \begin{align*}
+                        P(X \in (a,\,b]) &= P(\{X \in (-\infty,\,b]\} \backslash \{X \in (-\infty,\,a]\}) \\
+                                      &= P(\{X \in (-\infty,\,b]\} - \{X \in (-\infty,\,a]\}) \\
+                                      &= F_X(b) - F_X(a) = \int_{-\infty}^{b} f_X(x)\, dx - \int_{-\infty}^{a} f_X(x)\, dx \\
+                                      &= \int_{a}^{b} f_X(x)\, dx \qedhere
+                    .\end{align*}
+                \end{enumerate}
+            \end{proof}
+            \begin{prty}
+                Consideriamo il punto $(2)$ della Proprietà~\ref{prty:Variabile_aleatoria_continua}.
+
+                Sia $X$ una variabile aleatoria e $F_X(x)$ la sua funzione di ripartizione; se $F_X(x)$ è continua e derivabile con continuità per ogni $x$ in $\mathbb{R}$ \--- eccetto al più un insieme finito di punti $B \coloneqq \{x_1,\,\ldots,\, x_n\} \subset \mathbb{R}$; allora $X$ è una variabile aleatoria \textit{assolutamente continua} e la funzione $f_X(x) = F^{\prime}_X(x)$, definita $\forall x \notin B$ in modo arbitrario su $B$, è una densità per $X$.
+            \end{prty}
+            \begin{obsv}
+                Consideriamo il punto $(3)$ della Proprietà~\ref{prty:Variabile_aleatoria_continua}.
+
+                Sia $X$ una variabile aleatoria \underline{assolutamente continua} con densità $f_X(x)$ e l'insieme $B \subset \mathbb{R}$ sia tale che $B = B_1 \cup B_2 \cup \dotsm$ dove gli intervalli $B_k,\, k = 0,\,1,\,\ldots$ sono disgiunti; allora otteniamo: \[
+                    P(X \in B) = \int_{B} f_X(x)\, dx = \sum_{k=1}^{+\infty} \int_{B_k} f_X(x)\, dx
+                .\] 
+            \end{obsv}
+            \begin{obsv}
+                Una funzione $f\,:\, \mathbb{R} \mapsto \mathbb{R}$ è una \textit{densità} su $\mathbb{R}$ se valgono:
+                \begin{enumerate}
+                    \item $f(x)$ è integrabile e $f(x) \geq 0$, per ogni $x$ in $\mathbb{R}$;
+                    \item $\int_{\mathbb{R}} f(x)\, dx = 1$.
+                \end{enumerate}
+            \end{obsv}
+        \end{prty}
+    \section{Densità continue notevoli}
         \subsection{Bernoulli}
         \subsection{Binomiale}
         \subsection{Geometrica}
@@ -256,6 +308,9 @@
         \subsection{Normale}
         \subsection{Normale Standard}
         \subsection*{Assenza di memoria di geometrica ed esponenziale}
+    \section{Struttura della distribuzione geometrica}
+    \section{Valore atteso e varianza}
+    \section{Deviazione standard}
     \section{Funzioni di variabili aleatorie}
     \section{Trasformazioni affini di variabili aleatorie}
     \section{Standardizzazione di variabile aleatoria}
