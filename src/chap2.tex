@@ -277,7 +277,7 @@
                     .\end{align*}
                 \end{enumerate}
             \end{proof}
-            \begin{prty}
+            \begin{prty}\label{prty:Assoluta_continuità}
                 Consideriamo il punto $(2)$ della Proprietà~\ref{prty:Variabile_aleatoria_continua}.
 
                 Sia $X$ una variabile aleatoria e $F_X(x)$ la sua funzione di ripartizione; se $F_X(x)$ è continua e derivabile con continuità per ogni $x$ in $\mathbb{R}$ \--- eccetto al più un insieme finito di punti $B \coloneqq \{x_1,\,\ldots,\, x_n\} \subset \mathbb{R}$; allora $X$ è una variabile aleatoria \textit{assolutamente continua} e la funzione $f_X(x) = F^{\prime}_X(x)$, definita $\forall x \notin B$ in modo arbitrario su $B$, è una densità per $X$.
@@ -298,20 +298,210 @@
             \end{obsv}
         \end{prty}
     \section{Densità continue notevoli}
-        \subsection{Bernoulli}
-        \subsection{Binomiale}
-        \subsection{Geometrica}
-        \subsection{Poisson}
-        \subsection{Ipergeometrica}
         \subsection{Uniforme}
+            \begin{defn}\label{defn:Densità_uniforme}
+                Sia $X$ un reale scelto casualmente nell'intervallo $(0,\,1]$; essendo scelto casualmente, la probabilità $P(X \leq \frac{1}{2})$ è uguale alla probabilità $P(X > \frac{1}{2})$.
+
+                Possiamo verificare quanto appena affermato considerando che:
+                \begin{itemize}
+                    \item $(0,\,1] = (0,\,\frac{1}{2}] \cup (\frac{1}{2},\,1]$;
+                    \item $P\left(X \in (0,\,\frac{1}{2}]\right) = P\left(X \in (\frac{1}{2},\,1]\right)$;
+                    \item $P\left(X \in (0,\,\frac{1}{2}]\right) + P\left(X \in (\frac{1}{2},\,1]\right) = 1$.
+                \end{itemize}
+                Ripetendo questo ragionamento per un numero $x$ di sottoinsiemi di $(0,\,1]$ otteniamo la funzione di ripartizione di $X$: \[
+                    F_X(x) = \begin{cases}
+                        0 & \text{se $x < 0$;} \\
+                        x & \text{se $0 \leq x < 1$;} \\
+                        1 & \text{se $x \geq 1$.}
+                    \end{cases}
+                \] Dato che $F_X(x)$ è derivabile con continuità tranne che in 0 e 1, per la Proprietà~\ref{prty:Assoluta_continuità} la variabile $X$ è assolutamente continua, con la seguente densità:
+                \begin{equation}\label{eq:Densità_uniforme} 
+                    F_X(x)^{\prime} = f_X(x) = \begin{cases}
+                        0 & \text{se $x < 0$;} \\
+                        1 & \text{se $0 < x < 1$;} \\
+                        0 & \text{se $x > 1$.}
+                    \end{cases}
+                \end{equation}
+                Chiamiamo la \eqref{eq:Densità_uniforme} \textit{densità uniforme} o in modo equivalente indichiamo: \[
+                    X \sim \mathcal{U}(0,\, 1)
+                .\]
+            \end{defn}
         \subsection{Esponenziale}
-        \subsection{Normale}
-        \subsection{Normale Standard}
-        \subsection*{Assenza di memoria di geometrica ed esponenziale}
-    \section{Struttura della distribuzione geometrica}
-    \section{Valore atteso e varianza}
-    \section{Deviazione standard}
+            \begin{defn}
+                Consideriamo un apparecchio \underline{non} soggetto a usura e funzionante, il quale abbia una certa probabilità di guastarsi; chiamato $T$ l'istante di tempo in cui si guasta, esso sarà ancora funzionante dopo $s$ secondi con probabilità $P(T > s)$.
+
+                Per come abbiamo appena definito $T,\,s$ e la probabilità, per l'assenza di usura otteniamo: \[
+                    P(T > t + s | T > s) = P(T > s)
+                .\] Dato che la probabilità di guastarsi è indipendente dal numero degli istanti di tempo in cui l'apparecchio funziona, possiamo scrivere: \[
+                P(T > s) = \frac{P(\{T > t + s\} \cap \{T > t\})}{P(T > t)} = \frac{P(T > t+s)}{P(T > t)}
+                .\] Dalla precedente ricaviamo che: \[
+                P(T > t + s) = P(T > t) \cdot P(T > s)
+            .\] Se definiamo $\overline{F}(t) \coloneqq P(T > t)$ otteniamo: \[
+                \overline{F}(t + s) = \overline{F}(t) \cdot \overline{F}(s)
+            .\] L'unica funzione che risolve questa equazione funzionale è $e^{\alpha t}$; allora la funzione di ripartizione si ricava dalla proprietà $P(T \leq t) = 1 - e^{\alpha t}$ per $t \geq 0$, e osservando che $\alpha < 0$ otteniamo la funzione di ripartizione di $T$: \[
+            F_T(t) = \begin{cases}
+                0 & \text{se $t < 0$;} \\
+                1 - e^{-\mu t} & \text{se $t \geq 0 \land \mu > 0$.}
+            \end{cases}
+            \] Per la Proprietà~\ref{prty:Assoluta_continuità} la variabile $T$ è assolutamente continua, con la seguente densità:
+            \begin{equation}\label{eq:Densità_esponenziale} 
+                F_T(t) = \begin{cases}
+                    0 & \text{se $t < 0$;} \\
+                    \mu e^{-\mu t} & \text{se $t > 1$.}
+                \end{cases}
+           \end{equation}
+            Chiamiamo la \eqref{eq:Densità_esponenziale} \textit{densità esponenziale} o in modo equivalente indichiamo: \[
+                T \sim \mathcal{E}(\mu)
+            .\]
+            \end{defn}
+        \subsection{Normale (o Gaussiana) Standard}
+            \begin{defn}
+                Consideriamo una variabile aleatoria $Z$ che sia \underline{assolutamente} continua su uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; diremo che $Z$ ha \textit{densità normale standard} se la sua densità vale:
+                \begin{align}\label{eq:Densità_normale_standard} 
+                    \varphi(z) = \frac{1}{\sqrt{2\pi}} \cdot e^{-z^2/2} & &\forall z \in \mathbb{R}
+                .\end{align}
+                In modo equivalente indichiamo: \[
+                    Z \sim \mathcal{N}(0,\, 1)
+                .\] 
+            \end{defn}
+            \begin{obsv}
+                La funzione \eqref{eq:Densità_normale_standard} risulta simmetrica intorno all'asse $y$, con massimo in 0; sapendo ciò, possiamo calcolare la probabilità $Z \in (-z,\, z)$ nel modo seguente:
+                \begin{align*}
+                    P(-z < Z < z) &= \int_{-z}^{z} \varphi(x)\, dx = \frac{1}{\sqrt{2\pi}} \cdot \int_{-z}^{z} e^{-x^2/2}\, dx = \frac{2}{\sqrt{2\pi}} \cdot \int_{0}^{z} e^{-x^2/2}\, dx \\
+                                  &= \frac{2}{\sqrt{\pi}} \cdot \int_{0}^{z /\sqrt{2}} e^{-y^2}\, dy & [y = x /\sqrt{2}] 
+                .\end{align*}
+                Chiamiamo la funzione ottenuta \textit{funzione di errore}, la quale è così definita per ogni $z$ positivo, e la indichiamo con $\text{erf}(z /\sqrt{2})$.
+            \end{obsv}
+            \begin{prty}
+                La densità normale standard \eqref{eq:Densità_normale_standard} di una variabile aleatori $Z \sim \mathcal{N}(0,\,1)$ determina la seguente funzione di ripartizione per $Z$:
+                \begin{equation}\label{eq:Ripartizione_normale_standard}
+                    \mathbf{\Phi}(z) = \frac{1}{\sqrt{2\pi}} \cdot \int_{-\infty}^{z} e^{-x^2 /2}\, dx
+                \end{equation}
+            \end{prty}
+            \begin{obsv}
+                Per la simmetria di $\varphi(z)$ osservata prima, otteniamo: \[
+                    \forall z \in \mathbb{R} \,:\, \mathbf{\Phi}(z) = 1 - \mathbf{\Phi}(-z)
+                .\] 
+            \end{obsv}
+            \begin{proof}
+                \hfill
+                \begin{align*}
+                    \mathbf{\Phi}(z) &= 1 - P(Z > z) = 1 - P(Z > z) - P(Z = z) \\
+                                     &= 1 - P(Z \geq z) = 1 - P(Z \leq -z) \\
+                                     &= 1 - \mathbf{\Phi}(-z)
+                .\end{align*}
+            \end{proof}
     \section{Funzioni di variabili aleatorie}
+        \begin{defn}[discreta]\label{defn:Funzioni_variabili_aleatorie_discrete}
+            Consideriamo una variabile aleatoria discreta $X$ con densità $p_X(x)$; valga inoltre $P(X \in S) = 1$, dove $S = \{x_k \,:\, k \in I\}$ e $I \subset Z$.
+
+            Prendiamo $g\,:\, S \mapsto \mathbb{R}$ e valga $g(S) = \{g(x) \,:\, x \in S\}$; se definiamo $Y \coloneqq g(X)$, allora $Y$ è una variabile aleatoria discreta con valori in $g(S)$ ovvero $P(Y \in g(S)) = 1$, e la sua densità vale: \[
+                p_Y(y) = \begin{cases}
+                    \sum_{k \,:\, g(x_k) =y} p_X(x_k) & \text{se $y \in g(S)$;} \\
+                    0 & \text{se $y \notin g(S)$.}
+                \end{cases}
+            .\]
+        \end{defn}
+        \begin{obsv}
+            La Definizione~\ref{defn:Funzioni_variabili_aleatorie_discrete} afferma che, a partire da una variabile aleatoria discreta $X$, possiamo ottenere sotto certe condizioni la funzione $g(X)$ che è ancora una variabile aleatoria discreta; inoltre, la sua densità è univocamente determinata da quella di $X$.
+
+            Questo implica la seguente: \[
+                p(X) = p(W) \implies g(X) = g(W)
+            .\] 
+        \end{obsv}
+        \begin{defn}[continua]\label{defn:Funzioni_variabili_aleatorie_continue}
+            Consideriamo una variabile aleatoria assolutamente continua $X$ con densità $f_X(x)$; valga inoltre $S \in \mathbb{R} \,:\, P(X \in S) = 1$, $g(x)$ sia differenziabile con continuità su $S$ e $\forall x \in S \,:\, g^{\prime} \neq 0$.
+            
+            Sia $g^{-1}(x)$ la funzione inversa di $g(x)$ e valga $g(S) = \{g(x) \,:\, x \in S\}$; allora $Y = g(X)$ è una variabile aleatoria assolutamente continua con densità: \[
+                f_Y(y) = \begin{cases}
+                    f_X(g^{-1}(y)) \cdot \left|(g^{-1}(y))^{\prime}\right| & \text{se $y \in g(S)$;} \\
+                    0 & \text{se $y \notin g(S)$.}
+                \end{cases}
+            \]
+        \end{defn}
+    \section{Valore atteso e varianza}
+    \begin{defn}[discreto]\label{defn:Valore_atteso_discreto}
+            Sia $X$ una variabile aleatoria discreta con valori in $S = \{x_k \,:\, k \in I\}$ dove $I \subset \mathbb{Z}$, e sia $p_X(x)$ la sua densità; se abbiamo: \[
+                \sum_{k \in I} \left|x_k\right| \cdot p_X(x_k) < +\infty
+            ,\] allora chiamiamo \textit{media} o \textit{valore atteso} di $X$ la seguente espressione:
+            \begin{equation}\label{eq:Valore_atteso_discreto}
+                \text{E}(X) \coloneqq \sum_{k \in I}x_k \cdot p_X(x_k)
+            ;\end{equation}
+            se invece questo non vale, allora diciamo che $X$ non ammette valore atteso.
+        \end{defn}
+        \begin{obsv}
+            Anche se $X$ è una variabile aleatoria discreta, il fatto che abbia valore atteso dipende dalla convergenza delle somme nell'equazione \eqref{eq:Valore_atteso_discreto}. Questo è sempre vero se $I$ è un insieme finito, poiché in tal caso $X$ assumerà un numero finito di valori.
+
+            Per la convergenza delle somme \eqref{eq:Valore_atteso_discreto} anche il valore atteso $\text{E}(X)$ sarà un valore finito; esso dipenderà unicamente dalla densità $p_X(x)$.
+        \end{obsv}
+        \begin{defn}[continuo]\label{defn:Valore_atteso_continuo}
+            Sia $X$ una variabile aleatoria assolutamente continua e $f_X(x)$ la sua densità; se abbiamo: \[
+                \int_{\mathbb{R}} |x| \cdot f_X(x)\, dx < +\infty 
+            ,\] allora chiamiamo \textit{media} o \textit{valore atteso}  di $X$ la seguente espressione:
+            \begin{equation}\label{eq:Valore_atteso_continuo}
+                \text{E}(X) \coloneqq \int_{\mathbb{R}} x \cdot f_X(x)\, dx
+            ;\end{equation}
+            se invece questo non vale, allora diciamo che $X$ non ammette valore atteso.
+        \end{defn}
+        \begin{defn}[discreta]
+            Sia $X$ una variabile aleatoria \underline{discreta} con valori in $S = \{x_k \,:\, k \in I\}$ e $I \subset \mathbb{Z}$, e densità $p_X(x)$; sia inoltre $g()$ una funzione reale  e definiamo $T \coloneqq  g(X)$.
+
+            Se vale: \[
+                \sum_{k \in I} g(x_k)  \cdot p_X(x_k)
+            ,\] allora la funzione $Y$ ammette valore atteso ed esso vale:
+            \begin{equation}\label{eq:Valore_atteso_funzione_discreta}
+                \text{E}(Y) = \sum_{k \in I} g(x_k) \cdot p_X(x_k)
+            .\end{equation}
+        \end{defn}
+        \begin{defn}[continua]
+            Consideriamo $X$ una variabile aleatoria \underline{assolutamente continua} con densità $f_X(x)$ e $g(X)$ una funzione reale tale che $Y = g(X)$ sia una variabile aleatoria.
+            Se vale: \[
+                \int_{\mathbb{R}} \left|g(x)\right| \cdot f_X(x)\, dx < +\infty
+            ,\] allora la funzione $Y$ ammette valore atteso ed esso vale:
+            \begin{equation}\label{eq:Valore_atteso_funzione_continua}
+                \text{E}(Y) = \int_{\mathbb{R}} g(x) \cdot f_X(x)\, dx
+            .\end{equation}
+        \end{defn}
+        \begin{prty}\label{prty:Valore_atteso}
+            Sia $X$ una variabile aleatoria definita sullo spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$.
+            \begin{enumerate}
+                \item $P(X = c) = 1 \implies \text{E}(X) = c$ (\textit{coerenza});\label{itm:Coerenza_valore_atteso}
+                \item sia $X$ una variabile aleatoria e $B \subset \mathbb{R} \,:\, \{X \in B\} \in \mathscr{F}$; allora vale $\text{E}(\mathbf{F}_B(X)) = P(X \in B)$;
+                \item sia $X$ una variabile aleatoria che ammette valore atteso $\text{E}(X)$ e $\alpha$ una costante, allora vale: $\text{E}(\alpha \cdot X) = \alpha \cdot \text{E}(X)$ (\textit{linearità});
+                \item sia $X$ una variabile aleatoria e $g(),\, h()$ due funzioni tali che esistano i loro valori attesi $\text{E}(g(X)),\, \text{E}(h(X))$; allora vale: $\text{E}(g(X)+h(X)) = \text{E}(g(X)) + \text{E}(h(X))$ (\textit{linearità});\label{itm:Linearità_valore_atteso}
+                \item sia $X$ una variabile aleatoria tale che $P(X > 0) = 1$ ed esista il suo valore atteso $\text{E}(X)$, allora esso vale $\text{E}(X) \geq 0$; se inoltre il valore atteso è nullo, allora otteniamo $P(X = 0) = 1$ (\textit{positività});\label{itm:Positività_valore_atteso}
+                \item $a,\,b \in \mathbb{R} \,:\, P(a \leq X \leq B) = 1 \implies a \leq \text{E}(X) \leq b$ (\textit{internalità});\label{itm:Internalità_valore_atteso}
+                \item siano $g(),\,h()$ funzioni reali che ammettano valore atteso $\text{E}(g(x)),\,\text{E}(h(X))$; allora vale: $P(h(X) \geq g(X)) = 1 \implies \text{E}(h(X)) \geq \text{E}(g(X))$.
+            \end{enumerate}
+        \end{prty}
+        \begin{proof}
+            \hfill
+            \begin{enumerate}
+                \item $P(X = c) = 1 \implies \text{E}(X)= c \cdot P(X = c) = c$.
+                \item $Y \coloneqq  \mathbf{1}_B(X) \implies Y \sim \mathcal{B}e(p) \land p = P(Y = 1) = P(X \in B) \implies \text{E}(Y) = P(X \in B)$.
+                \item Supponiamo $X$ assolutamente continua; per la Definizione~\ref{defn:Valore_atteso_continuo} vale: \[
+                    \text{E}(\alpha \cdot X) = \int_{\mathbb{R}} \alpha x \cdot f_X(x)\, dx = \alpha \int_{\mathbb{R}} x \cdot f_X(x)\, dx = \alpha \text{E}(X)
+                .\] Nel caso di una variabile aleatoria discreta sfruttiamo la Definizione~\ref{defn:Valore_atteso_discreto} e dimostriamo in modo analogo.
+                \item Supponiamo $X$ assolutamente continua; per la Definizione~\ref{defn:Valore_atteso_continuo} vale:
+                \begin{align*}
+                    \text{E}(g(X) + h(X)) &= \text{E}(X^2 + 2X) = \int_{\mathbb{R}} (x^2 + 2x) \cdot f_X(x)\, dx = \int_{\mathbb{R}} x^2 \cdot f_X(x),\, dx + \int_{\mathbb{R}} 2x \cdot f_X(x),\, dx \\
+                                          &= \text{E}(X^2) + \text{E}(2X) = \text{E}(g(X)) + \text{E}(h(X))
+                .\end{align*}
+                \item Supponiamo $X$ discreta; poiché $P(X \geq 0)=1$ allora $\forall x < 0 p_X(x) = 0$ da cui otteniamo: \[
+                    \text{E}(X) = \sum_{k \,:\, x_k \geq 0} x_k \cdot p_X(x_k) \geq 0
+                .\] Si dimostra analogamente il caso di $X$ assolutamente continua.
+                \item Sapendo che: \[
+                    P(a \leq X \leq b) = 1 \implies \exists\, \text{E}(X)
+                ,\] osserviamo che $P(X -a \geq 0) = 1$ e per i punti \eqref{itm:Coerenza_valore_atteso}, \eqref{itm:Linearità_valore_atteso} e \eqref{itm:Positività_valore_atteso} della Proprietà~\ref{prty:Valore_atteso} si ha: \[
+                0 \leq \text{E}(X - a)= \text{E}(X) + \text{E}(-a) = \text{E}(X) - a \implies \text{E}(X) \geq a
+            .\] Ripetendo lo stesso ragionamento per $P(b - X \geq 0) = 1$, concludiamo la dimostrazione anche per $\text{E}(X) \leq b$.
+                \item La dimostrazione si realizza come nel punto precedente, usando due funzioni al posto delle due costanti. \qedhere
+            \end{enumerate}
+        \end{proof}
+    \section{Deviazione standard}
+        \begin{defn}
+            
+        \end{defn}
     \section{Trasformazioni affini di variabili aleatorie}
     \section{Standardizzazione di variabile aleatoria}
     \section{Probabilità della normale standard}
