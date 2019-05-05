@@ -354,7 +354,7 @@
                 T \sim \mathcal{E}(\mu)
             .\]
             \end{defn}
-        \subsection{Normale (o Gaussiana) Standard}
+        \subsection{Normale Standard}
             \begin{defn}
                 Consideriamo una variabile aleatoria $Z$ che sia \underline{assolutamente} continua su uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; diremo che $Z$ ha \textit{densità normale standard} se la sua densità vale:
                 \begin{align}\label{eq:Densità_normale_standard} 
@@ -362,7 +362,7 @@
                 .\end{align}
                 In modo equivalente indichiamo: \[
                     Z \sim \mathcal{N}(0,\, 1)
-                .\] 
+                .\]
             \end{defn}
             \begin{obsv}
                 La funzione \eqref{eq:Densità_normale_standard} risulta simmetrica intorno all'asse $y$, con massimo in 0; sapendo ciò, possiamo calcolare la probabilità $Z \in (-z,\, z)$ nel modo seguente:
@@ -391,6 +391,10 @@
                                      &= 1 - \mathbf{\Phi}(-z)
                 .\end{align*}
             \end{proof}
+        \subsection{Gaussiana}
+            \begin{note}
+                Per comprendere le proposizioni seguenti, fare riferimento alle sezioni §~\ref{sec:Valore_atteso} e §~\ref{sec:Varianza}.
+            \end{note}
     \section{Funzioni di variabili aleatorie}
         \begin{defn}[discreta]\label{defn:Funzioni_variabili_aleatorie_discrete}
             Consideriamo una variabile aleatoria discreta $X$ con densità $p_X(x)$; valga inoltre $P(X \in S) = 1$, dove $S = \{x_k \,:\, k \in I\}$ e $I \subset Z$.
@@ -419,7 +423,7 @@
                 \end{cases}
             \]
         \end{defn}
-    \section{Valore atteso e varianza}
+    \section{Valore atteso}\label{sec:Valore_atteso}
     \begin{defn}[discreto]\label{defn:Valore_atteso_discreto}
             Sia $X$ una variabile aleatoria discreta con valori in $S = \{x_k \,:\, k \in I\}$ dove $I \subset \mathbb{Z}$, e sia $p_X(x)$ la sua densità; se abbiamo: \[
                 \sum_{k \in I} \left|x_k\right| \cdot p_X(x_k) < +\infty
@@ -467,8 +471,8 @@
             \begin{enumerate}
                 \item $P(X = c) = 1 \implies \text{E}(X) = c$ (\textit{coerenza});\label{itm:Coerenza_valore_atteso}
                 \item sia $X$ una variabile aleatoria e $B \subset \mathbb{R} \,:\, \{X \in B\} \in \mathscr{F}$; allora vale $\text{E}(\mathbf{F}_B(X)) = P(X \in B)$;
-                \item sia $X$ una variabile aleatoria che ammette valore atteso $\text{E}(X)$ e $\alpha$ una costante, allora vale: $\text{E}(\alpha \cdot X) = \alpha \cdot \text{E}(X)$ (\textit{linearità});
-                \item sia $X$ una variabile aleatoria e $g(),\, h()$ due funzioni tali che esistano i loro valori attesi $\text{E}(g(X)),\, \text{E}(h(X))$; allora vale: $\text{E}(g(X)+h(X)) = \text{E}(g(X)) + \text{E}(h(X))$ (\textit{linearità});\label{itm:Linearità_valore_atteso}
+                \item sia $X$ una variabile aleatoria che ammette valore atteso $\text{E}(X)$ e $\alpha$ una costante, allora vale: $\text{E}(\alpha \cdot X) = \alpha \cdot \text{E}(X)$ (\textit{linearità});\label{itm:Linearità_valore_atteso_prodotto}
+                \item sia $X$ una variabile aleatoria e $g(),\, h()$ due funzioni tali che esistano i loro valori attesi $\text{E}(g(X)),\, \text{E}(h(X))$; allora vale: $\text{E}(g(X)+h(X)) = \text{E}(g(X)) + \text{E}(h(X))$ (\textit{linearità});\label{itm:Linearità_valore_atteso_somma}
                 \item sia $X$ una variabile aleatoria tale che $P(X > 0) = 1$ ed esista il suo valore atteso $\text{E}(X)$, allora esso vale $\text{E}(X) \geq 0$; se inoltre il valore atteso è nullo, allora otteniamo $P(X = 0) = 1$ (\textit{positività});\label{itm:Positività_valore_atteso}
                 \item $a,\,b \in \mathbb{R} \,:\, P(a \leq X \leq B) = 1 \implies a \leq \text{E}(X) \leq b$ (\textit{internalità});\label{itm:Internalità_valore_atteso}
                 \item siano $g(),\,h()$ funzioni reali che ammettano valore atteso $\text{E}(g(x)),\,\text{E}(h(X))$; allora vale: $P(h(X) \geq g(X)) = 1 \implies \text{E}(h(X)) \geq \text{E}(g(X))$.
@@ -492,20 +496,74 @@
                 .\] Si dimostra analogamente il caso di $X$ assolutamente continua.
                 \item Sapendo che: \[
                     P(a \leq X \leq b) = 1 \implies \exists\, \text{E}(X)
-                ,\] osserviamo che $P(X -a \geq 0) = 1$ e per i punti \eqref{itm:Coerenza_valore_atteso}, \eqref{itm:Linearità_valore_atteso} e \eqref{itm:Positività_valore_atteso} della Proprietà~\ref{prty:Valore_atteso} si ha: \[
+                ,\] osserviamo che $P(X -a \geq 0) = 1$ e per i punti \eqref{itm:Coerenza_valore_atteso}, \eqref{itm:Linearità_valore_atteso_somma} e \eqref{itm:Positività_valore_atteso} della Proprietà~\ref{prty:Valore_atteso} si ha: \[
                 0 \leq \text{E}(X - a)= \text{E}(X) + \text{E}(-a) = \text{E}(X) - a \implies \text{E}(X) \geq a
             .\] Ripetendo lo stesso ragionamento per $P(b - X \geq 0) = 1$, concludiamo la dimostrazione anche per $\text{E}(X) \leq b$.
                 \item La dimostrazione si realizza come nel punto precedente, usando due funzioni al posto delle due costanti. \qedhere
             \end{enumerate}
         \end{proof}
-    \section{Deviazione standard}
+    \section{Varianza}\label{sec:Varianza}
+        \begin{defn}\label{defn:Varianza}
+            Sia $X$ una variabile aleatoria che ammetta valore atteso $\text{E}(X)$; se esiste il valore atteso della distanza al quadrato tra $X$ e il suo valore atteso ($\text{E}((X - \text{E}(X))^2)$), allora definiamo: \[
+                \text{Var}(X) \coloneqq \text{E}((X - \text{E}(X))^2)
+            ;\] chiamiamo \textit{varianza} di $X$ la quantità $\text{Var}(X)$, mentre la sua radice quadrata $\sqrt{\text{Var}(X)}$ prende il nome di \textit{deviazione standard}.
+        \end{defn}
+        \begin{obsv}
+            Dalle Definizione~\ref{defn:Valore_atteso_discreto} e Definizione~\ref{defn:Valore_atteso_continuo} si deduce che:
+            \begin{itemize}
+                \item data una variabile aleatoria discreta $X$ con media $\mu = \text{E}(X)$ e densità $p_X(x)$, la sua varianza si ottiene come $\sum_{k} (x_k - \mu)^2 \cdot p_X(x_k)$;
+                \item data una variabile aleatoria assolutamente continua con media $\mu = \text{E}(X)$ e densità $f_X(x)$, la sua varianza si ottiene come $\int_{\mathbb{R}} (x - \mu)^2 \cdot f_X(x)\, dx$.
+            \end{itemize}
+        \end{obsv}
+        \begin{prty}
+            Consideriamo una variabile aleatoria $X$:
+            \begin{enumerate}
+                \item $\text{Var}(X)=0 \iff \exists c \,:\, P(X = c) = 1 \implies \text{E}(X) = c$;
+                \item $\exists\, \text{Var}(X) \land \alpha \in \mathbb{R} \implies \text{Var}(\alpha \cdot X) = \alpha^2 \cdot \text{Var}(X)$;
+                \item $\exists\, \text{Var}(X) \land \beta \in \mathbb{R} \implies \text{Var}(X + \beta) = \text{Var}(X)$;
+                \item $\exists\, \text{Var}(X) \implies \exists\, \text{E}(X^2) \land \text{Var}(X) = \text{E}(X^2) - \text{E}(X)^2$.
+            \end{enumerate}
+        \end{prty}
+        \begin{proof}
+            \hfill
+            \begin{enumerate}
+                \item Se $P(X = c) = 1$ allora deve valere (per il punto \eqref{itm:Coerenza_valore_atteso} della Proprietà~\ref{prty:Valore_atteso} e poi dalla Definizione~\ref{defn:Varianza}): \[
+                    \text{E}(X) = c \land \text{Bar}(X) = \text{E}((c-c)^2) = \text{E}(0) = 0
+                .\] Al contrario, dato che $P(X -\text{E}(X))^2 \geq 0$: \[
+                \text{Var}(X) = \text{E}((X - \text{E}(X))^2) = 0 \implies P((X - \text{E}(X))^2 = 0) = 1 \iff P(X = \text{E}(X)) = 1
+                .\]
+                \item Dal punto \eqref{itm:Linearità_valore_atteso_prodotto} della Proprietà~\ref{prty:Valore_atteso} abbiamo che:
+                \begin{align*}
+                        \text{Var}(\alpha \cdot X) &= \text{E}((\alpha \cdot X - \text{E}(\alpha \cdot X))^2) = \text{E}((\alpha \cdot X - \alpha \cdot \text{E}(X))^2) \\
+                                          &= \text{E}(\alpha^2 \cdot (X - \text{E}(X))^2) = \alpha^2 \cdot \text{E}((X - \text{E}(X))^2)= \alpha^2 \cdot \text{Var}(X)
+                .\end{align*}
+                \item Dal punto \eqref{itm:Linearità_valore_atteso_somma} della Proprietà~\ref{prty:Valore_atteso} abbiamo che:
+                \begin{align*}
+                    \text{Var}(X + \beta) &= \text{E}((X+\beta -\text{E}(X+\beta))^2) = \text{E}((X \cancel{+\beta} -\text{E}(X) \cancel{-\beta})^2) \\
+                                          &= \text{E}((X - \text{E}(X))^2) = \text{Var}(X)
+                .\end{align*}
+                \item Dal punto \eqref{itm:Positività_valore_atteso} della Proprietà~\ref{prty:Valore_atteso} abbiamo che:
+                \begin{align*}
+                    \text{E}(X^2) &= \text{E}((X - \cancel{\text{E}(X)} + \cancel{\text{E}(X)})^2) \leq \text{E}\left(2\cdot(X - \text{E}(X))^2 + 2\cdot\text{E}(X)^2\right) \\
+                                  &= 2 \cdot \text{E}((X - \text{E}(X))^2) + 2\cdot\text{E}(X)^2 \\
+                                  &= 2\cdot\text{Var}(X) + 2\cdot\text{E}(X)^2 < +\infty
+                .\end{align*}
+                Sapendo quindi che $X^2$ ammette media, possiamo dire della varianza:
+                \begin{align*}
+                    \text{Var}(X) &= \text{E}((X - \text{E}(X))^2) = \text{E}(X^2 - 2X\cdot\text{E}(X) + \text{E}(X)^2) \\
+                                  &= \text{E}(X^2) - 2\cdot\text{E}(X\cdot\text{E}(X)) + \text{E}(\text{E}(X)^2) \\
+                                  &= \text{E}(X^2) - 2\cdot\text{E}(X)^2 + \text{E}(X)^2 \\
+                                  &= \text{E}(X^2) - \text{E}(X)^2 \qedhere
+                .\end{align*}
+            \end{enumerate}
+        \end{proof}
+    \section{Disuguaglianza di Chebichev}
         \begin{defn}
             
         \end{defn}
     \section{Trasformazioni affini di variabili aleatorie}
     \section{Standardizzazione di variabile aleatoria}
     \section{Probabilità della normale standard}
-    \section{Disuguaglianza di Chebichev}
     \section{Teorema di De Moivre-Laplace}
         \subsection{Approssimazione normale della binomiale}
         \subsection*{Correzione del continuo}
