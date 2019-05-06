@@ -395,6 +395,20 @@
             \begin{note}
                 Per comprendere le proposizioni seguenti, fare riferimento alle sezioni §~\ref{sec:Valore_atteso} e §~\ref{sec:Varianza}.
             \end{note}
+            \begin{defn}\label{defn:Gaussiana}
+                Consideriamo una variabile aleatoria con densità normale $Z \sim \mathcal{N}(0,\,1)$, un numero $\sigma > 0$ e un altro $\mu \in \mathbb{R}$; se definiamo $X \coloneqq \sigma Z + \mu$, dalle Proprietà~\ref{prty:Valore_atteso} e Proprietà~\ref{prty:Varianza} segue che:
+                \begin{gather*}
+                    \text{E}(X) = \sigma \cdot \text{E}(Z) + \mu = \mu, \\
+                    \text{Var}(X) = \sigma^2 \cdot \text{Var}(Z) = \sigma^2
+                .\end{gather*}
+                Inoltre per la Definizione~\ref{defn:Funzioni_variabili_aleatorie_continue} $X$ risulta assolutamente continua, con densità:
+                \begin{align}\label{eq:Densità_Gaussiana}
+                    f_X(x) = \varphi \left(\frac{x-\mu}{\sigma}\right)\cdot \frac{1}{\sigma} = \frac{1}{\sqrt{w\pi\sigma^2}} \cdot e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}^2\right)} & & \forall x \in \mathbb{R}
+                .\end{align}
+                Una variabile aleatoria $X$ con densità \eqref{eq:Densità_Gaussiana} è detta \textit{gaussiana di parametri $\mu$ e $\sigma^2$}, e si indica come: \[
+                    X \sim \mathcal{N}(\mu,\,\sigma^2)
+                .\] 
+            \end{defn}
     \section{Funzioni di variabili aleatorie}
         \begin{defn}[discreta]\label{defn:Funzioni_variabili_aleatorie_discrete}
             Consideriamo una variabile aleatoria discreta $X$ con densità $p_X(x)$; valga inoltre $P(X \in S) = 1$, dove $S = \{x_k \,:\, k \in I\}$ e $I \subset Z$.
@@ -515,7 +529,7 @@
                 \item data una variabile aleatoria assolutamente continua con media $\mu = \text{E}(X)$ e densità $f_X(x)$, la sua varianza si ottiene come $\int_{\mathbb{R}} (x - \mu)^2 \cdot f_X(x)\, dx$.
             \end{itemize}
         \end{obsv}
-        \begin{prty}
+        \begin{prty}\label{prty:Varianza}
             Consideriamo una variabile aleatoria $X$:
             \begin{enumerate}
                 \item $\text{Var}(X)=0 \iff \exists c \,:\, P(X = c) = 1 \implies \text{E}(X) = c$;
@@ -558,16 +572,77 @@
             \end{enumerate}
         \end{proof}
     \section{Disuguaglianza di Chebichev}
-        \begin{defn}
-            
+        \begin{defn}\label{defn:Disuguaglianza_Chebychev}
+            Sia $X$ una variabile aleatoria che ammette media $\text{E}(X)$ e varianza $\text{Var}(X)$; allora per qualunque $\varepsilon > 0$ otteniamo:
+            \begin{equation}\label{eq:Disuguaglianza_Chebychev}
+                P\left(\left|X - \text{E}(X)\right| > \varepsilon\right) \leq \frac{\text{Var}(X)}{\varepsilon^2}
+            .\end{equation}
         \end{defn}
-    \section{Trasformazioni affini di variabili aleatorie}
+        \begin{proof}
+            Osservando che i due casi seguenti si escludono a vicenda:
+            \begin{align*}
+                \left|X - \text{E}(E)\right| \leq \varepsilon & & \left|X - \text{E}(X)\right| > \varepsilon
+            ,\end{align*}
+            possiamo scrivere lo spazio degli esiti come: \[
+                \mathbf{1}_{(-\infty,\,\varepsilon]}(|X - \text{E}(X)|) + \mathbf{1}_{(\varepsilon,\,+\infty)}(|X - \text{E}(X)|) \equiv 1
+            ;\] segue che:
+            \begin{align*}
+                \text{Var}(X) &= \text{E}((X - \text{E}(X))^2) \\
+                              &= \text{E}(X - \text{E}(X))^2 \cdot \mathbf{1}_{(-\infty,\,\varepsilon]}(|X - \text{E}(X)|) + \text{E}(X - \text{E}(X))^2 \cdot \mathbf{1}_{(\varepsilon,\,+\infty)}(|X - \text{E}(X)|) \\
+                              &\geq \text{E}(X - \text{E}(X))^2 \cdot \mathbf{1}_{(\varepsilon,\,+\infty)}(|X - \text{E}(X)|) \geq \text{E}(\varepsilon^2 \cdot \mathbf{1}_{(\varepsilon,\,+\infty)}(|X - \text{E}(X)|)) \\
+                              &= \varepsilon^2 \cdot P(|X - \text{E}(X)| > \varepsilon)
+            .\end{align*}
+            Spostando $\varepsilon^2$ a sinistra nella precedente, si ottiene proprio \eqref{eq:Disuguaglianza_Chebychev}.
+        \end{proof}
     \section{Standardizzazione di variabile aleatoria}
-    \section{Probabilità della normale standard}
+        \begin{defn}
+            Consideriamo una variabile aleatoria $X$ non costante che ammetta media $\mu = \text{E}(X)$ e varianza $\sigma^2 = \text{Var}(X) > 0$; definiamo una variabile aleatoria $Y$ nel modo seguente:
+            \begin{equation}\label{eq:Standardizzazione}
+                Y \coloneqq \frac{X-\mu}{\sigma}
+            ,\end{equation}
+            dove $\sigma$ è la deviazione standard. Dalle Proprietà~\ref{prty:Valore_atteso} e Proprietà~\ref{prty:Varianza} osserviamo che $Y$ ammette media e varianza finite; inoltre per la linearità della media (\ref{prty:Valore_atteso}.\ref{itm:Linearità_valore_atteso_somma}) vale: \[
+                \text{E}(Y) = \text{E}\left(\frac{X - \mu}{\sigma}\right) = \frac{\text{E}(X) - \mu}{\sigma} = 0
+            .\] Per le proprietà della varianza infine: \[
+            \text{Var}(Y) = \text{Var}\left(\frac{X - \mu}{\sigma}\right) = \frac{\text{Var}(X - \mu)}{\sigma^2} = \frac{\text{Var}(X)}{\sigma^2} = 1
+        .\] Con la trasformazione appena compiuta abbiamo ottenuto una variabile aleatoria con densità normale standard $Y \sim \mathcal{U}(0,\,1)$; chiamiamo $Y$ la \textit{standardizzata} di $X$ e la trasformazione per ricavarla \textit{standardizzazione}.
+        \end{defn}
+        \begin{obsv}
+            La funzione di ripartizione di $X$ è legata a quella della sua standardizzata $Y$ nel modo seguente:
+            \begin{align*}
+                F_X(t) &= P(X \leq t) = P\left(\frac{X - \mu}{\sigma} \leq \frac{t - \mu}{\sigma}\right) \\
+                       &= F_Y\left(\frac{t - \mu}{\sigma}\right)
+            .\end{align*}
+        \end{obsv}
     \section{Teorema di De Moivre-Laplace}
-        \subsection{Approssimazione normale della binomiale}
-        \subsection*{Correzione del continuo}
+        \begin{thm}\label{thm:Teorema_DeMoivre_Laplace}
+            Sia $S_n$ il numero di successi in $n$ prove di Bernoulli, in ognuna delle quali il successo abbia probabilità $p \in (0,\,1)$; allora per ogni $a,\,b \in \mathbb{R}$ per cui $a < b$ si verifica:
+            \begin{align*}
+                P\left(a < \frac{S_n - n\cdot p}{\sqrt{n\cdot p(2-p)}} < b\right) \rightarrow \Phi(b) - \Phi(a) & & \text{per }n \rightarrow +\infty
+            ,\end{align*}
+            dove $\Phi(x)$ è la funzione di ripartizione di una normale standard.
+        \end{thm}
+        \begin{obsv}
+            Il Teorema~\ref{thm:Teorema_DeMoivre_Laplace} offre un'approssimazione per la densità binomiale, nel caso di un $n$ grande e un $p$ distante da 0 o 1, nel suo insieme di definizione.
+
+            L'approssimazione gaussiana dalle binomiale risulta ``buona'' se vale una delle seguenti condizioni:
+            \begin{gather*}
+                n \cdot p > 5 \land n(1-p) > 5 \\
+                n \cdot p (1 - p) > 10
+            \end{gather*}
+        \end{obsv}
     \section{Momenti}
+        \begin{defn}\label{defn:Momento}
+            Sia $X$ una variabile aleatoria (assolutamente continua oppure discreta) tale che $|X|^k$ ammetta valore atteso; allora $\text{E}(X^k)$ viene detto \textit{momento $k$\nbdash esimo} o \textit{momento di ordine $k$} della variabile aleatoria $X$.
+        \end{defn}
+        \begin{obsv}
+            La Definizione~\ref{defn:Momento} ci permette di affermare che, presa una variabile aleatoria $X$ che ammetta media e varianza, la prima sia data dal momento primo di $X$, e la seconda dalla differenza tra il momento secondo e il quadrato del  momento primo di $X$.
+        \end{obsv}
+        \begin{prty}
+            Sia $X$ una variabile aleatoria che ammette momento $k$\nbdash esimo per qualche $k \geq 2$; allora $X$ ammette momento $h$\nbdash esimo per ogni $h \in [1,\,k)$.
+        \end{prty}
+        \begin{proof}
+            
+        \end{proof}
     \section{Affidabilità}
         \subsection{Tempi di vita}
         \subsection{Intensità di guasto}
