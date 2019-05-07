@@ -13,3 +13,4 @@ $(OUTNAME).pdf: src/$(MAINFILE).tex
 
 clean:
 	latexmk -c -cd -outdir=../pdf src/$(MAINFILE).tex
+	rm pdf/*.aux
