@@ -326,7 +326,7 @@
                     X \sim \mathcal{U}(0,\, 1)
                 .\]
             \end{defn}
-        \subsection{Esponenziale}
+        \subsection{Esponenziale}\label{sec:Densità_Esponenziale}
             \begin{defn}
                 Consideriamo un apparecchio \underline{non} soggetto a usura e funzionante, il quale abbia una certa probabilità di guastarsi; chiamato $T$ l'istante di tempo in cui si guasta, esso sarà ancora funzionante dopo $s$ secondi con probabilità $P(T > s)$.
 
@@ -336,8 +336,8 @@
                 P(T > s) = \frac{P(\{T > t + s\} \cap \{T > t\})}{P(T > t)} = \frac{P(T > t+s)}{P(T > t)}
                 .\] Dalla precedente ricaviamo che: \[
                 P(T > t + s) = P(T > t) \cdot P(T > s)
-            .\] Se definiamo $\overline{F}(t) \coloneqq P(T > t)$ otteniamo: \[
-                \overline{F}(t + s) = \overline{F}(t) \cdot \overline{F}(s)
+            .\] Se definiamo $\bar{F}(t) \coloneqq P(T > t)$ otteniamo: \[
+                \bar{F}(t + s) = \bar{F}(t) \cdot \bar{F}(s)
             .\] L'unica funzione che risolve questa equazione funzionale è $e^{\alpha t}$; allora la funzione di ripartizione si ricava dalla proprietà $P(T \leq t) = 1 - e^{\alpha t}$ per $t \geq 0$, e osservando che $\alpha < 0$ otteniamo la funzione di ripartizione di $T$: \[
             F_T(t) = \begin{cases}
                 0 & \text{se $t < 0$;} \\
@@ -626,8 +626,8 @@
 
             L'approssimazione gaussiana dalle binomiale risulta ``buona'' se vale una delle seguenti condizioni:
             \begin{gather*}
-                n \cdot p > 5 \land n(1-p) > 5 \\
-                n \cdot p (1 - p) > 10
+                n \cdot p > 5 \land n(1-p) > 5, \\
+                n \cdot p (1 - p) > 10.
             \end{gather*}
         \end{obsv}
     \section{Momenti}
@@ -641,9 +641,153 @@
             Sia $X$ una variabile aleatoria che ammette momento $k$\nbdash esimo per qualche $k \geq 2$; allora $X$ ammette momento $h$\nbdash esimo per ogni $h \in [1,\,k)$.
         \end{prty}
         \begin{proof}
-            
+            Per ipotesi sappiamo che $\text{E}(|X|^k)$ è un numero finito, per cui si ha:
+            \begin{align*}
+                \text{E}(|X|^k) &= \text{E}\left(|X|^k\cdot\left[\mathbf{1}_{[0,\,1]}(|X|) + \mathbf{1}_{(1,\,+\infty)}(|X|)\right]\right) \\
+                                &= \text{E}\left(|X|^k\cdot\mathbf{1}_{[0,\,1]}(|X|)\right) + \text{E}\left(|X|^k\cdot\mathbf{1}_{(1,\,+\infty)}(|X|)\right) \\
+                                &\geq \text{E}\left(|X|^k\cdot\mathbf{1}_{(1,\,+\infty)}(|X|)\right)\\
+                                &= \text{E}\left(|X|\cdot |X|^{k-1}\cdot\mathbf{1}_{(1,\,+\infty)}(|X|)\right) \\
+                                &\geq \text{E}\left(|X|^{k-1}\cdot\mathbf{1}_{(1,\,+\infty)}(|X|)\right)
+            .\end{align*}
+            Quindi deduciamo che $|X|^{k-1}\mathbf{1}_{(1,\,+\infty)}(|X|)$ ha media finita; inoltre poiché vale:
+            \begin{gather*}
+                |X^k| = |X|^{k-1} \cdot \mathbf{1}_{[]0,\,1} (|X|) + |X|^{k-1}\cdot\mathbf{1}_{(1,\,+\infty)} (|X|) \\,
+                |X|^{k-1}\cdot\mathbf{1}_{[0,\,1]} (|X|) \leq 1,
+            \end{gather*}
+            segue che anche $|X|^k$ abbia media finita; abbiamo appena mostrato che: \[
+            \exists\, \text{E}(|X|^k) \implies \exists\, \text{E}(|X|^{k-1})
+            ;\] per concludere la dimostrazione si itera il procedimento per ciascun momento da $k-1$ a 1.
         \end{proof}
-    \section{Affidabilità}
-        \subsection{Tempi di vita}
-        \subsection{Intensità di guasto}
-        \subsection{Distribuzione di Weibull}
+        \begin{defn}
+            Sia $X$ una variabile aleatoria per cui sia definito un aperto $O$ contenente lo 0, tale che $e^{tX}$ ammetta media per ogni $t$ in $O$; allora definiamo la funzione seguente:
+            \begin{equation}\label{eq:Generatrice_momenti}
+                m_X(t) \coloneqq \text{E}(e^{tX})
+            ;\end{equation}
+            essa deve essere definita almeno per ogni $t \in O$, e si chiama \textit{generatrice dei momenti} di $X$.
+            Essa coincide con la trasformata di Laplace della densità di $X$.
+        \end{defn}
+        \begin{prty}
+            Sia $X$ una variabile aleatoria che ammette funzione generatrice dei momenti $m_X$; allora esistono tutti i momenti di $X$ e si ha: \[
+                \text{E}(X) = m_X^{\prime}(0),\, \text{E}(X^2) = m_X^{\prime\prime},\, \ldots
+            .\] 
+        \end{prty}
+        \begin{proof}
+            Dalla definizione di generatrice dei momenti \eqref{eq:Generatrice_momenti} si ha: \[
+                m_X^{\prime}(t) = \frac{\partial}{\partial t}\text{E}(e^{tX})
+                = \text{E}\left(\frac{\partial}{\partial t} e^{tX}\right)
+                = \text{E}(X\cdot e^{tX})
+            .\] Concludiamo che $m_X^{\prime}(0) = \text{E}(X)$, e così via per i momenti successivi.
+        \end{proof}
+    \section{Tempi di vita}
+    \begin{defn}[Tempo di vita]\label{defn:Tempi_di_vita}
+            Per tempo di vita si intende il tempo $X$ che intercorre tra l'\textit{inizio di funzionamento} e il \textit{primo guasto}; in modo ragionevole possiamo assumere che $X$ sia una variabile aleatoria non\nbdash negativa, essa sarà inoltre assolutamente continua.
+        \end{defn}
+        \begin{prty}\label{prty:Tempi_di_vita}
+            Usando la Definizione~\ref{defn:Tempi_di_vita} formalizziamo i seguenti concetti (ponia\-mo $s > 0$ e $t \geq 0$):
+            \begin{enumerate}
+                \item non usura: \[\label{itm:Non_usura}
+                        P(X > t + s | X > t)
+                        = P(X > s)
+                ;\] 
+                \item usura: \[\label{itm:Usura}
+                        P(X > t + s | X > t)
+                        < P(X > s)
+                ;\] 
+                \item rodaggio: \[\label{itm:Rodaggio}
+                        P(X > t + s | X > t)
+                        > P(X > s)
+                ;\] 
+            \end{enumerate}
+        \end{prty}
+        \begin{defn}[Intensità di rottura]
+            Sia $X$ una variabile aleatoria assolutamente continua tale che $P(Z > 0) = 1$, e abbia densità $f_X(x)$ e funzione di ripartizione $F_X(x)$; allora definiamo \textit{intensità di rottura} la funzione:
+            \begin{align}\label{eq:Intensità_rottura}
+                \lambda(t) \coloneqq \frac{f_X(t)}{1 - F_X(t)} & & \forall t>0 \,:\, F_X(t) \neq 1
+            .\end{align}
+        \end{defn}
+        \begin{obsv}
+            La probabilità che un apparecchio funzionante si guasti entro un tempo $dt$ è data da:
+            \begin{align*}
+                P(t < X \leq t + dt | X > t) &= \frac{P(\{t < X \leq t + dt\} \cap \{Z > t\})}{P(X > t)} \\
+                                             &= \frac{P(X \in (t,\, t+dt])}{P(X > t)} \\
+                                             &\simeq \frac{f_X(t)}{1 - F_X(t)} \cdot dt = \lambda(t)\cdot dt
+            .\end{align*}
+            Possiamo vedere come la funzione \eqref{eq:Intensità_rottura} rappresenti il tasso istantaneo di guasto al tempo $t$.
+        \end{obsv}
+        \begin{prty}[Assenza di memoria]
+            La distribuzione esponenziale soddisfa il punto \eqref{itm:Non_usura} della Proprietà~\ref{prty:Tempi_di_vita}; infatti presa $X \sim \mathcal{E}(\lambda)$ allora il punto \eqref{itm:Non_usura} si scrive come:
+            \begin{align*}
+                P(X > t + s | X > t) 
+                &= \frac{P(X > t + s)}{P(X > t)}
+                = \frac{e^{-\lambda(t+s)}}{e^{-\lambda t}} \\
+                &= e^{-\lambda s} = P(X > s) & \forall s > 0,\, t \geq 0
+            .\end{align*}
+            Concludiamo che l'intensità di guasto è costante per una variabile aleatoria con densità esponenziale: \[
+                \lambda(t) = \frac{\lambda \cdot e^{-\lambda t}}{1 - (1 - e^{\lambda t})} = \lambda\,\text{(costante)}
+            .\] Confrontare §~\ref{sec:Densità_Esponenziale}.
+        \end{prty}
+        \begin{obsv}
+            Possiamo ricavare la funzione di ripartizione della variabile aleatoria di cui sia data l'intensità di guasto, se vale $s > 0$: \[
+                \lambda(s) = \frac{f_X(s)}{1 - F_X(s)} = \frac{\partial}{\partial s}\cdot \ln \left(1 - F_X(s)\right)
+            .\] Integrando tra 0 e $t$ otteniamo:
+            \begin{align*}
+                \int_{0}^{t} \lambda(s)\, ds
+                &= -\left[\ln \left(1 - F_X(t)\right) - \cancel{\ln \left(1 - F_X(0)\right)}\right] \\
+                &= - \ln \left(1 - F_X(t)\right)
+            ,\end{align*}
+            da cui invertendo si ottiene (per $t > 0$): \[
+                1 - F_X(t) = e^{- \int_{0}^{t} \lambda(s)\, ds}
+            .\]
+        \end{obsv}
+    \section{Distribuzione di Weibull}
+        \begin{defn}\label{defn:Distribuzione_Weibull}
+            Consideriamo una intensità di guasto definita come:
+            \begin{align*}
+                \lambda(t) = \alpha\beta \cdot t^{\beta - 1}
+                & & \alpha,\, \beta,\, t > 0
+            .\end{align*}
+            Rispetto al valore di $\beta$ otteniamo i seguenti andamenti:
+            \begin{itemize}
+                \item $\beta < 1 \implies t \rightarrow \lambda(t)\, \text{decresce}$;
+                \item $\beta = 1 \implies \lambda(t) \text{costante}$;
+                \item $\beta > 1 \implies t \rightarrow \lambda(t)\, \text{cresce}$.
+            \end{itemize}
+            Inoltre, per una variabile aleatoria assolutamente continua $X$ con valori $t \in (0,\,+\infty)$, otteniamo densità e funzione di ripartizione nel modo seguente:
+            \begin{gather*}
+                F_X(t) = 1 - e^{-\alpha t^{\beta}}, \\
+                f_X(t) = \alpha\beta \cdot t^{\beta - 1}\cdot e^{-\alpha t^{\beta}}.
+            \end{gather*}
+            Se ciò si verifica, indichiamo $X$ come segue: \[
+                X \sim \mathcal{W}(\alpha,\, \beta)
+            .\]
+        \end{defn}
+        \begin{obsv}
+            Il valore atteso di una variabile aleatoria con distribuzione di Weibull si ottiene come: \[
+                \text{E}(X) = \alpha ^{-1 /\beta} \Gamma\left(1 + \frac{1}{\beta}\right)
+            ,\] dove la funzione $\Gamma()$ si chiama \textit{gamma di Eulero} ed è definita come segue, per $x > 0$: \[
+            \Gamma(x) \coloneqq \int_{0}^{\infty} t^{x-1}\cdot e^{-t}\, dt
+            .\] 
+        \end{obsv}
+        \begin{defn}[Weibull generalizzata]
+            Prendiamo $\alpha,\, \beta > 0$ e definiamo la distribuzione \underline{generalizzata} di Weibull come:
+            \begin{equation}\label{eq:Distribuzione_Weibull_generalizzata}
+                \lambda(t) = \frac{\alpha\beta \cdot t^{\beta - 1}}{1-  \lambda\cdot t^{\beta}\cdot\alpha} \begin{cases}
+                    t \in (0,\, +\infty) & \text{se $\lambda \leq 0$;} \\
+                    t \in \left(0,\, \frac{1}{(\lambda\alpha)^{1 /\beta}}\right) & \text{se $\lambda > 0$.}
+                \end{cases}
+            .\end{equation}
+            Se la costante $\lambda$ vale 0, si ottiene l'intensità di guasto della distribuzione di Weibull (dalla Definizione~\ref{defn:Distribuzione_Weibull}).
+        \end{defn}
+        \begin{obsv}
+            La funzione di ripartizione di una variabile aleatoria con distribuzione \eqref{eq:Distribuzione_Weibull_generalizzata} si ottiene come:
+            \begin{align*}
+                F_X(t) = \left(1 - \left(1 - \lambda\alpha\cdot t^{\beta}\right)^{1 /\lambda}\right) & & \lambda \neq 0 & & \begin{cases}
+                    t \in (0,\, +\infty) & \text{se $\lambda \leq 0$;} \\
+                    t \in \left(0,\, \frac{1}{(\lambda\alpha)^{1 /\beta}}\right) & \text{se $\lambda > 0$.}
+                \end{cases}
+            \end{align*}
+            Possiamo ottenere la ripartizione di una variabile aleatoria $X \sim \mathcal{W}(\alpha,\, \beta)$ dal limite per $\lambda \rightarrow 0$ della precedente: \[
+                \lim_{\lambda \to 0} \left(1 - \left(1 - \lambda\alpha\cdot t^{\beta}\right)^{1 /\lambda}\right)
+                = 1 - e^{-\alpha \cdot t^{\beta}}
+            .\]
+        \end{obsv}
