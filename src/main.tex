@@ -46,6 +46,9 @@
 % Comando trattino "non spezzante" evita sillabazione sul trattino
 \newcommand\nbdash{\nobreakdash-\hspace{0pt}}
 
+% Includi solo il capitolo in corso
+\includeonly{chap3}
+
 % In questo ambiente risiede il contenuto del documento
 \begin{document}
     % Pagina del titolo
@@ -55,7 +58,6 @@
     \tableofcontents
 
     % Includi file dei capitoli
-    \includeonly{chap3}
     \include{chap1}
     \include{chap2}
     \include{chap3}
