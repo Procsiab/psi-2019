@@ -2,3 +2,110 @@
 % Capitolo 3
 
 \chapter{Vettori Aleatori}
+    \section{Vettore aleatorio}
+        \begin{defn}
+            Consideriamo $n$ variabili aleatorie $X_1, \ldots,\, X_n$ definite tutte sullo stesso spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; diremo che sono  \textit{indipendenti} se vale:
+            \begin{equation}\label{eq:Indipendenza_variabili_aleatorie}
+                P(X_1 \in B_1,\, \ldots,\, X_n \in B_n) = P(X_1 \in B_1) \cdot \ldots \cdot P(X_n \in B_n)
+            ,\end{equation}
+            per ogni scelta dei domini regolari $B_1,\, \ldots,\, B_n$ ottenuti al più con un numero finito e numerabile di operazioni tra intervalli.
+        \end{defn}
+        \begin{obsv}
+            Se prendiamo dei domini regolari definiti come: \[
+                \forall i \in (-\infty,\, \ldots x_i]
+            ,\] l'equazione \eqref{eq:Indipendenza_variabili_aleatorie} diventa:
+            \begin{equation}\label{eq:Indipendenza_v_a_ripartizione}
+                P(X_1 \leq x\,\, \ldots,\, X_N \leq x_n) = P(X_1 \leq x_1) \cdot \ldots \cdot P(X_n \leq x_n)
+            .\end{equation}
+        \end{obsv}
+        \begin{prty}
+            Prese $n$ variabili aleatorie $X_1,\, \ldots,\, X_n$, esse sono indipendenti se vale  \eqref{eq:Indipendenza_v_a_ripartizione} per ogni scelta di $x_1,\, \ldots,\, x_n \in \mathbb{R}$.
+        \end{prty}
+        \begin{obsv}
+            Consideriamo $n$ variabili aleatorie indipendenti e discrete $X_1,\, \ldots,\, X_n$ con densità rispettivamente $p_{X_1},\, \ldots,\, p_{X_n}$; allora scegliendo i domini in \eqref{eq:Indipendenza_variabili_aleatorie} come: \[
+                B_1 = \{x_1\},\, \ldots,\, B_n = \{x_n\}
+            ,\] otteniamo che:
+            \begin{align}\label{eq:Indipendenza_v_a_densità}
+                P(X\ = x_1,\, \ldots,\, X_n = x_n) = P(X_1 = x_1) \cdot \ldots \cdot P(X_n = x_n) & &
+                \forall  x_i \in \mathbb{R} \forall i = 1,\, \ldots,\, n
+            .\end{align}
+        \end{obsv}
+        \begin{prty}
+            Possiamo affermare che, prese $n$ variabili aleatorie discrete $X_1,\, \ldots,\, X_n$, esse sono indipendenti se vale \eqref{eq:Indipendenza_v_a_densità}.
+        \end{prty}
+    \section{Vettori aleatori}
+        \begin{defn}
+            Sia dato uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; un \textit{vettore aleatorio} $n$\nbdash dimensionale è una funzione vettoriale definita come:
+            \begin{align*}
+                \vec{X} \coloneqq (X_1,\, \ldots,\, X_{n}) & &
+                \vec{X}\,:\, \Omega \mapsto \mathbb{R}^n
+            ,\end{align*}
+            tale che per ogni $i \in 1,\, \ldots,\, n$ ciascun $X_i$ sia una variabile aleatoria.
+        \end{defn}
+    \section{Funzione di ripartizione congiunta}
+        \begin{defn}
+            Sia $\vec{X} = (X_1,\, \ldots,\, X_{n})$ un vettore aleatorio $n$\nbdash dimensionale definito sullo spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; chiamiamo funzione di ripartizione di $\vec{X}$ (oppure funzione di ripartizione \textit{congiunta} di $X_1,\, \ldots,\, X_{n}$) la funzione: \[
+                F_{\vec{X}} = F_{(X_1,\, \ldots,\, X_{n})} \,:\, \mathbb{R}^n \mapsto [0,\,1]
+            ,\] definita $\forall x \in (x_1,\, \ldots,\, x_{n}) \in \mathbb{R}^n$ come: \[
+                F_{(X_1,\, \ldots,\, X_{n})}(x_1,\, \ldots,\, x_{n}) \coloneqq P(X_1 \leq x_1,\, \ldots,\, X_n \leq x_n)
+            .\]
+        \end{defn}
+        \begin{prty}\label{prty:Convergenza_ripartizione_congiunta}
+            Sia $\vec{X} = (X_1,\, \ldots,\, X_{n})$ un vettore aleatorio che ammette funzione di ripartizione $F_{\vec{X}}$ e sia $\vec{x} = (x_1,\, \ldots,\, x_{n})$; allora vale: \[
+                \forall k \in [1,\,n] \,:\, \lim_{x_k \to \infty} F_{\vec{X}}(\vec{x}) = 0
+            ,\] mentre otteniamo:
+            \begin{align*}
+                \lim_{x_k \to \infty} F_{\vec{X}}(\vec{x}) &= 
+                P(X_1 \leq x_1,\, \ldots,\, X_{k-1} \leq x_{k-1},\, X_{k+1} \leq x_{k+1},\, \ldots,\, X_n \leq x_n) \\
+                                                           &= F_{(X_1,\, \ldots,\, X_{k-1},\, X_{k+1},\, \ldots,\, X_{n})}(x_1,\, \ldots,\, x_{k-1},\, x_{k+1},\, \ldots,\, x_{n})
+            .\end{align*}
+        \end{prty}
+    \section{Indipendenza di variabili aleatorie}
+        \begin{obsv}
+            Consideriamo un vettore aleatorio bidimensionale $(X,\,Y)$ con funzione di ripartizione $F_{X,\,Y}$; la Proprietà~\ref{prty:Convergenza_ripartizione_congiunta} afferma che:
+            \begin{gather*}
+                \lim_{x \to \infty} F_{X,\,Y}(x,\,y) = P(Y \leq y) = F_Y(y); \\
+                \lim_{y \to \infty} F_{X,\,Y}(x,\,y) = P(X \leq y = F_X(x)
+            .\end{gather*}
+            Se prendiamo in generale un vettore aleatorio $n$\nbdash dimensionale, applicando la Proprietà~\ref{prty:Convergenza_ripartizione_congiunta} iterativamente, otteniamo:
+            \begin{align*}
+                F_{X_i}(x) = \lim_{\substack{x_j \rightarrow +\infty \\ \forall j \neq i}} F_{\vec{X}}(x_1,\, \ldots,\, x_{i-1},\, x,\, x_{i+1},\, \ldots,\, x_{n})
+            .\end{align*}
+            Concludiamo che dalla funzione di ripartizione congiunta si possono calcolare le ripartizioni marginali, ma non vale il contrario.
+        \end{obsv}
+        \begin{defn}
+            Le componenti di un vettore aleatorio $\vec{X} = (X_1,\, \ldots,\, X_{n})$ sono indipendenti se e solo se la funzione di ripartizione di $\vec{X}$ coincide col prodotto delle ripartizioni marginali: \[
+            F_{\vec{X}} = F_{X_1} \cdot \ldots \cdot F_{X_n}
+            .\] 
+        \end{defn}
+    \section{Vettori aleatori discreti}
+        \begin{defn}
+            Un vettore aleatorio $n$\nbdash dimensionale $X$ è \textit{discreto} se le sue componenti $X_1,\, \ldots,\, X_{n}$ sono variabili aleatorie discrete.
+        \end{defn}
+    \section{Densità discrete}
+        \begin{defn}
+            Sia $\vec{X}$ un vettore aleatorio discreto su uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; la funzione: \[
+                p_{\vec{X}} \coloneqq P(X_1 = x_1,\, \ldots,\, X_n = x_n)
+            ,\] dove vale $\vec{x} = (x_1,\, \ldots,\, x_{n})$, si chiama  \textit{densità discreta} del vettore aleatorio $\vec{X}$ oppure densità congiunta di $X_1,\, \ldots,\, X_{n}$.
+        \end{defn}
+    \section{Distribuzione multinomiale}
+        \begin{defn}
+            
+        \end{defn}
+    \section{Variabili aleatorie congiuntamente continue}
+    \section{Densità di probabilità congiunta}
+    \section{Funzioni di vettori aleatori}
+    \section{Trasformazioni affini di vettori aleatori}
+    \section{Convoluzione discreta e continua}
+    \section{Valore atteso per funzioni di vettori aleatori}
+    \section{Proprietà del valore atteso per due vettori aleatori}
+    \section{Valore atteso del prodotto di due variabili aleatorie}
+    \section{Varianza della somma di due variabili aleatorie}
+    \section{Covarianza}
+    \section{Media e varianza della Binomiale}
+    \section{Coefficiente di correlazione lineare}
+    \section{Somme di variabili aleatorie indipendenti}
+    \section{Distribuzione del massimo e del minimo}
+    \section{Media campionaria}
+    \section{Legge dei grandi numeri}
+    \section{Teorema del limite centrale} 
