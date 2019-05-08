@@ -21,3 +21,9 @@ Ok, ho scritto che lo farò presto ma la tempistica è abbastanza relativa; nel 
 - una installazione *texlive*;
 - il pacchetto *make*;
 - il compilatore *latexmk*.
+
+### Branch **devel**
+
+Nel branch `devel` piazzerò il lavoro in corso degli appunti, mentre tutti i capitoli ultimati saranno accessibili dal branch `master`.
+
+Il branch `devel` ospiterà in ogni caso anche tutto il codice del branch `master`, ma il file *src/main.tex* in esso è impostato per compilare solamente il capitolo in corso.
