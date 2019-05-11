@@ -83,18 +83,102 @@
             Un vettore aleatorio $n$\nbdash dimensionale $X$ è \textit{discreto} se le sue componenti $X_1,\, \ldots,\, X_{n}$ sono variabili aleatorie discrete.
         \end{defn}
     \section{Densità discrete}
-        \begin{defn}
+        \begin{defn}\label{defn:Densità_congiunta}
             Sia $\vec{X}$ un vettore aleatorio discreto su uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; la funzione: \[
                 p_{\vec{X}} \coloneqq P(X_1 = x_1,\, \ldots,\, X_n = x_n)
             ,\] dove vale $\vec{x} = (x_1,\, \ldots,\, x_{n})$, si chiama  \textit{densità discreta} del vettore aleatorio $\vec{X}$ oppure densità congiunta di $X_1,\, \ldots,\, X_{n}$.
         \end{defn}
     \section{Distribuzione multinomiale}
-        \begin{defn}
-            
+        \begin{defn}\label{defn:Densità_multinomiale}
+            Consideriamo una popolazione che contenga $k \geq 2$ tipi di oggetti, dove la proporzione degli oggetti di tipo  $i$\nbdash esimo sul totale è rappresentata da $p_i$ come:  \[
+                \forall i \in [1,\, k] \,:\, p_i > 0 \land \sum_{i=1}^{k} p_i = 1
+            ;\] inoltre $n$ oggetti di questa popolazione siano estratti a caso con reimmissione.
+            Sia $X_i$ il numero di oggetti di tipo $i$\nbdash esimo estratti (con $i \in [1,\, k]$) e sia $\vec{X}$ il vettore aleatorio con componenti $X_1,\, \ldots,\, X_{k}$; allora il vettore $\vec{X}$ è discreto e tale che: \[
+            X_1 + \ldots + X_{k} = n
+            ,\] e la sua densità è detta \textit{multinomiale} di parametri $n$ e $p_1,\, \ldots,\, p_{k}$:
+            \begin{align}\label{eq:Densità_multinomiale}
+                P(X_1 = n_1,\, \ldots,\, X_{k} = n_k) &= \binom{n}{n_1,\, \ldots,\, n_{k}} \cdot (p_1^{n_1} \cdot \ldots \cdot p^{n_k}_{k}) \\
+                                                      & \text{per } n_1,\, \ldots,\, n_{k} \in [0,\, n] \land n_1 + \ldots + n_k = n \nonumber
+            .\end{align}
         \end{defn}
-    \section{Variabili aleatorie congiuntamente continue}
-    \section{Densità di probabilità congiunta}
+        \begin{prty}\label{prty:Densità_congiunta}
+            Sia $p_{\vec{X}}$ la densità di un vettore aleatorio $n$\nbdash dimensionale $\vec{X}$ che assume valori in un insieme al più numerabile $S$ con probabilità 1; allora possiamo dire che:
+            \begin{enumerate}
+                \item $\forall \vec{x} \in \mathbb{R}^n \,:\, 0 \leq p_{\vec{X}} \leq 1 \land 
+                    \forall \vec{x} \notin S \,:\, p_{\vec{X}}(\vec{x}) = 0$;
+                \item $\sum_{\vec{x} \in S} è_{\vec{X}}(\vec{x}) = 1$;
+                \item se $F_{\vec{X}}$ è la funzione di ripartizione di $\vec{X}$, allora: \[
+                    \forall \vec{x} \in \mathbb{R}^n \,:\, F_{\vec{X}}(\vec{x}) = \!\!\!\! \sum_{\vec{y} \in S \,:\, \vec{y} \leq \vec{x}} \!\!\!\! p_{\vec{X}}(\vec{y})
+                ;\] 
+                \item se $B \subset \mathbb{R}^n$, allora: \[
+                        P(\vec{X} \in B) = \!\!\! \sum_{\vec{x} \in B \cap S} \!\!\! p_{\vec{X}}(\vec{x})
+                .\] 
+            \end{enumerate}
+        \end{prty}
+        \begin{proof}
+            La dimostrazione segue lo stesso svolgimento di quella della Proprietà~\ref{prty:Densità_discreta}.
+        \end{proof}
+        \begin{defn}\label{defn:Densità_marginali}
+            Chiamiamo \textit{densità marginali} le densità delle componenti $X_i$ del vettore aleatori $\vec{X}$; se prendiamo la prima componente $X_1$, ricordando che:
+            \begin{align*}
+                p_{X_1}(x_1) &= P(X_1 = x_1) = P(X_1 = x_1,\, X_2 \in \mathbb{R},\, \ldots,\, X_n \in \mathbb{R}) \\
+                             &= P(\vec{X} \in B)
+            ,\end{align*}
+            dove $B \coloneqq \{x_1\} \times \mathbb{R}^{n-1}$; quindi possiamo scrivere la densità come:
+            \begin{equation}\label{eq:Densità_marginali}
+                p_{X_1}(x_1) = \!\! \sum_{\vec{x} \in B \cap S} \!\! p_{\vec{X}}(\vec{x}) 
+                = \!\! \sum_{x_2,\, \ldots,\, x_{n}} \!\! p_{\vec{X}}(x_1,\, x_2,\, \ldots,\, x_{n})
+            .\end{equation}
+        \end{defn}
+        \begin{prty}\label{prty:Indipendenza_componenti_densità}
+            Le componenti di un vettore aleatorio discreto $\vec{X} = (X_1,\, \ldots,\, X_{n})$ sono indipendenti se e solo se la densità congiunta di $\vec{X}$ coincide col prodotto di delle densità marginali $p_{X_1},\, \ldots,\, p_{X_n}$ rispettivamente di $X_1,\, \ldots,\, X_{n}$, cioè: \[
+            p_{\vec{X}} = p_{X_1} \cdot \ldots \cdot p_{X_n}
+            .\]
+        \end{prty}
+    \section{Vettori aleatori assolutamente continui}
+        \begin{defn}\label{defn:Vettori_aleatori_assolutamente_continui}
+            Un vettore aleatorio $\vec{X}$ $n$\nbdash dimensionale è \textit{assolutamente continuo} se esiste una funzione $f_{\vec{X}}\,:\, \mathbb{R}^n \mapsto \mathbb{R}^+$ integrabile, tale che la funzione di ripartizione di $\vec{X}$ si possa scrivere come:
+            \begin{align*}
+                F_{\vec{X}}(\vec{x}) = \int_{-\infty}^{x_1} \ldots 
+                \int_{-\infty}^{x_n} f_{\vec{X}}(S_1,\, \ldots,\, S_{n})\, d_{S_n} \cdot \ldots \cdot d_{S_1} 
+                & & \forall \vec{x} = (x_1,\, \ldots,\, x_{n})
+            .\end{align*}
+            La funzione $f_{\vec{X}}$ prende il nome di \textit{densità congiunta} di $X_1,\, \ldots,\, X_{n}$ oppure densità del vettore aleatorio assolutamente continuo $\vec{X}$.
+        \end{defn}
+        \begin{prty}\label{prty:Vettori_aleatori_assolutamente_continui}
+            Sia $f_{\vec{X}}$ la densità di un vettore aleatorio $n$\nbdash dimensionale assolutamente continuo; allora possiamo affermare che:
+            \begin{enumerate}
+                \item $\int_{\mathbb{R}^n} f_{\vec{X}}(x_1,\, \ldots,\, x_{n})\, dx_1 \cdot \ldots \cdot dx_n = 1$;
+                \item se  $F_{\vec{X}}$ è la funzione di ripartizione di $\vec{X}$, allora: \[
+                    \frac{\partial^n F_{\vec{X}}(\vec{x})}{\partial x_1 \cdot \ldots \cdot \partial x_{n}} = f_{\vec{X}}(\vec{x})
+                ,\] per ogni $\vec{x} \in \mathbb{R}^n$ tale che esista la derivata parziale al primo membro;
+                \item se $B \subset \mathbb{R}^n$ è un \underline{dominio regolare}, allora: \[
+                        P(\vec{X} \in B) = \int_{B} f_{\vec{X}}(x_1,\, \ldots,\, x_{n})\, dx_1 \cdot \ldots \cdot dx_n
+                .\] 
+            \end{enumerate}
+        \end{prty}
+        \begin{proof}
+            La dimostrazione segue lo stesso svolgimento di quella della Proprietà~\ref{prty:Variabile_aleatoria_continua}.
+        \end{proof}
+        \begin{prty}[Densità marginale continua]\label{prty:Densità_marginale_continua}
+            Se $f_{\vec{X}}$ è la densità di un vettore aleatorio $n$\nbdash dimensionale assolutamente continuo $\vec{X} = (X_1,\, \ldots,\, X_{n})$ allora $X_i$ è una variabile aleatoria assolutamente continua e la sua densità si ottiene come: \[
+                f_{X_i}(x_i) = \int_{\mathbb{R}^{n-1}} f_{\vec{X}}(s_1,\, \ldots,\, s_{i-1},\, x_i,\, s_{i+1},\, \ldots,\, s_n)\, ds_1 \cdot \ldots \cdot ds_{i-1} \cdot ds_{i+1} \ldots \cdot ds_n
+            .\] 
+        \end{prty}
+        \begin{proof}
+            Consideriamo il caso $i=1$; dobbiamo dimostrare che: \[
+            F_{X_i}(x) = \int_{-\infty}^{\infty} \left\{\int_{\mathbb{R}^{n-1}} f_{\vec{X}}(s_1,\, \ldots,\, s_n) ds_2 \cdot \ldots \cdot ds_n\right\}\, ds_1
+            ;\] ciò si verifica dato che, se definiamo $B \coloneqq (-\infty,\, x] \times \mathbb{R}^{n-1}$, allora per il punto $(3)$ della Proprietà~\ref{prty:Vettori_aleatori_assolutamente_continui} otteniamo:
+            \begin{align*}
+                &\int_{-\infty}^{\infty} \left\{\int_{\mathbb{R}^{n-1}} f_{\vec{X}}(s_1,\, \ldots,\, s_n) ds_2 \cdot \ldots \cdot ds_n\right\}\, ds_1 = P(\vec{X} \in B) \\
+                &= P(X_1 \leq x_1,\, X_2 \in \mathbb{R},\, \ldots,\, X_n) = P(X_1 \leq x) = F_{X_1}(x) \qedhere
+            .\end{align*}
+        \end{proof}
+        \begin{prty}
+            Le componenti di un vettore aleatorio assolutamente continuo sono indipendenti se e solo se ammettono densità congiunta che può essere ottenuta come prodotto delle densità marginali.
+        \end{prty}
     \section{Funzioni di vettori aleatori}
+        
     \section{Trasformazioni affini di vettori aleatori}
     \section{Convoluzione discreta e continua}
     \section{Valore atteso per funzioni di vettori aleatori}
