@@ -9,6 +9,7 @@
 \usepackage[italian]{babel}
 % Altri pacchetti per la formattazione
 \usepackage{lmodern}
+\usepackage{hyphenat}
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{mathrsfs}
@@ -45,6 +46,12 @@
 \renewcommand\thesubsection{\thesection.\arabic{subsection}}
 % Comando trattino "non spezzante" evita sillabazione sul trattino
 \newcommand\nbdash{\nobreakdash-\hspace{0pt}}
+% Non spezzare e seguenti parole:
+\hyphenation{Proprietà}
+\hyphenation{Definizione}
+\hyphenation{Osservazione}
+\hyphenation{Equazione}
+\hyphenation{Teorema}
 
 % Includi solo il capitolo in corso
 \includeonly{chap3}
