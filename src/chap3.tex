@@ -65,7 +65,7 @@
             Consideriamo un vettore aleatorio bidimensionale $(X,\,Y)$ con funzione di ripartizione $F_{X,\,Y}$; la Proprietà~\ref{prty:Convergenza_ripartizione_congiunta} afferma che:
             \begin{gather*}
                 \lim_{x \to \infty} F_{X,\,Y}(x,\,y) = P(Y \leq y) = F_Y(y); \\
-                \lim_{y \to \infty} F_{X,\,Y}(x,\,y) = P(X \leq y = F_X(x)
+                \lim_{y \to \infty} F_{X,\,Y}(x,\,y) = P(X \leq x) = F_X(x)
             .\end{gather*}
             Se prendiamo in generale un vettore aleatorio $n$\nbdash dimensionale, applicando la Proprietà~\ref{prty:Convergenza_ripartizione_congiunta} iterativamente, otteniamo:
             \begin{align*}
@@ -139,7 +139,7 @@
         \begin{defn}\label{defn:Vettori_aleatori_assolutamente_continui}
             Un vettore aleatorio $\vec{X}$ $n$\nbdash dimensionale è \textit{assolutamente continuo} se esiste una funzione $f_{\vec{X}}\,:\, \mathbb{R}^n \mapsto \mathbb{R}^+$ integrabile, tale che la funzione di ripartizione di $\vec{X}$ si possa scrivere come:
             \begin{align*}
-                F_{\vec{X}}(\vec{x}) = \int_{-\infty}^{x_1} \ldots 
+                F_{\vec{X}}(\vec{x}) = \int_{-\infty}^{x_1} \dotsi 
                 \int_{-\infty}^{x_n} f_{\vec{X}}(S_1,\, \ldots,\, S_{n})\, d_{S_n} \cdot \ldots \cdot d_{S_1} 
                 & & \forall \vec{x} = (x_1,\, \ldots,\, x_{n})
             .\end{align*}
@@ -177,19 +177,489 @@
         \begin{prty}
             Le componenti di un vettore aleatorio assolutamente continuo sono indipendenti se e solo se ammettono densità congiunta che può essere ottenuta come prodotto delle densità marginali.
         \end{prty}
-    \section{Funzioni di vettori aleatori}
-        
-    \section{Trasformazioni affini di vettori aleatori}
-    \section{Convoluzione discreta e continua}
+    \section{Funzioni di vettori aleatori discreti}
+    \begin{defn}\label{defn:Funzione_discreta}
+            Sia $\vec{X}$ un vettore aleatorio discreto con densità $p_{\vec{X}}(\vec{x})$ per cui valga $P(\vec{X} \in S) = 1$ con $S$ al più numerabile; consideriamo inoltre $\vec{g}\,:\, S \mapsto \mathbb{R}^m$ e $\vec{Y} \coloneqq \vec{g}(\vec{X})$.
+
+            $Y$ è un vettore aleatorio discreto, per i cui valori otteniamo:  \[
+                g(S) = \left\{\vec{y} = \vec{g}(\vec{x}) \,:\, \vec{x} \in S\right\} \implies 
+                P(\vec{Y} \in \vec{g}(S)) = 1
+            .\]
+        \end{defn}
+        \begin{prty}[Densità di funzione discreta]\label{prty:Densità_funzione_discreta}
+            Sia $\vec{X}$ un vettore aleatorio discreto con densità $p_{\vec{X}}(\vec{x})$ per cui valga $P(\vec{X} \in S) = 1$ con $S$ al più numerabile, e consideriamo $\vec{g}\,:\, S \mapsto \mathbb{R}^m$; allora $\vec{Y} \coloneqq  \vec{g}(\vec{X})$ è un vettore aleatorio discreto tale che $P(\vec{Y} \in \vec{g}(S)) = 1$ e la densità di $\vec{Y}$ si ottiene come:
+            \begin{equation}\label{eq:Densità_funzione_discreta}
+                p_{\vec{y}} = \!\!\! \sum_{\substack{\vec{x} \in S \,:\\ 
+                \vec{g}(\vec{x}) = \vec{y}}} \!\! p_{\vec{X}}(\vec{x})
+            .\end{equation}
+        \end{prty}
+        \begin{prty}[Somma discreta]\label{prty:Somma_variabili_aleatorio_discrete}
+            Sia $(X_1,\, X_2)$ un vettore aleatorio discreto con densità $p_{X_1,\,X_2}(x_1,\, x_2)$ e prendiamo $Y\coloneqq X_1 + X_2$; dalla formula \eqref{eq:Densità_funzione_discreta} otteniamo che: \[
+                p_{Y} = p_{X_1 + X_2}(y) = \!\!\!\! \sum_{\substack{x_1,\,x_2 \,:\\
+                x_1 + x_2 = y}} \!\!\! p_{X_1,\, X_2}(x_1,\, x_2) = 
+                \sum_{x_2}p_{X_1,\, X_2}(y - x_2,\, x_2)
+            .\] In particolare, se $X_1,\, X_2$ sono \underline{indipendenti} allora possiamo scrivere: \[
+            p_{X_1,\, X_2}(y) = \sum_{x_2} p_{X_1}(y-x_2)\cdot p_{X_2}(x_2)
+            .\]  Possiamo estendere per ricorrenza questo risultato al caso di un vettore aleatori discreto $n$\nbdash dimensionale.
+        \end{prty}
+        \begin{obsv}[Somma di Poisson indipendenti]
+            Siano $X_1,\, X_2$ variabili aleatorio indipendenti con densità di Poisson di parametri $\lambda_{1},\, \lambda_{2}$ rispettivamente; allora la loro somma è una variabile aleatoria discreta con densità di Poisson di parametro $\lambda = \lambda_1 + \lambda_2$:
+            \begin{align*}
+                P(X_1 + X_2 = k) &= \sum_{j=0}^{k} p_{X_1,\, X_2}(k-j,\, j) = 
+                \sum_{j=0}^{k} p_{X_1}(k-j)\cdot p_{X_2}(j) \\
+                                 &= \sum_{j=0}^{k} \left[e^{-\lambda_1} \frac{\lambda_1^{k-j}}{(k-j)!}\right]
+                                 \cdot e^{-\lambda_2}\frac{\lambda_2^{j}}{j!} = 
+                                 \frac{e^{-(\lambda_1 + \lambda_2)}}{k!}\cdot \sum_{j=0}^{k}\binom{k}{j}\lambda^{k-j}_1 \cdot \lambda^j_2 \\
+                                 &= e^{-(\lambda_1 + \lambda_2)}\cdot \frac{(\lambda_1 + \lambda_2)^k}{k!}
+            .\end{align*}
+            Iterando questo procedimento, possiamo estenderlo nel caso di $X_1,\, \ldots,\, X_{n}$ variabile aleatorie indipendenti con densità $X_1\sim \mathcal{P}(\lambda_1),\, \ldots,\, X_{n}\sim \mathcal{P}(\lambda_n)$; 
+            allora vale: \[
+                X_1 + \ldots + X_{n} \sim \mathcal{P}(\lambda_1 + \ldots + \lambda_n)
+            .\]
+        \end{obsv}
+        \begin{obsv}[Somma di Bernoulliane indipendenti]
+            Siano $X_1,\, \ldots,\, X_{n}$ variabili aleatorio indipendenti con densità di Bernoulli, di parametro $p \in (0,\, 1)$; allora la loro somma avrà la seguente distribuzione: \[
+                X_1 + \ldots + X_{n} \sim \mathcal{B}e(n,\, p)
+            .\] 
+        \end{obsv}
+        \begin{obsv}[Somma di binomiali indipendenti]
+            Siano $X_1,\, \ldots,\, X_{k}$ variabili aleatorio indipendenti con densità binomiali $X_1\sim \mathcal{B}i(n_1,\,p),\, \ldots X_n\sim \mathcal{B}i(n_k,\,p)$, con parametro $p \in (0,\, 1)$; allora la loro somma avrà la seguente distribuzione: \[
+                X_1 + \ldots + X_{n} \sim \mathcal{B}i(n_1+ \ldots +n_k,\, p)
+            .\] 
+        \end{obsv}
+        \begin{defn}[Trasformazioni affini di vettori discreti]
+            Sia $\vec{A}$ una matrice $n \times n$ invertibile, $\vec{b}$ un vettore colonna di dimensione $n$ (valga $\vec{b} \in \mathbb{R}^n$), $\vec{X}$ un vettore aleatorio discreto $n$\nbdash dimensionale con densità $p_{\vec{X}}$; valga $\vec{Y} = \vec{A} \cdot \vec{X} + \vec{b}$, intendendo $\vec{X},\, \vec{Y}$ come vettori colonna.
+
+            Otteniamo la densità di $\vec{Y}$ applicando la formula \eqref{eq:Densità_funzione_discreta} alla trasformazione biunivoca $\mathbb{R}^n \mapsto \mathbb{R}^n$ definita come $\vec{g}(\vec{x}) = \vec{A} \cdot \vec{x} + \vec{b}$ con inversa $\vec{g}^{\,-1}(\vec{y}) = \vec{A}^{\,-1}(\vec{y} - \vec{b})$.
+
+            Poiché $\vec{g}$ è biunivoca, possiamo affermare che:
+            \begin{equation}\label{eq:Trasformazioni_vettori_discreti}
+                p_{\vec{Y}}(\vec{y}) = P(\vec{Y} = \vec{y}) = p_{\vec{X}}(\vec{A}^{\,-1}(\vec{y} - \vec{b}))
+            .\end{equation}
+        \end{defn}
+    \section{Funzioni di vettori aleatori assolutamente continui}
+        \begin{defn}
+            Sia $X$ un vettore aleatorio $n$\nbdash dimensionale continuo con densità $f_{\vec{X}}$ e per $\vec{g}\,:\, \mathbb{R}^n \mapsto \mathbb{R}^m$ valga $\vec{Y} = \vec{g}(\vec{X})$.
+            
+            Non è sempre detto che in queste condizioni applicando una funzione qualunque $\vec{g}$ al vettore aleatorio $\vec{X}$, si ottenga un $\vec{Y}$ che sia ancora un vettore aleatorio; infatti $\vec{g}$ dovrà essere opportunamente regolare.
+        \end{defn}
+        \begin{prty}
+            Consideriamo un vettore aleatorio $\vec{Y} = \vec{g}(\vec{X})$; la sua funzione di ripartizione si ottiene osservando che: \[
+                F_{\vec{Y}}(\vec{y}) = P(\vec{Y} \leq \vec{y}) = P(\vec{X}) \leq \vec{y}
+            .\] Applicando il punto $(3)$ della Proprietà~\ref{prty:Vettori_aleatori_assolutamente_continui} possiamo esprimere la $F_{\vec{Y}}(\vec{y})$ in funzione della densità di $\vec{X}$:
+            \begin{align}\label{eq:Ripartizione_funzione_continua}
+                F_{\vec{Y}}(\vec{y}) = P(\vec{X} \in A) = \int_{A} f_{\vec{X}}(\vec{x})\, d\vec{x} & &
+                \text{per } A \coloneqq \{\vec{x} \,:\, \vec{g}(\vec{x}) \leq \vec{y}\}
+            .\end{align}
+        \end{prty}
+        \begin{prty}[Somma continua]
+            Sia $(X_1,\, X_2)$ un vettore aleatorio assolutamente continuo con densità $f_{X_1,\,X_2}$; allora la funzione di ripartizione di $X_1 + X_2$ si ottiene applicando l'equazione \eqref{eq:Ripartizione_funzione_continua} alla funzione $g(x_1,\, x_2)=x_1+x_2$:
+            \begin{align*}
+                F_{X_1+X_2}(y) &= \int_{\substack{\{x_1,\,x_2\,:\\
+                x_1+x_2 \leq y\}}} f_{X_1,\,X_2}(x_1,\,x_2)\, dx_1\, dx_2 \\
+                               &= \int_{-\infty}^{\infty} \int_{-\infty}^{y-x_1} f_{X_1,\,X_2}(x_1,\,x_2)\,dx_1\, dx_2 \\
+                               &= \int_{-\infty}^{y} \left(\int_{-\infty}^{\infty} f_{X_1,\,X_2}(x_1,\,x_2 - x_1)\, dx_1\right)\, dx_2
+            .\end{align*}
+            Notiamo che $X_1+X_2$ è una variabile aleatoria assolutamente continua, e la sua densità si ottiene della ripartizione appena scritta: \[
+                f_{X_1+X_2}(y) = \int_{-\infty}^{\infty} f_{X_1,\,X_2}(x_1,\, y-x_1)\, dx_1
+            .\] Se inoltre $X_1,\,X_2$ sono \underline{indipendenti}, possiamo scrivere:
+            \begin{equation}\label{eq:Somma_variabili_aleatorie_continue}
+                f_{X_1+X_2}(y) = \int_{-\infty}^{\infty} f_{X_1}(x_1)\cdot f_{X_2}(y-x_1)\, dx_1
+            .\end{equation}
+        \end{prty}
+        \begin{obsv}[Somma di gaussiane indipendenti]
+            Consideriamo due variabili aleatorie gaussiane indipendenti a media nulla:
+            \begin{align*}
+                Z_1 \sim \mathcal{N}(0,\, \sigma^2_1) & & Z_2 \sim \mathcal{N}(0,\, \sigma^2_2)
+            ;\end{align*}
+            Applicando l'equazione \eqref{eq:Somma_variabili_aleatorie_continue} otteniamo:
+            \begin{align*}
+                f_{Z_1+Z_2}(y) &= \int_{-\infty}^{\infty} \frac{1}{2\pi \sigma_1 \sigma_2} \cdot e^{-\frac{x^2}{2\sigma_1^2}-\frac{(y-x)^2}{2\sigma_2^2}}\, dx \\
+                               &= \frac{1}{\sqrt{2\pi(\sigma_1^2 + \sigma_2^2)}} \cdot e^{-\frac{y^2}{2(\sigma_1^2 + \sigma_2^2)}} \cdot \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi \tau}}\cdot e^{-\frac{(x-\nu)^2}{2\tau}}\, dx
+            ,\end{align*}
+            dove valgono le seguenti considerazioni:
+            \begin{align*}
+                \nu \coloneqq \frac{y \cdot \sigma_1^2}{\sigma_1^2 + \sigma_2^2}; & &
+                \tau \coloneqq \frac{\sigma_1^ \cdot \sigma_2^2}{\sigma_1^2 + \sigma_2^2}; & &
+                \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi \tau}}\cdot e^{-\frac{(x-\nu)^2}{2\tau}}\, dx = 1
+            .\end{align*}
+            Allora possiamo riscrivere la densità come: \[
+                f_{Z_1+Z_2}(y) = \frac{1}{\sqrt{2\pi (\sigma_1^2 + \sigma_2^2)}} \cdot e^{-\frac{y^2}{2(\sigma_1^2 + \sigma_2^2)}}
+            ;\] possiamo indicare tale densità anche nel modo seguente: \[
+            Z_1 + Z_2 \sim \mathcal{N}(0,\, \sigma_1^2 + \sigma_2^2)
+            .\] Se ora prendiamo due variabili aleatorio $X_1,\,X_2$ a media non nulla $\mu_1,\,\mu_2$, la densità della loro somma è una trasformazione lineare della precedente: \[
+            X_1 + X_2 \sim (Z_1 + Z_2) + (\mu_1 + \mu_2) \sim \mathcal{N}(\mu_1 + \mu_2,\, \sigma_1^2 + \sigma_2^2)
+            .\] Applicando questa osservazione a $n$ variabili aleatorie con densità gaussiana otteniamo:
+            \begin{equation*}
+                \sum_{i=1}^{n} X_1 \sim \mathcal{N}\left(\sum_{i=1}^{n} \mu_i,\, \sum_{i=1}^{n} \sigma_i^2\right)
+            .\end{equation*}
+        \end{obsv}
+        \begin{defn}[Densità Gamma]\label{defn:Densità_Gamma}
+            Siano $X_1,\, X_2$ due variabili aleatorie indipendenti, entrambe esponenziali di parametro $\mu > 0$; allora applicano l'equazione \eqref{eq:Somma_variabili_aleatorie_continue} possiamo scrivere la densità della somma $X_1+X_2$ come segue: \[
+                f_{X_1+X_2}(y) = \begin{cases}
+                    \int_{0}^{y} \mu e^{-\mu u} \cdot \mu e^{-\mu(y-u)}\, du = \mu^2 e^{-\mu u} y & \text{se $y > 0$;} \\
+                    0 & \text{se $y \leq 0$.}
+                \end{cases}
+            \] Procedendo per induzione su $n$ possiamo affermare che $X_1,\, \ldots,\, X_{n}$ sono variabili aleatorie indipendenti, ciascuna con densità esponenziale di parametro $\mu$; la densità della loro somma si scrive come:
+            \begin{equation}\label{eq:Densità_Gamma}
+                f_{X_1+\ldots+X_n}(x) = \frac{\mu^n}{(n-1)!}x^{n-1} \cdot 
+                e^{-\mu x} \cdot \mathbf{1}_{(0,\,+\infty)}(x)
+            .\end{equation}
+            Chiamiamo \eqref{eq:Densità_Gamma} \textit{densità Gamma} di parametri $n$ e $\mu$, e la indichiamo con: \[
+                X_1 + \ldots + X_{n} \sim \Gamma(n,\, \mu)
+            .\]
+        \end{defn}
+        \begin{prty}[Densità di funzione continua]\label{prty:Densità_funzione_continua}
+            Consideriamo $U,\,V$ due aperti di $\mathbb{R}^n$, 
+            un'applicazione biunivoca $\vec{g}\,:\, U \mapsto V$ differenziabile con continuità, 
+            e ammetta inversa $\vec{g}^{\,-1}$ anch'essa differenziabile con continuità; 
+            prendiamo inoltre il vettore aleatorio $\vec{X}$ $n$ \nbdash dimensionale assolutamente continuo, 
+            con densità $f_{.,}$ per cui valga $P(X \in U) = 1$. Allora $\vec{Y} \coloneqq \vec{g}(\vec{X})$ è un
+            vettore aleatorio assolutamente continuo con densità:
+            \begin{equation}\label{eq:Densità_funzione_continua}
+                f_{\vec{Y}}(\vec{y}) = \mathbf{1}_{V}(\vec{y}) \cdot 
+                f_{\vec{X}}\left(\vec{g}^{\,-1}(\vec{y})\right) \cdot 
+                \left|\det\left(\vec{J}\left(\vec{g}^{\,-1}(\vec{y})\right)\right)\right|
+            ,\end{equation}
+            dove $\vec{J}(\vec{g}^{\,-1}(\vec{y}))$ indica la \textit{matrice Jacobiana} associata alla 
+            funzione $\vec{g}^{\,-1}$, valutata in $\vec{y}$: \[
+                \vec{J}(\vec{g}^{\,-1}) = \begin{bmatrix}
+                    \frac{\partial g_1^{-1}}{\partial y_1} & \frac{\partial g_1^{-1}}{\partial y_2} & \cdots & \frac{\partial g_1^{-1}}{\partial y_n}\\
+                    \frac{\partial g_2^{-1}}{\partial y_1} & \frac{\partial g_2^{-1}}{\partial y_2} & \cdots & \frac{\partial g_2^{-1}}{\partial y_n}\\
+                    \vdots & \vdots & \cdots & \vdots\\
+                    \frac{\partial g_n^{-1}}{\partial y_1} & \frac{\partial g_n^{-1}}{\partial y_2} & \cdots & \frac{\partial g_n^{-1}}{\partial y_n}
+                \end{bmatrix}
+            .\]
+        \end{prty}
+        \begin{defn}[Trasformazioni affini di vettori continui]
+            Consideriamo la matrice $\vec{A}$ quadrata di ordine $n$ e invertibile, 
+            il vettore colonna $\vec{b} \in \mathbb{R}^n$, il vettore aleatorio colonna assolutamente 
+            continuo $\vec{X}$ a $n$ dimensioni e con densità $f_{\vec{X}}$, e valga 
+            $\vec{Y} = \vec{A} \cdot \vec{X} + \vec{b}$.
+
+            Calcoliamo la densità di $Y$ applicando \eqref{eq:Densità_funzione_continua} alla trasformazione 
+            biunivoca $\vec{g}\,:\, \mathbb{R}^n \mapsto \mathbb{R}^n$ tale che $\vec{g}(\vec{x}) = \vec{A} \cdot \vec{x} + \vec{b}$ e ammetta inversa $\vec{g}^{\,-1}(\vec{y}) = \vec{A}^{\,-1}(\vec{y} - \vec{b})$:
+            \begin{equation}\label{eq:Trasformazioni_vettori_continui}
+                f_{\vec{Y}}(\vec{y}) = f_{\vec{X}}\left(\vec{A}^{\,-1}(\vec{y} - \vec{b})\right) \cdot 
+                \left|\det(\vec{A}^{\,-1})\right|
+            .\end{equation}
+        \end{defn}
     \section{Valore atteso per funzioni di vettori aleatori}
+        \begin{defn}[discreto]
+            Consideriamo un vettore aleatorio discreto $\vec{X}$ che assume valori in $S$ e 
+            ha densità $p_{\vec{X}}$, una funzione $g\,:\, \mathbb{R}^n \mapsto \mathbb{R}$ e una 
+            variabile aleatoria $Y \coloneqq g(\vec{X})$.
+
+            Se si verifica: \[
+                \sum_{\vec{x} \in S} \left|g(\vec{x})\right| \cdot p_{\vec{X}}(\vec{x}) < +\infty
+            ,\] allora $Y$ ammette valore atteso ed esso si calcola come:
+            \begin{equation}\label{eq:Valore_atteso_vettori_discreti}
+                \text{E}(Y) = \sum_{\vec{x} \in S} g(\vec{x}) \cdot p_{\vec{X}}(\vec{x})
+            .\end{equation}
+        \end{defn}
+        \begin{defn}[continuo]
+            Consideriamo un vettore aleatorio assolutamente continuo $\vec{X}$ che abbia densità 
+            $f_{\vec{X}}$, una funzione $g\,:\, \mathbb{R}^n \mapsto \mathbb{R}$ e una variabile aleatoria 
+            $Y \coloneqq g(\vec{X})$.
+
+            Se si verifica: \[
+                \int_{\mathbb{R}^n} \left|gx_1,\, \ldots,\, x_{n})\right| \cdot f_{\vec{X}}(x_1,\, \ldots,\, x_{n})\, dx_1 \cdot \ldots \cdot dx_n < +\infty
+            ,\] allora $Y$ ammette valore atteso ed esso si calcola come:
+            \begin{equation}\label{eq:Valore_atteso_vettori_continui}
+                \text{E}(Y) = \int_{\mathbb{R}^n} g(x_1,\, \ldots,\, x_{n}) \cdot f_{\vec{X}}(x_1,\, \ldots,\, x_{n})\, dx_1 \cdot \ldots \cdot dx_n
+            .\end{equation}
+        \end{defn}
     \section{Proprietà del valore atteso per due vettori aleatori}
-    \section{Valore atteso del prodotto di due variabili aleatorie}
-    \section{Varianza della somma di due variabili aleatorie}
-    \section{Covarianza}
+    \begin{prty}[Media della somma]
+            Siano $X_1,\,X_2$ variabili aleatorie definite sullo stesso spazio di probabilità, ed entrambe ammettano media; allora anche $X_1 + X_2$ ammette media ed essa vale: \[
+            \text{E}(X_1 + X_2) = \text{E}(X_1) + \text{E}(X_2)
+            .\]
+        \end{prty}
+        \begin{proof}
+            Prendiamo il vettore aleatorio assolutamente continuo $(X_1,\,X_2)$ con densità $f_{X_1,\,X_2}$; 
+            applicando la disuguaglianza triangolare $|x+y| \leq |x| + |y|$ otteniamo:
+            \begin{align*}
+                \int_{\mathbb{R}^2} |x+y| \cdot f_{X_1,\,X_2}(x,\,y)\, dx\,dy &\leq 
+                \int_{\mathbb{R}^2} |x| \cdot f_{X_1,\,X_2}(x,\,y)\, dx\,dy + 
+                \int_{\mathbb{R}^2} |y| \cdot f_{X_1,\,X_2}(x,\,y)\, dx\,dy \\
+                &= \int_{\mathbb{R}} |x|\cdot f_{X_1}(x)\, dx + \int_{\mathbb{R}} |y|\cdot f_{X_2}(y)\, dy \\
+                &< \infty
+            ;\end{align*}
+            quindi $X_1 + X_2$ ammette media, e applicando \eqref{eq:Valore_atteso_vettori_continui} alla 
+            funzione $g(x,\,y) = x+y$ otteniamo:
+            \begin{align*}
+                \text{E}(X_1 + X_2) &= \int_{\mathbb{R}^2} (x+y)\cdot f_{X_1,\,X_2}(x,\,y)\, dx\, dy \\
+                &= \int_{\mathbb{R}} x\cdot \left(\int_{\mathbb{R}}f_{X_1,\,X_2}(x,\,y)\, dy\right)\, dx + \int_{\mathbb{R}} y\cdot \left(\int_{\mathbb{R}}f_{X_1,\,X_2}(x,\,y)\, dx\right)\, dy \\
+                &= \int_{\mathbb{R}} x\cdot f_{X_1}(x)\, dx + \int_{\mathbb{R}} y\cdot f_{X_2}(y)\, dy \\
+                &= \text{E}(X_1) + \text{E}(X_2) \qedhere
+            .\end{align*}
+        \end{proof}
+        \begin{obsv}
+            Possiamo estendere la proprietà della somma dei valori attesi ad $n$ variabili aleatorie: \[
+            \text{E}(X_1+\ldots+X_n) = \text{E}(X_1)+\ldots+\text{E}(X_n)
+            .\] 
+        \end{obsv}
+        \begin{prty}[Media del prodotto]
+            Siano $X_1,\,X_2$ variabili aleatorie indipendenti, ed entrambe ammettano media; allora anche $X_1 \cdot X_2$ ammette media ed essa vale:
+            \begin{equation}\label{eq:Media_prodotto_v_a}
+                \text{E}(X_1 \cdot X_2) = \text{E}(X_1) \cdot \text{E}(X_2)
+            .\end{equation}
+        \end{prty}
+        \begin{proof}
+            Prendiamo due variabili aleatorie continue $X_1,\,X_2$ con densità $f_{X_1},\, f_{X_2}$; possiamo scrivere la densità congiunta rispetto alle marginali: \[
+                \iint_{\mathbb{R}\times\mathbb{R}} |x\cdot y| \cdot f_{X_1}(x) \cdot f_{X_2}(y)\, dx\, dy =
+                \int_{\mathbb{R}} |x|\cdot f_{X_1}(x)\, dx \cdot \int_{\mathbb{R}} |y|\cdot f_{X_2}(y)\, dy 
+                < +\infty
+            .\] Possiamo affermare che esiste $\text{E}(X_1 \cdot X_2)$ per \eqref{eq:Valore_atteso_vettori_continui} applicata alla funzione $g(x,\,y) = x\cdot y$; inoltre possiamo scrivere:
+            \begin{align*}
+                \text{E}(X_1 \cdot X_2) &=
+                \iint_{\mathbb{R}\times\mathbb{R}} |x\cdot y| \cdot f_{X_1}(x) \cdot f_{X_2}(y)\, dx\, dy \\
+                &= \int_{\mathbb{R}} x\cdot f_{X_1}(x)\, dx \cdot \int_{\mathbb{R}} y\cdot f_{X_2}(y)\, dy \\
+                &= \text{E}(X_1) \cdot \text{E}(X_2) \qedhere
+            .\end{align*}
+        \end{proof}
+        \begin{prty}[Varianza della somma]\label{prty:Varianza_somma_v_a}
+            Siano $X_1,\,X_2$ variabili aleatorie che ammettano varianza finita $\text{Var}(X_1),\,\text{Var}(X_2)$; allora anche $X_1 + X_2$ ammette varianza finita, ed essa vale: \[
+            \text{Var}(X_1 + X_2) = \text{Var}(X_1) + \text{Var}(X_2) + 
+            2 \text{E}\left[(X_1 - \text{E}(X_1))\cdot(X_2 - \text{E}(X_2))\right]
+            .\] Se inoltre $X_1,\,X_2$ sono \underline{indipendenti}, allora otteniamo:
+            \begin{equation}\label{eq:Varianza_somma_v_a}
+                \text{Var}(X_1 + X_2) = \text{Var}(X_1) + \text{Var}(X_2)
+            .\end{equation}
+        \end{prty}
+        \begin{proof}
+            Sappiamo che valgono le seguenti reazioni col valore atteso della somma di due variabili aleatorie:
+            \begin{align*}
+                \left((X_1 + X_2) - \text{E}(X_1 + X_2)\right)^2 &= \left[(X_1 - \text{E}(X_1)) + (X_2 + \text{E}(X_2))\right]^2 \\
+                                      &\leq 2\left[(X_1 - \text{E}(X_1))^2 + (X_2 + \text{E}(X_2))^2\right]
+            ;\end{align*}
+            allora applicando le definizione di varianza possiamo scrivere:
+            \begin{align*}
+                \text{Var}(X_1 + X_2) &= \text{E}\left[((X_1+X_2)-\text{E}(X_1+X_2))^2\right] \\
+                &= \text{E}\left[((X_1 - \text{E}(X_1))+(X_2 - \text{E}(X_2)))^2\right] \\
+                &\leq 2\left[\text{E}(X_1 - \text{E}(X_1))^2+\text{E}(X_2-\text{E}(X_2))^2\right] \\
+                &= 2\left[\text{Var}(X_1)+\text{Var}(X_2)\right]
+            .\end{align*}
+            Quindi se $X_1,\,X_2$ ammettono varianza, anche $X_1+X_2$ la ammette; essa si scrive nel modo 
+            seguente:
+            \begin{align*}
+                \text{Var}(X_1+X_2) &= \text{E}\left[(X_1 - \text{E}(X_1))^2\right] + 
+                \text{E}\left[(X_2 - \text{E}(X_2))^2\right] + 
+                2\, \text{E}\left[(X_1 - \text{E}(X))\cdot(X_2 - \text{E}(X_2))\right] \\
+                &= \text{Var}(X_1) + \text{Var}(X_2) + 
+                2\, \text{E}\left[(X_1 - \text{E}(X))\cdot(X_2 - \text{E}(X_2))\right]
+            .\end{align*}
+            Infine notiamo che , se $X_1,\,X_2$ sono indipendenti, allora per il terzo termine vale: \[
+                2\, \text{E}\left[(X_1 - \text{E}(X))\cdot(X_2 - \text{E}(X_2))\right] = 0
+            ,\] e otteniamo proprio l'equazione \eqref{eq:Varianza_somma_v_a}: \[
+                \text{Var}(X_1 + X_2) = \text{Var}(X_1) + \text{Var}(X_2). \qedhere
+            \]
+        \end{proof}
+        \begin{obsv}
+            Possiamo estendere la proprietà della somma delle varianze ad $n$ variabili aleatorie:
+            \begin{equation}\label{eq:Somma_varianza_v_a}
+                \text{Var}(X_1+\ldots+X_n) = \sum_{i=1}^{n} \text{Var}(X_i) + 
+                2 \sum_{i=1}^{n-1} \sum_{j=i+1}^{n} \text{E}\left[(X_i-\text{E}(X_i))\cdot(X_j-\text{E}(X_j))\right]
+            .\end{equation}
+        \end{obsv}
     \section{Media e varianza della Binomiale}
+        \begin{obsv}
+            Consideriamo $X\sim \mathcal{B}i(n,\,p)$; essa avrà la stessa densità della somma di $n$ variabili aleatorie indipendenti ($X_1,\, \ldots,\, X_{n}$) con densità di Bernoulli di parametro $p$; allora ricaviamo:
+            \begin{align*}
+                \text{E}(X) = \text{E}\left(\sum_{i=1}^{n} X_i\right) = \sum_{i=1}^{n} \text{E}(X_i) =
+                \sum_{i=1}^{n} p = n \cdot p
+                & & \text{per Proprietà}~\ref{eq:Valore_atteso_vettori_continui}
+            ;\end{align*}
+            \begin{align*}
+                \text{Var}(X) = \text{Var}(\sum_{i=1}^{n} X_i) = \sum_{i=1}^{n} \text{Var}(X_i) = 
+                \sum_{i=1}^{n} p(1-p) = n \cdot p(1-p)
+                & & \text{per equazione}~\eqref{eq:Somma_varianza_v_a}
+            .\end{align*}
+        \end{obsv}
+    \section{Covarianza}
+        \begin{defn}
+            Siano $X_1,\,X_2$ variabili aleatorie definite sullo stesso spazio di probabilità ed entrambe ammettano varianza; allora chiamiamo \textit{covarianza} di $X_1$ e $X_2$ il numero calcolato come:
+            \begin{equation}\label{eq:Covarianza}
+                \text{Cov}(X_1,\,X_2) \coloneqq \text{E}\left[(X_1-\text{E}(X_1))\cdot(X_2-\text{E}(X_2))\right]
+            .\end{equation}
+        \end{defn}
+        \begin{obsv}
+            Estendendo la Proprietà~\ref{prty:Varianza_somma_v_a} con la definizione di covarianza \eqref{eq:Covarianza}, otteniamo: \[
+            \text{Var}(X_1+X_2) = \text{Var}(X_1) + \text{Var}(X_2) + 2\,\text{Cov}(X_1,\,X_2)
+        ;\] inoltre intuiamo da \eqref{eq:Varianza_somma_v_a} che per variabili aleatorie indipendenti la covarianza è nulla.
+        \end{obsv}
+        \begin{prty}
+            Siano $X_1,\,X_2,\,X_3$ variabili aleatorie con varianza finita e $a,\,b \in \mathbb{R}$; possiamo affermare che:
+            \begin{enumerate}
+                \item $\text{Cov}(X_1,\,X_2) = \text{Cov}(X_2,\,X_1)$;
+                \item $\text{Cov}(X_1,\,X_2) = \text{E}(X_1\cdot X_2) - \text{E}(X_1)\cdot \text{E}(X_2)$;
+                \item $\text{Cov}(a\cdot X_1,\,X_2) = a\cdot \text{Cov}(X_1,\,X_2)$;
+                \item $\text{Cov}(X_1+X_2,\,X_3) = \text{Cov}(X_1,\,X_3)+\text{Cov}(X_2,\,X_3)$;
+                \item se $X_1,\,X_2$ sono indipendenti allora $\text{Cov}(X_1,\,X_2)=0$ (non vale l'inverso).
+            \end{enumerate}
+        \end{prty}
+        \begin{proof}
+            \hfill
+            \begin{enumerate}
+                \item La definizione di Covarianza contiene il valore atteso del prodotto di $(X_1-\text{E}(X_1))$ con $(X_2-\text{E}(X_2))$; quest'ultimo gode della proprietà commutativa, per cui:
+                    \begin{align*}
+                        \text{Cov}(X_1,\,X_2) &\coloneqq 
+                        \text{E}\left[(X_1-\text{E}(X_1))\cdot(X_2-\text{E}(X_2))\right] \\
+                        &\,= \text{E}\left[(X_2-\text{E}(X_2))\cdot(X_1-\text{E}(X_1))\right] =
+                        \text{Cov}(X_2,\,X_1)
+                    .\end{align*}
+                \item Dalla definizione di covarianza espandiamo il prodotto al esondo membro:
+                    \begin{align*}
+                        \text{Cov}(X_1,\,X_2) &= \text{E}(X_1\cdot X_2 - \text{E}(X_1)\cdot X_2 -\text{E}(X_2)\cdot X_1 +\text{E}(X_2)\cdot \text{E}(X_1)) \\
+                        &= \text{E}(X_1\cdot X_2) - \text{E}(X_1)\cdot \text{E}(X_2) \cancel{-\text{E}(X_1)\cdot \text{E}(X_2)} \cancel{+ \text{E}(X_1)\cdot \text{E}(X_2)} \\
+                        &= \text{E}(X_1 \cdot X_2) - \text{E}(X_1)\cdot \text{E}(X_2)
+                    .\end{align*}
+                \item Usando la formula appena dimostrata, per il punto \eqref{itm:Linearità_valore_atteso_somma} della Proprietà~\ref{prty:Valore_atteso} otteniamo:
+                    \begin{align*}
+                        \text{Cov}(a\cdot X_1,\,X_2) &= \text{E}(a\cdot X_1 \cdot X_2) - \text{E}(a\cdot X_1)\cdot \text{E}(X_2) \\
+                        &= a\cdot\text{E}(X_1 \cdot X_2) - a\cdot \text{E}(X_1) \cdot \text{E}(X_2) \\
+                        &= a \cdot \left[\text{E}(X_1 \cdot X_2) - \text{E}(X_1) \cdot \text{E}(X_2)\right] \\
+                        &= a \cdot \text{Cov}(X_1,\,X_2)
+                    .\end{align*}
+                \item Sviluppando il prodotto con $(X_1 + X_2)$ otteniamo:
+                    \begin{align*}
+                        \text{Cov}(X_1+X_2,\,X_3) &= \text{E}((X_1+X_2)\cdot X_3) - \text{E}(X_1+X_2) \cdot \text{E}(X_3) \\
+                        &= \text{E}(X_1 \cdot X_3 + X_2 \cdot X_3) - \left[\text{E}(X_1)+\text{E}(X_2)\right]\cdot \text{E}(X_3) \\
+                        &= \text{E}(X_1 \cdot X_3) - \text{E}(X_1)\cdot \text{E}(X_2) + \text{E}(X_2 \cdot X_3) - \text{E}(X_2)\cdot \text{E}(X_3) \\
+                        &= \text{Cov}(X_1,\,X_3) + \text{Cov}(X_2,\,X_3) \qedhere
+                    .\end{align*}
+            \end{enumerate}
+        \end{proof}
     \section{Coefficiente di correlazione lineare}
-    \section{Somme di variabili aleatorie indipendenti}
+        \begin{defn}
+            Prendiamo due variabili aleatorie $X_1,\,X_2$ definite sullo stesso spazio di probabilità, che ammettano entrambe covarianza ($0<\text{Var}(X_1) \land 0<\text{Var}(X_2)$); allora definiamo il \textit{coefficiente di correlazione} di $X_1,\,X_2$ il numero calcolato come: \[
+            \rho_{X_1,\,X_2} \coloneqq \frac{\text{Cov}(X_1,\,X_2)}{\sqrt{\text{Var}(X_1)\cdot \text{Var}(X_2)}}
+            .\] 
+        \end{defn}
+        \begin{prty}
+            Siano $X_1,\,X_2$ variabili aleatorie con varianza finita e $a..b \in \mathbb{R}$; allora vale $|\rho_{X_1,\,X_2}| \leq 1$ e inoltre: \[
+                |\rho_{X_1,\,X_2}| = 1 \iff \exists\, a,\,b \in \mathbb{R}\,:\, P(X_2=a\cdot X_1+b) = 1
+            ;\] se ciò si verifica, allora i due reali valgono:
+            \begin{align*}
+                a = \frac{\text{Cov}(X_1,\,X_2)}{\text{Var}(X_1)}; & &
+                b = \text{E}(X_2) - \frac{\text{E}(X_1)\cdot \text{Cov}(X_1,\,X_2)}{\text{Var}(X_1)}
+            .\end{align*}
+        \end{prty}
+        \begin{proof}
+            Chiamiamo $\text{Var}(X_1) = \sigma_1^2$ e $\text{Var}(X_2) = \sigma_2^2$; usando le proprietà della varianza scriviamo:
+            \begin{align*}
+                0 &\leq \text{Var}\left(\frac{X_1}{\sigma_1}+\frac{X_2}{\sigma_2}\right)=
+                \frac{\text{Var}(X_1)}{\sigma_1^2} + \frac{\text{Var}(X_2)}{\sigma_2^2} + 2\,\text{Cov}\left(\frac{X_1}{\sigma_1},\,\frac{X_2}{\sigma_2}\right) \\
+                &= \frac{\sigma_1^2}{\sigma_1^2} + \frac{\sigma_2^2}{\sigma_2^2} + 2\,\frac{\text{Cov}(X_1,\,X_2)}{\sigma_1 \cdot \sigma_2} \\
+                &= 2\, (1 + \rho_{X_1,\,X_2}) \implies \rho_{X_1,\,X_2} \geq -1
+            .\end{align*}
+            Vale inoltre:
+            \begin{align*}
+                0 &\leq \text{Var}\left(\frac{X_1}{\sigma_1}-\frac{X_2}{\sigma_2}\right) = 
+                \frac{\text{Var}(X_1)}{\sigma_1^2} + \frac{\text{Var}(X_2)}{\sigma_2^2} 
+                -2\, \frac{\text{Cov}(X_1,\,X_2)}{\sigma_1 \cdot \sigma_2} \\
+                  &= 2\, (1 - \rho_{X_1,\,X_2}) \implies \rho_{X_1,\,X_2} \leq 1
+            .\end{align*}
+            Dal momento che: \[
+                \rho_{X_1,\,X_2} = 1 \iff \text{Var}\left(\frac{X_1}{\sigma_1} - \frac{X_2}{\sigma_2}\right) = 0
+            ,\] segue dalle proprietà della varianza: \[
+            \rho_{X_1,\,X_2} = 1 \iff P\left(\frac{X_1}{\sigma_1}-\frac{X_2}{\sigma_2} = 
+            \frac{\text{E}(X_1)}{\sigma_1}-\frac{\text{E}(X_2)}{\sigma_2}\right) = 1
+            ;\] inoltre sappiamo che: \[
+            \rho_{X_1,\,X_2} = 1 \iff \text{Cov}(X_1,\,X_2)=\sigma_1 \cdot \sigma_2
+            ,\] da cui segue: \[
+            X_2 = \text{E}(X_2) + \frac{\text{Cov}(X_1,\,X)}{\sigma_1^2} \cdot (X_1 - \text{E}(X_1))
+            .\] Invece per $\rho_{X_1,\,X_2} = -1$ otteniamo:
+            \begin{align*}
+                \rho_{X_1,\,X_2} = -1 &\iff \text{Cov}(X_1,\,X_2) = -\sigma_1 \cdot \sigma_2 \\
+                &\iff \text{Var}\left(\frac{X_1}{\sigma_1}+\frac{X_2}{\sigma_2}\right) = 0 \\
+                &\iff P\left(\frac{X_1}{\sigma_1}+\frac{X_2}{\sigma_2}= \frac{\text{E}(X_1)}{\sigma_1}+\frac{\text{E}(X_2)}{\sigma_2}\right) = 1 \\
+                &\iff X_2 = \text{E}(X_2) + \frac{\text{Cov}(X_1,\,X_2)}{\sigma_1^2} \cdot (X_1 - \text{E}(X_1))
+                \qedhere
+            .\end{align*}
+        \end{proof}
+        \begin{note}
+            Esiste sempre un legame lineare tra due variabili aleatorie $X_1,\,X_2$ definito come $X_2 = a\cdot X_1 + b$, se e solo se $\rho_{X_1,\,X_2}=\pm 1$; inoltre valgono le seguenti implicazioni:
+            \begin{itemize}
+                \item $\rho_{X_1,\,X_2} = -1 \implies a<0 \land \text{Cov}(X_1,\,X_2)<0$;
+                \item $\rho_{X_1,\,X_2} = 1 \implies a>0 \land \text{Cov}(X_1,\,X_2)>0$.
+            \end{itemize}
+        \end{note}
     \section{Distribuzione del massimo e del minimo}
+        %TODO: Completare sezione
     \section{Media campionaria}
+        \begin{defn}
+            Consideriamo una popolazione di $n$ elementi, a ciascuno dei quali è associata una grandezza numerica $X_i$ con media $\mu$ e varianza $\sigma^2$; l'insieme di queste grandezze (variabili aleatorie indipendenti identicamente distribuite) $X_1,\, \ldots,\, X_{n}$ è detto \textit{campione}; chiamiamo \textit{media campionaria} la sua media, e la indichiamo come: \[
+            \overline{X} \coloneqq \frac{X_1 + \ldots + X_{n}}{n}
+            .\] Dato che $\overline{X}$ è una funzione di variabili aleatorie indipendenti identicamente distribuite, anch'essa è una variabile aleatoria, quindi ammette media e varianza nel modo seguente:
+            \begin{itemize}
+                \item Il valore atteso della media campionaria vale:
+                    \begin{align*}
+                        \text{E}(\overline{X}) &= \text{E}\left(\frac{X_1 + \ldots + X_n}{n}\right)
+                        = \frac{\text{E}(X_1) + \ldots + \text{E}(X_n)}{n} \\
+                        &= \frac{n \cdot \mu}{n} = \mu
+                    .\end{align*}
+                \item La varianza della media campionaria vale:
+                    \begin{align*}
+                        \text{Var}(\overline{X}) &= \text{Var}\left(\frac{X_1 + \ldots + X_n}{n}\right)
+                        = \frac{\text{Var}(X_1) + \ldots + \text{Var}(X_n)}{n} \\
+                        &= \frac{n\cdot \sigma^2}{n^2} = \frac{\sigma^2}{n}
+                    .\end{align*}
+            \end{itemize}
+        \end{defn}
     \section{Legge dei grandi numeri}
+        \begin{defn}[Legge debole]
+            Sia $X_1,\, \ldots,\, X_{n}$ una successione di variabili aleatorie indipendenti identicamente distribuite con media $\mu$ e varianza $\sigma^2$ finite, inoltre $S_n = X_1 + \ldots + X_n$; allora vale: \[
+                \forall \varepsilon > 0 \,:\, \lim_{n \to \infty} P\left(\left|\frac{S_n}{n}-\mu\right| > \varepsilon\right) = 0
+            .\]
+        \end{defn}
+        \begin{proof}
+            Dato che le variabili $X_i$ sono indipendenti identicamente distribuite otteniamo:
+            \begin{align*}
+                \text{Var}(S_n) = n\cdot \text{Var}(X_1) = n\cdot \sigma^2  \implies
+                \text{Var}\left(\frac{S_n}{n}\right) = \frac{n\, \sigma^2}{n^2} = \frac{\sigma^2}{n};
+                & & \text{E}\left(\frac{S_n}{n}\right) = \mu
+            .\end{align*}
+            Dalla disuguaglianza di Chebychev \eqref{eq:Disuguaglianza_Chebychev} segue che: \[
+                \forall \varepsilon > 0 \,:\, \lim_{n \to \infty} \left[P\left(\left|\frac{S_n}{n}-\mu\right|> \varepsilon\right) \leq \frac{\sigma^2}{n\, \varepsilon^2}\right] \rightarrow 0. \qedhere
+            \]
+        \end{proof}
+        \begin{defn}[Legge forte]
+            Sia $X_1,\, \ldots,\, X_{n}$ una successione di variabili aleatorie indipendenti identicamente distribuite con media finita $\mu$; allora possiamo affermare che: \[
+                P\left(\left\{\omega\,:\, \lim_{n \to \infty} \frac{S_n(\omega)}{n}\right\}\right) = 1
+            .\]
+        \end{defn}
+        \begin{prty}
+            Sia $h$ una funzione su $[0,\,1]$ per cui valga $\int_{[0,\,1]} |h(x)|\, dx < +\infty$, 
+            prendiamo inoltre $U_1,\, U_2,\, \ldots$ variabili aleatorie indipendenti 
+            identicamente distribuite con densità uniforme su $[0,\,1]$; allora: \[
+                P\left(I_{\mathbf{1}n} \coloneqq \frac{1}{n} \cdot \sum_{j=1}^{n} h(U_j) \rightarrow
+                \int_{0}^{1} h(x)\, dx \text{ per } n \rightarrow \infty\right) = 1
+            .\] 
+        \end{prty}
+        \begin{proof}
+            Dato che le variabili aleatorie $h(U_1),\, h(U_2),\, \ldots$ sono indipendenti identicamente distribuite con media finita, applicando la \textit{legge dei grandi numeri}.
+        \end{proof}
     \section{Teorema del limite centrale} 
+        \begin{obsv}
+            Consideriamo $n$ variabili aleatorie $X_1,\, \ldots,\, X_{n}$ indipendenti identicamente distribuite con media $\mu$ e varianza $\sigma^2$ \underline{finite}; la legge dei grandi numeri ci permette di affermare (per $n$ grande) \[
+            \overline{X}_n \simeq \mu
+            .\] Se inoltre le variabili $X_i$ sono gaussiane, si ha: \[
+            \overline{X}_n \sim \mathcal{N}\left(\mu,\,\frac{\sigma^2}{n}\right) \implies
+                \frac{\sqrt{n}}{\sigma} \cdot (\overline{X}_n - \mu) \sim \mathcal{N}(0,\,1) 
+            ,\] da cui otteniamo: \[
+            P\left(|\overline{X}_n - \mu| \leq \delta\right) = 
+            \Phi\left(\frac{\sqrt{n}}{\sigma}\,\delta\right) - 
+            \Phi\left(-\frac{\sqrt{n}}{\sigma}\,\delta\right) =
+            2\, \Phi\left(\frac{\sqrt{n}}{\sigma}\,\delta\right) - 1
+            .\]
+        \end{obsv}
+        \begin{thm}[Limite centrale]
+            Sia $X_1,\, X_2,\, \ldots$ una successione di variabili aleatorie indipendenti identicamente distribuite con media $\mu$ e varianza $\sigma^2$, per cui valga $0 < \sigma^2 < +\infty$; allora possiamo scrivere:
+            \begin{equation}\label{eq:Teorema_limite_centrale}
+                \forall x\ in \mathbb{R} \,:\, \lim_{n \to \infty} P\left(\frac{\sqrt{n}}{\sigma} \cdot (\overline{X}_n - \mu) \leq x\right) = \int_{-\infty}^{x} \frac{1}{\sqrt{2\pi}}\cdot e^{-u^2 /2}\, du = \Phi(x)
+            .\end{equation}
+        \end{thm}
+        \begin{obsv}
+            Prendendo un $n$ adeguatamente elevato, la ripartizione della standardizzata della media campionaria è approssimabile con con la ripartizione gaussiana standard.
+        \end{obsv}
