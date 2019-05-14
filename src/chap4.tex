@@ -2,10 +2,144 @@
 % Capitolo 4
 
 \chapter{Distribuzioni notevoli}
-    \section{Matrice delle covarianza}
-    \section{Gaussiane multivariate}
-    \section{Generatrice dei momenti}
-    \section{Somma esponenziali indipendenti}
+    \section{Matrice delle covarianza}\label{defn:Matrice_covarianza}
+        \begin{defn}
+            Consideriamo un vettore aleatorio $n$\nbdash dimensionale $\vec{X} = (X_1,\, \ldots,\, X_{n})$ tale che sia definita la varianza di ciascuna delle sue componenti; allora chiamiamo \textit{matrice di covarianza} di $\vec{X}$ la matrice quadrata di ordine $n$ definita come:
+            \begin{align*}
+                \forall i,\,j \in [1,\,n] \,:\, \vec{C}_{\vec{X}} \coloneqq [c_{i,\,j}] & &
+                \text{per } c_{i,\,j} = \text{Cov}(X_i,\, X_j)
+            .\end{align*}
+        \end{defn}
+        \begin{prty}
+            Sia $\vec{C}_{\vec{X}}$ la matrice di covarianza di un vettore aleatorio $\vec{X}$; allora possiamo affermare che:
+            \begin{enumerate}
+                \item $\vec{C}_{\vec{X}}$ è una matrice simmetrica e semi-definita positiva 
+                    ($\forall \vec{X} \neq 0 \in \mathbb{R}^n \,:\, 
+                    \vec{X}^{\text{\,T}}\cdot \vec{C}_{\vec{X}} \cdot \vec{X} \geq 0$);
+                \item se abbiamo $\vec{A}$ una matrice $m \times n$ e $\vec{b}$ un vettore di dimensione $m$ allora la matrice di covarianza di $\vec{Y} = \vec{A} \cdot \vec{X} + \vec{b}$ si scrive come: \[
+                \vec{C}_{\vec{Y}} = \vec{A} \cdot \vec{C}_{\vec{X}} \cdot \vec{A}^{\text{\,T}}
+                .\] 
+            \end{enumerate}
+        \end{prty}
+        \begin{proof}
+            \hfill
+            \begin{enumerate}
+                \item La matrice di covarianza risulta simmetrica poiché, preso il suo elemento di posizione $i,\,j$ vale: \[
+                c_{i,\,j} = \text{Cov}(X_{i},\,X_{j}) = \text{Cov}(X_{j},\,X_{i}) = c_{j,\,i}
+            .\] Inoltre, se prendiamo un vettore colonna $\vec{\lambda} \in \mathbb{R}^n$ per $i\in [1,\,m]$ e $j\in [1,\,n]$ otteniamo:
+                \begin{align*}
+                    \vec{\lambda}^{\text{\,T}} \cdot \vec{C}_{\vec{X}} \cdot \vec{\lambda} &=
+                    \sum_{i=1}^{n} \sum_{j=1}^{n}\, [\lambda_i \lambda_j \cdot c_{i,\,j}] \\
+                    &= \text{E}\left(\sum_{i=1}^{n} \sum_{j=1}^{n} \lambda_i \lambda_j \cdot 
+                    \left(X_i-\text{E}(X_i)\right)\left(X_j-\text{E}(X_j)\right)\right) \\
+                    &= \text{E}\left(\sum_{i=1}^{n} \lambda_i \cdot \left(X_i-\text{E}(X_i)\right)^2\right) \geq 0
+                .\end{align*}
+            \item Se le componenti di $\vec{X}$ hanno varianza finita allora anche le componenti di $\vec{Y} = \vec{A} \cdot \vec{X} + \vec{b}$ la avranno; allora possiamo studiare la matrice di covarianza $\vec{C}_{\vec{Y}}$ considerando $\tilde{c}_{i,\,j}$ l'elemento di posto $(i,\,j)$ di $\vec{C}_{\vec{Y}}$, ottenendo:
+                \begin{align*}
+                    \tilde{c}_{i,\,j} = \text{Cov}\left(\vec{Y}_i,\, \vec{Y}_j\right)
+                    &= \text{Cov}\left(\sum_{k=1}^{n} [a_{i,\,k} \cdot X_k + b_i],\, 
+                    \sum_{\ell=1}^{n} [a_{j,\,\ell} \cdot X_\ell + b_j]\right) \\
+                    &= \sum_{k=1}^{n} \sum_{\ell=1}^{n}\, \left[a_{i,\,k} \cdot a_{j,\,\ell} \cdot \text{Cov}(X_k,\, X_{\ell})\right]
+                ,\end{align*}
+                esso è proprio l'elemento $(i,\,j)$ della matrice $\vec{A} \cdot \vec{C}_{\vec{X}}\vec{A}^{\text{\,T}}$. \qedhere
+            \end{enumerate}
+        \end{proof}
+    \section{Vettori gaussiani}
+        \begin{defn}[Normale standard]\label{defn:Vettore_gaussiano_standard}
+            Il vettore aleatorio $\vec{Z} = (Z_1,\, \ldots,\, Z_{n})^{\text{T}}$ si dice \textit{gaussiano standard} $n$\nbdash dimensionale se le variabili aleatorie $Z_1,\, \ldots,\, Z_{n}$ sono gaussiane standard indipendenti.
+
+            Un vettore aleatorio $\vec{Z}$ gaussiano appena definito è \underline{assolutamente continuo} e ha densità: \[
+                f_{\vec{Z}}(z_1,\, \ldots,\, z_{n}) = \frac{1}{(2\pi)^{n /2}} \cdot e^{-\frac{1}{2}\sum_{k=1}^{n} z_k^2}
+            ;\] questo risultato si ottiene dall'indipendenza delle componenti di $\vec{Z}$: \[
+            f_{\vec{Z}}(z_1,\, \ldots,\, z_{n}) = f_{Z_1}(z_1) \cdot \ldots \cdot f_{Z_n}(z_n) =
+            \frac{1}{\sqrt{2\pi}} \cdot e^{- z_1^2 /2} \cdot \ldots \cdot \frac{1}{\sqrt{2\pi}} \cdot e^{- z_n^2 /2} = \frac{1}{(2\pi)^{n /2}} \cdot e^{-\frac{1}{2}\sum_{k=1}^{n} z_k^2}
+            .\] 
+        \end{defn}
+        \begin{obsv}
+            Media e matrice di covarianza di un vettore gaussiano standard si ottengono come:
+            \begin{gather*}
+                \text{E}(\vec{Z}) = \text{\O} = (0,\,0,\,\ldots); \\
+                \vec{C}_{\vec{Z}} = \vec{I} \in \mathbb{R}^n \times \mathbb{R}^n.
+            \end{gather*}
+        \end{obsv}
+        \begin{defn}[Normale]\label{defn:Vettore_gaussiano}
+            Un vettore aleatorio $n$\nbdash dimensionale $\vec{X}$ è detto \textit{gaussiano} o normale se esistono una matrice $\vec{A} \in \mathbb{R}^n \times \mathbb{R}^m$, un vettore $\vec{\mu} \in \mathbb{R}^n$ e un vettore gaussiano \underline{standard} $\vec{Z} \in \mathbb{R}^m$ tali che: \[
+            \vec{X} = \vec{A} \cdot \vec{Z} + \vec{\mu}
+            .\] 
+        \end{defn}
+        \begin{obsv}\label{obsv:Vettore_gaussiano}
+            Media e matrice di covarianza di un vettore gaussiano si ottengono come:
+            \begin{gather*}
+                \text{E}(\vec{X}) = \vec{A} \cdot \text{E}(\vec{Z}) + \vec{\mu} = \vec{\mu}; \\
+                \vec{C}_{\vec{X}} = \vec{A} \cdot \vec{I} \cdot \vec{A}^{\text{\,T}} = \vec{A} \cdot \vec{A}^{\text{\,T}}.
+            \end{gather*}
+        \end{obsv}
+        \begin{prty}
+            Un vettore gaussiano $\vec{X} = \vec{A} \cdot \vec{Z} + \vec{\mu}$ ha densità su $\mathbb{R}^n$ se e solo se la matrice di covarianza $\vec{C} = \vec{A} \cdot \vec{A}^{\text{\,T}}$ è non-singolare; in tal caso la densità vale:
+            \begin{equation}\label{eq:Densità_vettore_gaussiano}
+                f_{\vec{X}}(\vec{x}) = \frac{1}{\sqrt{(2\pi)^n \cdot \det[\vec{C}]}} \cdot e^{-\frac{1}{2}(\vec{x}-\vec{\mu})^{\text{T}} \cdot \vec{C}^{-1}\cdot (\vec{x}-\vec{\mu})}
+            .\end{equation}
+        \end{prty}
+        \begin{obsv}
+            Consideriamo un vettore aleatorio assolutamente continuo $\vec{X}$ con densità \eqref{eq:Densità_vettore_gaussiano}, dove $\vec{C}$ è una matrice simmetrica definita positiva; allora possiamo estrarre la radice di $\vec{C}$ come: \[
+            \exists \vec{A} \,:\, \vec{C} = \vec{A} \cdot \vec{A}^{\text{\,T}}
+        .\] Prendiamo ora un vettore $\vec{Z} = \vec{A}^{\,-1}\cdot(\vec{X} - \vec{\mu})$, e calcoliamo la sua densità usando \eqref{eq:Trasformazioni_vettori_continui}:
+        \begin{align*}
+            f_{\vec{Z}}(\vec{z}) = f_{\vec{X}}(\vec{A} \cdot \vec{z} + \vec{\mu}) \cdot |\det(\vec{A})| &=
+            \frac{|\det(\vec{A})|}{\sqrt{(2\pi)^n \cdot \det(\vec{A} \cdot \vec{A}^{\text{\,T}})}} \cdot 
+            e^{-\frac{1}{2}(\vec{A}\cdot \vec{z} + \vec{\mu}-\vec{\mu})^{\text{T}} \cdot (\vec{A} \cdot \vec{A}^{\text{\,T}})^{-1} \cdot (\vec{A}\cdot \vec{z} +\vec{\mu}-\vec{\mu})} \\
+            &= \frac{1}{\sqrt{(2\pi)^n}} \cdot e^{-\frac{1}{2}\, \vec{z}^{\text{\,T}} \cdot \vec{z}}
+            \implies \vec{Z} \sim \mathcal{N}(0,\,\vec{I})
+        .\end{align*}
+        Abbiamo mostrato che $\vec{X} = \vec{A} \cdot \vec{Z} + \vec{\mu}$ è un vettore gaussiano di media $\vec{\mu}$ e matrice di covarianza $\vec{C}$
+        \end{obsv}
+        \begin{prty}
+            Sia $\vec{X} = \vec{A} \cdot \vec{Z} + \vec{\mu}$ un vettore gaussiano $n$\nbdash dimensionale, 
+            sia $\vec{C} = \vec{A} \cdot \vec{A}^{\text{\,T}}$ la matrice di covarianza di $\vec{X}$; 
+            allora possiamo affermare che:
+            \begin{enumerate}
+                \item $c_{i,\,i} \in \vec{C}_{\vec{X}} \,:\, \begin{cases}
+                    X_i \sim \mathcal{N}(\mu_i,\,c_{i,\,i}) & \text{se $c_{i,\,i} > 0$;} \\
+                    P(X_i = \mu_i) = 1 & \text{se $c_{i,\,i} = 0$;}
+                    \end{cases}$
+                \item $\vec{G} \in \mathbb{R}^k \times \mathbb{R}^n \land \vec{h} \in \mathbb{R}^k
+                    \implies \vec{Y} \coloneqq \vec{G} \cdot \vec{X} + \vec{h} \sim 
+                    \mathcal{N}\left(\vec{G}\, \vec{\mu} + \vec{h},\, \vec{G}\, \vec{C}\, \vec{G}^{\text{\,T}}\right);$
+                \item se $X_1,\, \ldots,\, X_{n}$ non sono correlate allora sono indipendenti.
+            \end{enumerate}
+        \end{prty}
+        \begin{proof}
+            \hfill
+            \begin{enumerate}
+                \item Dato che ogni componente $X_i$ del vettore aleatorio $\vec{X}$ si può esprimere come 
+                    combinazione lineare di variabili aleatorie gaussiane indipendenti più una 
+                    costante (dalla Definizione~\ref{defn:Vettore_gaussiano}); 
+                    dall'Osservazione~\ref{obsv:Somma_gaussiane_indipendenti} possiamo dedurre che anche $X_i$ 
+                    definita in tal modo è ancore una variabile aleatoria gaussiana.
+                \item Scriviamo $\vec{Y}$ nel modo seguente: \[
+                        \vec{G} \cdot \vec{X} + \vec{h} = \vec{G}(\vec{A} \cdot \vec{Z} + \vec{\mu}) + \vec{h}
+                        = (\vec{G} \cdot \vec{A})\cdot \vec{Z} + (\vec{G} \cdot \vec{\mu} + \vec{h})
+                    .\] Usando la Definizione~\ref{defn:Vettore_gaussiano} e 
+                    l'Osservazione~\ref{obsv:Vettore_gaussiano} possiamo affermare che:
+                    \begin{align*}
+                        \text{E}(\vec{X}) = \vec{G}\, \vec{\mu} + \vec{h}, & &
+                        \vec{C}_{\vec{X}} = \vec{G}\, \vec{C}\, \vec{G}^{\text{\,T}}
+                    .\end{align*}
+                \item Consideriamo una matrice di covarianza invertibile ($\vec{X}$ ha densità su 
+                    $\mathbb{R}^n$); se le componenti $X_1,\, \ldots,\, X_{n}$ non sono correlate, allora 
+                    $\vec{C}_{\vec{X}}$ è una matrice diagonale costruita come segue: \[
+                        \vec{C}_{\vec{X}} = \text{diag}\left(\sigma_1^2 = \text{Var}(X_1),\, 
+                        \ldots,\, \sigma_n^2 = \text{Var}(X_n)\right)
+                    ;\] allora la densità di $\vec{X}$ si ottiene come segue:
+                    \begin{align*}
+                        f_{\vec{X}}(\vec{x}) &= \frac{1}{\sqrt{(2\pi)^n \cdot \det(\vec{C})}} \cdot e^{-\frac{1}{2}(\vec{x}-\vec{\mu})^{\text{T}}cd \vec{C}^{\,-1}\cdot(\vec{x}-\vec{\mu})} \\
+                        &= \frac{1}{\sqrt{(2\pi)\cdot [\sigma_1^2\cdot \ldots\cdot \sigma_n^2]}} \cdot e^{-\frac{1}{2} \sum_{i=1}^{n} \left[\frac{x_i-\mu_i}{\sigma_i}\right]^2} \\
+                        &= \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi \sigma_i^2}} \cdot e^{-\frac{1}{2}\left[\frac{x_i-\mu_i}{\sigma_i}\right]^2} \\
+                        &= \prod_{i=1}^{n} f_{X_i}(x_i)
+                    .\end{align*}
+                    Segue che le $X_i$ sono indipendenti. \qedhere
+            \end{enumerate}
+        \end{proof}
     \section{Distribuzione Gamma}
     \section{Quantili}
     \section{Distribuzioni derivate dalla Normale}
