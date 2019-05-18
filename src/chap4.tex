@@ -141,5 +141,224 @@
             \end{enumerate}
         \end{proof}
     \section{Distribuzione Gamma}
-    \section{Quantili}
+        \begin{defn}
+            Una variabile aleatoria continua si dice avere distribuzione \textit{gamma} se la sua densità si ottiene dalla Definizione~\ref{defn:Densità_Gamma}:
+            \begin{equation}\label{eq:Densità_Gamma_Eulero}
+                f_{X}(x) = \begin{cases}
+                    \frac{\lambda^\alpha}{\Gamma(\alpha)}\cdot x^{\alpha-1}\cdot e^{-\lambda\, x} & \text{se $x > 0$;} \\
+                    0 & \text{se $x \leq 0$.}
+                \end{cases}
+            \end{equation}
+            Nella precedente siano definiti i parametri $\alpha > 0,\, \lambda > 0$ e la funzione $\Gamma(\alpha)$ si chiama \textit{Gamma di Eulero} ed è definita come:
+            \begin{align}\label{eq:Gamma_di_Eulero}
+                \Gamma(\alpha) &\coloneqq \int_{0}^{\infty} \lambda^\alpha \cdot x^{\alpha -1}\cdot e^{-\lambda\, x}\, dx \notag\\
+                &= \int_{0}^{\infty} y^{\alpha -1}\cdot e^{-y}\, dy & & [y=\lambda\cdot x]
+            .\end{align}
+        \end{defn}
+        \begin{obsv}[Gamma di Eulero]
+            Applicando la formula dell'integrazione per parti alla \eqref{eq:Gamma_di_Eulero}, nel caso in cui $\alpha > 1$, possiamo riscriverla come:
+            \begin{align*}
+                \Gamma(\alpha) &= \int_{0}^{\infty} y^{\alpha-1}\cdot e^{-y}\, dy 
+                \overset{\scriptscriptstyle \text{P.P.} \textstyle}{=}
+                \left[-y^{\alpha-1} \cdot e^{-y}\right]_{y=0}^{y=+\infty} + 
+                \int_{0}^{\infty} (\alpha-1) \cdot y^{\alpha-2} \cdot e^{-y}\, dy \\
+                &= (\alpha-1) \cdot \int_{0}^{\infty} y^{\alpha-2} \cdot e^{-y}\, dy \\
+                &= (\alpha-1)\cdot \Gamma(\alpha-1)
+            .\end{align*}
+            Possiamo usare questo risultato per calcolare il valore della funzione Gamma sugli interi:
+            \begin{align*}
+                \Gamma(n) &= (n-1)\cdot \Gamma(n-1) \\
+                &= (n-1)\cdot (n-2)\cdot \Gamma(n-2) \\
+                &\;\; \vdots \\
+                &= (n-1)! \cdot \Gamma(1)
+            .\end{align*}
+            Sapendo che per $n=1$ otteniamo: \[
+                \Gamma(1) = \int_{0}^{\infty} e^{-y}\, dy = 1
+            ,\] possiamo ottenere, per $n > 1,\, n \in \mathbb{N}$:
+            \begin{equation}\label{eq:Gamma_di_Eulero_interi}
+                \Gamma(n) = (n-1)!
+            .\end{equation}
+        \end{obsv}
+        \begin{prty}[Momenti gamma]
+            La generatrice dei momenti di una variabile aleatoria di tipo Gamma con parametri $\alpha,\, \lambda$ si ottiene come segue:
+            \begin{align}\label{eq:Generatrice_momenti_Gamma}
+                m_X(t) &\coloneqq \text{E}(e^{t\, X}) =
+                \int_{0}^{\infty} e^{t\, X}\cdot \frac{\lambda^{\alpha}}{\Gamma(\alpha)}\cdot x^{\alpha-1}\cdot e^{-\lambda x}\, dx \notag\\
+                &= \frac{\lambda^\alpha}{\Gamma(\alpha)}\cdot \int_{0}^{\infty} x^{\alpha-1} \cdot e^{-(\lambda-t)x}\, dx \notag\\
+                &= \left(\frac{\lambda}{\lambda-t}\right)^\alpha \cdot 
+                \frac{1}{\Gamma(\alpha)}\cdot 
+                \underset{\Gamma(\alpha)}{\underbrace{\int_{0}^{\infty} y^{\alpha-1}\cdot e^{-y}\, dy}} 
+                & & \left[y = (\lambda-t)x\right] \notag\\
+                &= \left(\frac{\lambda}{\lambda-t}\right)^\alpha
+            .\end{align}
+        \end{prty}
+        \begin{defn}
+            Usando la funzione \eqref{eq:Generatrice_momenti_Gamma} possiamo ottenere valore atteso e varianza per una variabile aleatoria con distribuzione Gamma:
+            \begin{itemize}
+                \item $\text{E}(X) = m_X(0)^{\prime} = 
+                    \frac{\alpha\cdot \lambda^{\alpha}}{(\lambda-0)^{\alpha+1}} = 
+                    \frac{\alpha}{\lambda}$;
+                \item $\text{E}(X^2) = m_X(0)^{\prime\prime} = 
+                    \frac{\alpha(\alpha+1)\cdot \lambda^{\alpha}}{(\lambda-0)^{\alpha+2}} = 
+                    \frac{\alpha(\alpha+1)}{\lambda^2}$;
+                \item $\text{Var}(X) = \text{E}(X^2) - \text{E}(X)^2 = \frac{\alpha}{\lambda^2}$.
+            \end{itemize}
+        \end{defn}
+        \begin{defn}[Somma di Gamma indipendenti]
+            Consideriamo una successioni di variabili aleatorie indipendenti identicamente distribuite $X_1,\, \ldots,\, X_{n}$ tali che ciascuna di esse abbia densità Gamma  $X_i \sim \Gamma(\alpha_i,\, \lambda)$; allora la loro somma ha densità: \[
+                X_1 + \ldots + X_{n} = \sum_{i=1}^{n} \left[X_i \sim \Gamma(\alpha_i,\, \lambda)\right] \sim \Gamma\left(\sum_{i=1}^n \alpha_i,\, \lambda\right)
+            .\] Osservando che: \[
+            \Gamma(1,\, \lambda) \sim \mathcal{E}(\lambda)
+        ,\] possiamo affermare che, presa la successione $Y_1,\, \ldots,\, Y_{n}$ dove $Y_i \sim \mathcal{E}(\lambda)$, la distribuzione della somma delle $Y_i$ si ottiene come: \[
+        Y_1 + \ldots + Y_{n} = \sum_{i=1}^n \left[Y_i \sim \mathcal{E}(1,\, \lambda)\right] \sim \Gamma(n,\, \lambda)
+        .\] 
+        \end{defn}
     \section{Distribuzioni derivate dalla Normale}
+        \subsection{Distribuzione Chi-Quadro}
+            \begin{defn}\label{defn:Distribuzione_chi_quadro}
+                Prendiamo una successione $Z_1,\, \ldots,\, Z_{n}$ di variabili aleatorie gaussiane standard indipendenti; allora la somma dei loro quadrati $X \coloneqq Z^2_1 + \ldots + Z^2_{n}$ è una variabile aleatoria chiamata \textit{chi-quadro} con $n$ gradi di libertà, e si indica come: \[
+                    X \sim \chi^2(n)
+                .\]
+            \end{defn}
+            \begin{obsv}[Riproducibilità]
+                Se $X_1,\,X_2$ sono due variabili aleatorie con densità chi-quadro \underline{indipendenti}, rispettivamente a $n_1,\,n_2$ gradi di libertà, la loro somma ha la seguente densità: \[
+                    W = X_1 + X_2 \sim \chi^2_{n_1} + \chi^2_{n_2} = \chi^2_{n_1+n_2}
+                .\] Possiamo provare questo risultato usando direttamente la Definizione~\ref{defn:Distribuzione_chi_quadro}: sapendo che la somma di $X_1$ e $X_2$ è la somma di $n_1$ con $n_2$ normali standard indipendenti, è evidente che $W$ corrisponde a una chi-quadro con la somma dei gradi di libertà $n_1+n_2$.
+            \end{obsv}
+            \begin{prty}[Momenti chi-quadro]\label{prty:Generatrice_momenti_chi_quadro}
+                Consideriamo il caso con $n=1$ gradi di libertà, e chiediamoci quanto vale la generatrice dei momenti di $X \sim \chi^2_1$, assumendo: \[
+                    X = Z^2 \land Z \sim \mathcal{N}(0,\,1)
+                ;\] allora otteniamo la generatrice dei momenti come:
+                \begin{align*}
+                    m_{X}(t) &= m_{Z^2}(t) =
+                    \int_{-\infty}^{\infty} e^{t\, x^2}\cdot f_{Z}(x)\, dx = 
+                    \int_{-\infty}^{\infty} e^{t\, x^2}\cdot \frac{1}{\sqrt{2\pi}}\, e^{-x^2 /2}\, dx \\
+                    &= \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}}\cdot e^{-(1-2t)\frac{x^2}{2}}\, dx \\
+                    &= (1-2t)^{-1 /2} \cdot \int_{-\infty}^{\infty} \underset{\sim\mathcal{N}(0,\,\bar{\sigma}^2)}{\underbrace{\frac{1}{\bar{\sigma}\, \sqrt{2\pi}} \cdot e^{-\frac{x^2}{2\bar{\sigma}^2}}}}\, dx & & \text{per } \bar{\sigma} = (1-2t)^{-1 /2} \\
+                    &= (1-2t)^{-1 /2}
+                .\end{align*}
+                Nel caso più generale con $n$ gradi di libertà ($X \sim \chi^2(n)$), si ha:
+                \begin{align}\label{eq:Generatrice_momenti_chi_quadro}
+                    m_{X}(t) &= \text{E}(e^{t\,X}) = \text{E}(e^{t\,Z_1^2 + \ldots + t\,Z_n^2}) \notag\\
+                             &= \text{E}(e^{t\,Z_1^2}\cdot \ldots \cdot e^{t\,Z_n^2}) \notag\\
+                             &=\prod_{i=1}^{n} \text{E}(e^{t\,Z_i^2}) = (1-2t)^{-n /2} & & \text{per $Z_i$ indipendenti\notag}\\
+                             &= \left(\frac{1}{1-2t}\right)^{n /2} = \left(\frac{1 /2}{1 /2 -t}\right)^{n /2} & & \text{dal caso $n=1$}
+                .\end{align}
+            \end{prty}
+            \begin{defn}[Definizione alternativa]
+                La densità Gamma di parametri $\alpha = n /2$ e $\lambda = 1 /2$  con $n \geq 1$ intero, è anche indicata come densità \textit{chi-quadro} con $n$ gradi di libertà.
+
+                Possiamo provarlo direttamente dal risultato della Proprietà~\ref{prty:Generatrice_momenti_chi_quadro}: infatti la generatrice dei momenti della distribuzione chi-quadro ad $n$ gradi di libertà \eqref{eq:Generatrice_momenti_chi_quadro} corrisponde alla generatrice della distribuzione Gamma nel caso indicato sopra \eqref{eq:Generatrice_momenti_Gamma}.
+            \end{defn}
+        \subsection{Distribuzione \textit{t}}
+            \begin{defn}
+                Consideriamo le variabili aleatorie indipendenti $Z \sim \mathcal{N}(0,\,1)$ e $C_n \sim \chi^2(n)$; allora la variabile aleatoria definita come segue:
+                \begin{equation}\label{eq:Distribuzione_t}
+                    T_n \coloneqq \frac{Z}{\sqrt{C_n /n}}
+                .\end{equation}
+                ha distribuzione chiamata \textit{t di Student} con $n$ gradi di libertà, e si indica con: \[
+                    T_n \sim t(n)
+            .\]
+            \end{defn}
+            \begin{prty}\label{prty:Distribuzione_t}
+                Sia data una variabile aleatoria $T_n \sim t(n)$, allora possiamo affermare che:
+                \begin{enumerate}
+                    \item la distribuzione \textit{t} è simmetrica rispetto all'ascissa ($x=0$), ovvero $T_n \sim -T_n$;
+                    \item per $n$ adeguatamente grande ($n \geq 100$) possiamo approssimare $T_n \sim \mathcal{N}(0,\,1)$;
+                    \item per $n>2$ otteniamo $\text{E}(T_n)=0,\, \text{Var}(T_n)=\frac{n}{n-2}$.
+                \end{enumerate}
+            \end{prty}
+            \begin{proof}
+                \hfill
+                \begin{enumerate}
+                    \item Usando la definizione della distribuzione \textit{t} sappiamo che: \[
+                        Z \sim \mathcal{N}(0,\,1) \sim -Z \implies
+                        -T_n = \frac{-Z}{\sqrt{C_n /n}} \sim \frac{Z}{\sqrt{C_n /n}} = T_n
+                    .\] 
+                    \item Dalla funzione di ripartizione di $T_n$ otteniamo: \[
+                            F_{T_n}(x) \coloneqq P(T_n \leq x) = P\left(\frac{Z}{\sqrt{C_n /n}} \leq x\right)
+                        ;\] applicando il Teorema~\ref{thm:Legge_grandi_numeri_forte} possiamo affermare che, per $n$ grande, $X /n \rightarrow \text{E}(Z_i^2)=1$; quindi: \[
+                        \lim_{n \to \infty} F_{T_n}(x) = 
+                        \lim_{n \to \infty} P\left(\frac{Z}{\sqrt{C_n /n}} \leq x\right) \rightarrow
+                        P\left(\frac{Z}{1} \leq x\right) = \Phi(x) = \frac{1}{\sqrt{2\pi}} \cdot \int_{-\infty}^{x} e^{-u^2 /2}\, du
+                        .\qedhere\]
+                \end{enumerate}
+            \end{proof}
+        \subsection{Distribuzione \textit{F}}
+        \begin{defn}
+            Consideriamo due variabili aleatorie indipendenti $C_n \sim \chi^2(n)$ e $C_m \sim \chi^2(m)$; allora la variabile aleatoria definita in modo seguente:
+            \begin{equation}\label{eq:Distribuzione_F}
+                F_{n,\,m} \coloneqq \frac{C_n /n}{C_m /m}
+            ,\end{equation}
+            ha una distribuzione chiamata \textit{F di Fisher} con $n$ e $m$ gradi di libertà, e la indichiamo con: \[
+                F_{n,\,m} = \mathcal{F}(n,\,m)
+            .\]
+        \end{defn}
+        \begin{prty}
+            Sia data una variabile aleatoria con densità di Fisher $F \sim \mathcal{F}(n,\,m)$; allora possiamo affermare che $F \geq 0$, essendo quoziente di due variabili aleatorie con distribuzione chi-quadro (a loro volta somma di quadrati, quindi positive per definizione);
+        \end{prty}
+    \section{Quantili}
+        \begin{defn}
+            Chiamiamo \textit{quantile} di ordine $\alpha$, e lo indichiamo con $q_\alpha$ per 
+            $\alpha \in [0,\,1]$, il valore ottenuto dalla funzione di ripartizione $F_W(w)$ di una 
+            variabile aleatoria continua $W$ come: \[
+                F_W(q_\alpha) = P(W \geq q_\alpha) = \alpha
+            .\] La distribuzione viene suddivisa da $q_\alpha$ in due intervalli proporzionali ad $\alpha$ e a $(1-\alpha)$.
+        \end{defn}
+        \subsection{Quantili della normale standard}
+            \begin{defn}
+                Data la variabile aleatoria $Z \sim \mathcal{N}(0,\,1)$ chiamiamo quantile di coda sinistra di ordine $\alpha$ il valore definito come: \[
+                    P(Z > z_\alpha) = 1 - \Phi(z_\alpha) = \alpha
+                .\]
+            \end{defn}
+            \begin{obsv}
+                Una variabile aleatoria con distribuzione normale standard avrà probabilità inferiore o uguale a $z_\alpha$ nel $[100\cdot (1-\alpha)]\%$ dei casi. Inoltre usando la definizione appena enunciata possiamo scrivere: \[
+                    z_\alpha \coloneqq \Phi^{-1}(1-\alpha)
+                .\]
+            \end{obsv}
+        \subsection{Quantili della chi-quadro}
+            \begin{defn}
+                Data la variabile aleatoria $C \sim \chi^2(n)$ chiamiamo quantile di coda destra 
+                di ordine $\alpha$ il valore definito come: \[
+                    P(C > \chi^2_{\alpha,\,n}) = \alpha
+                .\]
+            \end{defn}
+        \subsection{Quantili della \textit{t}}
+            \begin{defn}
+                Data la variabile aleatoria $T \sim t(n)$ chiamiamo quantile di coda destra 
+                di ordine $\alpha$ il valore definito come: \[
+                    P(T > t_{\alpha,\,n}) = \alpha
+                .\]
+            \end{defn}
+            \begin{obsv}
+                Data la simmetria della densità \textit{t} rispetto all'asse $x=0$, possiamo scrivere:
+                \begin{align*}
+                    \alpha &= P(-T \geq t_{\alpha,\,n})
+                    = P(T \leq -t_{\alpha,\,n}) \\
+                    &= 1 - P(T > -t_{\alpha,\,n})
+                .\end{align*}
+                Segue che:
+                \begin{equation}\label{eq:Simmatria_quantile_distribuzione_t}
+                    P(T \geq -t_{\alpha,\,n}) = 1 - \alpha \implies -t_{\alpha,\,n} = t_{1-\alpha,\,n}
+                .\end{equation}
+            \end{obsv}
+        \subsection{Quantili della \textit{F}}
+            \begin{defn}
+                Data la variabile aleatoria $F \sim \mathcal{F}(n,\,m)$ chiamiamo quantile di coda destra 
+                di ordine $\alpha$ il valore definito come: \[
+                    P(F > f_{\alpha,\,n,\,m}) = \alpha
+                .\]
+            \end{defn}
+            \begin{obsv}
+                Analizziamo il caso di un quantile di ordine simmetrico ($1-\alpha$):
+                \begin{align*}
+                    \alpha &= P\left(\frac{C_n /n}{C_m /m} > f_{\alpha,\,n,\,m}\right) =
+                    P\left(\frac{C_m /m}{C_n /n} < \frac{1}{f_{\alpha,\,n,\,m}}\right) \\
+                           &= 1 - P\left(\frac{C_m /m}{C_n /n} \geq \frac{1}{f_{\alpha,\,n,\,m}}\right)
+                .\end{align*}
+                Segue che:
+                \begin{equation}\label{eq:Simmetria_quantile_distribuzione_F}
+                    P\left(\frac{C_m /m}{C_n /n} \geq f_{1-\alpha,\,n,\,m}\right) = 1-\alpha \implies
+                    \frac{1}{f_{\alpha,\,n,\,m}} = f_{1-\alpha,\,n,\,m}
+                .\end{equation}
+            \end{obsv}
