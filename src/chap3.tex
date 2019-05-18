@@ -267,7 +267,7 @@
                 f_{X_1+X_2}(y) = \int_{-\infty}^{\infty} f_{X_1}(x_1)\cdot f_{X_2}(y-x_1)\, dx_1
             .\end{equation}
         \end{prty}
-        \begin{obsv}[Somma di gaussiane indipendenti]
+        \begin{obsv}[Somma di gaussiane indipendenti]\label{obsv:Somma_gaussiane_indipendenti}
             Consideriamo due variabili aleatorie gaussiane indipendenti a media nulla:
             \begin{align*}
                 Z_1 \sim \mathcal{N}(0,\, \sigma^2_1) & & Z_2 \sim \mathcal{N}(0,\, \sigma^2_2)
@@ -607,12 +607,12 @@
                     .\end{align*}
             \end{itemize}
         \end{defn}
-    \section{Legge dei grandi numeri}
-        \begin{defn}[Legge debole]
+    \section{Legge dei grandi numeri}\label{sec:Legge_grandi_numeri}
+        \begin{thm}[Legge debole]\label{thm:Legge_grandi_numeri_debole}
             Sia $X_1,\, \ldots,\, X_{n}$ una successione di variabili aleatorie indipendenti identicamente distribuite con media $\mu$ e varianza $\sigma^2$ finite, inoltre $S_n = X_1 + \ldots + X_n$; allora vale: \[
                 \forall \varepsilon > 0 \,:\, \lim_{n \to \infty} P\left(\left|\frac{S_n}{n}-\mu\right| > \varepsilon\right) = 0
             .\]
-        \end{defn}
+        \end{thm}
         \begin{proof}
             Dato che le variabili $X_i$ sono indipendenti identicamente distribuite otteniamo:
             \begin{align*}
@@ -624,11 +624,11 @@
                 \forall \varepsilon > 0 \,:\, \lim_{n \to \infty} \left[P\left(\left|\frac{S_n}{n}-\mu\right|> \varepsilon\right) \leq \frac{\sigma^2}{n\, \varepsilon^2}\right] \rightarrow 0. \qedhere
             \]
         \end{proof}
-        \begin{defn}[Legge forte]
+        \begin{thm}[Legge forte]\label{thm:Legge_grandi_numeri_forte}
             Sia $X_1,\, \ldots,\, X_{n}$ una successione di variabili aleatorie indipendenti identicamente distribuite con media finita $\mu$; allora possiamo affermare che: \[
-                P\left(\left\{\omega\,:\, \lim_{n \to \infty} \frac{S_n(\omega)}{n}\right\}\right) = 1
+                P\left(\left\{\omega\,:\, \lim_{n \to \infty} \frac{S_n(\omega)}{n} = \mu\right\}\right) = 1
             .\]
-        \end{defn}
+        \end{thm}
         \begin{prty}
             Sia $h$ una funzione su $[0,\,1]$ per cui valga $\int_{[0,\,1]} |h(x)|\, dx < +\infty$, 
             prendiamo inoltre $U_1,\, U_2,\, \ldots$ variabili aleatorie indipendenti 

@@ -52,6 +52,10 @@
 \hyphenation{Osservazione}
 \hyphenation{Equazione}
 \hyphenation{Teorema}
+% Solleva posizione lettera greca chi minusola
+\usepackage{letltxmacro}
+\LetLtxMacro{\lowchi}{\chi}
+\renewcommand\chi{\text{\raisebox{2pt}{$\lowchi$}}}
 
 % In questo ambiente risiede il contenuto del documento
 \begin{document}
@@ -66,5 +70,6 @@
     \include{chap1}
     \include{chap2}
     \include{chap3}
+    \include{chap4}
 
 \end{document}
