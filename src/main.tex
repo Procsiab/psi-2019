@@ -52,6 +52,10 @@
 \hyphenation{Osservazione}
 \hyphenation{Equazione}
 \hyphenation{Teorema}
+% Solleva posizione lettera greca chi minusola
+\usepackage{letltxmacro}
+\LetLtxMacro{\lowchi}{\chi}
+\renewcommand\chi{\text{\raisebox{2pt}{$\lowchi$}}}
 
 % Includi solo il capitolo in corso
 \includeonly{chap4}
