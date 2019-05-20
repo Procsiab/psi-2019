@@ -4,40 +4,40 @@
 \chapter{Teoria della Probabilità}
     \section{Spazio dei campioni}
         \begin{defn}
-            Sia dato un esperimento \textit{aleatorio} (impossibile prevederne risultato), i cui risultati siano rappresentati da $\omega \in \Omega$; chiamiamo l'insieme $\Omega$:
+            Sia dato un esperimento \emph{aleatorio} (impossibile prevederne risultato), i cui risultati siano rappresentati da $\omega \in \Omega$; chiamiamo l'insieme $\Omega$:
             \begin{itemize}
                 \item spazio campionario;
                 \item spazio dei campioni;
                 \item spazio degli eventi \underline{elementari};
                 \item spazio degli esiti;
             \end{itemize}
-            diciamo inoltre che $\Omega$ è relativo all'esperimento effettuato, e chiamiamo i suoi elementi $\omega$ \textit{eventi \underline{elementari}}.
+            diciamo inoltre che $\Omega$ è relativo all'esperimento effettuato, e chiamiamo i suoi elementi $\omega$ \emph{eventi \underline{elementari}}.
         \end{defn}
         \section{Eventi}\label{sec:Eventi}
         \begin{defn}
-            I sotto-insiemi dello spazio campionario e le loro combinazioni (in termini di eventi elementari) tramite operatori logici di unione ($\cup$), intersezione ($\cap$) e negazione ($^{\text{C}}$) sono chiamati \textit{eventi} (non sono più elementari).
+            I sotto-insiemi dello spazio campionario e le loro combinazioni (in termini di eventi elementari) tramite operatori logici di unione ($\cup$), intersezione ($\cap$) e negazione ($^{\text{C}}$) sono chiamati \emph{eventi} (non sono più elementari).
         \end{defn}
         \begin{obsv}
-            Gli eventi \textit{elementari} sono rappresentati da sottoinsiemi di $\Omega$ di cardinalità 1: un evento elementare $E$ è definito come $\{\omega_E\} \in \Omega \land |\{\omega_E\}| = 1$.
+            Gli eventi \emph{elementari} sono rappresentati da sottoinsiemi di $\Omega$ di cardinalità 1: un evento elementare $E$ è definito come $\{\omega_E\} \in \Omega \land |\{\omega_E\}| = 1$.
         \end{obsv}
         \begin{defn}
-            Gli eventi $E_i$ possono essere rappresentati con sottoinsiemi dello spazio campionario $\Omega$, dunque essi formano una \textit{famiglia} o \textit{collezione} di sottoinsiemi di $\Omega$, che indichiamo con $\mathscr{F}$.
+            Gli eventi $E_i$ possono essere rappresentati con sottoinsiemi dello spazio campionario $\Omega$, dunque essi formano una \emph{famiglia} o \emph{collezione} di sottoinsiemi di $\Omega$, che indichiamo con $\mathscr{F}$.
 
             Questo implica che un evento che faccia parte di questa famiglia di sottoinsiemi contenga lo spazio campionario ($E \in \mathscr{F} \implies E \subset \Omega$).
 
-            Diremo che si è \textit{verificato} un evento $E$ nel contesto di un esperimento aleatorio, se almeno uno degli esiti è contenuto in esso ($\omega \in E$).
+            Diremo che si è \emph{verificato} un evento $E$ nel contesto di un esperimento aleatorio, se almeno uno degli esiti è contenuto in esso ($\omega \in E$).
         \end{defn}
         \begin{defn}
             Dati due eventi $E$ ed $F$, sono definite le operazioni di unione $E \cup F$ (gli eventi elementari in $E$ o in $F$) e intersezione $E \cap F$ (gli eventi elementari presenti sia in $E$ che in $F$).
             \begin{itemize}
-                \item Gli eventi che non contengono alcun evento elementare sono chiamati \textit{eventi vuoti} e si indicano con \O. Se due eventi non hanno eventi elementari in comune ($E \cap F = \text{\O}$), essi si dicono \textit{disgiunti}.
+                \item Gli eventi che non contengono alcun evento elementare sono chiamati \emph{eventi vuoti} e si indicano con \O. Se due eventi non hanno eventi elementari in comune ($E \cap F = \text{\O}$), essi si dicono \emph{disgiunti}.
                 \item Per ogni evento $E \in \mathscr{F}$ è definito il complementare $E^{\text{C}}$ come l'insieme degli eventi elementari di $\mathscr{F}$ che non stanno in $E$.
-                \item Se tutti gli eventi elementari di un evento $E$ sono anche in un evento  $F$, diremo che $E$ \textit{è contenuto} in  $F$ ($E \subset F$); se vale anche l'inverso $E \supset F$ allora diremo che i due eventi sono \textit{uguali} ($E \equiv F$).
+                \item Se tutti gli eventi elementari di un evento $E$ sono anche in un evento  $F$, diremo che $E$ \emph{è contenuto} in  $F$ ($E \subset F$); se vale anche l'inverso $E \supset F$ allora diremo che i due eventi sono \emph{uguali} ($E \equiv F$).
             \end{itemize}
             Indichiamo l'unione di $n$ eventi con  $\bigcup_{k=1}^{n} E_k$ e l'intersezione di  $n$ eventi con $\bigcap_{k=1}^{n} E_k$.
         \end{defn}
         \begin{defn}
-            Sia $\Omega$ uno spazio campionario e $\mathscr{F}$ una famiglia di sottoinsiemi di $\Omega$; diremo che $\mathscr{F}$ è un'\textit{algebra di sottoinsiemi} di $\Omega$ se soddisfa le seguenti proprietà:
+            Sia $\Omega$ uno spazio campionario e $\mathscr{F}$ una famiglia di sottoinsiemi di $\Omega$; diremo che $\mathscr{F}$ è un'\emph{algebra di sottoinsiemi} di $\Omega$ se soddisfa le seguenti proprietà:
             \begin{enumerate}
                 \item $\Omega \in \mathscr{F}$;
                 \item $E \in \mathscr{F} \implies E^{\text{C}} \coloneqq \Omega \backslash E \in \mathscr{F}$;
@@ -45,7 +45,7 @@
             \end{enumerate}
         \end{defn}
         \begin{defn}
-            Sia $\Omega$ uno spazio campionario e $\mathscr{F}$ una famiglia di sottoinsiemi di $\Omega$; diremo che $\mathscr{F}$ è una \textit{$\sigma$\nbdash algebra di sottoinsiemi} di $\Omega$ se soddisfa le seguenti proprietà:
+            Sia $\Omega$ uno spazio campionario e $\mathscr{F}$ una famiglia di sottoinsiemi di $\Omega$; diremo che $\mathscr{F}$ è una \emph{$\sigma$\nbdash algebra di sottoinsiemi} di $\Omega$ se soddisfa le seguenti proprietà:
             \begin{enumerate}
                 \item $\Omega \in \mathscr{F}$;
                 \item $E \in \mathscr{F} \implies E^{\text{C}} \coloneqq \Omega \backslash E \in \mathscr{F}$;
@@ -53,23 +53,23 @@
             \end{enumerate}
         \end{defn}
         \begin{defn}
-            La coppia di spazio campionario e famiglia di suoi sottoinsiemi ($\sigma$\nbdash algebra) $(\Omega,\,\mathscr{F})$ è chiamata \textit{spazio probabilizzabile}.
+            La coppia di spazio campionario e famiglia di suoi sottoinsiemi ($\sigma$\nbdash algebra) $(\Omega,\,\mathscr{F})$ è chiamata \emph{spazio probabilizzabile}.
         \end{defn}
     \section{Spazio di probabilità}
         \begin{defn}\label{defn:Probabilità_impostazione_assiomatica}
-            Sia dato uno spazio probabilizabile $(\Omega,\,\mathscr{F})$; chiamiamo \textit{probabilità} su $(\Omega,\,\mathscr{F})$ una funzione $P$ su $\mathscr{F}$ tale che:
+            Sia dato uno spazio probabilizabile $(\Omega,\,\mathscr{F})$; chiamiamo \emph{probabilità} su $(\Omega,\,\mathscr{F})$ una funzione $P$ su $\mathscr{F}$ tale che:
             \begin{enumerate}
                 \item $\forall E \in \mathscr{F}\,:\,P(E) \geq 0$;
                 \item $P(\Omega) = 1$;
-                \item $\forall h,k\,:\,h \neq k \implies \forall E \in \mathscr{F}\,:\,E_h \cap E_k = 0$ ($\sigma$\nbdash additività o \textit{additività completa}).
+                \item $\forall h,k\,:\,h \neq k \implies \forall E \in \mathscr{F}\,:\,E_h \cap E_k = 0$ ($\sigma$\nbdash additività o \emph{additività completa}).
             \end{enumerate}
-            La terna $(\Omega,\,\mathscr{F},\,P)$ si chiama \textit{spazio di probabilità} (impostazione assiomatica).
+            La terna $(\Omega,\,\mathscr{F},\,P)$ si chiama \emph{spazio di probabilità} (impostazione assiomatica).
         \end{defn}
         \begin{prty}\label{prty:Spazio_di_probabilità}
             Sia $(\Omega,\,\mathscr{F},\,P)$ uno spazio di probabilità; allora vale:
             \begin{enumerate}
-                \item $P(\text{\O}) = 0$ (\textit{evento impossibile});
-                \item $\forall h,k\,:\,h \neq k \implies \forall E \in \mathscr{F}\,:\,E_h \cap E_k = \text{\O} \implies P(\bigcup_{k=1}^{n} E_k) = \sum_{k=1}^{n} P(E_k)$ (\textit{additività finita}).
+                \item $P(\text{\O}) = 0$ (\emph{evento impossibile});
+                \item $\forall h,k\,:\,h \neq k \implies \forall E \in \mathscr{F}\,:\,E_h \cap E_k = \text{\O} \implies P(\bigcup_{k=1}^{n} E_k) = \sum_{k=1}^{n} P(E_k)$ (\emph{additività finita}).
             \end{enumerate}
         \end{prty}
         \begin{proof}
@@ -98,11 +98,11 @@
     \begin{prty}\label{prty:Proprietà_funzione_probabilità}
             Sia $(\Omega,\,\mathscr{F},\,P)$ uno spazio di probabilità; su di esso possiamo osservare le seguenti proprietà:
             \begin{enumerate}
-                \item $E \in \mathscr{F} \implies P(E^{\text{C}}) = 1 - P(E)$ (\textit{probabilità del complementare});
+                \item $E \in \mathscr{F} \implies P(E^{\text{C}}) = 1 - P(E)$ (\emph{probabilità del complementare});
                 \item $E \in \mathscr{F} \implies P(E) \leq 1$;
                 \item $E,F \in \mathscr{F} \land F \subset E \implies P(E \backslash F) = P(E) - P(F)$;
-                \item $E,F \in \mathscr{F} \land F \subset E \implies P(F) \leq P(E)$ (\textit{monotonia});
-                \item $E,F \in \mathscr{F} \implies P(E \cup F) = P(E) + P(F) - P(E \cap F)$ (\textit{probabilità dell'unione}).
+                \item $E,F \in \mathscr{F} \land F \subset E \implies P(F) \leq P(E)$ (\emph{monotonia});
+                \item $E,F \in \mathscr{F} \implies P(E \cup F) = P(E) + P(F) - P(E \cap F)$ (\emph{probabilità dell'unione}).
             \end{enumerate}
         \end{prty}
         \begin{proof}
@@ -130,7 +130,7 @@
         \end{proof}
     \section{Spazi finiti e numerabili}
     \begin{prty}\label{prty:Spazi_numerabili}
-        Sia $\Omega$ uno spazio campionario \underline{numerabile} e  $\{\omega_1,\,\omega_2,\,\ldots\}$ una numera\-zione dei suoi punti (eventi elementari); scegliamo come $\sigma$\nbdash algebra  $\mathscr{F}$ l'insieme di tutti i sottoinsiemi (\textit{insieme delle parti}) dello spazio campionario  $\mathscr{P}(\Omega)$; si ha che:
+        Sia $\Omega$ uno spazio campionario \underline{numerabile} e  $\{\omega_1,\,\omega_2,\,\ldots\}$ una numera\-zione dei suoi punti (eventi elementari); scegliamo come $\sigma$\nbdash algebra  $\mathscr{F}$ l'insieme di tutti i sottoinsiemi (\emph{insieme delle parti}) dello spazio campionario  $\mathscr{P}(\Omega)$; si ha che:
             \begin{enumerate}
                 \item Ogni probabilità $P({\omega_k})$ di un evento $E_k = \{\omega_k\} \in \mathscr{F}$ su uno spazio probabiliz\-zabile $(\Omega,\,\mathscr{F})$ individua una successione di numeri reali $p_1,\,p_2,\,\ldots$ che soddisfano la Proprietà~\ref{prty:Spazi_numerabili} se scriviamo che $\forall k \in [1,\,\infty)\,\:\,P({\omega_k}) = p_k$;
                 \item Data una successione $p_1,\,p_2,\,\ldots$ che soddisfa la Proprietà~\ref{prty:Spazi_numerabili} esiste un'unica probabilità su $(\Omega,\,\mathscr{F})$ tale che  $P({\omega_k}) = p_k$ per ogni  $k$; essa è data da: \[
@@ -143,7 +143,7 @@
         \end{obsv}
     \section{Probabilità condizionata}
     \begin{defn}\label{defn:Probabilità_condizionata}
-            Sia dato uno spazio di probabilità $(\Omega,\,\mathscr{F},\,P)$ e un evento $F \in \mathscr{F}$ tale che $P(F) > 0$; preso un qualsiasi altro evento $E \in \mathscr{F}$, si chiama \textit{probabilità condizionata} dell'evento $E$ dato il verificarsi di $F$:
+            Sia dato uno spazio di probabilità $(\Omega,\,\mathscr{F},\,P)$ e un evento $F \in \mathscr{F}$ tale che $P(F) > 0$; preso un qualsiasi altro evento $E \in \mathscr{F}$, si chiama \emph{probabilità condizionata} dell'evento $E$ dato il verificarsi di $F$:
             \begin{equation}\label{eq:Formula_probabilità_condizionata}
                 P(E|F) = \frac{P(E \cap F)}{P(F)}
             .
@@ -208,7 +208,7 @@
         \end{proof}
     \section{Eventi indipendenti}
         \begin{defn}\label{defn:Eventi_indipendenti}
-            Sia $(\Omega,\,\mathscr{F},\,P)$ uno spazio di probabilità; gli eventi $E,\,F \in \mathscr{F}$ sono \textit{indipendenti} se vale: \[
+            Sia $(\Omega,\,\mathscr{F},\,P)$ uno spazio di probabilità; gli eventi $E,\,F \in \mathscr{F}$ sono \emph{indipendenti} se vale: \[
                 P(E \cup F) = P(E) \cdot P(F)
             .\] 
         \end{defn}
@@ -220,7 +220,7 @@
             \end{itemize}
         \end{obsv}
         \begin{defn}
-            Sia $(\Omega,\,\mathscr{F},\,P)$ uno spazio di probabilità; diciamo che gli eventi $E_1,\, \ldots,\, E_n$ sono \textit{indipendenti} se comunque preso un sottoinsieme $\{h_1,\, \ldots,\, h_k\} \subset \{1,\, \ldots,\, n\}$ con $k \geq 2$ vale la seguente uguaglianza: \[
+            Sia $(\Omega,\,\mathscr{F},\,P)$ uno spazio di probabilità; diciamo che gli eventi $E_1,\, \ldots,\, E_n$ sono \emph{indipendenti} se comunque preso un sottoinsieme $\{h_1,\, \ldots,\, h_k\} \subset \{1,\, \ldots,\, n\}$ con $k \geq 2$ vale la seguente uguaglianza: \[
                 P(E_{h_1} \cap \dotsm \cap E_{h_k}) = P(E_{h_1}) \cdot \ldots \cdot P(E_{h_k})
             .\] 
         \end{defn}
@@ -231,11 +231,11 @@
             Preso uno spazio di probabilità e considerata una successione dei suoi eventi, diremo che essa è costituita da eventi indipendenti se, comunque scelto un sottoinsieme finito di eventi dalla successione, esso è costituito da eventi indipendenti.
         \end{defn}
         \begin{defn}
-            Consideriamo uno spazio di probabilità $(\Omega,\,\mathscr{F},\,P)$, una successione di eventi $A_1,\, \ldots,\, A_n$ e un evento $F$ tale che $P(F) > 0$; gli eventi della successione si dicono \textit{condizionatamente indipendenti} dato $F$ se essi sono indipendenti rispetto alla probabilità $P(F)$.
+            Consideriamo uno spazio di probabilità $(\Omega,\,\mathscr{F},\,P)$, una successione di eventi $A_1,\, \ldots,\, A_n$ e un evento $F$ tale che $P(F) > 0$; gli eventi della successione si dicono \emph{condizionatamente indipendenti} dato $F$ se essi sono indipendenti rispetto alla probabilità $P(F)$.
         \end{defn}
     \section{Affidabilità dei sistemi}
         \begin{defn}
-            La probabilità che un componente di un sistema non si guasti durante il periodo di tempo in cui deve operare è detta \textit{affidabilità} del componente; essa viene espressa rispetto all'interazione che i componenti hanno tra loro:
+            La probabilità che un componente di un sistema non si guasti durante il periodo di tempo in cui deve operare è detta \emph{affidabilità} del componente; essa viene espressa rispetto all'interazione che i componenti hanno tra loro:
             \begin{itemize}
                 \item \textbf{serie}: per garantire il funzionamento del sistema tutti i componenti collegati in serie devono funzionare correttamente; in questo caso vale \[
                     r = r_1 \cdot \ldots \cdot r_k
@@ -256,7 +256,7 @@
                 ,\] la $\sigma$\nbdash algebra $\mathscr{F} = \mathscr{P}(\Omega)$ e la funzione di probabilità: \[
                 \forall (a_1,\, \ldots,\, a_n) \in \Omega \,:\, P(\{a_1,\, \ldots,\, a_n\}) = p^{\left[\sum_{k=1}^{n} a_k\right]} \cdot (1 - p)^{\left[n - \sum_{k=1}^{n} a_k\right]}
             ;\] 
-            la terna $(\Omega,\,\mathscr{F},\,P)$ si chiama \textit{spazio di probabilità di Bernoulli} oppure spazio di probabilità di $n$ prove di Bernoulli.
+            la terna $(\Omega,\,\mathscr{F},\,P)$ si chiama \emph{spazio di probabilità di Bernoulli} oppure spazio di probabilità di $n$ prove di Bernoulli.
         \end{defn}
         \begin{prty}
             Consideriamo uno spazio di probabilità di Bernoulli nel quale la probabilità di successo della singola prova è $p \in (0,\,1)$; la probabilità di osservare $k \leq n$ successi in una sequenza di $n \geq 1$ prove di Bernoulli in questo spazio è data da:
@@ -277,7 +277,7 @@
     \end{obsv} 
     \section{Serie geometrica}
     \begin{defn}[Serie]
-        Data una successione $\{a_{n}\}$, se sommiamo gli infiniti termini otteniamo una \textit{serie}, definita come $\sum_{n=0}^{\infty} a_n$ (serie di a con n da 0 a infinito).
+        Data una successione $\{a_{n}\}$, se sommiamo gli infiniti termini otteniamo una \emph{serie}, definita come $\sum_{n=0}^{\infty} a_n$ (serie di a con n da 0 a infinito).
 
         Si dice somma parziale $n$\nbdash esima di una serie $s_{n}=\sum_{i=0}^{\infty} a_i\,n \in \mathbb{N}$ (la serie $\sum_{i=0}^{\infty} a_n$ converge, diverge o è irregolare se la successione delle sue somme parziali converge, diverge o è irregolare).
 
@@ -286,7 +286,7 @@
         Condizione \underline{necessaria} (non sufficiente) affinché una serie converga è che il suo termine generale ($a_n$) tenda a 0
     \end{defn}
     \begin{defn}[Serie geometrica]\label{defn:Serie_geometrica}
-        Chiamiamo \textit{geometrica} la serie col seguente termine generale:
+        Chiamiamo \emph{geometrica} la serie col seguente termine generale:
         \begin{align*}
             \sum_{i=0}^{n} q^{i} \cdot \frac{1 - q^{n+1}}{1 - q} & &q\neq 1
         .\end{align*}

@@ -4,7 +4,7 @@
 \chapter{Distribuzioni notevoli}
     \section{Matrice delle covarianza}\label{defn:Matrice_covarianza}
         \begin{defn}
-            Consideriamo un vettore aleatorio $n$\nbdash dimensionale $\vec{X} = (X_1,\, \ldots,\, X_{n})$ tale che sia definita la varianza di ciascuna delle sue componenti; allora chiamiamo \textit{matrice di covarianza} di $\vec{X}$ la matrice quadrata di ordine $n$ definita come:
+            Consideriamo un vettore aleatorio $n$\nbdash dimensionale $\vec{X} = (X_1,\, \ldots,\, X_{n})$ tale che sia definita la varianza di ciascuna delle sue componenti; allora chiamiamo \emph{matrice di covarianza} di $\vec{X}$ la matrice quadrata di ordine $n$ definita come:
             \begin{align*}
                 \forall i,\,j \in [1,\,n] \,:\, \vec{C}_{\vec{X}} \coloneqq [c_{i,\,j}] & &
                 \text{per } c_{i,\,j} = \text{Cov}(X_i,\, X_j)
@@ -46,7 +46,7 @@
         \end{proof}
     \section{Vettori gaussiani}
         \begin{defn}[Normale standard]\label{defn:Vettore_gaussiano_standard}
-            Il vettore aleatorio $\vec{Z} = (Z_1,\, \ldots,\, Z_{n})^{\text{T}}$ si dice \textit{gaussiano standard} $n$\nbdash dimensionale se le variabili aleatorie $Z_1,\, \ldots,\, Z_{n}$ sono gaussiane standard indipendenti.
+            Il vettore aleatorio $\vec{Z} = (Z_1,\, \ldots,\, Z_{n})^{\text{T}}$ si dice \emph{gaussiano standard} $n$\nbdash dimensionale se le variabili aleatorie $Z_1,\, \ldots,\, Z_{n}$ sono gaussiane standard indipendenti.
 
             Un vettore aleatorio $\vec{Z}$ gaussiano appena definito è \underline{assolutamente continuo} e ha densità: \[
                 f_{\vec{Z}}(z_1,\, \ldots,\, z_{n}) = \frac{1}{(2\pi)^{n /2}} \cdot e^{-\frac{1}{2}\sum_{k=1}^{n} z_k^2}
@@ -63,7 +63,7 @@
             \end{gather*}
         \end{obsv}
         \begin{defn}[Normale]\label{defn:Vettore_gaussiano}
-            Un vettore aleatorio $n$\nbdash dimensionale $\vec{X}$ è detto \textit{gaussiano} o normale se esistono una matrice $\vec{A} \in \mathbb{R}^n \times \mathbb{R}^m$, un vettore $\vec{\mu} \in \mathbb{R}^n$ e un vettore gaussiano \underline{standard} $\vec{Z} \in \mathbb{R}^m$ tali che: \[
+            Un vettore aleatorio $n$\nbdash dimensionale $\vec{X}$ è detto \emph{gaussiano} o normale se esistono una matrice $\vec{A} \in \mathbb{R}^n \times \mathbb{R}^m$, un vettore $\vec{\mu} \in \mathbb{R}^n$ e un vettore gaussiano \underline{standard} $\vec{Z} \in \mathbb{R}^m$ tali che: \[
             \vec{X} = \vec{A} \cdot \vec{Z} + \vec{\mu}
             .\] 
         \end{defn}
@@ -142,14 +142,14 @@
         \end{proof}
     \section{Distribuzione Gamma}
         \begin{defn}
-            Una variabile aleatoria continua si dice avere distribuzione \textit{gamma} se la sua densità si ottiene dalla Definizione~\ref{defn:Densità_Gamma}:
+            Una variabile aleatoria continua si dice avere distribuzione \emph{gamma} se la sua densità si ottiene dalla Definizione~\ref{defn:Densità_Gamma}:
             \begin{equation}\label{eq:Densità_Gamma_Eulero}
                 f_{X}(x) = \begin{cases}
                     \frac{\lambda^\alpha}{\Gamma(\alpha)}\cdot x^{\alpha-1}\cdot e^{-\lambda\, x} & \text{se $x > 0$;} \\
                     0 & \text{se $x \leq 0$.}
                 \end{cases}
             \end{equation}
-            Nella precedente siano definiti i parametri $\alpha > 0,\, \lambda > 0$ e la funzione $\Gamma(\alpha)$ si chiama \textit{Gamma di Eulero} ed è definita come:
+            Nella precedente siano definiti i parametri $\alpha > 0,\, \lambda > 0$ e la funzione $\Gamma(\alpha)$ si chiama \emph{Gamma di Eulero} ed è definita come:
             \begin{align}\label{eq:Gamma_di_Eulero}
                 \Gamma(\alpha) &\coloneqq \int_{0}^{\infty} \lambda^\alpha \cdot x^{\alpha -1}\cdot e^{-\lambda\, x}\, dx \notag\\
                 &= \int_{0}^{\infty} y^{\alpha -1}\cdot e^{-y}\, dy & & [y=\lambda\cdot x]
@@ -216,7 +216,7 @@
     \section{Distribuzioni derivate dalla Normale}
         \subsection{Distribuzione Chi-Quadro}
             \begin{defn}\label{defn:Distribuzione_chi_quadro}
-                Prendiamo una successione $Z_1,\, \ldots,\, Z_{n}$ di variabili aleatorie gaussiane standard indipendenti; allora la somma dei loro quadrati $X \coloneqq Z^2_1 + \ldots + Z^2_{n}$ è una variabile aleatoria chiamata \textit{chi-quadro} con $n$ gradi di libertà, e si indica come: \[
+                Prendiamo una successione $Z_1,\, \ldots,\, Z_{n}$ di variabili aleatorie gaussiane standard indipendenti; allora la somma dei loro quadrati $X \coloneqq Z^2_1 + \ldots + Z^2_{n}$ è una variabile aleatoria chiamata \emph{chi-quadro} con $n$ gradi di libertà, e si indica come: \[
                     X \sim \chi^2(n)
                 .\]
             \end{defn}
@@ -246,24 +246,24 @@
                 .\end{align}
             \end{prty}
             \begin{defn}[Definizione alternativa]
-                La densità Gamma di parametri $\alpha = n /2$ e $\lambda = 1 /2$  con $n \geq 1$ intero, è anche indicata come densità \textit{chi-quadro} con $n$ gradi di libertà.
+                La densità Gamma di parametri $\alpha = n /2$ e $\lambda = 1 /2$  con $n \geq 1$ intero, è anche indicata come densità \emph{chi-quadro} con $n$ gradi di libertà.
 
                 Possiamo provarlo direttamente dal risultato della Proprietà~\ref{prty:Generatrice_momenti_chi_quadro}: infatti la generatrice dei momenti della distribuzione chi-quadro ad $n$ gradi di libertà \eqref{eq:Generatrice_momenti_chi_quadro} corrisponde alla generatrice della distribuzione Gamma nel caso indicato sopra \eqref{eq:Generatrice_momenti_Gamma}.
             \end{defn}
-        \subsection{Distribuzione \textit{t}}
+        \subsection{Distribuzione \emph{t}}
             \begin{defn}
                 Consideriamo le variabili aleatorie indipendenti $Z \sim \mathcal{N}(0,\,1)$ e $C_n \sim \chi^2(n)$; allora la variabile aleatoria definita come segue:
                 \begin{equation}\label{eq:Distribuzione_t}
                     T_n \coloneqq \frac{Z}{\sqrt{C_n /n}}
                 .\end{equation}
-                ha distribuzione chiamata \textit{t di Student} con $n$ gradi di libertà, e si indica con: \[
+                ha distribuzione chiamata \emph{t di Student} con $n$ gradi di libertà, e si indica con: \[
                     T_n \sim t(n)
             .\]
             \end{defn}
             \begin{prty}\label{prty:Distribuzione_t}
                 Sia data una variabile aleatoria $T_n \sim t(n)$, allora possiamo affermare che:
                 \begin{enumerate}
-                    \item la distribuzione \textit{t} è simmetrica rispetto all'ascissa ($x=0$), ovvero $T_n \sim -T_n$;
+                    \item la distribuzione \emph{t} è simmetrica rispetto all'ascissa ($x=0$), ovvero $T_n \sim -T_n$;
                     \item per $n$ adeguatamente grande ($n \geq 100$) possiamo approssimare $T_n \sim \mathcal{N}(0,\,1)$;
                     \item per $n>2$ otteniamo $\text{E}(T_n)=0,\, \text{Var}(T_n)=\frac{n}{n-2}$.
                 \end{enumerate}
@@ -271,7 +271,7 @@
             \begin{proof}
                 \hfill
                 \begin{enumerate}
-                    \item Usando la definizione della distribuzione \textit{t} sappiamo che: \[
+                    \item Usando la definizione della distribuzione \emph{t} sappiamo che: \[
                         Z \sim \mathcal{N}(0,\,1) \sim -Z \implies
                         -T_n = \frac{-Z}{\sqrt{C_n /n}} \sim \frac{Z}{\sqrt{C_n /n}} = T_n
                     .\] 
@@ -284,13 +284,13 @@
                         .\qedhere\]
                 \end{enumerate}
             \end{proof}
-        \subsection{Distribuzione \textit{F}}
+        \subsection{Distribuzione \emph{F}}
         \begin{defn}
             Consideriamo due variabili aleatorie indipendenti $C_n \sim \chi^2(n)$ e $C_m \sim \chi^2(m)$; allora la variabile aleatoria definita in modo seguente:
             \begin{equation}\label{eq:Distribuzione_F}
                 F_{n,\,m} \coloneqq \frac{C_n /n}{C_m /m}
             ,\end{equation}
-            ha una distribuzione chiamata \textit{F di Fisher} con $n$ e $m$ gradi di libertà, e la indichiamo con: \[
+            ha una distribuzione chiamata \emph{F di Fisher} con $n$ e $m$ gradi di libertà, e la indichiamo con: \[
                 F_{n,\,m} = \mathcal{F}(n,\,m)
             .\]
         \end{defn}
@@ -299,7 +299,7 @@
         \end{prty}
     \section{Quantili}
         \begin{defn}
-            Chiamiamo \textit{quantile} di ordine $\alpha$, e lo indichiamo con $q_\alpha$ per 
+            Chiamiamo \emph{quantile} di ordine $\alpha$, e lo indichiamo con $q_\alpha$ per 
             $\alpha \in [0,\,1]$, il valore ottenuto dalla funzione di ripartizione $F_W(w)$ di una 
             variabile aleatoria continua $W$ come: \[
                 F_W(q_\alpha) = P(W \geq q_\alpha) = \alpha
@@ -323,7 +323,7 @@
                     P(C > \chi^2_{\alpha,\,n}) = \alpha
                 .\]
             \end{defn}
-        \subsection{Quantili della \textit{t}}
+        \subsection{Quantili della \emph{t}}
             \begin{defn}
                 Data la variabile aleatoria $T \sim t(n)$ chiamiamo quantile di coda destra 
                 di ordine $\alpha$ il valore definito come: \[
@@ -331,7 +331,7 @@
                 .\]
             \end{defn}
             \begin{obsv}
-                Data la simmetria della densità \textit{t} rispetto all'asse $x=0$, possiamo scrivere:
+                Data la simmetria della densità \emph{t} rispetto all'asse $x=0$, possiamo scrivere:
                 \begin{align*}
                     \alpha &= P(-T \geq t_{\alpha,\,n})
                     = P(T \leq -t_{\alpha,\,n}) \\
@@ -342,7 +342,7 @@
                     P(T \geq -t_{\alpha,\,n}) = 1 - \alpha \implies -t_{\alpha,\,n} = t_{1-\alpha,\,n}
                 .\end{equation}
             \end{obsv}
-        \subsection{Quantili della \textit{F}}
+        \subsection{Quantili della \emph{F}}
             \begin{defn}
                 Data la variabile aleatoria $F \sim \mathcal{F}(n,\,m)$ chiamiamo quantile di coda destra 
                 di ordine $\alpha$ il valore definito come: \[

@@ -4,7 +4,7 @@
 \chapter{Vettori Aleatori}
     \section{Vettore aleatorio}
         \begin{defn}
-            Consideriamo $n$ variabili aleatorie $X_1, \ldots,\, X_n$ definite tutte sullo stesso spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; diremo che sono  \textit{indipendenti} se vale:
+            Consideriamo $n$ variabili aleatorie $X_1, \ldots,\, X_n$ definite tutte sullo stesso spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; diremo che sono  \emph{indipendenti} se vale:
             \begin{equation}\label{eq:Indipendenza_variabili_aleatorie}
                 P(X_1 \in B_1,\, \ldots,\, X_n \in B_n) = P(X_1 \in B_1) \cdot \ldots \cdot P(X_n \in B_n)
             ,\end{equation}
@@ -35,7 +35,7 @@
         \end{prty}
     \section{Vettori aleatori}
         \begin{defn}
-            Sia dato uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; un \textit{vettore aleatorio} $n$\nbdash dimensionale è una funzione vettoriale definita come:
+            Sia dato uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; un \emph{vettore aleatorio} $n$\nbdash dimensionale è una funzione vettoriale definita come:
             \begin{align*}
                 \vec{X} \coloneqq (X_1,\, \ldots,\, X_{n}) & &
                 \vec{X}\,:\, \Omega \mapsto \mathbb{R}^n
@@ -44,7 +44,7 @@
         \end{defn}
     \section{Funzione di ripartizione congiunta}
         \begin{defn}
-            Sia $\vec{X} = (X_1,\, \ldots,\, X_{n})$ un vettore aleatorio $n$\nbdash dimensionale definito sullo spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; chiamiamo funzione di ripartizione di $\vec{X}$ (oppure funzione di ripartizione \textit{congiunta} di $X_1,\, \ldots,\, X_{n}$) la funzione: \[
+            Sia $\vec{X} = (X_1,\, \ldots,\, X_{n})$ un vettore aleatorio $n$\nbdash dimensionale definito sullo spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; chiamiamo funzione di ripartizione di $\vec{X}$ (oppure funzione di ripartizione \emph{congiunta} di $X_1,\, \ldots,\, X_{n}$) la funzione: \[
                 F_{\vec{X}} = F_{(X_1,\, \ldots,\, X_{n})} \,:\, \mathbb{R}^n \mapsto [0,\,1]
             ,\] definita $\forall x \in (x_1,\, \ldots,\, x_{n}) \in \mathbb{R}^n$ come: \[
                 F_{(X_1,\, \ldots,\, X_{n})}(x_1,\, \ldots,\, x_{n}) \coloneqq P(X_1 \leq x_1,\, \ldots,\, X_n \leq x_n)
@@ -80,13 +80,13 @@
         \end{defn}
     \section{Vettori aleatori discreti}
         \begin{defn}
-            Un vettore aleatorio $n$\nbdash dimensionale $X$ è \textit{discreto} se le sue componenti $X_1,\, \ldots,\, X_{n}$ sono variabili aleatorie discrete.
+            Un vettore aleatorio $n$\nbdash dimensionale $X$ è \emph{discreto} se le sue componenti $X_1,\, \ldots,\, X_{n}$ sono variabili aleatorie discrete.
         \end{defn}
     \section{Densità discrete}
         \begin{defn}\label{defn:Densità_congiunta}
             Sia $\vec{X}$ un vettore aleatorio discreto su uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; la funzione: \[
                 p_{\vec{X}} \coloneqq P(X_1 = x_1,\, \ldots,\, X_n = x_n)
-            ,\] dove vale $\vec{x} = (x_1,\, \ldots,\, x_{n})$, si chiama  \textit{densità discreta} del vettore aleatorio $\vec{X}$ oppure densità congiunta di $X_1,\, \ldots,\, X_{n}$.
+            ,\] dove vale $\vec{x} = (x_1,\, \ldots,\, x_{n})$, si chiama  \emph{densità discreta} del vettore aleatorio $\vec{X}$ oppure densità congiunta di $X_1,\, \ldots,\, X_{n}$.
         \end{defn}
     \section{Distribuzione multinomiale}
         \begin{defn}\label{defn:Densità_multinomiale}
@@ -95,7 +95,7 @@
             ;\] inoltre $n$ oggetti di questa popolazione siano estratti a caso con reimmissione.
             Sia $X_i$ il numero di oggetti di tipo $i$\nbdash esimo estratti (con $i \in [1,\, k]$) e sia $\vec{X}$ il vettore aleatorio con componenti $X_1,\, \ldots,\, X_{k}$; allora il vettore $\vec{X}$ è discreto e tale che: \[
             X_1 + \ldots + X_{k} = n
-            ,\] e la sua densità è detta \textit{multinomiale} di parametri $n$ e $p_1,\, \ldots,\, p_{k}$:
+            ,\] e la sua densità è detta \emph{multinomiale} di parametri $n$ e $p_1,\, \ldots,\, p_{k}$:
             \begin{align}\label{eq:Densità_multinomiale}
                 P(X_1 = n_1,\, \ldots,\, X_{k} = n_k) &= \binom{n}{n_1,\, \ldots,\, n_{k}} \cdot (p_1^{n_1} \cdot \ldots \cdot p^{n_k}_{k}) \\
                                                       & \text{per } n_1,\, \ldots,\, n_{k} \in [0,\, n] \land n_1 + \ldots + n_k = n \nonumber
@@ -119,7 +119,7 @@
             La dimostrazione segue lo stesso svolgimento di quella della Proprietà~\ref{prty:Densità_discreta}.
         \end{proof}
         \begin{defn}\label{defn:Densità_marginali}
-            Chiamiamo \textit{densità marginali} le densità delle componenti $X_i$ del vettore aleatori $\vec{X}$; se prendiamo la prima componente $X_1$, ricordando che:
+            Chiamiamo \emph{densità marginali} le densità delle componenti $X_i$ del vettore aleatori $\vec{X}$; se prendiamo la prima componente $X_1$, ricordando che:
             \begin{align*}
                 p_{X_1}(x_1) &= P(X_1 = x_1) = P(X_1 = x_1,\, X_2 \in \mathbb{R},\, \ldots,\, X_n \in \mathbb{R}) \\
                              &= P(\vec{X} \in B)
@@ -137,13 +137,13 @@
         \end{prty}
     \section{Vettori aleatori assolutamente continui}
         \begin{defn}\label{defn:Vettori_aleatori_assolutamente_continui}
-            Un vettore aleatorio $\vec{X}$ $n$\nbdash dimensionale è \textit{assolutamente continuo} se esiste una funzione $f_{\vec{X}}\,:\, \mathbb{R}^n \mapsto \mathbb{R}^+$ integrabile, tale che la funzione di ripartizione di $\vec{X}$ si possa scrivere come:
+            Un vettore aleatorio $\vec{X}$ $n$\nbdash dimensionale è \emph{assolutamente continuo} se esiste una funzione $f_{\vec{X}}\,:\, \mathbb{R}^n \mapsto \mathbb{R}^+$ integrabile, tale che la funzione di ripartizione di $\vec{X}$ si possa scrivere come:
             \begin{align*}
                 F_{\vec{X}}(\vec{x}) = \int_{-\infty}^{x_1} \dotsi 
                 \int_{-\infty}^{x_n} f_{\vec{X}}(S_1,\, \ldots,\, S_{n})\, d_{S_n} \cdot \ldots \cdot d_{S_1} 
                 & & \forall \vec{x} = (x_1,\, \ldots,\, x_{n})
             .\end{align*}
-            La funzione $f_{\vec{X}}$ prende il nome di \textit{densità congiunta} di $X_1,\, \ldots,\, X_{n}$ oppure densità del vettore aleatorio assolutamente continuo $\vec{X}$.
+            La funzione $f_{\vec{X}}$ prende il nome di \emph{densità congiunta} di $X_1,\, \ldots,\, X_{n}$ oppure densità del vettore aleatorio assolutamente continuo $\vec{X}$.
         \end{defn}
         \begin{prty}\label{prty:Vettori_aleatori_assolutamente_continui}
             Sia $f_{\vec{X}}$ la densità di un vettore aleatorio $n$\nbdash dimensionale assolutamente continuo; allora possiamo affermare che:
@@ -305,7 +305,7 @@
                 f_{X_1+\ldots+X_n}(x) = \frac{\mu^n}{(n-1)!}x^{n-1} \cdot 
                 e^{-\mu x} \cdot \mathbf{1}_{(0,\,+\infty)}(x)
             .\end{equation}
-            Chiamiamo \eqref{eq:Densità_Gamma} \textit{densità Gamma} di parametri $n$ e $\mu$, e la indichiamo con: \[
+            Chiamiamo \eqref{eq:Densità_Gamma} \emph{densità Gamma} di parametri $n$ e $\mu$, e la indichiamo con: \[
                 X_1 + \ldots + X_{n} \sim \Gamma(n,\, \mu)
             .\]
         \end{defn}
@@ -321,7 +321,7 @@
                 f_{\vec{X}}\left(\vec{g}^{\,-1}(\vec{y})\right) \cdot 
                 \left|\det\left(\vec{J}\left(\vec{g}^{\,-1}(\vec{y})\right)\right)\right|
             ,\end{equation}
-            dove $\vec{J}(\vec{g}^{\,-1}(\vec{y}))$ indica la \textit{matrice Jacobiana} associata alla 
+            dove $\vec{J}(\vec{g}^{\,-1}(\vec{y}))$ indica la \emph{matrice Jacobiana} associata alla 
             funzione $\vec{g}^{\,-1}$, valutata in $\vec{y}$: \[
                 \vec{J}(\vec{g}^{\,-1}) = \begin{bmatrix}
                     \frac{\partial g_1^{-1}}{\partial y_1} & \frac{\partial g_1^{-1}}{\partial y_2} & \cdots & \frac{\partial g_1^{-1}}{\partial y_n}\\
@@ -478,7 +478,7 @@
         \end{obsv}
     \section{Covarianza}
         \begin{defn}
-            Siano $X_1,\,X_2$ variabili aleatorie definite sullo stesso spazio di probabilità ed entrambe ammettano varianza; allora chiamiamo \textit{covarianza} di $X_1$ e $X_2$ il numero calcolato come:
+            Siano $X_1,\,X_2$ variabili aleatorie definite sullo stesso spazio di probabilità ed entrambe ammettano varianza; allora chiamiamo \emph{covarianza} di $X_1$ e $X_2$ il numero calcolato come:
             \begin{equation}\label{eq:Covarianza}
                 \text{Cov}(X_1,\,X_2) \coloneqq \text{E}\left[(X_1-\text{E}(X_1))\cdot(X_2-\text{E}(X_2))\right]
             .\end{equation}
@@ -532,7 +532,7 @@
         \end{proof}
     \section{Coefficiente di correlazione lineare}
         \begin{defn}
-            Prendiamo due variabili aleatorie $X_1,\,X_2$ definite sullo stesso spazio di probabilità, che ammettano entrambe covarianza ($0<\text{Var}(X_1) \land 0<\text{Var}(X_2)$); allora definiamo il \textit{coefficiente di correlazione} di $X_1,\,X_2$ il numero calcolato come: \[
+            Prendiamo due variabili aleatorie $X_1,\,X_2$ definite sullo stesso spazio di probabilità, che ammettano entrambe covarianza ($0<\text{Var}(X_1) \land 0<\text{Var}(X_2)$); allora definiamo il \emph{coefficiente di correlazione} di $X_1,\,X_2$ il numero calcolato come: \[
             \rho_{X_1,\,X_2} \coloneqq \frac{\text{Cov}(X_1,\,X_2)}{\sqrt{\text{Var}(X_1)\cdot \text{Var}(X_2)}}
             .\] 
         \end{defn}
@@ -587,9 +587,9 @@
         \end{note}
     \section{Distribuzione del massimo e del minimo}
         %TODO: Completare sezione
-    \section{Media campionaria}
+    \section{Media campionaria}\label{sec:Media_campionaria}
         \begin{defn}
-            Consideriamo una popolazione di $n$ elementi, a ciascuno dei quali è associata una grandezza numerica $X_i$ con media $\mu$ e varianza $\sigma^2$; l'insieme di queste grandezze (variabili aleatorie indipendenti identicamente distribuite) $X_1,\, \ldots,\, X_{n}$ è detto \textit{campione}; chiamiamo \textit{media campionaria} la sua media, e la indichiamo come: \[
+            Consideriamo una popolazione di $n$ elementi, a ciascuno dei quali è associata una grandezza numerica $X_i$ con media $\mu$ e varianza $\sigma^2$; l'insieme di queste grandezze (variabili aleatorie indipendenti identicamente distribuite) $X_1,\, \ldots,\, X_{n}$ è detto \emph{campione}; chiamiamo \emph{media campionaria} la sua media, e la indichiamo come: \[
             \overline{X} \coloneqq \frac{X_1 + \ldots + X_{n}}{n}
             .\] Dato che $\overline{X}$ è una funzione di variabili aleatorie indipendenti identicamente distribuite, anch'essa è una variabile aleatoria, quindi ammette media e varianza nel modo seguente:
             \begin{itemize}
@@ -638,7 +638,7 @@
             .\] 
         \end{prty}
         \begin{proof}
-            Dato che le variabili aleatorie $h(U_1),\, h(U_2),\, \ldots$ sono indipendenti identicamente distribuite con media finita, applicando la \textit{legge dei grandi numeri}.
+            Dato che le variabili aleatorie $h(U_1),\, h(U_2),\, \ldots$ sono indipendenti identicamente distribuite con media finita, applicando la \emph{legge dei grandi numeri}.
         \end{proof}
     \section{Teorema del limite centrale} 
         \begin{obsv}
@@ -654,7 +654,7 @@
             2\, \Phi\left(\frac{\sqrt{n}}{\sigma}\,\delta\right) - 1
             .\]
         \end{obsv}
-        \begin{thm}[Limite centrale]
+        \begin{thm}[Limite centrale]\label{thm:Teorema_limite_centrale}
             Sia $X_1,\, X_2,\, \ldots$ una successione di variabili aleatorie indipendenti identicamente distribuite con media $\mu$ e varianza $\sigma^2$, per cui valga $0 < \sigma^2 < +\infty$; allora possiamo scrivere:
             \begin{equation}\label{eq:Teorema_limite_centrale}
                 \forall x\ in \mathbb{R} \,:\, \lim_{n \to \infty} P\left(\frac{\sqrt{n}}{\sigma} \cdot (\overline{X}_n - \mu) \leq x\right) = \int_{-\infty}^{x} \frac{1}{\sqrt{2\pi}}\cdot e^{-u^2 /2}\, du = \Phi(x)
