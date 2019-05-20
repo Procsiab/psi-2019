@@ -2,33 +2,435 @@
 % Capitolo 5
 
 \chapter{Modelli statistici e stima}
-    \section{Modello statistico}
-        \begin{defn}[Parametrico]
-            A
-        \end{defn}
-        \begin{defn}[Non parametrico]
-            A
-        \end{defn}
     \section{Campione aleatorio}
+        \begin{defn}[Campione e Inferenza]
+            Un insieme $X_1,\, \ldots,\, X_{n}$ di $n$ variabili aleatorie indipendenti, in cui ciascuna 
+            variabile aleatoria abbia stessa distribuzione $F$, è detto \emph{campione} della 
+            distribuzione $F$.
+
+            Non ostante la distribuzione $F$ non sia nota, possiamo usare i dati ricavabili dal campione
+            per fare dell'\emph{inferenza} su $F$. Se essa è nota a meno di un insieme di parametri 
+            incogniti, abbiamo un problema di inferenza \emph{parametrica}; nel caso in cui non si conosce 
+            nulla di $F$, si ha un problema di inferenza \emph{non parametrica}.
+        \end{defn}
+        \begin{defn}[Realizzazione]
+            Se dato un campione $X_1,\, \ldots,\, X_{n}$ di una distribuzione $F$ osserviamo i valori 
+            $X_1=x_1,\, \ldots,\, X_{n}=x_n$, chiamiamo il vettore $(x_1,\, \ldots,\, x_n)$ 
+            \emph{realizzazione} del campione (dati).
+        \end{defn}
     \section{Statistica}
+        \begin{defn}
+            Consideriamo un campione aleatorio $X_1,\, \ldots,\, X_{n}$ estratto da $F$; una 
+            \emph{statistica} basata sul campione è una funzione nota del campione: \[
+                D_n = d_n(X_1,\, \ldots,\, X_{n})
+            ;\] la statistica $D_n$ è una variabile aleatoria.
+        \end{defn}
     \section{Caratteristica della popolazione}
+        \begin{defn}
+            Consideriamo un campione $X_1,\, \ldots,\, X_{n}$ estratto da una popolazione con 
+            distribuzione $F_\vartheta$, nota a meno di un parametro $\vartheta$ incognito; allora 
+            chiamiamo \emph{caratteristica} della popolazione una funzione non costante di $\vartheta$.
+        \end{defn}
     \section{Stimatore e stima}
-    \section{Stimatore non distorto}
+        \begin{defn}[Stimatore]
+            Sia $X_1,\, \ldots,\, X_{n}$ un campione aleatorio estratto da $F_\vartheta$, e $k(\vartheta)$ 
+            una caratteristica della popolazione $F_\vartheta$; allora chiamiamo \emph{stimatore} 
+            di $k(\vartheta)$ una \underline{statistica} \[
+                \hat{K}_n = d_n(X_1,\, \ldots,\, X_{n})
+            ,\] usata per fare inferenza su $k(\vartheta)$.
+        \end{defn}
+        \begin{defn}[Stima]
+            Data la \underline{realizzazione} $(x_1,\, \ldots,\, x_{n})$ e lo stimatore 
+            $\hat{K}_n = d_n(X_1,\, \ldots,\, X_{n})$ della caratteristica $k(\vartheta)$,
+            chiamiamo \emph{stima} il valore della statistica $\hat{K}_n$ in corrispondenza 
+            della realizzazione $(x_1,\, \ldots,\, x_{n})$: \[
+                \hat{k}_n = d_n(x_1,\, \ldots,\, x_{n})
+            ;\] mentre lo stimatore è una statistica (quindi una variabile aleatoria), 
+            la stima è un valore numerico.
+        \end{defn}
     \section{Errore quadratico medio}
-    \section{Consistenza}
-        \begin{defn}[Semplice]
-            B
+    \begin{defn}
+        Sia dato uno stimatore $D_n = d_n(X_1,\, \ldots,\, X_{n})$ di $k(\vartheta)$ che ammette 
+        momento secondo finito; allora chiamiamo \emph{errore quadratico medio} di $D_n$ 
+        la seguente funzione di $\vartheta$ definita positiva:
+        \begin{equation}\label{eq:Errore_quadratico_medio}
+            r_{\vartheta}\left(d_n,\, k(\vartheta)\right) \coloneqq 
+            \text{E}_{\vartheta} \left[(d_n(X_1,\, \ldots,\, X_{n}) - k(\vartheta))^2\right]
+        .\end{equation}
+        Una notazione alternativa è la seguente: \[
+            \scriptstyle \text{MSE} \textstyle_{\vartheta}(D_n) \coloneqq 
+            \text{E}_{\vartheta}\left[(D_n - k(\vartheta))^2\right] = 
+            r_{\vartheta}\left(d_n,\, k(\vartheta)\right)
+        .\] 
+    \end{defn}
+    \begin{obsv}
+        Non è possibile trovare uno stimatore che minimizzi l'errore quadratico medio per ogni $\vartheta$, 
+        tuttavia possiamo trovarne uno che minimizzi l'errore quadratico medio per una 
+        \underline{classe ristretta} di stimatori.
+    \end{obsv}
+        \begin{defn}[Distorsione]
+            Sia $D_n = d_n(X_1,\, \ldots,\, X_{n})$ uno stimatore di $k(\vartheta)$ che ammette media; 
+            chiamiamo la \emph{distorsione} di $D_n$ la funzione di $\vartheta$ definita come segue:
+            \begin{equation}\label{eq:Distorsione}
+                b_{\vartheta}(d_n) \coloneqq 
+                \text{E}_{\vartheta}\left[d_n(X_1,\, \ldots,\, X_{n}) - k(\vartheta)\right]
+            .\end{equation}
+            Una notazione alternativa è la seguente: \[
+                \text{bias}_{\vartheta}(D_n) \coloneqq 
+                \text{E}_{\vartheta}\left[d_n(\vec{X})\right] - k(\vartheta)
+            .\]
         \end{defn}
-        \begin{defn}[Media quadratica]
-            B
+    \section{Stimatore non distorto}
+        \begin{defn}
+            Uno stimatore $D_n = d_n(X_1,\, \ldots,\, X_{n})$ si dice \emph{non distorto} oppure 
+            \emph{corretto} per $k(\vartheta)$ se vale: \[
+                \forall \vartheta \,:\, b_{\vartheta}(d_n) = 0
+            .\]
         \end{defn}
-    \section{Non distorsione asintotica}
-    \section{Normalità asintotica}
-    \section{Media e varianza campionarie}
-    \section{Distribuzione di media e varianza campionarie, e \textit{t} di Student normale}
+        \begin{prty}
+            Se $D_n = d_n(X_1,\, \ldots,\, X_{n})$ è uno stimatore di $k(\vartheta)$ basato sul campione 
+             $X_1,\, \ldots,\, X_{n}$ che ammette momento secondo finito, allora abbiamo: \[
+                 r_{\vartheta}(d_n,\, k(\vartheta)) = 
+                 \text{Var}_{\vartheta}[d_n(X_1,\, \ldots,\, X_{n})] + (b_{\vartheta}(d_n))^2
+             ;\] allora se $D_n$ è uno stimatore non distorto per $k(\vartheta)$ otteniamo: \[
+                b_{\vartheta}(d_n) = 0 \implies r_{\vartheta}(d_n,\, k(\vartheta)) = 
+                \text{Var}_{\vartheta}[d_n(\vec{X})]
+             ,\] cioè l'errore quadratico medio coincide con la varianza dello stimatore.
+        \end{prty}
+        \begin{proof}
+            Tenendo a mente che $D_n = d_n(X_1,\, \ldots,\, X_{n}) = d_n(\vec{X})$, possiamo scrivere:
+            \begin{align*}
+                r_{\vartheta}(d_n,\, k(\vartheta)) &= \text{E}_{\vartheta}[D_n -k(\vartheta)^2] \\
+                &= \text{E}_{\vartheta}\big[(D_n - \text{E}_{\vartheta}[D_n] + \underset{b_{\vartheta}(d_n)}{\underbrace{\text{E}_{\vartheta}[D_n] - k(\vartheta)}})^2\big] \\
+                &= \text{E}_{\vartheta}\big[(D_n - \text{E}_{\vartheta}[D_n] + b_{\vartheta}(d_n))^2\big] \\
+                &= \text{E}_{\vartheta}\big[(D_n - \text{E}_{\vartheta}[D_n])^2\big] +
+                \big(b_{\vartheta}(d_n)\big)^2 +
+                \underset{=\, 0}{\underbrace{2\,b_{\vartheta}(d_n) \cdot \text{E}_{\vartheta}\big[d_n(\vec{X}) - \text{E}_{\vartheta}[d_n(\vec{X})]\big]}} \\
+                &= \text{Var}_{\vartheta}\big[d_n(\vec{X})\big] + \big(b_{\vartheta}(d_n)\big)^2
+            .\qedhere\end{align*}
+        \end{proof}
+    \section{Proprietà asintotiche degli stimatori}
+        \subsection{Non distorsione}
+            \begin{defn}
+                Sia $X_1,\, \ldots,\, X_{n}$ una successione di variabili aleatorie indipendenti 
+                identicamente distribuite, con densità $F_{\vartheta}$ dipendente da uno o 
+                più parametri incogniti $\vartheta$; sia $k(\vartheta)$ una caratteristica 
+                della popolazione e $(D_n)_n = (d_n(X_1,\, \ldots,\, X_{n}))_n$ una successione 
+                di stimatori  della caratteristica $k(\vartheta)$ che ammettono momento secondo finito;
+                allora diremo che la successione di stimatori $(D_n)_n$ è
+                \emph{asintoticamente non distorta} per $k(\vartheta)$ se vale: \[
+                    \forall \vartheta \,:\, \lim_{n \to \infty} \big[ b_{\vartheta}(d_n) =
+                    \text{E}_{\vartheta}[d_n(X_1,\, \ldots,\, X_{n})] - k(\vartheta) \big] \rightarrow 0
+                .\]
+            \end{defn}
+        \subsection{Consistenza debole}
+            \begin{defn}
+                Una successione di stimatori $(D_n)_n = (d_n(X_1,\, \ldots,\, X_{n}))_n$ è detta \emph{debolmente consistente} per $k(\vartheta)$ se vale: \[
+                    \forall \varepsilon > 0 \,:\, \lim_{n \to \infty} 
+                    P_{\vartheta}(|D_n - k(\vartheta)| > \varepsilon) \rightarrow 0
+                .\] 
+            \end{defn}
+        \subsection{Consistenza in media quadratica}
+            \begin{defn}
+                Una successione di stimatori $(D_n)_n ) (d_n(X_1,\, \ldots,\, X_{n}))_n$ è detta 
+                \emph{consistente in media quadratica} per $k(\vartheta)$ se vale: \[
+                    \forall \vartheta \,:\, \lim_{n \to \infty} \left[r_{\vartheta}(d_n,\, k(\vartheta))
+                    = \text{E}_{\vartheta}[(D_n - k(\vartheta))^2]\right] \rightarrow 0
+                .\] 
+            \end{defn}
+            \begin{prty}
+                Data una successione di campioni $X_1,\, X_2,\, \ldots$ e una successione di stimatori 
+                di $k(\vartheta)$ $(D_n)_n = (d_n(X_1,\, \ldots,\, X_{n}))_n$ allora si ha:
+                \begin{enumerate}
+                    \item $b_{\vartheta}(d_n) \rightarrow 0 \land \text{Var}_{\vartheta}[D_n] \rightarrow 0 
+                        \iff r_{\vartheta}(d_n,\, k(\vartheta)) = \text{Var}_{\vartheta}[D_n] + 
+                        (b_{\vartheta}(d_n))^2 \rightarrow 0$;
+                    \item se  $(D_n)_n$ è consistente in media quadratica, allora è consistente.
+                \end{enumerate}
+            \end{prty}
+        \subsection{Normalità asintotica}
+            \begin{defn}
+                Una successione di stimatori $(D_n)_n ) (d_n(X_1,\, \ldots,\, X_{n}))_n$ è detta 
+                \emph{asintoticamente normale} per $k(\vartheta)$ se essa è consistente e 
+                la distribuzione asintotica degli stimatori e normale.
+            \end{defn}
+    \section{Proprietà della media campionaria}
+    \begin{note}
+        Abbiamo già introdotto la media campionaria nella Sezione~\ref{sec:Media_campionaria}, tuttavia 
+        ora approfondiamo le sue caratteristiche dal punto di vista del modello statistico.
+    \end{note}
+        \begin{defn}
+            Sia $X_1,\, \ldots,\, X_{n}$ un campione aleatorio estratto da $F$; chiamiamo 
+            \emph{media campionaria} la statistica definita come:
+            \begin{align}\label{eq:Media_campionaria_statistica}
+                \overline{X}_n \coloneqq \frac{X_1,\, \ldots,\, X_{n}}{n} & & \forall n \in \mathbb{N},\, n > 0
+            .\end{align}
+        \end{defn}
+        \begin{prty}
+            Indicando con $\mu,\, \sigma^2$ la media e la varianza di una popolazione di cui $\overline{X}_n$ 
+            sia la statistica per un campione $X_1,\, \ldots,\, X_{n}$, allora possiamo affermare che:
+            \begin{enumerate}
+                \item $\text{E}(\overline{X}_n) = \mu$;
+                \item $\text{Var}(\overline{X}_n) = \sigma^2 /n$;
+                \item $\forall \varepsilon > 0 \,:\, P\left(|\overline{X}_n - \mu| > \varepsilon\right) 
+                    \rightarrow 0$;
+                \item qualunque sia la distribuzione $F$ comune al campione aleatorio si ha \[
+                    \lim_{n \to \infty} \overline{X}_n \simeq \mathcal{N}(\mu,\, \sigma^2 /n)
+                .\]
+            \end{enumerate}
+        \end{prty}
+        \begin{proof}
+            \hfill
+            \begin{enumerate}
+                \item $\text{E}(\overline{X}_n) = \text{E}\left(\frac{X_1 + \ldots + X_{n}}{n}\right) = 
+                    \frac{\text{E}(X_1) + \ldots + \text{E}(X_n)}{n} = \frac{n\cdot\mu}{n} = \mu$.
+                \item $\text{Var}(\overline{X}_n) = \text{Var}\left(\frac{X_1 + \ldots + X_{n}}{n}\right) =
+                    \frac{\text{Var}(X_1) + \ldots + \text{Var}(X_n)}{n^2} = \frac{n\cdot\sigma^2}{n^2} =
+                    \sigma^2 /n$.
+                \item Otteniamo il risultato dall'applicazione del Teorema~\ref{thm:Legge_grandi_numeri_forte}.
+                \item Dal Teorema~\ref{thm:Teorema_limite_centrale} possiamo scrivere, 
+                    per $n\rightarrow +\infty$: \[
+                    P\left(\frac{(\overline{X}_n - \mu)\cdot \sqrt{n}}{\sigma} \leq x\right) \rightarrow
+                    \Phi(x) = \frac{1}{\sqrt{2\pi}} \cdot \int_{-\infty}^{x} e^{-u^2 /2}\, du \sim 
+                    \mathcal{N}(\mu,\, \sigma^2 /n)
+                .\]
+            \end{enumerate}
+        \end{proof}
+    \section{Varianza campionaria}
+        \begin{defn}
+            Sia $X_1,\, \ldots,\, X_{n}$ un campione estratto da $F$; allora chiamiamo 
+            \emph{varianza campionaria} la statistica definita come:
+            \begin{align}\label{eq:Varianza_campionaria}
+                S_n^2 \coloneqq \frac{1}{n-1}\cdot \sum_{i=1}^{n} (X_i - \overline{X}_n)^2 
+                & & \forall n \in \mathbb{N},\, n > 1
+            .\end{align}
+            Inoltre, chiamiamo \emph{deviazione standard campionaria} la statistica: \[
+                S_n \coloneqq  \sqrt{S_n^2}
+            .\]
+        \end{defn}
+        \begin{prty}
+            Indicando con $\mu,\, \sigma^2$ la media e la varianza di una popolazione di cui $S_n^2$ 
+            sia la statistica per un campione $X_1,\, \ldots,\, X_{n}$, allora possiamo affermare che:
+            \begin{enumerate}
+                \item $\text{E}(S_n^2) = \sigma^2$;
+                \item $\text{Var}(S_n^2) = \frac{1}{n}\cdot[\mu_4 - \frac{n-3}{n-1}\cdot\sigma^4]$, dove
+                    $\mu_4 = \text{E}((X_1-\mu)^4)$ e $\sigma^4 = (\sigma^2)^2$.
+            \end{enumerate}
+        \end{prty}
+        \begin{proof}
+            \hfill
+            \begin{enumerate}
+                \item Riscriviamo la definizione \eqref{eq:Varianza_campionaria} nel modo seguente: \[
+                        S_n^2 = \frac{1}{n-1} \cdot \sum_{i=1}^{n} \left[X_i^2 - n\, \overline{X}^2\right] 
+                        \implies (n-1)\cdot S_n^2 = \sum_{i=1}^{n} \left[X_i^2 - n\, \overline{X}^2\right]
+                    .\] Prendiamo il valore atteso di entrambi i membri della precedente equazione, e 
+                    ricordiamo che il momento secondo di una variabile aleatoria $W$ qualunque si ottiene 
+                    come $m_W(2) \coloneqq \text{E}(W^2) = \text{Var}(W) + \text{E}(W)^2$:
+                    \begin{align*}
+                        (n-1) \cdot \text{E}(S_n^2) &= \text{E}\left(\sum_{i=1}^{n} X_i^2\right) - 
+                        \text{E}(n\, \overline{X}^2) 
+                        = n\cdot \underset{m_{X_1}(2)}{\underbrace{\text{E}(X_1^2)}} - n\cdot 
+                        \underset{m_{\overline{X}}(2)}{\underbrace{\text{E}(\overline{X}^2)}} \\
+                        &= n\cdot \left[\text{Var}(X_1) + \text{E}(X_1)^2\right] -
+                        n\cdot \left[\text{Var}(\overline{X}) + \text{E}(\overline{X})^2\right] \\
+                        &= n\, \sigma^2 +\bcancel{n\, \mu^2} - \cancel{n}\,\frac{\sigma^2}{\cancel{n}} -\bcancel{n\, \mu^2} \\
+                        &= (n-1)\cdot \sigma^2
+                    .\end{align*}
+                    Allora dalla precedente relazione ricaviamo: \[
+                    \text{E}(S_n^2) = \sigma^2
+                    .\]
+                \item Dimostriamo questa equazione in modo analogo alla precedente. \qedhere
+            \end{enumerate}
+        \end{proof}
+    \section{Distribuzioni delle statistiche di popolazioni normali}
+        \begin{thm}\label{thm:Distribuzione_congiunta_statistiche_normale}
+            Sia dato un campione $X_1,\, \ldots,\, X_{n}$ estratto da una popolazione normale 
+            ($X_i \sim \mathcal{N}(\mu,\, \sigma^2)$), allora $\overline{X}_n$ e $S_n^2$ sono 
+            variabili aleatorie \underline{indipendenti} tali che:
+            \begin{align}\label{eq:Distribuzione_congiunta_statistiche_normale}
+                \frac{\overline{X}_n -\mu}{\sigma /s\sqrt{n}} \sim \mathcal{N}(0,\,1)
+                & & (n-1)\cdot \frac{S_n^2}{\sigma^2} \sim \chi^2(n-1)
+            .\end{align}
+        \end{thm}
+        \begin{prty}
+            Se $X_1,\, \ldots,\, X_{n}$ è un campione estratto da una popolazione normale di media $\mu$ e 
+            varianza $\sigma^2$ allora si ha: \[
+                \frac{\overline{X}_n - \mu}{S_n /\sqrt{n}} \sim t(n-1)
+            ,\] dove $S_n$ è la deviazione standard campionaria, e $t(n-1)$ è la distribuzione 
+            \emph{t} con $n-1$ gradi di libertà.
+        \end{prty}
+        \begin{proof}
+            Ricordiamo la definizione della distribuzione \emph{t}, considerando le variabili 
+            aleatorie indipendenti $Z \sim \mathcal{N}(0,\,1)$ e $C_n \sim \chi^2(n)$; allora la 
+            \emph{t} di Student è la distribuzione del rapporto: \[
+                \frac{Z}{\sqrt{C_n /n}} \sim t(n)
+            ;\] usando il Teorema~\ref{thm:Distribuzione_congiunta_statistiche_normale} otteniamo che: \[
+                \frac{\overline{X}_n - \mu}{\sigma /\sqrt{n}} \cdot \sqrt{\frac{\sigma^2}{S_n^2} 
+                \cdot \frac{n-1}{n-1}} = \frac{\overline{X}_n - \mu}{S_n /\sqrt{n}}
+                \sim t(n-1)
+            .\qedhere\]
+        \end{proof}
+        \begin{prty}
+            Sia $X_1,\, \ldots,\, X_{n}$ un campione estratto da una popolazione normale di media $\mu_X$ e 
+            varianza $\sigma^2_X$; consideriamo anche il campione $Y_1,\, \ldots,\, Y_{m}$ indipendente 
+            dal precedente, estratto da una popolazione normale di media $\mu_Y$ e varianza $\sigma^2_Y$.
+
+            Se indichiamo con $S_{n,\,X}^2$ e $S_{m,\,Y}^2$ le varianze delle popolazioni, come:
+            \begin{align*}
+                S_{n,\,X}^2 = \frac{1}{n-1}\cdot \sum_{i=1}^{n} (X_i - \overline{X}_n)^2
+                & & S_{m,\,Y}^2 = \frac{1}{m-1}\cdot \sum_{i=1}^{n} (Y_i - \overline{Y}_m)^2
+            ,\end{align*}
+            allora possiamo affermare che: \[
+            \sigma_X^2 = \sigma_Y^2 \implies \frac{S_{n,\,X}^2}{S_{m,\,Y}^2} 
+            \sim \mathcal{F}(n-1,\, m-1)
+            .\]
+        \end{prty}
+        \begin{proof}
+            Ricordiamo la definizione della distribuzione \emph{F}, considerando le variabili aleatorie 
+            indipendenti $C_n \sim \chi^2(n)$ e $C_m \sim \chi^2(m)$; allora la \emph{F} di Fisher 
+            è la distribuzione del rapporto: \[
+                \left.\frac{C_n}{n} \middle/ \frac{C_m}{m}\right. \sim \mathcal{F}(n,\,m)
+            ;\] usando il Teorema~\ref{thm:Distribuzione_congiunta_statistiche_normale} possiamo scrivere:
+            \begin{align*}
+                (n-1)\cdot \frac{S_{n,\,X}^2}{\sigma_X^2} \sim \chi^2(n-1)
+                & & (m-1)\cdot \frac{S_{m,\,Y}^2}{\sigma_Y^2} \sim \chi^2(m-1)
+            ;\end{align*}
+            sapendo che si tratta di variabili aleatorie indipendenti, otteniamo: \[
+                \left. \frac{(n-1)\, S_{n,\,X}^2}{(n-1)\, \sigma_X^2} \middle/ 
+                \frac{(m-1)\, S_{m,\,Y}^2}{(m-1)\, \sigma_Y^2} \right. =
+                \frac{S_{n,\,X}^2}{S_{m,\,Y}^2} \sim \mathcal{F}(n-1,\, m-1)
+            .\qedhere\]
+        \end{proof}
     \section{Metodo dei momenti}
+        \begin{defn}
+            Sia $X_1,\, \ldots,\, X_{n}$ un campione aleatorio estratto da una densità $F_{\vec{\vartheta}}(x)$ 
+            (continua o discreta), con $\vec{\vartheta}$ vettore di parametri incogniti.
+
+            Supponiamo che esistano finiti i primi $k$ momenti della densità $F_{\vec{\vartheta}}(x)$, e 
+            indichiamo con $m_F(j)$ il momento $j$\nbdash esimo di $F_{\vec{\vartheta}}(x)$; esso 
+            sarà una funzione del parametro $\vec{\vartheta}$: \[
+                m_F(j) = \text{E}_{\vartheta}[X_1^{j}] = \begin{cases}
+                    \int_{-\infty}^{\infty} x^j\cdot F_{\vec{\vartheta}}(x)\, dx & \text{se $X_1$ è assolutamente continua;} \\
+                    \sum_{h} x_n^j\cdot F_{\vec{\vartheta}}(x_h) & \text{se $X_1$ è discreta.}
+                \end{cases}
+            \] Osserviamo che $m_F(j)$ è una caratteristica della popolazione, poiché essa è la media 
+            in corrispondenza di un valore di $\vec{\vartheta}$; possiamo indicarlo con: \[
+                \forall j \in [1,\, \ldots,\, k] \,:\, m_F(j) = m_j(\vec{\vartheta})
+            .\] Eguagliamo i primi $k$ momenti campionari ai corrispondenti $k$ momenti della popolazione:
+            \begin{equation*}
+                \begin{cases}
+                    \frac{1}{n} \cdot \sum_{i=1}^{n} X_i = m_1(\vartheta_1,\, \ldots,\, \vartheta_k); \\
+                    \frac{1}{n} \cdot \sum_{i=1}^{n} X_i^2 = m_2(\vartheta_1,\, \ldots,\, \vartheta_k); \\
+                    \hspace{5.5em}\vdots \\
+                    \frac{1}{n} \cdot \sum_{i=1}^{n} X_i^k = m_k(\vartheta_1,\, \ldots,\, \vartheta_k).
+                \end{cases}
+            \end{equation*}
+            Otteniamo un sistema di $k$ equazioni nelle incognite $\vartheta_1,\, \ldots,\, \vartheta_k$. Se 
+            supponiamo che questo sistema abbia una soluzione indicata come 
+            $\vec{\Theta} = (\hat{\Theta}_1,\, \ldots,\, \hat{\Theta}_k)$, dove ciascun $\hat{\Theta}_i$ è una 
+            funzione di $X_1,\, \ldots,\, X_n$ (per opportune funzioni $d_i(\vec{X})$):
+            \begin{equation*}
+                \begin{cases}
+                    \hat{\Theta}_1 = d_1(X_1,\, \ldots,\, X_{n}); \\
+                    \hat{\Theta}_2 = d_2(X_1,\, \ldots,\, X_{n}); \\
+                    \hspace{1.8em}\vdots \\
+                    \hat{\Theta}_k = d_k(X_1,\, \ldots,\, X_{n}).
+                \end{cases}
+            \end{equation*}
+            Lo stimatore $\vec{\Theta}$ che soddisfa le proprietà enunciate è chiamato 
+            \emph{stimatore del metodo dei momenti}, mentre il valore: \[
+                (\hat{\vartheta}_1 = d_1(\vec{x}),\, \ldots,\, \hat{\vartheta}_k = d_k(\vec{x}))
+            ,\] in corrispondenza della realizzazione $X_1 = x_1,\, \ldots,\, X_n = x_n$ è chiamato 
+            \emph{stima dei momenti} di $\vec{\vartheta}$.
+        \end{defn}
     \section{Massima verosimiglianza}
-    \section{Intervalli e limiti di confidenza}
+        \begin{defn}[Verosimiglianza]
+            Sia $F_\vartheta$ una densità (discreta o continua) dipendente da uno o più parametri incogniti 
+            $\vec{\vartheta}$; se $X_1,\, \ldots,\, X_{n}$ è un campione estratto dalla densità $F_\vartheta$, 
+            allora la densità del campione si ottiene come: \[
+                \forall \vec{x} = (x_1,\, \ldots,\, x_{n}) \,:\, 
+                \mathcal{L}(\vartheta,\, \vec{x}) \coloneqq \prod_{i=1}^{n} F_{\vartheta}(x_i)
+            .\] Supponiamo di osservare la realizzazione $X_1 = \tilde{x}_1,\, \ldots,\, X_n = \tilde{x}_n$ e 
+            consideriamo la funzione di $\vartheta$ detta \emph{verosimiglianza del campione}, definita come:
+            \begin{align}\label{eq:Verosimiglianza_campione}
+                \mathcal{L}(\vartheta,\, \tilde{\vec{x}}) = \prod_{i=1}^{n} F_\vartheta(\tilde{x}_i)
+                & & \text{per } \tilde{\vec{x}} = (\tilde{x}_1,\, \ldots,\, \tilde{x}_n)
+            .\end{align}
+        \end{defn}
+        \begin{obsv}
+            Se il campione $X_1,\, \ldots,\, X_{n}$ è costituito da variabili aleatorie discrete, allora 
+            la verosimiglianza \eqref{eq:Verosimiglianza_campione} del campione vale:
+            \begin{align*}
+                \mathcal{L}(\vartheta,\, \tilde{\vec{x}}) &= \prod_{i=1}^{n} F_\vartheta(\tilde{x}_i) =
+                \prod_{i=1}^{n} P_\vartheta(X_i = \tilde{x}_i) \\
+                &= P_\vartheta(X_1=\tilde{x}_i \cap \dotsm \cap X_n=\tilde{x}_n)
+            .\end{align*}
+            Se il campione $X_1,\, \ldots,\, X_{n}$ è costituito da variabili aleatorie continue, allora 
+            la verosimiglianza \eqref{eq:Verosimiglianza_campione} del campione può essere interpretata 
+            come la probabilità di osservare la realizzazione 
+            $\tilde{\vec{x}} = (\tilde{x}_1,\, \ldots,\, \tilde{x}_{n})$ per ogni valore fissato di $\vartheta$.
+        \end{obsv}
+        \begin{defn}[MLE]
+            Chiamiamo \emph{stima di massima verosimiglianza} quel valore $\hat{\vartheta}_n$ 
+            che massimizza la verosimiglianza \eqref{eq:Verosimiglianza_campione} per ogni realizzazione 
+            del campione $\vec{x} = (x_1,\, \ldots,\, x_{n})$, e la indichiamo con:
+            \begin{equation}\label{eq:Stima_massima_verosimiglianza}
+                \hat{\vartheta}_n \coloneqq \max_{\substack{\vartheta}} \big[\mathcal{L}(\vartheta,\, \vec{x})\big] =
+                \max_{\substack{\vartheta}} \left[\,\prod_{i=1}^{n} F_\vartheta(x_i)\right]
+            .\end{equation}
+            Il corrispondente stimatore è detto stimatore di massima verosimiglianza o \emph{MLE}, e si 
+            indica come:
+            \begin{align}\label{eq:MLE}
+                \hat{\Theta}_n = d_n(X_1,\, \ldots,\, X_{n})
+                & & \text{per } \hat{\vartheta}_n = d_n(x_1,\, \ldots,\, x_{n})
+            .\end{align}
+        \end{defn}
+        \begin{obsv}[Log-verosimiglianza]
+            Dal punto di vista operativo, sfruttando il fatto che $\mathcal{L}(\vartheta,\,\vec{x})$ e 
+            $\ln(\mathcal{L}(\vartheta,\,\vec{x}))$ assumono massimo nello stesso valore, 
+            otteniamo la stima massimizzata della verosimiglianza cercando il massimo della funzione 
+            \emph{log\nbdash verosimiglianza}: \[
+                \ln \big(\mathcal{L}(\vartheta,\, \vec{x})\big)
+            .\]
+        \end{obsv}
+        \begin{prty}[Invarianza degli MLE]
+            Supponiamo di voler stimare una caratteristica $k(\vartheta)$; se 
+            $\hat{\Theta} = d_n(X_1,\, \ldots,\, X_{n})$ è l'MLE di $\vartheta$ basato sul campione 
+            $X_1,\, \ldots,\, X_{n}$ estratto da $F_\vartheta$, allora l'MLE di $k(\vartheta)$ risulta: \[
+                \forall k(\circ) \,:\, \hat{K}_n \coloneqq k(\hat{\Theta}_n) = 
+                k\big(d_n(X_1,\, \ldots,\, X_{n})\big)
+            ,\] dove $k(\circ)$ è una funzione qualunque.
+        \end{prty}
+        \begin{thm}\label{thm:Successione_MLE}
+            Se la densità $F_\vartheta$ soddisfa ``opportune condizioni di regolarità'' e la successione 
+            degli MLE di $\vartheta$ è indicata come:
+            \begin{align*}
+                \hat{\Theta}_n = d_n(X_1,\, \ldots,\, X_{n}) & & \text{per } n \in \mathbb{N},\, n>0
+            ,\end{align*}
+            e $k(\vartheta)$ è una funzione differenziabile di $\vartheta$, allora possiamo affermare le 
+            seguenti proprietà sulla successione $(k(\hat{\Theta}_n))_n$ degli MLE di $k(\vartheta)$:
+            \emph{
+            \begin{enumerate}
+                \item asintoticamente non distorta: \[
+                        \lim_{n \to \infty} \text{E}_{\vartheta}[k(\hat{\Theta}_n)] = k(\vartheta)
+                ;\]
+                \item consistente in media quadratica: \[
+                        \lim_{n \to \infty} \text{E}_{\vartheta}\left[\big(k(\hat{\Theta}_n) - k(\vartheta)\big)^2\right] = 0
+                ;\]
+            \item asintoticamente normale, con media $k(\vartheta)$ e varianza: \[
+                    \frac{\sigma^2(\vartheta)}{n} = \frac{(k^{\prime}(\vartheta))^2}
+                    {n\, \text{E}_{\vartheta}\left[\left(\frac{\partial}{\partial \vartheta} \cdot 
+                    \ln\big(F_\vartheta (X_1)\big)\right)^2\right]}
+            .\] 
+            \end{enumerate}
+            }
+        \end{thm}
+        \begin{note}
+            Il Teorema~\ref{thm:Successione_MLE} non si applica al caso di una popolazione con densità 
+            che hanno insieme di definizione dipendente dal parametro $\vartheta$: questo infatti viola le 
+            ``opportune condizioni di regolarità'' accennate nel teorema.
+        \end{note}
+    \section{Intervalli di confidenza}
     \section{Quantità pivotale}
     \section{intervalli di confidenza}
         \subsection{Intervalli di confidenza per media e varianza di popolazioni normali}
