@@ -245,7 +245,7 @@
                              &= \left(\frac{1}{1-2t}\right)^{n /2} = \left(\frac{1 /2}{1 /2 -t}\right)^{n /2} & & \text{dal caso $n=1$}
                 .\end{align}
             \end{prty}
-            \begin{defn}[Definizione alternativa]
+            \begin{defn}[Relazioen tra gamma e chi-quadro]\label{defn:Relazione_gamma_chi_quadro}
                 La densità Gamma di parametri $\alpha = n /2$ e $\lambda = 1 /2$  con $n \geq 1$ intero, è anche indicata come densità \emph{chi-quadro} con $n$ gradi di libertà.
 
                 Possiamo provarlo direttamente dal risultato della Proprietà~\ref{prty:Generatrice_momenti_chi_quadro}: infatti la generatrice dei momenti della distribuzione chi-quadro ad $n$ gradi di libertà \eqref{eq:Generatrice_momenti_chi_quadro} corrisponde alla generatrice della distribuzione Gamma nel caso indicato sopra \eqref{eq:Generatrice_momenti_Gamma}.
@@ -306,7 +306,7 @@
             .\] La distribuzione viene suddivisa da $q_\alpha$ in due intervalli proporzionali ad $\alpha$ e a $(1-\alpha)$.
         \end{defn}
         \subsection{Quantili della normale standard}
-            \begin{defn}
+            \begin{defn}\label{defn:Quantili_normale_standard}
                 Data la variabile aleatoria $Z \sim \mathcal{N}(0,\,1)$ chiamiamo quantile di coda sinistra di ordine $\alpha$ il valore definito come: \[
                     P(Z > z_\alpha) = 1 - \Phi(z_\alpha) = \alpha
                 .\]
@@ -317,14 +317,14 @@
                 .\]
             \end{obsv}
         \subsection{Quantili della chi-quadro}
-            \begin{defn}
+            \begin{defn}\label{defn:Quantili_chi_quadro}
                 Data la variabile aleatoria $C \sim \chi^2(n)$ chiamiamo quantile di coda destra 
                 di ordine $\alpha$ il valore definito come: \[
                     P(C > \chi^2_{\alpha,\,n}) = \alpha
                 .\]
             \end{defn}
         \subsection{Quantili della \emph{t}}
-            \begin{defn}
+            \begin{defn}\label{defn:Quantili_t_Student}
                 Data la variabile aleatoria $T \sim t(n)$ chiamiamo quantile di coda destra 
                 di ordine $\alpha$ il valore definito come: \[
                     P(T > t_{\alpha,\,n}) = \alpha

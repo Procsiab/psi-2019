@@ -431,12 +431,281 @@
             ``opportune condizioni di regolarità'' accennate nel teorema.
         \end{note}
     \section{Intervalli di confidenza}
+        \begin{defn}
+            Sia $X_1,\, \ldots,\, X_{n}$ un campione aleatorio estratto da una popolazione con densità 
+            $F_\vartheta$ dipendente da uno o più parametri incogniti $\vec{\vartheta}$; sia $k(\vartheta)$ 
+            una caratteristica della popolazione e fissiamo $\alpha \in (0,\,1)$.
+
+            Se consideriamo due statistiche $D_1 = d_1(X_1,\, \ldots,\, X_{n})$ e 
+            $D_2 = d_n(X_1,\, \ldots,\, X_{n})$ tali che $D_1 < D_2$ e per le quali valga: \[
+                \forall  \vartheta \,:\, P_\vartheta(D_1 < k(\vartheta) < D_2) = 1-\alpha
+            ,\] allora possiamo affermare che:
+            \begin{itemize}
+                \item chiamiamo $(D_1,\, D_2)$ \emph{intervallo di confidenza} all'$(1-\alpha)\cdot 100\%$ 
+                    per $k(\vartheta)$;
+                \item chiamiamo \emph{livello di confidenza} $1-\alpha$;
+                \item se abbiamo la realizzazione $\vec{x} = x_1,\, \ldots,\, x_{n}$ e le statistiche 
+                    corrispondenti $\bar{d_1}=d_1(\vec{x}),\, \bar{d_2}=d_2(\vec{x})$, allora l'intervallo 
+                    reale $(\bar{t_1},\, \bar{t_2})$ è detto \emph{stima intervallare} oppure 
+                    \underline{intervallo di confidenza} di $k(\vartheta)$;
+                \item con livello di confidenza $1-\alpha$ possiamo affermare che 
+                    $k(\vartheta) \in (\bar{t_1},\, \bar{t_2})$.
+            \end{itemize}
+            Intervalli come quelli appena definiti sono chiamati \emph{bilateri}, perché delimitati da 
+            due statistiche.
+        \end{defn}
+        \begin{note}
+            Affermando che, con confidenza $1-\alpha$, la caratteristica $k(\vartheta)$ di una popolazione sia 
+            compresa in un intervallo di confidenza $(d_1,\, d_2)$, intendiamo dire che nel 
+            $(1-\alpha)\cdot 100\%$ dei casi l'intervallo che costruiamo contiene il vero valore di 
+            $k(\vartheta)$.
+
+            Non stiamo invece affermando che $P_\vartheta\big(k(\vartheta) \in (d_1,\, d_2)\big) = 1-\alpha$, 
+            dato che non trattiamo alcuna variabile aleatoria.
+        \end{note}
+        \begin{defn}[Intervallo illimitato superiormente]
+            Consideriamo una statistica $D_1 = d_1(X_1,\, \ldots,\, X_{n})$ tale che valga: \[
+                \forall \vartheta \,:\, P_\vartheta(D_1 < k(\vartheta)) = 1-\alpha
+            ;\] allora possiamo affermare che:
+            \begin{itemize}
+                \item chiamiamo intervallo di confidenza \emph{unilatero illimitato superiormente} per 
+                    $k(\vartheta)$ all'$(1-\alpha)\cdot 100\%$ la quantità $(D_1,\, +\infty)$;
+                \item se abbiamo la realizzazione $\vec{x}$ e $\bar{d}_1 = d_1(\vec{x})$ allora chiamiamo 
+                    l'intervallo reale $(\bar{d}_1,\, +\infty)$ \emph{stima intervallare unilatera};
+                \item con confidenza $1-\alpha$ diremo che vale $k(\vartheta) \in (\bar{d}_1,\, +\infty)$.
+            \end{itemize}
+        \end{defn}
+        \begin{defn}[Intervallo illimitato inferiormente]
+            Consideriamo una statistica $D_2 = d_1(X_1,\, \ldots,\, X_{n})$ tale che valga: \[
+                \forall \vartheta \,:\, P_\vartheta(k(\vartheta) < D_2) = 1-\alpha
+            ;\] allora possiamo affermare che:
+            \begin{itemize}
+                \item chiamiamo intervallo di confidenza \emph{unilatero illimitato inferiormente} per 
+                    $k(\vartheta)$ all'$(1-\alpha)\cdot 100\%$ la quantità $(-\infty,\, D_2)$;
+                \item se abbiamo la realizzazione $\vec{x}$ e $\bar{d}_2 = d_2(\vec{x})$ allora chiamiamo 
+                    l'intervallo reale $(-\infty,\, \bar{d}_1)$ \emph{stima intervallare unilatera};
+                \item con confidenza $1-\alpha$ diremo che vale $k(\vartheta) \in (-\infty,\, \bar{d}_2)$.
+            \end{itemize}
+        \end{defn}
     \section{Quantità pivotale}
-    \section{intervalli di confidenza}
-        \subsection{Intervalli di confidenza per media e varianza di popolazioni normali}
-        \subsection{Intervallo confidenza per media di esponenziale}
-        \subsection{Intervallo confidenza per differenza di medie popolazioni normali}
-        \subsection{Intervallo confidenza per rapporto di varianze popolazioni normali}
+        \begin{defn}
+            Sia $X_1,\, \ldots,\, X_{n}$ un campione estratto da una popolazione con densità $F_\vartheta$, 
+            inoltre sia $Q = q(X_1,\, \ldots,\, X_{n};\, \vartheta)$ una variabile aleatoria funzione del 
+            campione e del parametro incognito.
+
+            Chiamiamo $Q$ \emph{quantità pivotale} se la sua distribuzione non dipende da $\vartheta$.
+        \end{defn}
+        \begin{obsv}
+            Consideriamo una quantità pivotale $Q$, allora posiamo determinare due numeri $q_1,\, q_2$ che 
+            dipendano da $\alpha$ ma non da $\vartheta$, tali che: \[
+                P_\vartheta(q_1 < Q < q_2) = P_\vartheta(q_1 < q(X_1,\, \ldots,\, X_{n};\, \vartheta) < q_2) 
+                = 1-\alpha
+            .\] Se per ogni realizzazione campionaria $\vec{x}$ abbiamo: \[
+            q_1 < q(\vec{x};\, \vartheta) < q_2 \iff d_1(\vec{x}) < k(\vartheta) < d_2(\vec{x})
+        ,\] per opportune funzioni $d_1(\circ),\, d_2(\circ)$, allora scriviamo la probabilità:
+        \begin{align*}
+            &P_\vartheta\big(d_1(X_1,\, \ldots,\, X_{n}) < k(\vartheta) < d_2(X_1,\, \ldots,\, X_{n})\big) \\
+            &= P_\vartheta\big(q_1 < q(X_1,\, \ldots,\, X_{n};\, \vartheta) < q_2\big) \\
+            &= 1-\alpha
+        .\end{align*}
+        La precedente relazione vale per qualunque valore di $\vartheta$; possiamo quindi definire l'intervallo 
+        di confidenza di livello $1-\alpha$ per $k(\vartheta)$ come: \[
+            \big(d_1(X_1,\, \ldots,\, X_{n}),\, d_2(X_1,\, \ldots,\, X_{n})\big)
+        .\]
+        \end{obsv}
+        \pagebreak % Interrompi pagina, evita di lasciare il titolo separato dal testo
+    \section{Esempi di intervalli notevoli}
+        \subsection{Media di popolazioni normali}
+            \begin{defn}
+                Ricordando la Definizione~\ref{defn:Quantili_normale_standard} dei quantili della normale 
+                standard, costruiamo il seguente intervallo di confidenza:
+                \begin{align*}
+                    P(-z_{\alpha /2} < Z < z_{\alpha /2}) &= 
+                    P(Z < z_{\alpha /2}) - P(Z < -z_{\alpha /2}) \\
+                    &= \Phi(z_{\alpha /2}) - \Phi(-z_{\alpha /2}) \\
+                    &= 2\Phi(z_{\alpha /2}) -1 = 2(1-\alpha /2) -1 \\
+                    &= 1-\alpha
+                .\end{align*}
+                Nella precedente abbiamo la variabile aleatoria $Z \sim \mathcal{N}(0,\,1)$ e il quantile di 
+                coda destra $z_{\alpha} \,:\, 1-\Phi(z_{\alpha}) = P(Z > z_{\alpha}) = \alpha$.
+            \end{defn}
+            \begin{note}
+                Nelle prossime proprietà, assumiamo sempre di considerare un campione $X_1,\, \ldots,\, X_{n}$ 
+                estratto da una popolazione normale di media $\mu$ e varianza $\sigma^2$.
+            \end{note}
+            \begin{prty}[Intervallo bilatero con $\mu =\,?,\, \sigma^2 = \sigma^2_0$]
+                Se il campione è costituito da variabili aleatorie indipendenti identicamente distribuite, 
+                con densità $\mathcal{N}(\mu,\, \sigma^2_0)$ allora la media campionaria vale 
+                $\overline{X}_n\sim \mathcal{N}(\mu,\, \sigma^2_0 /n)$.
+
+                Segue che la sua quantità pivotale risulta $Q = \frac{(\overline{X}_n -\mu)\cdot \sqrt{n}}{\sigma_0} \sim \mathcal{N}(0,\,1)$ e per ogni $\mu$:
+                \begin{align*}
+                    1-\alpha &= P_{\mu}\left(-z_{\alpha /2} < \frac{(\overline{X}_n -\mu)\cdot\sqrt{n}}{\sigma_0} < z_{\alpha /2}\right) \\
+                             &= P_{\mu}\left(\overline{X}_n -z_{\alpha /2}\cdot \frac{\sigma_0}{\sqrt{n}} < \mu < \overline{X}_n +z_{\alpha /2}\cdot \frac{\sigma_0}{\sqrt{n}}\right)
+                .\end{align*}
+                La precedente relazione si riferisce all'intervallo bilatero: \[
+                    \left(\overline{X}_n -z_{\alpha /2}\cdot \frac{\sigma_0}{\sqrt{n}},\, 
+                    \overline{X}_n +z_{\alpha /2}\cdot \frac{\sigma_0}{\sqrt{n}}\right)
+                ;\] esso ha livello di confidenza $1-\alpha$ per $\mu$.
+                In corrispondenza della realizzazione: \[
+                    \overline{X}_1 = \overline{x}_1,\, \ldots,\, \overline{X}_{n} = \overline{x}_n
+                ,\] possiamo scrivere la stima intervallare al cui interno $\mu$ è contenuto con confidenza 
+                $1-\alpha$:  \[
+                    \mu \in \left(\overline{x}_n -z_{\alpha /2}\cdot \frac{\sigma_0}{\sqrt{n}},\, 
+                    \overline{x}_n +z_{\alpha /2}\cdot \frac{\sigma_0}{\sqrt{n}}\right)
+                .\] 
+            \end{prty}
+            \begin{prty}[Intervallo unilaterale con $\mu =\,?,\, \sigma^2 = \sigma^2_0$]
+                Consideriamo la relazione seguente: \[
+                    P(Z > z_\alpha) = P(Z < -z_\alpha) = \alpha
+                ,\] e tramite la quantità pivotale $Q = \frac{(\overline{X}_n -\mu)\cdot \sqrt{n}}{\sigma_0} \sim \mathcal{N}(0,\,1)$ si ha per ogni $\mu$:
+                \begin{align*}
+                    1-\alpha = P_{\mu}\left(\frac{(\overline{X}_n -\mu)\cdot \sqrt{n}}{\sigma_0} 
+                    < z_\alpha\right) &= P_\mu\left(\mu > \overline{X}_n 
+                    -\frac{\sigma_0}{\sqrt{n}\cdot z_\alpha}\right) \\
+                    1-\alpha = P_{\mu}\left(\frac{(\overline{X}_n -\mu)\cdot \sqrt{n}}{\sigma_0} 
+                    > -z_\alpha\right) &= P_\mu\left(\mu > \overline{X}_n 
+                    +\frac{\sigma_0}{\sqrt{n}\cdot z_\alpha}\right)
+                .\end{align*}
+                Concludiamo che gli intervalli unilaterali illimitati superiormente e inferiormente sono 
+                definiti come:
+                \begin{align*}
+                    \left(\overline{X}_n -\frac{\sigma_0}{\sqrt{n}\cdot z_\alpha},\, +\infty\right) & &
+                    \left(-\infty,\, \overline{X}_n +\frac{\sigma_0}{\sqrt{n}\cdot z_\alpha}\right)
+                .\end{align*}
+            \end{prty}
+            \begin{prty}[Intervallo bilatero con $\mu =\,?,\, \sigma^2 =\,?$]
+                In questo caso, l'intervallo costruito in precedenza per la media incognita e la varianza nota 
+                sarà basato su una quantità pivotale contenente una incognita, dato che 
+                $\sigma^2 \neq \sigma^2_0$.
+
+                Sapendo che il campione considerato è costituito da variabili aleatorie normali indipendenti 
+                identicamente distribuite, definiamo la quantità pivotale funzione del parametro $\mu$: \[
+                    Q = \frac{(\overline{X}_n -\mu)\cdot \sqrt{n}}{S_n} \sim t(n-1)
+                .\] Dalla Definizione~\ref{defn:Quantili_t_Student} dei quantili di coda destra della 
+                distribuzione \emph{t}, sappiamo che: \[
+                    P(T_n > t_{\alpha,\,n}) = \alpha
+                ,\] dove $T_n \sim t(n)$; considerando anche la simmetria \eqref{eq:Simmatria_quantile_distribuzione_t}, se $\alpha \in (0,\,1)$ allora otteniamo per ogni $\mu,\, \sigma^2$:
+                \begin{align*}
+                    1-\alpha &= P_{(\mu,\,\sigma^2)}\left(-t_{\alpha /2,\,n-1} 
+                    < \frac{(\overline{X}_n -\mu)\cdot \sqrt{n}}{S_n} < t_{\alpha /2,\,n-1}\right) \\
+                    &= P_{(\mu,\,\sigma^2)}\left(\overline{X}_n -\frac{S_n}{\sqrt{n}\cdot t_{\alpha /2,\,n_1}} 
+                    < \mu < \overline{X}_n + \frac{S_n}{\sqrt{n}}\cdot t_{\alpha /2,\,n-1}\right)
+                .\end{align*}
+                In corrispondenza della realizzazione $\overline{X}_n = \overline{x}_n,\, S_n = s_n$ possiamo 
+                scrivere la stima intervallare al cui interno $\mu$ è contenuto con confidenza $1-\alpha$: \[
+                    \mu \in \left(\overline{x}_n -\frac{S_n}{\sqrt{n}}\cdot t_{\alpha /2,\,n-1},\, 
+                    \overline{x}_n +\frac{S_n}{\sqrt{n}}\cdot t_{\alpha /2,\,n-1}\right)
+                .\] 
+            \end{prty}
+            \begin{prty}[Intervallo unilaterale con $\mu =\,?,\, \sigma^2 =\,?$]
+                Osserviamo che, comunque fissati $\mu,\, \sigma^2$ si ha:
+                \begin{align*}
+                    1-\alpha = P_{(\mu,\, \sigma^2)}\left(\frac{(\overline{X}_n -\mu)\cdot \sqrt{n}}{S_n} 
+                    < t_{\alpha,\,n-i}\right)
+                    &= P_{(\mu,\, \sigma^2)}\left(\mu > \overline{X}_n -\frac{S_n}{\sqrt{n}}\cdot t_{\alpha,\,n-1}\right) \\
+                    1-\alpha = P_{(\mu,\, \sigma^2)}\left(\frac{(\overline{X}_n -\mu)\cdot \sqrt{n}}{S_n} 
+                    > -t_{\alpha,\,n-i}\right)
+                    &= P_{(\mu,\, \sigma^2)}\left(\mu < \overline{X}_n +\frac{S_n}{\sqrt{n}}\cdot t_{\alpha,\,n-1}\right)
+                .\end{align*}
+                Concludiamo che gli intervalli unilaterali illimitati superiormente e inferiormente sono 
+                definiti come:
+                \begin{align*}
+                    \left(\overline{X}_n -\frac{S_n}{\sqrt{n}}\cdot t_{\alpha,\,n-1},\, +\infty\right) & &
+                    \left(-\infty,\, \overline{X}_n +\frac{S_n}{\sqrt{n}}\cdot t_{\alpha,\,n-1}\right)
+                .\end{align*}
+            \end{prty}
+        \subsection{Varianza di popolazioni normali}
+            \begin{defn}
+                Ricordando la Definizione~\ref{defn:Quantili_chi_quadro} dei quantili della chi-quadro, 
+                costruiamo il seguente intervallo di confidenza:
+                \begin{align*}
+                    P(\chi^2_{1-\alpha /2,\,n} < C_n < \chi^2_{\alpha /2,\,n}) &=
+                    P(C_n < \chi^2_{\alpha /2,\,n}) - P(X_n < \chi^2_{1-\alpha /2,\,n}) \\
+                    &= \left(1-\frac{\alpha}{2}\right) -\frac{\alpha}{2} \\
+                    &= 2(1-\alpha /2) -1 = 1-\alpha
+                .\end{align*}
+            \end{defn}
+            \begin{note}
+                Nelle prossime proprietà, assumiamo sempre di considerare un campione $X_1,\, \ldots,\, X_{n}$ 
+                estratto da una popolazione normale di media $\mu$ e varianza $\sigma^2$.
+            \end{note}
+            \begin{prty}[Intervallo bilatero con $\mu =\,?,\, \sigma^2 =\,?$]
+                Dato che le variabili aleatorie del campione sono normali indipendenti identicamente 
+                distribuite, consideriamo la seguente quantità pivotale: \[
+                    Q = \frac{(n-1)\cdot S_n^2}{\sigma^2} \sim \chi^2(n-1)
+                ,\] e per ogni $\mu,\, \sigma^2$ fissati otteniamo:
+                \begin{align*}
+                    1-\alpha &= P_{(\mu,\,\sigma^2)}\left(\chi^2_{1-\alpha /2,\,n-1} 
+                    < \frac{(n-1)\cdot S_n^2}{\sigma^2} < \chi^2_{\alpha /2,\,n-1}\right) \\
+                    &= P_{(\mu,\,\sigma^2)}\left(\frac{(n-1)\cdot S_n^2}{\chi^2_{\alpha /2,\,n-1}} 
+                    < \sigma^2 < \frac{(n-1)\cdot S_n^2}{\chi^2_{1-\alpha /2,\,n-1}}\right)
+                .\end{align*}
+                Deduciamo che l'intervallo di confidenza di livello $1-\alpha$ per $\sigma^2$ è definito come: \[
+                    \left(\frac{(n-1)\cdot S_n^2}{\chi^2_{\alpha /2,\,n-1}},\, 
+                    \frac{(n-1)\cdot S_n^2}{\chi^2_{1-\alpha /2,\,n-1}}\right)
+                .\] 
+            \end{prty}
+            \begin{prty}[Intervallo bilatero con $\mu = \mu_0,\, \sigma^2 =\,?$]
+                Dato che le variabili aleatorie sono normali indipendenti identicamente distribuite, adottiamo 
+                la seguente quantità pivotale: \[
+                    Q = \frac{\sum_{i=1}^{n} (X_i - \mu_0)^2}{\sigma^2} \sim \chi^2(n)
+                ,\] e per ogni $\sigma^2$ fissato otteniamo (indicando con 
+                $T_n^2 \coloneqq \sum_{i=1}^{n} (X_i-\mu_0)^2$):
+                \begin{align*}
+                    1-\alpha &= P_{\sigma^2}\left(\chi^2_{1-\alpha /2,\,n} < \frac{n\,T_n^2}{\sigma^2} 
+                    < \chi^2_{\alpha /2,\,n}\right) \\
+                    &= P_{\sigma^2}\left(\frac{n\,T_n^2}{\chi^2_{\alpha /2,\,n}} < \sigma^2 
+                    < \frac{n\,T_n^2}{\chi^2_{1-\alpha /2,\,n}}\right)
+                .\end{align*}
+                Deduciamo che l'intervallo di confidenza di livello $1-\alpha$ per $\sigma^2$ è definito come: \[
+                    \left(\frac{n\,T_n^2}{\chi^2_{\alpha /2,\,n}},\, 
+                    \frac{n\,T_n^2}{\chi^2_{1-\alpha /2,\,n}}\right)
+                .\]
+            \end{prty}
+        \subsection{Media di popolazioni esponenziali}
+            \begin{defn}
+                Consideriamo un campione $X_1,\, \ldots,\, X_{n}$ tale che $X_i \sim \mathcal{E}(1 /\vartheta)$ 
+                dove $\vartheta$ è incognita; sappiamo che la media di tale variabili aleatorie è $\vartheta$, 
+                e possiamo dimostrare che il suo MLE è la media campionaria $\overline{X}_n$.
+
+                Se abbiamo $n$ variabili aleatorie esponenziali indipendenti con parametro $1 /\vartheta$, 
+                allora la loro somma ha distribuzione $\sum_{i=1}^{n} X_i \sim \Gamma(n,\,1 /\vartheta)$.
+
+                Dalla relazione tra la distribuzione chi-quadro e gamma (\ref{defn:Relazione_gamma_chi_quadro}) 
+                possiamo affermare che: \[
+                    Q = \frac{2}{\vartheta}\cdot \sum_{i=1}^{n} X_i = \frac{2}{\vartheta}\cdot n\,\overline{X}_n 
+                    \sim \chi^2(2n)
+                ,\] è una quantità pivotale; infatti la funzione generatrice dei momenti di $Q$ per ordine 
+                inferiore a $1 /2$ vale:
+                \begin{align*}
+                    m_{Q}(t < 1 /2) &= \text{E}_{\vartheta}\left[e^{\frac{2t}{\vartheta}\cdot 
+                    \sum_{i=1}^{n} X_i}\right] = m_{(\sum_{i=1}^{n} X_i)}\left(\frac{2t}{\vartheta}\right) \\
+                    &= \left(\frac{1}{1-\vartheta\cdot 2t /\vartheta}\right)^n
+                    = \left(\frac{1}{1-2t}\right)^n \\
+                    &= \left(\frac{1 /2}{1 /2 -t}\right)^{2n /2}
+                \hspace{-1.7em};\end{align*}
+                abbiamo ottenuto esattamente la generatrice dei momenti di una variabile aleatoria con densità 
+                $\chi^2(2n)$, ed essa non dipende da $\vartheta$.
+                
+                Per ogni $\vartheta > 0$ fissato otteniamo:
+                \begin{align*}
+                    1-\alpha &= P_\vartheta\left(\chi^2_{1-\alpha /2,\,2n} < \frac{2}{\vartheta}\cdot 
+                    \sum_{i=1}^{n} X_i < \chi^2_{\alpha /2,\,2n}\right) \\
+                    &= P_\vartheta\left(\frac{2\,\sum_{i=1}^{n} X_i}{\chi^2_{\alpha /2,\,2n}} < \vartheta 
+                    < \frac{2\,\sum_{i=1}^{n} X_i}{\chi^2_{1-\alpha /2,\,2n}}\right)
+                .\end{align*}
+                Deduciamo che l'intervallo di confidenza di livello $1-\alpha$ per $\vartheta$ è definito 
+                come: \[
+                    \left(\frac{2\,\sum_{i=1}^{n} X_i}{\chi^2_{\alpha /2,\,2n}},\, 
+                    \frac{2\,\sum_{i=1}^{n} X_i}{\chi^2_{1-\alpha /2,\,2n}}\right)
+                .\]
+            \end{defn}
+        \subsection{Differenza di medie tra popolazioni normali}
+            \begin{defn}
+                
+            \end{defn}
+        \subsection{Rapporto di varianze tra popolazioni normali}
         \subsection{Intervalli di confidenza asintotici}
         \subsection{Intervalli di confidenza per proporzione}
         
