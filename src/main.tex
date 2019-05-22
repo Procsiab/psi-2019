@@ -52,13 +52,13 @@
 \hyphenation{Osservazione}
 \hyphenation{Equazione}
 \hyphenation{Teorema}
-% Solleva posizione lettera greca chi minusola
+% Solleva posizione lettera greca chi minuscola
 \usepackage{letltxmacro}
 \LetLtxMacro{\lowchi}{\chi}
 \renewcommand\chi{\text{\raisebox{2pt}{$\lowchi$}}}
 
 % Includi solo il capitolo in corso
-\includeonly{chap5}
+\includeonly{chap6}
 
 % In questo ambiente risiede il contenuto del documento
 \begin{document}
@@ -76,5 +76,6 @@
     \part{Statistica inferenziale}
     \include{chap4}
     \include{chap5}
+    \include{chap6}
 
 \end{document}
