@@ -4,7 +4,7 @@
 \chapter{Variabili Aleatorie}
     \section{Variabile aleatoria o casuale}
         \begin{defn}\label{defn:Variabile_aleatoria}
-            Consideriamo lo spazio di probabilità $(\Omega,\,\mathscr{F},\,P)$; una \textit{variabile aleatoria} $X$ è una funzione da $\Omega$ in $\mathbb{R}$ tale che: \[
+            Consideriamo lo spazio di probabilità $(\Omega,\,\mathscr{F},\,P)$; una \emph{variabile aleatoria} $X$ è una funzione da $\Omega$ in $\mathbb{R}$ tale che: \[
                 \forall x \in \mathbb{R} \,:\, \{X \leq x\} \coloneqq \{\omega \in \Omega \,:\, X(\omega) \leq x\} \in \mathscr{F}
             .\]
         \end{defn}
@@ -18,7 +18,7 @@
         \end{prty}
     \section{Funzione di ripartizione}
         \begin{defn}\label{defn:Funzione_ripartizione}
-            Sia $X$ una variabile aleatoria definita su uno spazio di probabilità $(\Omega,\,\mathscr{F},\,P)$; chiamiamo \textit{funzione di ripartizione} di $X$ la funzione $F_X\,:\, \mathbb{R} \mapsto [0,\,1]$ definita come: \[
+            Sia $X$ una variabile aleatoria definita su uno spazio di probabilità $(\Omega,\,\mathscr{F},\,P)$; chiamiamo \emph{funzione di ripartizione} di $X$ la funzione $F_X\,:\, \mathbb{R} \mapsto [0,\,1]$ definita come: \[
                 \forall x \in \mathbb{R} \,:\, F_X(x) \coloneqq P(X \leq x)
             .\]
         \end{defn}
@@ -43,8 +43,8 @@
             \begin{prty}\label{prty:Funzione_ripartizione}
                 Sia $X$ una variabile aleatoria definita sullo spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$ e la sua funzione di ripartizione $F_X(x) = P(X \leq x)$; allora possiamo affermare che:
                 \begin{itemize}
-                    \item $F_X(x)$ è una funzione \textit{monotona non decrescente};
-                    \item $F_X(x)$ è \textit{continua} da destra: $\forall x_0 \in \mathbb{R} \,:\, \lim_{x \downarrow x_0} F_X(x) = F_X(x_0)$;
+                    \item $F_X(x)$ è una funzione \emph{monotona non decrescente};
+                    \item $F_X(x)$ è \emph{continua} da destra: $\forall x_0 \in \mathbb{R} \,:\, \lim_{x \downarrow x_0} F_X(x) = F_X(x_0)$;
                     \item il limite destro ($x \rightarrow +\infty$) di $F_X(x)$ vale 1, il limite sinistro ($x \rightarrow -\infty$) vale 0.
                 \end{itemize}
             \end{prty}
@@ -54,12 +54,12 @@
         \end{obsv}
     \section{Variabili aleatorie discrete}
     \begin{defn}\label{defn:Variabili_aleatorie_discrete}
-            La variabile aleatoria $X$ definita su uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$ è una variabile aleatoria \textit{discreta} se assume con probabilità 1 i valori all'interno di un insieme $S$ al più numerabile: \[
+            La variabile aleatoria $X$ definita su uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$ è una variabile aleatoria \emph{discreta} se assume con probabilità 1 i valori all'interno di un insieme $S$ al più numerabile: \[
                 P(X \in S) = 1
             .\] 
         \end{defn}
         \begin{defn}\label{defn:Densità_discreta}
-            Sia $X$ una variabile aleatoria \underline{discreta} su uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; allora chiamiamo \textit{densità discreta} di $X$ la funzione definita come segue: \[
+            Sia $X$ una variabile aleatoria \underline{discreta} su uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; allora chiamiamo \emph{densità discreta} di $X$ la funzione definita come segue: \[
                 p_X(x) \coloneqq P(X = x)
             .\]
         \end{defn}
@@ -118,7 +118,7 @@
                         0 & \text{se $k \notin {0,\, \ldots,\, n}$.}
                     \end{cases}
                 \end{equation}
-                Chiamiamo la \eqref{eq:Densità_Binomiale} \textit{densità binomiale di parametri $n$ e $p$} o in modo equivalente indichiamo: \[
+                Chiamiamo la \eqref{eq:Densità_Binomiale} \emph{densità binomiale di parametri $n$ e $p$} o in modo equivalente indichiamo: \[
                     X \sim \mathcal{B}i(n,\,p)
                 .\]
             \end{defn}
@@ -131,7 +131,7 @@
                         0 & \text{se $k \notin {0,\, 1}$.}
                     \end{cases}
                 \end{equation}
-                Chiamiamo la \eqref{eq:Densità_Binomiale} \textit{densità bernoulliana di parametro $p$} o in modo equivalente indichiamo: \[
+                Chiamiamo la \eqref{eq:Densità_Binomiale} \emph{densità bernoulliana di parametro $p$} o in modo equivalente indichiamo: \[
                     X \sim \mathcal{B}e(p)
                 .\] 
             \end{defn}
@@ -151,7 +151,7 @@
                 .\end{align*}
                 Sapendo che la funzione di ripartizione di $X$ vale $F_X(k) = 1 - P(X > k) = 1 - q^k$, possiamo ottenere la densità usando il punto $(4)$ della Proprietà~\ref{prty:Densità_discreta}: \[
                     P(X = k) = F_X(k) - F_X(k-1) = q^{k-1} - q^k = q^{k-1}(1-q)
-                .\] Definendo l'\textit{intensità di guasto} come la quantità $p \coloneqq 1-q = P(X \leq 1)$ otteniamo la seguente scrittura della densità:
+                .\] Definendo l'\emph{intensità di guasto} come la quantità $p \coloneqq 1-q = P(X \leq 1)$ otteniamo la seguente scrittura della densità:
                 \begin{align*}
                     P(X = k) = p \cdot (1-p)^{k-1} & &\forall k \in \mathbb{N}
                 .\end{align*}
@@ -169,7 +169,7 @@
                         0 & \text{se $k \notin \mathbb{N}$.}
                     \end{cases}
                 \end{equation}
-                Chiamiamo la \eqref{eq:Densità_Geometrica} \textit{densità geometrica di parametro $p$} o in modo equivalente indichiamo: \[
+                Chiamiamo la \eqref{eq:Densità_Geometrica} \emph{densità geometrica di parametro $p$} o in modo equivalente indichiamo: \[
                     X \sim \mathcal{G}(p)
                 .\] 
             \end{defn}
@@ -204,7 +204,7 @@
                         0 & \text{se $k \notin \mathbb{N}$.}
                     \end{cases}
                 \end{equation}
-                Chiamiamo la \eqref{eq:Densità_Poisson} \textit{densità di Poisson di parametro $\lambda$} o in modo equivalente indichiamo: \[
+                Chiamiamo la \eqref{eq:Densità_Poisson} \emph{densità di Poisson di parametro $\lambda$} o in modo equivalente indichiamo: \[
                     X \sim \mathcal{P}(\lambda)
                 .\] 
             \end{defn}
@@ -229,7 +229,7 @@
                         0 & \text{se $k \notin S$.}
                     \end{cases}
                 \end{equation}
-                Chiamiamo la \eqref{eq:Densità_Ipergeometrica} \textit{densità ipergeometrica di parametri $b+r$, $r$ e $n$} o in modo equivalente indichiamo: \[
+                Chiamiamo la \eqref{eq:Densità_Ipergeometrica} \emph{densità ipergeometrica di parametri $b+r$, $r$ e $n$} o in modo equivalente indichiamo: \[
                     X \sim \mathcal{I}(b+r,\, r,\, n)
                 .\] 
             \end{defn}
@@ -240,11 +240,11 @@
             \end{obsv}
     \section{Variabili aleatorie continue}
         \begin{defn}\label{defn:Variabile_aleatoria_continua}
-            Consideriamo una variabile aleatoria $X$ definita su uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; essa è chiamata variabile aleatoria \textit{assolutamente continua} se esiste una funzione $f_X\,:\, \mathbb{R} \mapsto \mathbb{R^+}$, che sia integrabile e la primitiva della funzione di ripartizione di $X$; inoltre deve essere possibile scrivere $F_X(x)$ nel modo seguente:
+            Consideriamo una variabile aleatoria $X$ definita su uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; essa è chiamata variabile aleatoria \emph{assolutamente continua} se esiste una funzione $f_X\,:\, \mathbb{R} \mapsto \mathbb{R^+}$, che sia integrabile e la primitiva della funzione di ripartizione di $X$; inoltre deve essere possibile scrivere $F_X(x)$ nel modo seguente:
             \begin{equation}
                 F_X(x) = \int_{-\infty}^{x} f_X(s)\, ds 
             \end{equation}
-            Chiamiamo \textit{densità} di $X$ la funzione $f_X(x)$.
+            Chiamiamo \emph{densità} di $X$ la funzione $f_X(x)$.
         \end{defn}
         \begin{prty}\label{prty:Variabile_aleatoria_continua}
             Se $f_x(x)$ è la densità di una variabile aleatoria $X$ assolutamente continua, allora possiamo affermare che:
@@ -280,7 +280,7 @@
             \begin{prty}\label{prty:Assoluta_continuità}
                 Consideriamo il punto $(2)$ della Proprietà~\ref{prty:Variabile_aleatoria_continua}.
 
-                Sia $X$ una variabile aleatoria e $F_X(x)$ la sua funzione di ripartizione; se $F_X(x)$ è continua e derivabile con continuità per ogni $x$ in $\mathbb{R}$ \--- eccetto al più un insieme finito di punti $B \coloneqq \{x_1,\,\ldots,\, x_n\} \subset \mathbb{R}$; allora $X$ è una variabile aleatoria \textit{assolutamente continua} e la funzione $f_X(x) = F^{\prime}_X(x)$, definita $\forall x \notin B$ in modo arbitrario su $B$, è una densità per $X$.
+                Sia $X$ una variabile aleatoria e $F_X(x)$ la sua funzione di ripartizione; se $F_X(x)$ è continua e derivabile con continuità per ogni $x$ in $\mathbb{R}$ \--- eccetto al più un insieme finito di punti $B \coloneqq \{x_1,\,\ldots,\, x_n\} \subset \mathbb{R}$; allora $X$ è una variabile aleatoria \emph{assolutamente continua} e la funzione $f_X(x) = F^{\prime}_X(x)$, definita $\forall x \notin B$ in modo arbitrario su $B$, è una densità per $X$.
             \end{prty}
             \begin{obsv}
                 Consideriamo il punto $(3)$ della Proprietà~\ref{prty:Variabile_aleatoria_continua}.
@@ -290,7 +290,7 @@
                 .\] 
             \end{obsv}
             \begin{obsv}
-                Una funzione $f\,:\, \mathbb{R} \mapsto \mathbb{R}$ è una \textit{densità} su $\mathbb{R}$ se valgono:
+                Una funzione $f\,:\, \mathbb{R} \mapsto \mathbb{R}$ è una \emph{densità} su $\mathbb{R}$ se valgono:
                 \begin{enumerate}
                     \item $f(x)$ è integrabile e $f(x) \geq 0$, per ogni $x$ in $\mathbb{R}$;
                     \item $\int_{\mathbb{R}} f(x)\, dx = 1$.
@@ -322,7 +322,7 @@
                         0 & \text{se $x > 1$.}
                     \end{cases}
                 \end{equation}
-                Chiamiamo la \eqref{eq:Densità_uniforme} \textit{densità uniforme} o in modo equivalente indichiamo: \[
+                Chiamiamo la \eqref{eq:Densità_uniforme} \emph{densità uniforme} o in modo equivalente indichiamo: \[
                     X \sim \mathcal{U}(0,\, 1)
                 .\]
             \end{defn}
@@ -350,13 +350,13 @@
                     \mu e^{-\mu t} & \text{se $t > 1$.}
                 \end{cases}
            \end{equation}
-            Chiamiamo la \eqref{eq:Densità_esponenziale} \textit{densità esponenziale} o in modo equivalente indichiamo: \[
+            Chiamiamo la \eqref{eq:Densità_esponenziale} \emph{densità esponenziale} o in modo equivalente indichiamo: \[
                 T \sim \mathcal{E}(\mu)
             .\]
             \end{defn}
         \subsection{Normale Standard}
             \begin{defn}
-                Consideriamo una variabile aleatoria $Z$ che sia \underline{assolutamente} continua su uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; diremo che $Z$ ha \textit{densità normale standard} se la sua densità vale:
+                Consideriamo una variabile aleatoria $Z$ che sia \underline{assolutamente} continua su uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; diremo che $Z$ ha \emph{densità normale standard} se la sua densità vale:
                 \begin{align}\label{eq:Densità_normale_standard} 
                     \varphi(z) = \frac{1}{\sqrt{2\pi}} \cdot e^{-z^2/2} & &\forall z \in \mathbb{R}
                 .\end{align}
@@ -370,7 +370,7 @@
                     P(-z < Z < z) &= \int_{-z}^{z} \varphi(x)\, dx = \frac{1}{\sqrt{2\pi}} \cdot \int_{-z}^{z} e^{-x^2/2}\, dx = \frac{2}{\sqrt{2\pi}} \cdot \int_{0}^{z} e^{-x^2/2}\, dx \\
                                   &= \frac{2}{\sqrt{\pi}} \cdot \int_{0}^{z /\sqrt{2}} e^{-y^2}\, dy & [y = x /\sqrt{2}] 
                 .\end{align*}
-                Chiamiamo la funzione ottenuta \textit{funzione di errore}, la quale è così definita per ogni $z$ positivo, e la indichiamo con $\text{erf}(z /\sqrt{2})$.
+                Chiamiamo la funzione ottenuta \emph{funzione di errore}, la quale è così definita per ogni $z$ positivo, e la indichiamo con $\text{erf}(z /\sqrt{2})$.
             \end{obsv}
             \begin{prty}
                 La densità normale standard \eqref{eq:Densità_normale_standard} di una variabile aleatori $Z \sim \mathcal{N}(0,\,1)$ determina la seguente funzione di ripartizione per $Z$:
@@ -405,7 +405,7 @@
                 \begin{align}\label{eq:Densità_Gaussiana}
                     f_X(x) = \varphi \left(\frac{x-\mu}{\sigma}\right)\cdot \frac{1}{\sigma} = \frac{1}{\sqrt{w\pi\sigma^2}} \cdot e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}^2\right)} & & \forall x \in \mathbb{R}
                 .\end{align}
-                Una variabile aleatoria $X$ con densità \eqref{eq:Densità_Gaussiana} è detta \textit{gaussiana di parametri $\mu$ e $\sigma^2$}, e si indica come: \[
+                Una variabile aleatoria $X$ con densità \eqref{eq:Densità_Gaussiana} è detta \emph{gaussiana di parametri $\mu$ e $\sigma^2$}, e si indica come: \[
                     X \sim \mathcal{N}(\mu,\,\sigma^2)
                 .\] 
             \end{defn}
@@ -441,7 +441,7 @@
     \begin{defn}[discreto]\label{defn:Valore_atteso_discreto}
             Sia $X$ una variabile aleatoria discreta con valori in $S = \{x_k \,:\, k \in I\}$ dove $I \subset \mathbb{Z}$, e sia $p_X(x)$ la sua densità; se abbiamo: \[
                 \sum_{k \in I} \left|x_k\right| \cdot p_X(x_k) < +\infty
-            ,\] allora chiamiamo \textit{media} o \textit{valore atteso} di $X$ la seguente espressione:
+            ,\] allora chiamiamo \emph{media} o \emph{valore atteso} di $X$ la seguente espressione:
             \begin{equation}\label{eq:Valore_atteso_discreto}
                 \text{E}(X) \coloneqq \sum_{k \in I}x_k \cdot p_X(x_k)
             ;\end{equation}
@@ -455,7 +455,7 @@
         \begin{defn}[continuo]\label{defn:Valore_atteso_continuo}
             Sia $X$ una variabile aleatoria assolutamente continua e $f_X(x)$ la sua densità; se abbiamo: \[
                 \int_{\mathbb{R}} |x| \cdot f_X(x)\, dx < +\infty 
-            ,\] allora chiamiamo \textit{media} o \textit{valore atteso}  di $X$ la seguente espressione:
+            ,\] allora chiamiamo \emph{media} o \emph{valore atteso}  di $X$ la seguente espressione:
             \begin{equation}\label{eq:Valore_atteso_continuo}
                 \text{E}(X) \coloneqq \int_{\mathbb{R}} x \cdot f_X(x)\, dx
             ;\end{equation}
@@ -483,12 +483,12 @@
         \begin{prty}\label{prty:Valore_atteso}
             Sia $X$ una variabile aleatoria definita sullo spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$.
             \begin{enumerate}
-                \item $P(X = c) = 1 \implies \text{E}(X) = c$ (\textit{coerenza});\label{itm:Coerenza_valore_atteso}
+                \item $P(X = c) = 1 \implies \text{E}(X) = c$ (\emph{coerenza});\label{itm:Coerenza_valore_atteso}
                 \item sia $X$ una variabile aleatoria e $B \subset \mathbb{R} \,:\, \{X \in B\} \in \mathscr{F}$; allora vale $\text{E}(\mathbf{F}_B(X)) = P(X \in B)$;
-                \item sia $X$ una variabile aleatoria che ammette valore atteso $\text{E}(X)$ e $\alpha$ una costante, allora vale: $\text{E}(\alpha \cdot X) = \alpha \cdot \text{E}(X)$ (\textit{linearità});\label{itm:Linearità_valore_atteso_prodotto}
-                \item sia $X$ una variabile aleatoria e $g(),\, h()$ due funzioni tali che esistano i loro valori attesi $\text{E}(g(X)),\, \text{E}(h(X))$; allora vale: $\text{E}(g(X)+h(X)) = \text{E}(g(X)) + \text{E}(h(X))$ (\textit{linearità});\label{itm:Linearità_valore_atteso_somma}
-                \item sia $X$ una variabile aleatoria tale che $P(X > 0) = 1$ ed esista il suo valore atteso $\text{E}(X)$, allora esso vale $\text{E}(X) \geq 0$; se inoltre il valore atteso è nullo, allora otteniamo $P(X = 0) = 1$ (\textit{positività});\label{itm:Positività_valore_atteso}
-                \item $a,\,b \in \mathbb{R} \,:\, P(a \leq X \leq B) = 1 \implies a \leq \text{E}(X) \leq b$ (\textit{internalità});\label{itm:Internalità_valore_atteso}
+                \item sia $X$ una variabile aleatoria che ammette valore atteso $\text{E}(X)$ e $\alpha$ una costante, allora vale: $\text{E}(\alpha \cdot X) = \alpha \cdot \text{E}(X)$ (\emph{linearità});\label{itm:Linearità_valore_atteso_prodotto}
+                \item sia $X$ una variabile aleatoria e $g(),\, h()$ due funzioni tali che esistano i loro valori attesi $\text{E}(g(X)),\, \text{E}(h(X))$; allora vale: $\text{E}(g(X)+h(X)) = \text{E}(g(X)) + \text{E}(h(X))$ (\emph{linearità});\label{itm:Linearità_valore_atteso_somma}
+                \item sia $X$ una variabile aleatoria tale che $P(X > 0) = 1$ ed esista il suo valore atteso $\text{E}(X)$, allora esso vale $\text{E}(X) \geq 0$; se inoltre il valore atteso è nullo, allora otteniamo $P(X = 0) = 1$ (\emph{positività});\label{itm:Positività_valore_atteso}
+                \item $a,\,b \in \mathbb{R} \,:\, P(a \leq X \leq B) = 1 \implies a \leq \text{E}(X) \leq b$ (\emph{internalità});\label{itm:Internalità_valore_atteso}
                 \item siano $g(),\,h()$ funzioni reali che ammettano valore atteso $\text{E}(g(x)),\,\text{E}(h(X))$; allora vale: $P(h(X) \geq g(X)) = 1 \implies \text{E}(h(X)) \geq \text{E}(g(X))$.
             \end{enumerate}
         \end{prty}
@@ -520,7 +520,7 @@
         \begin{defn}\label{defn:Varianza}
             Sia $X$ una variabile aleatoria che ammetta valore atteso $\text{E}(X)$; se esiste il valore atteso della distanza al quadrato tra $X$ e il suo valore atteso ($\text{E}((X - \text{E}(X))^2)$), allora definiamo: \[
                 \text{Var}(X) \coloneqq \text{E}((X - \text{E}(X))^2)
-            ;\] chiamiamo \textit{varianza} di $X$ la quantità $\text{Var}(X)$, mentre la sua radice quadrata $\sqrt{\text{Var}(X)}$ prende il nome di \textit{deviazione standard}.
+            ;\] chiamiamo \emph{varianza} di $X$ la quantità $\text{Var}(X)$, mentre la sua radice quadrata $\sqrt{\text{Var}(X)}$ prende il nome di \emph{deviazione standard}.
         \end{defn}
         \begin{obsv}
             Dalle Definizione~\ref{defn:Valore_atteso_discreto} e Definizione~\ref{defn:Valore_atteso_continuo} si deduce che:
@@ -604,7 +604,7 @@
                 \text{E}(Y) = \text{E}\left(\frac{X - \mu}{\sigma}\right) = \frac{\text{E}(X) - \mu}{\sigma} = 0
             .\] Per le proprietà della varianza infine: \[
             \text{Var}(Y) = \text{Var}\left(\frac{X - \mu}{\sigma}\right) = \frac{\text{Var}(X - \mu)}{\sigma^2} = \frac{\text{Var}(X)}{\sigma^2} = 1
-        .\] Con la trasformazione appena compiuta abbiamo ottenuto una variabile aleatoria con densità normale standard $Y \sim \mathcal{U}(0,\,1)$; chiamiamo $Y$ la \textit{standardizzata} di $X$ e la trasformazione per ricavarla \textit{standardizzazione}.
+        .\] Con la trasformazione appena compiuta abbiamo ottenuto una variabile aleatoria con densità normale standard $Y \sim \mathcal{U}(0,\,1)$; chiamiamo $Y$ la \emph{standardizzata} di $X$ e la trasformazione per ricavarla \emph{standardizzazione}.
         \end{defn}
         \begin{obsv}
             La funzione di ripartizione di $X$ è legata a quella della sua standardizzata $Y$ nel modo seguente:
@@ -632,7 +632,7 @@
         \end{obsv}
     \section{Momenti}
         \begin{defn}\label{defn:Momento}
-            Sia $X$ una variabile aleatoria (assolutamente continua oppure discreta) tale che $|X|^k$ ammetta valore atteso; allora $\text{E}(X^k)$ viene detto \textit{momento $k$\nbdash esimo} o \textit{momento di ordine $k$} della variabile aleatoria $X$.
+            Sia $X$ una variabile aleatoria (assolutamente continua oppure discreta) tale che $|X|^k$ ammetta valore atteso; allora $\text{E}(X^k)$ viene detto \emph{momento $k$\nbdash esimo} o \emph{momento di ordine $k$} della variabile aleatoria $X$.
         \end{defn}
         \begin{obsv}
             La Definizione~\ref{defn:Momento} ci permette di affermare che, presa una variabile aleatoria $X$ che ammetta media e varianza, la prima sia data dal momento primo di $X$, e la seconda dalla differenza tra il momento secondo e il quadrato del  momento primo di $X$.
@@ -663,7 +663,7 @@
             \begin{equation}\label{eq:Generatrice_momenti}
                 m_X(t) \coloneqq \text{E}(e^{tX})
             ;\end{equation}
-            essa deve essere definita almeno per ogni $t \in O$, e si chiama \textit{generatrice dei momenti} di $X$.
+            essa deve essere definita almeno per ogni $t \in O$, e si chiama \emph{generatrice dei momenti} di $X$.
             Essa coincide con la trasformata di Laplace della densità di $X$.
         \end{defn}
         \begin{prty}
@@ -680,7 +680,7 @@
         \end{proof}
     \section{Tempi di vita}
     \begin{defn}[Tempo di vita]\label{defn:Tempi_di_vita}
-            Per tempo di vita si intende il tempo $X$ che intercorre tra l'\textit{inizio di funzionamento} e il \textit{primo guasto}; in modo ragionevole possiamo assumere che $X$ sia una variabile aleatoria non\nbdash negativa, essa sarà inoltre assolutamente continua.
+            Per tempo di vita si intende il tempo $X$ che intercorre tra l'\emph{inizio di funzionamento} e il \emph{primo guasto}; in modo ragionevole possiamo assumere che $X$ sia una variabile aleatoria non\nbdash negativa, essa sarà inoltre assolutamente continua.
         \end{defn}
         \begin{prty}\label{prty:Tempi_di_vita}
             Usando la Definizione~\ref{defn:Tempi_di_vita} formalizziamo i seguenti concetti (ponia\-mo $s > 0$ e $t \geq 0$):
@@ -700,7 +700,7 @@
             \end{enumerate}
         \end{prty}
         \begin{defn}[Intensità di rottura]
-            Sia $X$ una variabile aleatoria assolutamente continua tale che $P(Z > 0) = 1$, e abbia densità $f_X(x)$ e funzione di ripartizione $F_X(x)$; allora definiamo \textit{intensità di rottura} la funzione:
+            Sia $X$ una variabile aleatoria assolutamente continua tale che $P(Z > 0) = 1$, e abbia densità $f_X(x)$ e funzione di ripartizione $F_X(x)$; allora definiamo \emph{intensità di rottura} la funzione:
             \begin{align}\label{eq:Intensità_rottura}
                 \lambda(t) \coloneqq \frac{f_X(t)}{1 - F_X(t)} & & \forall t>0 \,:\, F_X(t) \neq 1
             .\end{align}
@@ -764,7 +764,7 @@
         \begin{obsv}
             Il valore atteso di una variabile aleatoria con distribuzione di Weibull si ottiene come: \[
                 \text{E}(X) = \alpha ^{-1 /\beta} \Gamma\left(1 + \frac{1}{\beta}\right)
-            ,\] dove la funzione $\Gamma()$ si chiama \textit{gamma di Eulero} ed è definita come segue, per $x > 0$: \[
+            ,\] dove la funzione $\Gamma()$ si chiama \emph{gamma di Eulero} ed è definita come segue, per $x > 0$: \[
             \Gamma(x) \coloneqq \int_{0}^{\infty} t^{x-1}\cdot e^{-t}\, dt
             .\] 
         \end{obsv}
