@@ -664,7 +664,7 @@
                 .\]
             \end{prty}
         \subsection{Media di popolazioni esponenziali}
-            \begin{defn}
+            \begin{defn}[Intervallo bilatero con $\vartheta =\,?$]
                 Consideriamo un campione $X_1,\, \ldots,\, X_{n}$ tale che $X_i \sim \mathcal{E}(1 /\vartheta)$ 
                 dove $\vartheta$ è incognita; sappiamo che la media di tale variabili aleatorie è $\vartheta$, 
                 e possiamo dimostrare che il suo MLE è la media campionaria $\overline{X}_n$.
@@ -692,20 +692,50 @@
                 \begin{align*}
                     1-\alpha &= P_\vartheta\left(\chi^2_{1-\alpha /2,\,2n} < \frac{2}{\vartheta}\cdot 
                     \sum_{i=1}^{n} X_i < \chi^2_{\alpha /2,\,2n}\right) \\
-                    &= P_\vartheta\left(\frac{2\,\sum_{i=1}^{n} X_i}{\chi^2_{\alpha /2,\,2n}} < \vartheta 
-                    < \frac{2\,\sum_{i=1}^{n} X_i}{\chi^2_{1-\alpha /2,\,2n}}\right)
+                    &= P_\vartheta\left(\frac{2\sum_{i=1}^{n} X_i}{\chi^2_{\alpha /2,\,2n}} < \vartheta 
+                    < \frac{2\sum_{i=1}^{n} X_i}{\chi^2_{1-\alpha /2,\,2n}}\right)
                 .\end{align*}
                 Deduciamo che l'intervallo di confidenza di livello $1-\alpha$ per $\vartheta$ è definito 
                 come: \[
-                    \left(\frac{2\,\sum_{i=1}^{n} X_i}{\chi^2_{\alpha /2,\,2n}},\, 
-                    \frac{2\,\sum_{i=1}^{n} X_i}{\chi^2_{1-\alpha /2,\,2n}}\right)
+                    \left(\frac{2\sum_{i=1}^{n} X_i}{\chi^2_{\alpha /2,\,2n}},\, 
+                    \frac{2\sum_{i=1}^{n} X_i}{\chi^2_{1-\alpha /2,\,2n}}\right)
                 .\]
             \end{defn}
-        \subsection{Differenza di medie tra popolazioni normali}
-            \begin{defn}
-                
+        \subsection{Differenza tra medie di popolazioni normali}
+            \begin{defn}[Intervallo bilatero con $\mu_1=\mu_2=\,? \sigma^2_1 = \sigma^2_{1,\,0},\, \sigma^2_2 = \sigma^2_{2,\,0}$]
+                Consideriamo due campioni $X_1,\, \ldots,\, X_{n}$ e $Y_1,\, \ldots,\, Y_{m}$ estratti da 
+                due popolazioni normali differenti, aventi media e varianza rispettivamente 
+                $\mu_1,\, \sigma^2_1$ la prima e $\mu_2,\, \sigma^2_2$ la seconda; supponiamo indipendenti 
+                i campioni $\vec{X}_n$ e $\vec{Y}_m$, e chiediamoci quanto vale la stima di $\mu_1-\mu_2$.
+
+                Possiamo dimostrare che l'MLE della differenza delle medie, sia proprio la differenza delle 
+                medie campionarie $\overline{X}-\overline{Y}$; scriviamo ora la distribuzione di questo 
+                stimatore, per ottenere l'intervallo di confidenza associato: \[
+                    \overline{X}\sim \mathcal{N}\left(\mu_1,\,\frac{\sigma^2_1}{n}\right) \land 
+                    \overline{Y}\sim \mathcal{N}\left(\mu_2,\, \frac{\sigma^2_2}{n}\right) \implies
+                    \overline{X}-\overline{Y} \sim \mathcal{N}\left(\mu_1-\mu_2,\, 
+                    \frac{\sigma^2_1}{n} + \frac{\sigma^2_2}{n}\right) = Q
+                ;\] nella precedente abbiamo usato le Proprietà~\ref{prty:Valore_atteso} e le 
+                Proprietà~\ref{Varianza}, per valore atteso e varianza della somma delle distribuzioni.
+
+                Ipotizzando di conoscere $\sigma^2_1$ e $\sigma^2_2$ scriviamo: \[
+                    \frac{\overline{X}-\overline{Y}- (\mu_1-\mu_2)}{\sqrt{\sigma^2_1 /n +\sigma^2_2 /m}} 
+                    \sim \mathcal{N}(0,\,1)
+                ,\] da cui possiamo costruire un intervallo di confidenza indicando:
+                \begin{align*}
+                    1-\alpha &= P_{(\mu_1,\,\mu_2)}\left(-z_{\alpha /2} < 
+                    \frac{\overline{X}-\overline{Y}- (\mu_1-\mu_2)}{\sqrt{\sigma^2_1 /n +\sigma^2_2 /m}} < 
+                    z_{\alpha /2}\right) \\
+                             &= P_{(\mu_1,\,\mu_2)}\left(\overline{X}-\overline{Y}-z_{\alpha /2}\cdot \sqrt{\frac{\sigma^2_1}{n}+ \frac{\sigma^2_2}{m}}  < \mu_1-\mu_2 < \overline{X}-\overline{Y}+z_{\alpha /2}\cdot \sqrt{\frac{\sigma^2_1}{n} +\frac{\sigma^2_2}{m}}\,\right)
+                .\end{align*}
+                Deduciamo che l'intervallo di confidenza di livello $1-\alpha$ per $\mu_1-\mu_2$ è definito 
+                come: \[
+                    \left(\overline{X}-\overline{Y}-z_{\alpha /2}\cdot \sqrt{\frac{\sigma^2_1}{n}+ \frac{\sigma^2_2}{m}},\, \overline{X}-\overline{Y}+z_{\alpha /2}\cdot \sqrt{\frac{\sigma^2_1}{n} +\frac{\sigma^2_2}{m}}\,\right)
+                .\] 
             \end{defn}
-        \subsection{Rapporto di varianze tra popolazioni normali}
+        \subsection{Rapporto tra varianze di popolazioni normali}
+            %TODO: Completare sezione
         \subsection{Intervalli di confidenza asintotici}
+            %TODO: Completare sezione
         \subsection{Intervalli di confidenza per proporzione}
-        
+            %TODO: Completare sezione
