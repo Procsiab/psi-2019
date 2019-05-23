@@ -84,12 +84,25 @@
                 decisione giusta sull'ipotesi; altrimenti, per $\vartheta \in \Theta_0$ la funzione di 
                 potenza rappresenta la probabilità di errore di $\mathbf{I}$ specie.
             \end{defn}
+            \begin{obsv}[Massima potenza]
+                Per costruire un test di livello di significatività $\alpha$ con la potenza massima, data la 
+                statistica test $D_n$, imponiamo: \[
+                    \alpha = P_{\vartheta_0}(D_n > t)
+                ;\] indichiamo la soluzione come $d_{n,\,\alpha}|_{\vartheta=\vartheta_0}$, il quantile di 
+                ordine $\alpha$ della distribuzione della statistica test $D_n$ quando $\vartheta=\vartheta_0$.
+            \end{obsv}
             \begin{defn}[Curva operativa]
-                Chiamiamo \emph{curva operativa} la seguente funzione, che denota la probabilità di 
-                errore di $\mathbf{II}$ specie per $\vartheta \in \Theta_1$: \[
+                Chiamiamo \emph{curva operativa} il grafico della seguente funzione, che indica la 
+                probabilità di errore di $\mathbf{II}$ specie per $\vartheta \in \Theta_1$: \[
                     \beta(\vartheta) \coloneqq 1 - \pi(\vartheta)
                 .\] 
             \end{defn}
+            \begin{obsv}
+                Per valutare la probabilità di errore di $\mathbf{II}$ specie, dobbiamo calcolare la potenza 
+                come funzione del parametro incognito: \[
+                    \pi(\vartheta) = P_\vartheta(D_n > d_{n,\,\alpha}|_{\vartheta=\vartheta_0})
+                .\]
+            \end{obsv}
         \subsection{Ampiezza}
             \begin{defn}
                 Chiamiamo \emph{ampiezza} del test o della regione critica l'estremo superiore delle 
@@ -100,18 +113,195 @@
                 è minore o uguale alla significatività ($\alpha_* \leq \alpha$).
             \end{defn}
         \subsection{Statistica test}
-           %TODO: Completare sezione
+        Consideriamo la statistica $D_n = d-n(X_1,\, \ldots,\, X_{n})$, e definiamo l'intervallo 
+        $C(t) = \{\vec{x} \in \mathbb{R}_n \,:\, d_n(\vec{x}) > t\}$; al variare di $t$ otteniamo una famiglia 
+        di test statistici, definiti dalla regione critica $C(t)$.
+
+        Allora chiamiamo \emph{statistica test} la statistica $D_n$, e per ogni $t = \bar{t}$ fissiamo 
+        un test di regione critica $C(\bar{t})$.
         \subsection{\emph{p}\nbdash value}
             \begin{defn}
                 Considerando una famiglia di test al variare del livello di significatività $\alpha$, 
                 chiamiamo \emph{p\nbdash value} l'estremo inferiore della significatività per il quale 
                 bisognerebbe rifiutare l'ipotesi nulla coi dati a disposizione.
             \end{defn}
+            \begin{obsv}
+                Sia $\alpha(t)$ l'ampiezza di un test rispetto al parametro $t$ e $d_* = d_n(\vec{x})$ il 
+                valore della statistica test $D_n$ nell'esperimento considerato; allora $\alpha(t)$ è 
+                una funzione decrescente di $t$, perciò avremo la minore ampiezza compatibile col rifiuto 
+                dell'ipotesi nulla per $t = d_*$, quindi il \emph{p}\nbdash value sarà dato da: \[
+                    \alpha(d_*) = P_{\vartheta_0}(D_n > d_*)
+                .\] 
+            \end{obsv}
     \section{Test per media di popolazione normale}
         \subsection{\emph{Z}\nbdash test}
+            \begin{defn}[Bilatero]
+                Sia $X_1,\, \ldots,\, X_{n}$ un campione aleatorio da una popolazione normale con media $\mu$ 
+                incognita e varianza $\sigma^2$ nota; fissata una costante $\mu_0$, vogliamo verificare 
+                l'ipotesi nulla seguente contro l'alternativa: \[
+                \begin{cases}
+                    H_0 : & \mu = \mu_0; \\
+                    H_1 : & \mu \neq \mu_0.
+                \end{cases}
+                \] Dato che lo stimatore puntuale per $\mu$ è la media campionaria $\overline{X}_n$, costruiamo 
+                la regione critica del test nel modo seguente: \[
+                    C \coloneqq \big\{(X_1,\, \ldots,\, X_{n}) \,:\, |\overline{X}_n -\mu_0| > c\big\}
+                ,\] per una opportuna costante $c$.
+
+                Impostiamo il livello di significatività $\alpha$ per il test individuando il valore di $c$ 
+                che rende pari ad $\alpha$ la probabilità di errore di $\mathbf{I}$ specie: \[
+                    \alpha = P_{\mu_0}(|\overline{X}_n -\mu_0| > c)
+                .\] Indicando con $Z\sim \mathcal{N}(0,\,1)$ una variabile aleatoria normale standard, sapendo 
+                che $\mu = \mu_0 \implies \overline{X}_n \sim \mathcal{N}(\mu_0,\,\sigma^2 /n)$, scriviamo 
+                la seguente statistica test: \[
+                    \frac{\overline{X}_n -\mu_0}{\sigma /\sqrt{n}} \overset{\mu_0}{\sim} Z
+                ;\] usandola possiamo riscrivere la precedente equazione come:
+                \begin{align*}
+                    \alpha &= P_{\mu_0}\left(\left|\frac{\overline{X}_n -\mu_0}{\sigma /\sqrt{n}}\right| 
+                    > \frac{\sqrt{n}}{\sigma}\cdot c\right)
+                    = P\left(|Z| > \frac{\sqrt{n}}{\sigma}\cdot c\right) \\
+                    &= 2\,P\left(Z > \frac{\sqrt{n}}{\sigma}\cdot c\right)
+                .\end{align*}
+                Dall'ultima relazione appena trovata segue che: \[
+                    \frac{\alpha}{2} = P\left(Z > \frac{\sqrt{n}}{\sigma}\cdot c\right)
+                    \iff c \cdot\frac{\sqrt{n}}{\sigma} = z_{\alpha /2} \implies 
+                    c = z_{\alpha /2}\cdot \frac{\sigma}{\sqrt{n}}
+                .\] Sostituendo $c$ nella regione critica $C$ definita per questo test, otteniamo le condizioni 
+                di rifiuto e accettazione: \[
+                    \begin{cases}
+                        \text{rifiutiamo } H_0 & 
+                        \text{se $\left|\frac{\overline{X}_n -\mu_0}{\sigma /\sqrt{n}}\right| > z_{\alpha /2}$;} \\
+                        \text{accettiamo } H_0 & 
+                        \text{se $\left|\frac{\overline{X}_n -\mu_0}{\sigma /\sqrt{n}}\right| \leq z_{\alpha /2}$.}
+                    \end{cases}
+                \]
+            \end{defn}
+            \begin{defn}[Unilaterale]
+                Sia $X_1,\, \ldots,\, X_{n}$ un campione aleatorio da una popolazione normale con media $\mu$ 
+                incognita e varianza $\sigma^2$ nota; fissata una costante $\mu_0$, vogliamo verificare 
+                l’ipotesi nulla seguente contro l’alternativa: \[
+                \begin{cases}
+                    H_0 : & \mu = \mu_0; \\
+                    H_1 : & \mu \geq \mu_0.
+                \end{cases}
+                \] Dato che lo stimatore puntuale per $\mu$ è la media campionaria $\overline{X}_n$, costruiamo 
+                la regione critica del test nel modo seguente: \[
+                    C \coloneqq \big\{(X_1,\, \ldots,\, X_{n}) \,:\, \overline{X}_n -\mu_0 > c\big\}
+                ,\] per una opportuna costante $c$, tale che il test abbia significatività $\alpha$:
+                \begin{align*}
+                    \alpha &= P_{\mu_0}\left(\frac{\overline{X}_n -\mu_0}{\sigma /\sqrt{n}} 
+                    > \frac{\sqrt{n}}{\sigma}\cdot c\right)
+                    = P\left(Z > \frac{\sqrt{n}}{\sigma}\cdot c\right) \\
+                    &= 2\,P\left(Z > \frac{\sqrt{n}}{\sigma}\cdot c\right)
+                .\end{align*}
+                Come nella definizione dello \emph{Z}\nbdash test bilatero, otteniamo tale valore di $c$: \[
+                    c = z_{\alpha /2} \cdot\sigma /\sqrt{n}
+                .\] Osserviamo che le condizioni di accettazione e rifiuto sono analoghe a quelle del test 
+                bilatero, senza valore assoluto.
+            \end{defn}
+            \begin{obsv}
+                Nel caso di test unilaterale con ipotesi: \[
+                    \begin{cases}
+                        H_0 : & \mu = \mu_0; \\
+                        H_1 : & \mu < \mu_0.
+                    \end{cases}
+                ,\] le condizioni di accettazione e rifiuto risultano analoghe a quelle del test bilatero, senza 
+                valore assoluto e con le disuguaglianze invertite.
+            \end{obsv}
         \subsection{\emph{t}\nbdash test}
-    \section{Test approssimato su proporzione}
-    \section{Confronto media tra popolazioni normali indipendenti}
-    \section{Test per campione di coppie di dati normali}
+            \begin{defn}[Bilatero]
+                Sia $X_1,\, \ldots,\, X_{n}$ un campione estratto da una popolazione con densità 
+                $\mathcal{N}(\mu,\,\sigma^2)$, di cui media e varianza incognite; fissata una costante 
+                $\mu_0$, vogliamo verificare l'ipotesi nulla seguente contro l'alternativa: \[
+                    \begin{cases}
+                        H_0 : & \mu = \mu_0; \\
+                        H_1 : & \mu \neq \mu_0.
+                    \end{cases}
+                .\] Al contrario dello \emph{Z}\nbdash test, in questo caso non conosciamo la varianza della 
+                distribuzione, dunque adottiamo come suo stimatore la varianza campionaria $S_n^2$ e 
+                rifiutiamo l'ipotesi nulla quando abbiamo: \[
+                \left|\frac{\overline{X}_n -\mu}{S_n /\sqrt{n}}\right| =\; \text{troppo grande}
+            ,\] con $S_n$ la deviazione standard campionaria (vedere la 
+            Definizione~\ref{defn:Varianza_campionaria}); definiamo il ``troppo grande'' rispetto al livello 
+            di significatività $\alpha$.
+
+            La Proprietà~\ref{prty:Distribuzione_congiunta_statistiche_normale} ci permette di affermare che, 
+            indicata con $D_n$ la statistica test e sapendo $H_0$ è vera: \[
+                D_n \coloneqq \frac{\overline{X}_n -\mu_0}{S_n /\sqrt{n}} \sim t_{n-1}
+            .\] Imponiamo quindi che il complementare della probabilità dell'errore di $\mathbf{I}$ specie sia 
+            uguale a $1-\alpha$ (accettare $H_0$ quando $\mu = \mu_0$): \[
+                P_{\mu_0}\left(-c \leq \frac{\overline{X}_n -\mu_0}{S_n /\sqrt{n}} \leq c\right) = 1-\alpha
+            .\] Sapendo che la densità \emph{t} è simmetrica rispetto allo zero, riscriviamo la precedente 
+            equazione tramite l'inverso della probabilità:
+            \begin{align*}
+                \alpha &= 1-P(-c \leq D_n \leq c) = P(D_n \leq -c) + P(D_n \geq c) \\
+                &= 2\, P(D_n \geq c)
+            .\end{align*}
+            Dall'ultima relazione appena trovata segue che: \[
+                c = t_{\alpha /,\, n-1}
+            .\] Usando $c$ come estremo della regione critica, otteniamo le condizioni di rifiuto e 
+            accettazione: \[
+                \begin{cases}
+                    \text{rifiutiamo } H_0 & 
+                    \text{se $\left|\frac{\overline{X}_n -\mu_0}{S_n /\sqrt{n}}\right| \geq t_{\alpha /2,\, n-1}$;} \\
+                    \text{accettiamo } H_0 & 
+                    \text{se $\left|\frac{\overline{X}_n -\mu_0}{S_n /\sqrt{n}}\right| < t_{\alpha /2,\, n-1}$.}
+                \end{cases}
+            \]
+            \end{defn}
+            \begin{defn}[Unilaterale]
+                Sia $X_1,\, \ldots,\, X_{n}$ un campione estratto da una popolazione con densità 
+                $\mathcal{N}(\mu,\,\sigma^2)$ di cui media e varianza incognite; fissata una costante $\mu_0$, 
+                vogliamo verificare l'ipotesi nulla seguente contro l'alternativa: \[
+                    \begin{cases}
+                        H_0 : & \mu = \mu_0; \\
+                        H_1 : & \mu \geq \mu_0.
+                    \end{cases}
+                .\] Con un test di livello di significatività $\alpha$, le condizioni di accettazione e 
+                rifiuto sono analoghe a quelle del test bilatero, senza valore assoluto.
+            \end{defn}
+            \begin{obsv}
+                Nel caso di test unilaterale con ipotesi: \[
+                    \begin{cases}
+                        H_0 : & \mu = \mu_0; \\
+                        H_1 : & \mu < \mu_0.
+                    \end{cases}
+                ,\] le condizioni di accettazione e rifiuto risultano analoghe a quelle del test bilatero, senza 
+                valore assoluto e con le disuguaglianze invertite.
+            \end{obsv}
     \section{Test per varianza di popolazione normale}
+    \begin{defn}
+        Sia $X_1,\, \ldots,\, X_{n}$ un campione estratto da una popolazione con densità normale di media e 
+        varianza incognite; fissata una costante $\sigma^2_0$, vogliamo verificare l'ipotesi nulla seguente 
+        contro l'alternativa: \[
+            \begin{cases}
+                H_0 : & \mu = \mu_0; \\
+                H_1 : & \mu \neq \mu_0.
+            \end{cases}
+        \] Quando $H_0$ è vera, possiamo usare il Teorema~\ref{thm:Distribuzione_congiunta_statistiche_normale} 
+        per ottenere la statistica test seguente: \[
+            D_n \coloneqq \frac{S_n^2}{\sigma_0^2}(n-1) \sim  \chi^2(n-1)
+        ;\] Impostiamo il test a livello di significatività $\alpha$ tramite la probabilità:
+        \begin{align*}
+            1-\alpha = P_{(\mu,\,\sigma^2)}\left(\chi^2_{1-\alpha /2}(n-1) < \frac{S_n^2}{\sigma_0^2}\cdot(n-1) 
+            < \chi^2_{\alpha /2}(n-1)\right)
+        .\end{align*}
+        Le condizioni di rifiuto e accettazione per un test di livello di significatività $\alpha$ con la 
+        statistica test $D_n$ sono ottenute come: \[
+            \begin{cases}
+                \text{rifiutiamo } H_0 & 
+                \text{se $\frac{S_n^2}{\sigma_0^2}(n-1) \leq \chi^2_{1-\alpha /2}(n-1) \lor 
+                \frac{S_n^2}{\sigma_0^2}(n-1) \geq \chi^2_{\alpha /2}(n-1)$;} \\
+                \text{accettiamo } H_0 & 
+                \text{se $\chi^2_{1-\alpha /2}(n-1) < \frac{S_n^2}{\sigma_0^2}(n-1) < \chi^2_{\alpha /2}(n-1)$.}
+            \end{cases}
+        .\] 
+    \end{defn}
+    \section{Confronto media tra popolazioni normali indipendenti}
+        \begin{defn}[$\mu_1=\mu_2=\,?,\, \sigma^2_1=\sigma^2_{1,\,0},\, \sigma^2_2=\sigma^2_{2,\,0}$]
+            
+        \end{defn}
     \section{Confronto varianza tra popolazioni normali indipendenti}
+    \section{Test per campioni di coppie di dati normali}
+    \section{Test approssimato su proporzione}
+        %TODO: Completare sezione
