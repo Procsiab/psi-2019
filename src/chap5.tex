@@ -109,6 +109,7 @@
                 &= \text{Var}_{\vartheta}\big[d_n(\vec{X})\big] + \big(b_{\vartheta}(d_n)\big)^2
             .\qedhere\end{align*}
         \end{proof}
+    \pagebreak % Interrompi pagina, evita di lasciare il titolo separato dal testo
     \section{Proprietà asintotiche degli stimatori}
         \subsection{Non distorsione}
             \begin{defn}
@@ -491,9 +492,8 @@
         \begin{defn}
             Sia $X_1,\, \ldots,\, X_{n}$ un campione estratto da una popolazione con densità $F_\vartheta$, 
             inoltre sia $Q = q(X_1,\, \ldots,\, X_{n};\, \vartheta)$ una variabile aleatoria funzione del 
-            campione e del parametro incognito.
-
-            Chiamiamo $Q$ \emph{quantità pivotale} se la sua distribuzione non dipende da $\vartheta$.
+            campione e del parametro incognito. Chiamiamo $Q$ \emph{quantità pivotale} se la sua 
+            distribuzione non dipende da $\vartheta$.
         \end{defn}
         \begin{obsv}
             Consideriamo una quantità pivotale $Q$, allora posiamo determinare due numeri $q_1,\, q_2$ che 
@@ -702,7 +702,8 @@
                 .\]
             \end{defn}
         \subsection{Differenza tra medie di popolazioni normali}
-            \begin{defn}[Intervallo bilatero con $\mu_1=\mu_2=\,? \sigma^2_1 = \sigma^2_{1,\,0},\, \sigma^2_2 = \sigma^2_{2,\,0}$]
+            \begin{defn}[Intervallo bilatero con $\mu_1=\mu_2=\,?,\, \sigma^2_1 = \sigma^2_{1,\,0},\, \sigma^2_2 = \sigma^2_{2,\,0}$]
+                \hfill \\
                 Consideriamo due campioni $X_1,\, \ldots,\, X_{n}$ e $Y_1,\, \ldots,\, Y_{m}$ estratti da 
                 due popolazioni normali differenti, aventi media e varianza rispettivamente 
                 $\mu_1,\, \sigma^2_1$ la prima e $\mu_2,\, \sigma^2_2$ la seconda; supponiamo indipendenti 
@@ -716,7 +717,7 @@
                     \overline{X}-\overline{Y} \sim \mathcal{N}\left(\mu_1-\mu_2,\, 
                     \frac{\sigma^2_1}{n} + \frac{\sigma^2_2}{n}\right) = Q
                 ;\] nella precedente abbiamo usato le Proprietà~\ref{prty:Valore_atteso} e le 
-                Proprietà~\ref{Varianza}, per valore atteso e varianza della somma delle distribuzioni.
+                Proprietà~\ref{prty:Varianza}, per valore atteso e varianza della somma delle distribuzioni.
 
                 Ipotizzando di conoscere $\sigma^2_1$ e $\sigma^2_2$ scriviamo: \[
                     \frac{\overline{X}-\overline{Y}- (\mu_1-\mu_2)}{\sqrt{\sigma^2_1 /n +\sigma^2_2 /m}} 

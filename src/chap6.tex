@@ -208,7 +208,7 @@
                 ,\] le condizioni di accettazione e rifiuto risultano analoghe a quelle del test bilatero, senza 
                 valore assoluto e con le disuguaglianze invertite.
             \end{obsv}
-        \subsection{\emph{t}\nbdash test}
+        \subsection{\emph{t}\nbdash test}\label{sec:t_test}
             \begin{defn}[Bilatero]
                 Sia $X_1,\, \ldots,\, X_{n}$ un campione estratto da una popolazione con densità 
                 $\mathcal{N}(\mu,\,\sigma^2)$, di cui media e varianza incognite; fissata una costante 
@@ -227,7 +227,7 @@
 
             La Proprietà~\ref{prty:Distribuzione_congiunta_statistiche_normale} ci permette di affermare che, 
             indicata con $D_n$ la statistica test e sapendo $H_0$ è vera: \[
-                D_n \coloneqq \frac{\overline{X}_n -\mu_0}{S_n /\sqrt{n}} \sim t_{n-1}
+                D_n \coloneqq \frac{\overline{X}_n -\mu_0}{S_n /\sqrt{n}} \sim t(n-1)
             .\] Imponiamo quindi che il complementare della probabilità dell'errore di $\mathbf{I}$ specie sia 
             uguale a $1-\alpha$ (accettare $H_0$ quando $\mu = \mu_0$): \[
                 P_{\mu_0}\left(-c \leq \frac{\overline{X}_n -\mu_0}{S_n /\sqrt{n}} \leq c\right) = 1-\alpha
@@ -283,25 +283,189 @@
             D_n \coloneqq \frac{S_n^2}{\sigma_0^2}(n-1) \sim  \chi^2(n-1)
         ;\] Impostiamo il test a livello di significatività $\alpha$ tramite la probabilità:
         \begin{align*}
-            1-\alpha = P_{(\mu,\,\sigma^2)}\left(\chi^2_{1-\alpha /2}(n-1) < \frac{S_n^2}{\sigma_0^2}\cdot(n-1) 
-            < \chi^2_{\alpha /2}(n-1)\right)
+            1-\alpha = P_{(\mu,\,\sigma^2)}\left(\chi^2_{1-\alpha /2,\,n-1} < \frac{S_n^2}{\sigma_0^2}\cdot(n-1) 
+            < \chi^2_{\alpha /2,\,n-1}\right)
         .\end{align*}
         Le condizioni di rifiuto e accettazione per un test di livello di significatività $\alpha$ con la 
         statistica test $D_n$ sono ottenute come: \[
             \begin{cases}
                 \text{rifiutiamo } H_0 & 
-                \text{se $\frac{S_n^2}{\sigma_0^2}(n-1) \leq \chi^2_{1-\alpha /2}(n-1) \lor 
-                \frac{S_n^2}{\sigma_0^2}(n-1) \geq \chi^2_{\alpha /2}(n-1)$;} \\
+                \text{se $\frac{S_n^2}{\sigma_0^2}(n-1) \leq \chi^2_{1-\alpha /2,\,n-1} \lor 
+                \frac{S_n^2}{\sigma_0^2}(n-1) \geq \chi^2_{\alpha /2,\,n-1}$;} \\
                 \text{accettiamo } H_0 & 
-                \text{se $\chi^2_{1-\alpha /2}(n-1) < \frac{S_n^2}{\sigma_0^2}(n-1) < \chi^2_{\alpha /2}(n-1)$.}
+                \text{se $\chi^2_{1-\alpha/2,\,n-1} < \frac{S_n^2}{\sigma_0^2}(n-1) < \chi^2_{\alpha/2,\,n-1}$.}
             \end{cases}
         .\] 
     \end{defn}
     \section{Confronto media tra popolazioni normali indipendenti}
-        \begin{defn}[$\mu_1=\mu_2=\,?,\, \sigma^2_1=\sigma^2_{1,\,0},\, \sigma^2_2=\sigma^2_{2,\,0}$]
-            
+        \begin{defn}[$\mu_x=\mu_y=\,?,\, \sigma^2_x=\sigma^2_{x,\,0},\, \sigma^2_y=\sigma^2_{y,\,0}$]
+            \hfill \\
+            Consideriamo i campioni $X_1,\, \ldots,\, X_{n}$ e $Y_1,\, \ldots,\, Y_{m}$, estratti da due 
+            popolazioni normali indipendenti con medie $\mu_x,\, \mu_y$ incognite e varianze 
+            $\sigma_x,\, \sigma_y$ note; impostiamo quindi il test d'ipotesi seguente: \[
+            \begin{cases}
+                H_0 : & \mu_x = \mu_y; \\
+                H_1 : & \mu_x \neq \mu_y.
+            \end{cases} \implies
+            \begin{cases}
+                H_0 : \mu_x -\mu_y = 0; \\
+                H_1 : \mu_x -\mu_y \neq 0.
+            \end{cases}
+            \] Dato che $\overline{X}_n$ è uno stimatore non distorto di $\mu_x$ e $\overline{Y}_m$ è uno 
+            stimatore non distorto di $\mu_y$, possiamo usare $\overline{X}_n -\overline{Y}_m$ come stimatore 
+            di $\mu_x -\mu_y$, nella riscrittura delle ipotesi.
+
+            La regione critica del test avrà la forma seguente: \[
+                C \coloneqq \big\{\vec{X}_n,\, \vec{Y}_m \,:\, |\overline{X}_n - \overline{Y}_m| > c\big\}
+            ,\] per una opportuna costante $c$; ricordiamo che vale: \[
+                \overline{X}_n -\overline{Y}_m \sim \mathcal{N}\left(\mu_x -\mu_y,\, \frac{\sigma_x^2}{n} 
+                +\frac{\sigma_y^2}{m}\right)
+            .\] Allora quando $H_0$ è vera la statistica test diventa: \[
+                D_{n,\,m} \coloneqq \frac{\overline{X}_n -\overline{Y}_m -(\cancel{\mu_x -\mu_y})}
+                {\sqrt{\frac{\sigma_x^2}{n} +\frac{\sigma_y^2}{m}}} \sim \mathcal{N}(0,\,1)
+            .\] Otteniamo la significatività $\alpha$ con la seguente probabilità di accettare $H_0$: \[
+            1-\alpha = P_{(\mu_x,\,\mu_y)}\left(-z_{\alpha /2} \leq \frac{\overline{X}_n 
+            -\overline{Y}_m}{\sqrt{\frac{\sigma^2_y}{n} +\frac{\sigma^2_y}{m}}} \leq z_{\alpha /2}\right)
+            .\] Deduciamo che le condizioni di accettazione e rifiuto per il test di significatività $\alpha$ 
+            con la statistica $D_{n,\,m}$ saranno: \[
+            \begin{cases}
+                \text{rifiutiamo } H_0 & 
+                \text{se $\frac{|\overline{X}_n -\overline{Y}_m|}{\sqrt{\frac{\sigma_x^2}{n}} 
+                +\frac{\sigma_y^2}{m}} > z_{\alpha /2}$;} \\
+                \vspace{-1em} \\
+                \text{accettiamo } H_0 & 
+                \text{se $\frac{|\overline{X}_n -\overline{Y}_m|}{\sqrt{\frac{\sigma_x^2}{n}} 
+                +\frac{\sigma_y^2}{m}} \leq z_{\alpha /2}$.}
+            \end{cases}
+            \]
+        \end{defn}
+    \begin{defn}[$\mu_x=\mu_y=\,?,\, \sigma^2_x=\sigma^2_y=\,?,\, \sigma^2_x \equiv \sigma^2_y$]
+            \hfill \\
+            Consideriamo i campioni $X_1,\, \ldots,\, X_{n}$ e $Y_1,\, \ldots,\, Y_{m}$, estratti da due 
+            popolazioni normali indipendenti con medie $\mu_x,\, \mu_y$ incognite e varianze 
+            $\sigma_x,\, \sigma_y$ incognite ma supposte uguali; impostiamo quindi il test d'ipotesi seguente: \[
+            \begin{cases}
+                H_0 : & \mu_x = \mu_y; \\
+                H_1 : & \mu_x \neq \mu_y.
+            \end{cases}
+            \] Come il test precedente, vogliamo rifiutare $H_0$ quando $\overline{X}_n -\overline{Y}_m$ è 
+            lontano da $0$; per ottenere i limiti della regione critica, cerchiamo la distribuzione della 
+            statistica test quando $H_0$ è vera.
+
+            Per fare ciò prima di tutto definiamo lo \emph{stimatore pooled} di $\sigma^2$, dove 
+            $\sigma^2 = \sigma^2_x = \sigma^2_y$ per indicare entrambe le varianze, supposte uguali:
+            \begin{equation}\label{eq:Stimatore_pooled_varianza}
+                S^2_p \coloneqq \frac{(n-1)S_x^2 +(m-1)S_y^2}{n+m-2} \sim \chi^2(n+m-2)
+            .\end{equation}
+            Per $H_0$ vera la statistica test sarà costruita come: \[
+                D_{n,\,m} \coloneqq \frac{\overline{X}_n -\overline{Y}_m}{S_p\cdot \sqrt{\frac{1}{n} +\frac{1}{m}}} 
+                \sim t(n+m-2)
+            .\] Otteniamo la significatività $\alpha$ con la seguente probabilità di rifiutare $H_0$: \[
+                \alpha = P_{(\mu_x,\,\mu_y)}\left(\left|\frac{\overline{X}_n -\overline{Y}_m}{S_p 
+                \cdot \sqrt{\frac{1}{n} +\frac{1}{m}}}\right| \geq t_{\alpha /2,\,n+m-2}\right)
+            .\] Deduciamo che le condizioni di accettazione e rifiuto per il test di significatività $\alpha$ 
+            con la statistica $D_{n,\,m}$ saranno: \[
+            \begin{cases}
+                \text{rifiutiamo } H_0 & 
+                \text{se $\left|\frac{\overline{X}_n -\overline{Y}_m}{\sqrt{\frac{1}{n}} 
+                +\frac{1}{m}}\right| > t_{\alpha /2,\,n+m-2}$;} \\
+                \vspace{-1em} \\
+                \text{accettiamo } H_0 & 
+                \text{se $\left|\frac{\overline{X}_n -\overline{Y}_m}{\sqrt{\frac{1}{n}} 
+                +\frac{1}{m}}\right| \leq t_{\alpha /2,\,n+m-2}$.}
+            \end{cases}
+            \]
+        \end{defn}
+        \begin{defn}[$\mu_x=\mu_y=\,?,\, \sigma^2_x=\sigma^2_y=\,?,\, \sigma^2_x \equiv \sigma^2_y$]
+            \hfill \\
+            Consideriamo i campioni $X_1,\, \ldots,\, X_{n}$ e $Y_1,\, \ldots,\, Y_{m}$, estratti da due 
+            popolazioni normali indipendenti con medie $\mu_x,\, \mu_y$ incognite e varianze 
+            $\sigma_x,\, \sigma_y$ incognite (non possiamo nemmeno assumerle uguali); impostiamo quindi il 
+            test d'ipotesi seguente: \[
+                \begin{cases}
+                    H_0 : & \mu_x = \mu_y; \\
+                    H_1 : & \mu_x \neq \mu_y.
+                \end{cases}
+            \] La statistica test che useremo, assumendo verificata $H_0$, è la seguente:
+            \begin{align*}
+                D_{n,\,m} \coloneqq \frac{\overline{X}_n -\overline{Y}_m}{\sqrt{\frac{S_n^2}{n} 
+                +\frac{S_m^2}{m}}} \sim \mathcal{N}(0,\,1) & &
+                \text{per } n,\,m \gg 1
+            .\end{align*}
+            Per $n$ e $m$ molto grandi, infatti, la sua distribuzione può essere approssimata con 
+            quella normale standard, semplificando la complessità data dalla dipendenza dalle varianze 
+            campionarie incognite.
+
+            Le condizioni di accettazione e rifiuto per un test di significatività 
+            \underline{approssimativamente} $\alpha$ con statistica test $D_{n,\,m}$ sono: \[
+            \begin{cases}
+                \text{rifiutiamo } H_0 & 
+                \text{se $\frac{|\overline{X}_n -\overline{Y}_m|}{\sqrt{\frac{S_x^2}{n}} 
+                +\frac{S^2}{m}} > z_{\alpha /2}$;} \\
+                \vspace{-1em} \\
+                \text{accettiamo } H_0 & 
+                \text{se $\frac{|\overline{X}_n -\overline{Y}_m|}{\sqrt{\frac{S_x^2}{n}} 
+                +\frac{S_y^2}{m}} \leq z_{\alpha /2}$.}
+            \end{cases}
+            \]
         \end{defn}
     \section{Confronto varianza tra popolazioni normali indipendenti}
+        \begin{defn}[$\mu_x =\mu_y =\,?,\, \sigma^2_x =\sigma^2_y =\,?$]
+            \hfill \\
+            Siano $X_1,\, \ldots,\, X_{n}$ e $Y_1,\, \ldots,\, Y_{m}$ due campioni estratti da 
+            popolazioni indipendenti con distribuzioni normali, di parametri incogniti 
+            $\mu_x,\,\sigma^2_x$ e $\mu_y,\,\sigma^2_y$; impostiamo il test d'ipotesi seguente: \[
+                \begin{cases}
+                    H_0 : & \sigma^2_x = \sigma^2_y; \\
+                    H_1 : & \sigma^2_x \neq \sigma^2_y.
+                \end{cases}
+            \] Usando la varianza campionaria come stimatore, dal 
+            Teorema~\ref{thm:Distribuzione_congiunta_statistiche_normale} sappiamo che:
+            \begin{align*}
+                (n-1)\cdot \frac{S_x^2}{\sigma_x^2} \sim \chi^2(n-1) & &
+                (m-1)\cdot \frac{S_y^2}{\sigma_y^2} \sim \chi^2(m-1)
+            ;\end{align*}
+            quando si verifica l'ipotesi $H_0$ la statistica test è la seguente: \[
+                D_{n,\,m} \coloneqq \frac{S_x^2}{S_y^2} \cdot \frac{\cancel{\sigma_y^2}}{\cancel{\sigma_x^2}} 
+                \sim \mathcal{F}(n-1,\,m-1)
+            .\] Otteniamo la significatività $\alpha$ con la seguente probabilità di accettare $H_0$: \[
+            1-\alpha = P_{(\sigma_x^2,\,\sigma_y^2)}\left(\mathcal{F}_{1-\alpha /2,\,n-1,\,m-1} \leq 
+            \frac{S_x^2}{S_y^2} \leq \mathcal{F}_{\alpha /2,\,n-1,\,m-1}\right)
+            .\] Le condizioni di accettazione e rifiuto per un test di significatività $\alpha$ con 
+            statistica test $D_{n,\,m}$ sono: \[
+            \begin{cases}
+                \text{rifiutiamo } H_0 & 
+                \text{se $S_x^2 /S_y^2 \leq \mathcal{F}_{1-\alpha /2,\,n-1,\,m-1} \lor
+                S_x^2 /S_y^2 \geq \mathcal{F}_{\alpha /2,\,n-1,\,m-1}$;} \\
+                \text{accettiamo } H_0 & 
+                \text{se $\mathcal{F}_{1-\alpha /2,\,n-1,\,m-1} \leq S_x^2 /S_y^2
+                \leq \mathcal{F}_{\alpha /2,\,n-1,\,m-1}$.}
+            \end{cases}
+            \] 
+        \end{defn}
     \section{Test per campioni di coppie di dati normali}
+        \begin{defn}
+            Consideriamo il caso di un campione costituito da $n$ coppie \\
+            $(X_1,\,Y_1),\, \ldots,\, (X_n,\,Y_n)$ nel quale ciascuna coppia $(X_i,\,Y_i)$ è indipendente, 
+            ma le componenti $X_i,\,Y_i$ non lo sono.
+
+            Consideriamo il campione aleatorio $\vec{W} \coloneqq W_1 = Y_1-X_1,\, \ldots,\, W_n=Y_n-X_n$ e 
+            sapendo che il valore atteso di $W$ (che indicheremo con $\mu_w$) è nullo quando si verifica 
+            un evento $H_0$, possiamo costruire un test come: \[
+                \begin{cases}
+                    H_0 : & \mu_w = 0; \\
+                    H_1 : & \mu_w \neq 0.
+                \end{cases}
+            \] Possiamo usare un \emph{t}\nbdash test poiché testiamo la media di una popolazione normale con 
+            media e varianza incognite (Sezione~\ref{sec:t_test}); ricaviamo le seguenti regole di rifiuto e 
+            accettazione con significatività $\alpha$: \[
+                \begin{cases}
+                    \text{rifiutiamo } H_0 & 
+                    \text{se $\frac{\overline{W}_n}{S_w^2 /\sqrt{n}} \leq -t_{\alpha,\, n-1}$;} \\
+                    \text{accettiamo } H_0 & 
+                    \text{se $\frac{\overline{W}_n}{S_w^2 /\sqrt{n}} > -t_{\alpha,\, n-1}$.}
+                \end{cases}
+            .\] 
+        \end{defn}
     \section{Test approssimato su proporzione}
         %TODO: Completare sezione
