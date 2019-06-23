@@ -109,6 +109,7 @@
                 &= \text{Var}_{\vartheta}\big[d_n(\vec{X})\big] + \big(b_{\vartheta}(d_n)\big)^2
             .\qedhere\end{align*}
         \end{proof}
+    \pagebreak % Interrompi pagina, evita di lasciare il titolo separato dal testo
     \section{Proprietà asintotiche degli stimatori}
         \subsection{Non distorsione}
             \begin{defn}
@@ -197,7 +198,7 @@
             \end{enumerate}
         \end{proof}
     \section{Varianza campionaria}
-        \begin{defn}
+        \begin{defn}\label{defn:Varianza_campionaria}
             Sia $X_1,\, \ldots,\, X_{n}$ un campione estratto da $F$; allora chiamiamo 
             \emph{varianza campionaria} la statistica definita come:
             \begin{align}\label{eq:Varianza_campionaria}
@@ -252,7 +253,7 @@
                 & & (n-1)\cdot \frac{S_n^2}{\sigma^2} \sim \chi^2(n-1)
             .\end{align}
         \end{thm}
-        \begin{prty}
+        \begin{prty}\label{prty:Distribuzione_congiunta_statistiche_normale}
             Se $X_1,\, \ldots,\, X_{n}$ è un campione estratto da una popolazione normale di media $\mu$ e 
             varianza $\sigma^2$ allora si ha: \[
                 \frac{\overline{X}_n - \mu}{S_n /\sqrt{n}} \sim t(n-1)
@@ -491,9 +492,8 @@
         \begin{defn}
             Sia $X_1,\, \ldots,\, X_{n}$ un campione estratto da una popolazione con densità $F_\vartheta$, 
             inoltre sia $Q = q(X_1,\, \ldots,\, X_{n};\, \vartheta)$ una variabile aleatoria funzione del 
-            campione e del parametro incognito.
-
-            Chiamiamo $Q$ \emph{quantità pivotale} se la sua distribuzione non dipende da $\vartheta$.
+            campione e del parametro incognito. Chiamiamo $Q$ \emph{quantità pivotale} se la sua 
+            distribuzione non dipende da $\vartheta$.
         \end{defn}
         \begin{obsv}
             Consideriamo una quantità pivotale $Q$, allora posiamo determinare due numeri $q_1,\, q_2$ che 
@@ -702,7 +702,8 @@
                 .\]
             \end{defn}
         \subsection{Differenza tra medie di popolazioni normali}
-            \begin{defn}[Intervallo bilatero con $\mu_1=\mu_2=\,? \sigma^2_1 = \sigma^2_{1,\,0},\, \sigma^2_2 = \sigma^2_{2,\,0}$]
+            \begin{defn}[Intervallo bilatero con $\mu_1=\mu_2=\,?,\, \sigma^2_1 = \sigma^2_{1,\,0},\, \sigma^2_2 = \sigma^2_{2,\,0}$]
+                \hfill \\
                 Consideriamo due campioni $X_1,\, \ldots,\, X_{n}$ e $Y_1,\, \ldots,\, Y_{m}$ estratti da 
                 due popolazioni normali differenti, aventi media e varianza rispettivamente 
                 $\mu_1,\, \sigma^2_1$ la prima e $\mu_2,\, \sigma^2_2$ la seconda; supponiamo indipendenti 
@@ -716,7 +717,8 @@
                     \overline{X}-\overline{Y} \sim \mathcal{N}\left(\mu_1-\mu_2,\, 
                     \frac{\sigma^2_1}{n} + \frac{\sigma^2_2}{n}\right) = Q
                 ;\] nella precedente abbiamo usato le Proprietà~\ref{prty:Valore_atteso} e le 
-                Proprietà~\ref{Varianza}, per valore atteso e varianza della somma delle distribuzioni.
+                Proprietà~\ref{prty:Varianza}, per valore atteso e varianza della somma delle 
+                distribuzioni.
 
                 Ipotizzando di conoscere $\sigma^2_1$ e $\sigma^2_2$ scriviamo: \[
                     \frac{\overline{X}-\overline{Y}- (\mu_1-\mu_2)}{\sqrt{\sigma^2_1 /n +\sigma^2_2 /m}} 
@@ -738,4 +740,32 @@
         \subsection{Intervalli di confidenza asintotici}
             %TODO: Completare sezione
         \subsection{Intervalli di confidenza per proporzione}
-            %TODO: Completare sezione
+            \begin{defn}
+                Consideriamo una popolazione di oggetti, ognuno dei quali soddisfa dei requisiti con 
+                probabilità incognita $p$ in modo indipendente gli uni dagli altri; se di $n$ oggetti 
+                testati indichiamo con $X$ quelli che soddisfano i requisiti di successo, avremo che:
+                \begin{align*}
+                    X \sim \mathcal{B}i(np,\,np(1-p)) \implies
+                    \frac{X - np}{\sqrt{np(1-p)}} \sim \mathcal{N}(0,\,1)
+                ;\end{align*}
+                per ogni $p$ otteniamo la confidenza scrivendo: \[
+                    1-\alpha &= P_{p}\left(-z_{\alpha /2} < \frac{X -np}{\sqrt{np(1-p)}} < z_{\alpha /2}\right)
+                .\] 
+                Per usare la precedente relazione per definire un intervallo di confidenza, indichiamo 
+                $\hat{p}\coloneqq X /n$ \--- $\hat{p}$ è l'MLE per $p$ \--- ed usiamo la statistica 
+                test: \[
+                    \frac{X -np}{\sqrt{n\hat{p}(1-\hat{p})}}
+                ,\] per costruire attorno a $p$ un intervallo di confidenza:
+                \begin{align*}
+                    1-\alpha &= P_{p}\left(-z_{\alpha /2} < \frac{X -np}{\sqrt{n\hat{p}(1-\hat{p})}} < 
+                    z_{\alpha /2}\right) \\
+                    &= P_{p}\left(-z_{\alpha /2}\cdot \sqrt{n\hat{p}(1-\hat{p})} < 
+                    np-X < z_{\alpha /2}\cdot \sqrt{n\hat{p}(1-\hat{p})}\right) \\
+                    &= P_{p}\left(\hat{p}- z_{\alpha /2}\cdot \sqrt{\hat{p}(1-\hat{p}) /n} < 
+                    p < \hat{p}+ z_{\alpha /2}\cdot \sqrt{\hat{p}(1-\hat{p}) /n}\right)
+                .\end{align*}
+                L'ultima relazione fornisce un intervallo approssimato per $p$: \[
+                    \left(\hat{p}- z_{\alpha /2}\cdot \sqrt{n\hat{p}(1-\hat{p}) /2},\, 
+                    \hat{p}+ z_{\alpha /2}\cdot \sqrt{n\hat{p}(1-\hat{p}) /2}\right)
+                .\] 
+            \end{defn}
