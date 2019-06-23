@@ -1,6 +1,7 @@
 # psi-2019
 
 [![Build Status](https://ci.fantasyshop.cf/api/badges/Procsiab/psi-2019/status.svg)](https://ci.fantasyshop.cf/Procsiab/psi-2019)
+![Website](https://img.shields.io/website/https/fs.fantasyshop.cf.svg?down_message=offline&label=file-sharing&up_message=online)
 
 Appunti di Probabilità e Statistica
 
