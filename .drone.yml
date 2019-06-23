@@ -1,0 +1,30 @@
+---
+kind: pipeline
+name: default
+
+steps:
+- name: compile
+  image: raabf/latex-versions:latest
+  commands:
+  - make all
+
+- name: deploy
+  image: none
+  volumes:
+  - name: files
+    path: ~/files
+  commands:
+  - cp pdf/psi-2019.pdf ~/files/Probabilità\ e\ Statistica per\ l\'\ Informatica.pdf
+  when:
+    status:
+    - success
+
+volumes:
+- name: files
+  host:
+    path: /srv/fs-data
+
+trigger:
+  branch:
+  - master
+---

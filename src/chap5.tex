@@ -717,7 +717,8 @@
                     \overline{X}-\overline{Y} \sim \mathcal{N}\left(\mu_1-\mu_2,\, 
                     \frac{\sigma^2_1}{n} + \frac{\sigma^2_2}{n}\right) = Q
                 ;\] nella precedente abbiamo usato le Proprietà~\ref{prty:Valore_atteso} e le 
-                Proprietà~\ref{prty:Varianza}, per valore atteso e varianza della somma delle distribuzioni.
+                Proprietà~\ref{prty:Varianza}, per valore atteso e varianza della somma delle 
+                distribuzioni.
 
                 Ipotizzando di conoscere $\sigma^2_1$ e $\sigma^2_2$ scriviamo: \[
                     \frac{\overline{X}-\overline{Y}- (\mu_1-\mu_2)}{\sqrt{\sigma^2_1 /n +\sigma^2_2 /m}} 
@@ -739,4 +740,32 @@
         \subsection{Intervalli di confidenza asintotici}
             %TODO: Completare sezione
         \subsection{Intervalli di confidenza per proporzione}
-            %TODO: Completare sezione
+            \begin{defn}
+                Consideriamo una popolazione di oggetti, ognuno dei quali soddisfa dei requisiti con 
+                probabilità incognita $p$ in modo indipendente gli uni dagli altri; se di $n$ oggetti 
+                testati indichiamo con $X$ quelli che soddisfano i requisiti di successo, avremo che:
+                \begin{align*}
+                    X \sim \mathcal{B}i(np,\,np(1-p)) \implies
+                    \frac{X - np}{\sqrt{np(1-p)}} \sim \mathcal{N}(0,\,1)
+                ;\end{align*}
+                per ogni $p$ otteniamo la confidenza scrivendo: \[
+                    1-\alpha &= P_{p}\left(-z_{\alpha /2} < \frac{X -np}{\sqrt{np(1-p)}} < z_{\alpha /2}\right)
+                .\] 
+                Per usare la precedente relazione per definire un intervallo di confidenza, indichiamo 
+                $\hat{p}\coloneqq X /n$ \--- $\hat{p}$ è l'MLE per $p$ \--- ed usiamo la statistica 
+                test: \[
+                    \frac{X -np}{\sqrt{n\hat{p}(1-\hat{p})}}
+                ,\] per costruire attorno a $p$ un intervallo di confidenza:
+                \begin{align*}
+                    1-\alpha &= P_{p}\left(-z_{\alpha /2} < \frac{X -np}{\sqrt{n\hat{p}(1-\hat{p})}} < 
+                    z_{\alpha /2}\right) \\
+                    &= P_{p}\left(-z_{\alpha /2}\cdot \sqrt{n\hat{p}(1-\hat{p})} < 
+                    np-X < z_{\alpha /2}\cdot \sqrt{n\hat{p}(1-\hat{p})}\right) \\
+                    &= P_{p}\left(\hat{p}- z_{\alpha /2}\cdot \sqrt{\hat{p}(1-\hat{p}) /n} < 
+                    p < \hat{p}+ z_{\alpha /2}\cdot \sqrt{\hat{p}(1-\hat{p}) /n}\right)
+                .\end{align*}
+                L'ultima relazione fornisce un intervallo approssimato per $p$: \[
+                    \left(\hat{p}- z_{\alpha /2}\cdot \sqrt{n\hat{p}(1-\hat{p}) /2},\, 
+                    \hat{p}+ z_{\alpha /2}\cdot \sqrt{n\hat{p}(1-\hat{p}) /2}\right)
+                .\] 
+            \end{defn}
