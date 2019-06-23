@@ -23,3 +23,8 @@ volumes:
 - name: files
   host:
     path: /srv/fs-data
+---
+kind: signature
+hmac: e27d3e41e7bfb3c5fbea981fd68f3db71315bd62f6d76698f09017b35ebdaee9
+
+...
