@@ -1,6 +1,8 @@
 # psi-2019
 
 [![Build Status](https://ci.fantasyshop.cf/api/badges/Procsiab/psi-2019/status.svg)](https://ci.fantasyshop.cf/Procsiab/psi-2019)
+[![star this repo](http://githubbadges.com/star.svg?user=Procsiab&repo=psi-2019&style=flat)](https://github.com/Procsiab/psi-2019)
+[![fork this repo](http://githubbadges.com/fork.svg?user=Procsiab&repo=psi-2019&style=flat)](https://github.com/Procsiab/psi-2019/fork)
 
 Appunti di Probabilità e Statistica
 
