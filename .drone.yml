@@ -23,8 +23,3 @@ volumes:
 - name: files
   host:
     path: /srv/fs-data
-
-trigger:
-  branch:
-  - master
----
