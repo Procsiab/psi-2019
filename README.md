@@ -1,5 +1,7 @@
 # psi-2019
 
+[![Build Status](https://ci.fantasyshop.cf/api/badges/Procsiab/psi-2019/status.svg)](https://ci.fantasyshop.cf/Procsiab/psi-2019)
+
 Appunti di Probabilità e Statistica
 
 ## Occhio!
@@ -14,6 +16,9 @@ In questo modo la gestione del progetto è più facile (posso lavorare su un cap
 ## Mamma, io volevo il PDF!
 
 Non sarò la tua mamma, ma posso promettere che a breve integrerò questa repository in un sistema di continuous delivery per avere sempre una versione compilata e aggiornata del PDF a partire dal sorgente.
+
+**UPDATE**: Il sistemda di integrazione dovrebbe cominciare a pubblicare i PDF compilati a questo indirizzo:
+https://fs.fantasyshop.cf/
 
 ### Nel frattempo...
 
