@@ -8,7 +8,7 @@ platform:
 
 steps:
 - name: compile
-  image: raabf/latex-versions:latest
+  image: texlive-rpi-it
   commands:
   - make all
 
@@ -18,7 +18,8 @@ steps:
   - name: files
     path: ~/files
   commands:
-  - cp pdf/psi-2019.pdf ~/files/Probabilità\ e\ Statistica per\ l\'\ Informatica.pdf
+  - export FILENAME="Probabilità e Statistica per l' Informatica.pdf"
+  - cp pdf/psi-2019.pdf ~/files/$FILENAME
   when:
     status:
     - success
