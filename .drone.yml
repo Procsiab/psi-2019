@@ -8,7 +8,7 @@ platform:
 
 steps:
 - name: compile
-  image: texlive-rpi-it
+  image: docker.io/procsiab/texlive-rpi-it
   commands:
   - make all
 
