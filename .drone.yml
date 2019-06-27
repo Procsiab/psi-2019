@@ -2,19 +2,27 @@
 kind: pipeline
 name: default
 
+platform:
+  os: linux
+  arch: arm
+
 steps:
 - name: compile
-  image: raabf/latex-versions:latest
+  image: docker.io/procsiab/texlive-rpi-it
   commands:
   - make all
 
 - name: deploy
-  image: none
-  volumes:
-  - name: files
-    path: ~/files
-  commands:
-  - cp pdf/psi-2019.pdf ~/files/Probabilità\ e\ Statistica per\ l\'\ Informatica.pdf
+  image: appleboy/drone-scp
+  settings:
+    host: 192.168.33.200
+    username: astro
+    key:
+      from_secret: astro-drone-key
+    port: 22
+    target: /srv/fs-data/
+    source: pdf/psi-2019.pdf
+    strip_components: 1
   when:
     status:
     - success
@@ -23,8 +31,8 @@ volumes:
 - name: files
   host:
     path: /srv/fs-data
-
-trigger:
-  branch:
-  - master
 ---
+kind: signature
+hmac: e27d3e41e7bfb3c5fbea981fd68f3db71315bd62f6d76698f09017b35ebdaee9
+
+...
