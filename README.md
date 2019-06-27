@@ -21,8 +21,7 @@ In questo modo la gestione del progetto è più facile (posso lavorare su un cap
 
 Questa repository non contiene il PDF perché esso è generato da un sistema di continuous delivery, per avere sempre una versione compilata e aggiornata del PDF a partire dal sorgente.
 
-Il sistema di integrazione pubblica PDF compilati a questo indirizzo:
-https://fs.fantasyshop.cf/
+Il sistema di integrazione pubblica PDF compilati a [questo](https://fs.fantasyshop.cf) indirizzo, dove saranno presenti anche i documenti compilati dalle altre repository pubbliche.
 
 Ho scelto *Drone* per l'integrazione perché facile da mettere in funzione tramite container Docker; l'immagine che viene usata come base invece è un'installazione personalizzata di TexLive su ARMv7 (trovate [qui](https://github.com/Procsiab/texlive-rpi-it) il Dockerfile).
 
