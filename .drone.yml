@@ -13,7 +13,7 @@ steps:
   - make all
 
 - name: deploy
-  image: none
+  image: docker.io/alpine
   volumes:
   - name: files
     path: ~/files
