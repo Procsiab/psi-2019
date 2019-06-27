@@ -16,10 +16,10 @@ steps:
   image: docker.io/alpine
   volumes:
   - name: files
-    path: ~/files
+    path: /tmp/files
   commands:
   - export FILENAME="Probabilità e Statistica per l' Informatica.pdf"
-  - cp pdf/psi-2019.pdf ~/files/$FILENAME
+  - cp pdf/psi-2019.pdf /tmp/files/"$FILENAME"
   when:
     status:
     - success
