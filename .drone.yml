@@ -14,16 +14,15 @@ steps:
 
 - name: deploy
   image: appleboy/drone-scp
-  environment:
-    FILENAME: "Probabilità e Statistica per l' Informatica.pdf"
   settings:
     host: 192.168.33.200
     username: astro
     key:
       from_secret: astro-drone-key
     port: 22
-    target: /srv/fs-data/"$FILENAME"
+    target: /srv/fs-data/
     source: pdf/psi-2019.pdf
+    strip_components: 1
   when:
     status:
     - success
