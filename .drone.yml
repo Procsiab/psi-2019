@@ -13,13 +13,17 @@ steps:
   - make all
 
 - name: deploy
-  image: docker.io/alpine
-  volumes:
-  - name: files
-    path: /tmp/files
-  commands:
-  - export FILENAME="Probabilità e Statistica per l' Informatica.pdf"
-  - cp pdf/psi-2019.pdf /tmp/files/"$FILENAME"
+  image: appleboy/drone-scp
+  environment:
+    FILENAME: "Probabilità e Statistica per l' Informatica.pdf"
+  settings:
+    host: 192.168.33.200
+    username: astro
+    key:
+      from_secret: astro-drone-key
+    port: 22
+    target: /srv/fs-data/"$FILENAME"
+    source: pdf/psi-2019.pdf
   when:
     status:
     - success
