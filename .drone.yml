@@ -10,7 +10,7 @@ steps:
 - name: compile
   image: docker.io/procsiab/texlive-rpi-it
   commands:
-  - make pdf; make all
+  - make all
 
 - name: deploy
   image: none

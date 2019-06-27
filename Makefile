@@ -8,7 +8,7 @@ MAINFILE=main
 all: pdf clean
 
 pdf: src/$(MAINFILE).tex
-	@ latexmk -f -quiet -pdf -pdflatex="pdflatex -interaction=nonstopmode" -cd -outdir=../pdf -use-make src/$(MAINFILE).tex && \
+	@ latexmk -quiet -pdf -pdflatex="pdflatex -interaction=nonstopmode" -cd -outdir=../pdf -use-make src/$(MAINFILE).tex && \
 		mv pdf/main.pdf pdf/$(OUTNAME).pdf
 
 clean:
