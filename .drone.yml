@@ -24,6 +24,8 @@ steps:
     source: pdf/psi-2019.pdf
     strip_components: 1
   when:
+    branch:
+    - master
     status:
     - success
 
