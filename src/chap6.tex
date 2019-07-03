@@ -467,5 +467,289 @@
                 \end{cases}
             .\] 
         \end{defn}
-    \section{Test approssimato su proporzione}
+    \section{Confronto parametri tra popolazioni Bernoulliane indipendenti}
+        \begin{defn}[Proporzione]
+            Consideriamo due campioni indipendenti $X_1,\, \ldots,\, X_{n_1}$ e $Y_1,\, \ldots,\, Y_{n_2}$ 
+            estratti da due popolazioni Bernoulliane con probabilità di successo rispettivamente $p_1$ e $p_2$; 
+            se contiamo i successi nel primo e nel secondo campione rispettivamente con $s_{n_1}$ e $S_{n_2}$, 
+            allora abbiamo:
+            \begin{align*}
+                S_{n_1} \sim \mathcal{B}i(n_1,\,p_1) & &
+                S_{n_2} \sim \mathcal{B}i(n_2,\,p_2)
+            ;\end{align*}
+            sappiamo che le precedenti variabili aleatorie sono indipendenti, e se $n_1$ e $n_2$ sono 
+            ``grandi'', per il Teorema~\ref{thm:Teorema_DeMoivre_Laplace} possiamo scriverle come:
+            \begin{align*}
+                \frac{S_{n_1}}{n_1} \sim \mathcal{N}\left(p_1,\, \frac{p_1\cdot(1-p_1)}{n_1}\right) & &
+                \frac{S_{n_2}}{n_2} \sim \mathcal{N}\left(p_2,\, \frac{p_2\cdot(1-p_2)}{n_2}\right)
+            ,\end{align*}
+            da cui segue che la distribuzione della differenza si ottiene come:
+            \begin{align*}
+                \frac{S_{n_1}}{n_1} - \frac{S_{n_2}}{n_2} \sim \mathcal{N}\left(p_1-p_2,\, 
+                \frac{p_1\cdot(1-p_1)}{n_1} + \frac{p_2\cdot(1-p_2)}{n_2}\right)
+            .\end{align*}
+            Siano i due parametri $p_1$ e $p_2$ sono incogniti e impostiamo il test d'ipotesi seguente: \[
+                \begin{cases}
+                    H_0 : & p_1 = p_2; \\
+                    H_1 : & p_1 \neq p_2.
+                \end{cases}
+            .\] Se consideriamo verificata $H_0$, possiamo scrivere:
+            \begin{align*}
+                \frac{(S_{n_1} /n_1) - (S_{n_2} /n_2)}{\sqrt{p\cdot(1-p)(1 /n_1 + 1 /n_2)}} \sim 
+                \mathcal{N}(0,\,1)
+                & & \text{per } p = p_1 = p_2
+            ;\end{align*}
+            notiamo tuttavia che per la presenza del parametro incognito $p$, non possiamo considerare la 
+            precedente scrittura una statistica test.
+
+            Stimiamo allora il parametro incognito tramite i campioni delle due popolazioni; considerando 
+            verificata l'ipotesi $H_0$ abbiamo: \[
+                p_1 = p_2 \implies S_{n_1} + S_{n_2} \sim \mathcal{B}i(n_1+n_2,\, p)
+            .\] Per il Teorema~\ref{thm:Legge_grandi_numeri_forte}, quando $n_1$ e $n_2$ sono grandi vale: \[
+                \frac{S_{n_1} + S_{n_2}}{n_1 + n_2} \sim p
+            ;\] concludiamo che una scelta valida per la statistica test è la seguente: \[
+                \tilde{Z_0} \coloneqq \frac{S_{n_1} - S_{n_2}}{\sqrt{\frac{S_{n_1}+S_{n_2}}{n_1+n_2}\cdot
+                \left(1- \frac{S_{n_1}+S_{n_2}}{n_1+n_2}\right)\left(\frac{1}{n_1}+\frac{1}{n_2}\right)}}
+                \sim \mathcal{N}(0,\,1)
+            .\] Per costruire un test di livello di significatività $\alpha$ usiamo il quantile della normale 
+            standard di ordine $\alpha/2$, ottenendo le seguenti condizioni di rifiuto e accettazione: \[
+                \begin{cases}
+                    \text{rifiutiamo } H_0 & 
+                    \text{se $|\tilde{Z_0}| \geq z_{\alpha /2}$;} \\
+                    \text{accettiamo } H_0 & 
+                    \text{se $|\tilde{Z_0}| < z_{\alpha /2}$.}
+                \end{cases}
+            \] 
+        \end{defn}
+    \section{Test uguaglianza distribuzioni tra popolazioni normali}
         %TODO: Completare sezione
+    \section{Test $\chi^2$ di buon adattamento}\label{sec:Chi2_buon_adattamento}
+        \begin{defn}[buon adattamento]
+            I test statistici che servono per verificare se un dato modello probabilistico sia 
+            compatibile con i dati, sono detti test \emph{sulla bontà di adattamento} (o di 
+            buon adattamento).
+        \end{defn}
+        \begin{defn}
+            Consideriamo una popolazione formata da oggetti classificabili in $k$ categorie 
+            diverse; per $i \in [1,\,k]$ sia $p_i$ la probabilità che un oggetto scelto a caso 
+            dalla popolazione, appartenga alla classe $i$\nbdash esima; deve valere:
+            \begin{align*}
+                p_i \geq 0, & &
+                \sum_{i=1}^{k} p_i = 1
+            .\end{align*}
+            Siano inoltre $p^0_1,\, \ldots,\, p^0_{k}$ $k$ numeri assegnati, che soddisfino le 
+            proprietà appena enunciate per i $p_i$; impostiamo il test di buon adattamento come: \[
+                \begin{cases}
+                    H_0 : & \forall i \in [1,\,k] \,:\, p_i = p_i^0; \\
+                    H_1 : & \exists i \in [1,\,k] \,:\, p_i \neq p_i^0.
+                \end{cases}
+            \] Se consideriamo un campione $X_1,\, \ldots,\, X_{n}$ estratto dalla popolazione, il 
+            quale contiene $n$ osservazioni indipendenti e ciascuna ha probabilità $p_i$ di 
+            appartenere alla classe $i$\nbdash esima, allora indichiamo con  $X_i = n^0$ le 
+            osservazioni comprese nel campione che fanno parte della classe $i$\nbdash esima.
+
+            Possiamo osservare la seguente distribuzione per la frequenza assoluta della 
+            classe $i$\nbdash esima nel campione:
+            \begin{align*}
+                X_i \sim \mathcal{B}i(n,\,p_i) \implies \text{E}(X_i)= n\cdot p_i & &
+                \text{per } i \in [1,\,k]
+            .\end{align*}
+            Prendiamo come statistica test:
+            \begin{align*}
+                D_n \coloneqq \sum_{i=1}^{k} \frac{(X_i -np_i^0)^2}{np_i^0}
+            ,\end{align*}
+            dato che la quantità $(X_i -np_i^0)^2$ ci indica quanto è verosimile accettare 
+            l'ipotesi nulla $H_0$.
+
+            Inoltre, rifiutiamo l'ipotesi nulla quando $D_n > c$, dove la costante $c$ dipende 
+            dal livello di significatività del test:
+            \begin{align*}
+                \alpha &= P_i\left(D_n \geq c\right)
+            .\end{align*}
+            Possiamo concludere, per $n$ ``grande'' e $H_0$ verificata, che: \[
+                D_n \sim \chi^2(k-1) \implies c \simeq \chi^2_{\alpha,\, k-1}
+            .\] In conclusione, data statistica test $D_n$ definita sopra e la realizzazione 
+            $\bar{d}$ corrispondente al campione $\vec{X}$, le condizioni di accettazione e 
+            rifiuto per un test di \emph{livello approssimato} $\alpha$ sono: \[
+                \begin{cases}
+                    \text{rifiutiamo } H_0 & 
+                    \text{se $\bar{d} \geq \chi^2_{\alpha,\, k-1}$;} \\
+                    \text{accettiamo } H_0 & 
+                    \text{se $\bar{d} < \chi^2_{\alpha,\, k-1}$.}
+                \end{cases}
+            .\] 
+        \end{defn}
+        \begin{prty}
+            \hfill
+            \begin{enumerate}
+                \item Il numero di elementi $n$ che costituiscono il campione di un test $\chi^2$ 
+                    di buon adattamento è abbastanza ``grande'' quando:
+                    \begin{itemize} \label{itm:n_grande_Chi_quadro_adattamento}
+                        \item almeno $4 /5$ degli $np_i^0 \geq 5$;
+                        \item le rimanenti $np_i^0 > 1$.
+                    \end{itemize}
+                \item possiamo dimostrare la relazione: \[
+                    D_n = \sum_{i=1}^{k} \frac{(X_i -np_i^0)^2}{np_i^0} = 
+                    \sum_{i=1}^{k} \frac{X_i^2}{np_i^0}-n
+                ;\] 
+                \item se abbiamo $k=2$ classi allora $X_1+X_2=n$ e $p_1^0+p_2^0=1$, e inoltre: \[
+                    D_n \sim \chi^2(1)
+                ;\] 
+                \item se abbiamo $k > 2$ classi allora: \[
+                    D_n \sim \chi^2(k-1)
+                .\] 
+            \end{enumerate}
+        \end{prty}
+        \begin{proof}
+            \hfill
+            \begin{enumerate}
+                \setcounter{enumi}{1}
+                \item Riscriviamo la forma dello stimatore come segue:
+                    \begin{align*}
+                        D_{n} &= \sum_{i=1}^{k} \frac{(X_i - np_i^0)^2}{np^0_i} =
+                            \sum_{i=1}^{k} \frac{X_i^2 +n^2(p_i^0)^2 -2np_i^0 X_i}{np_i^0} \\
+                        &= \sum_{i=1}^{k} \frac{X_i^2}{np_i^0} + n\cdot \sum_{i=1}^{k} p_i^0 - 
+                              2\cdot \sum_{i=1}^{k} X_i \\
+                        &= \sum_{i=1}^{k} \frac{X_i^2}{np_i^0} - n & \text{per }
+                            \sum_{i=1}^{k} p_i^0 = 1 \land \sum_{i=1}^{k} X_i = n
+                        .\end{align*}
+                \item Scegliamo $k=2$ classi, di conseguenza $X_1+X_2 = n$ e $p_1^0 + p_2^0 = 1$; 
+                    allora possiamo scrivere lo stimatore come:
+                    \begin{align*}
+                        D_n &= \frac{(X_1 -np_1^0)^2}{np_1^0} + \frac{(X_2 -np_2^0)^2}{np_2^0} \\
+                            &= \frac{(X_1 -np_1^0)^2}{np_1^0} + \frac{(n-X_1-n(1-p_1^0))^2}{n(1-p_1^0)} \\
+                            &= \frac{(X_1 -np_1^0)^2}{np_1^0} + \frac{(X_1-np_0)^2}{n(1-p_1^0)} \\
+                            &= \frac{(X_1 -np_1^0)^2}{np_1^0(1-p_1^0)}
+                    .\end{align*}
+                    Se vale l'ipotesi di un $n$ ``grande'' allora si verifica che:
+                    \begin{equation*}
+                        \frac{X_1-np_1^0}{\sqrt{np_1^0(1-p_1^0)}} \sim \mathcal{N}(0,\,1) \implies 
+                        D_n = \frac{(X_1 -np_1^0)^2}{np_1^0(1-p_1^0)} \sim \chi^2(1)
+                    .\end{equation*}
+                \item Poniamoci nel caso di $n$ ``grande'', sappiamo quindi che la statistica test $D_n$ è 
+                    funzione delle variabili $X_1,\, \ldots,\, X_{k}$ tali che $\sum_{i=1}^{k} X_i = n$; 
+                    possiamo affermare che il legame tra le variabili $X_i$ fa ``perdere un grado di libertà'' 
+                    sotto l'ipotesi $\mathbb{H}_0$. \qedhere
+            \end{enumerate}
+        \end{proof}
+        \subsection{Dati con densità discreta a meno di parametri}
+            \begin{defn}
+                Nel caso in cui le probabilità $\{p_i = 1,\, \ldots,\, k\}$ non siano completamente specificate, 
+                costruiamo le ipotesi del test chiedendoci se la distribuzione in esame sia una Poisson di parametro 
+                $\lambda$ non specificato: \[
+                    \begin{cases}
+                        H_0 : & \exists \lambda \,:\, F \sim \mathcal{P}(\lambda); \\
+                        H_1 : & \nexists \lambda \,:\, F \sim \mathcal{P}(\lambda).
+                    \end{cases}
+                \]
+                Procediamo quindi nel modo seguente:
+                \begin{itemize}
+                    \item effettuiamo una stima di $\lambda$ basandoci sui dati, indicandola con $\hat{\lambda}$;
+                    \item sostituiamo $\lambda$ con $\hat{\lambda}$ nelle espressioni delle probabilità $p_i^0$, 
+                        indicando con $\hat{p_i}$ il risultato ottenuto;
+                    \item adoperiamo la statistica test $\tilde{D_n} \coloneqq \sum_{i=1}^{n} 
+                        \frac{(X_i-\hat{n}p_i)}{\hat{n}p_i}$, dove indichiamo con $X_i$ la frequenza della classe 
+                        i\nbdash esima nel campione;
+                    \item si dimostra che sotto $\mathbb{H}_0$ e per $n$ ``grande'', la statistica test adottata vale: \[
+                            \tilde{D_n} \sim \chi^2(k - 1 - s) = \chi^2(k-2)
+                        ,\] con $k$ il numero di classi differenti e $s=1$ il numero di parametri da stimare.
+                \end{itemize}
+                Un test di livello $\alpha$ è quello che, in corrispondenza della realizzazione $\tilde{D_n} = \tilde{d}$ 
+                possiede le seguenti condizioni di accettazione e rifiuto: \[
+                \begin{cases}
+                    \text{rifiutiamo } H_0 & 
+                    \text{se $\tilde{d} \geq \chi^2_{\alpha,\,k-2}$;} \\
+                    \text{accettiamo } H_0 & 
+                    \text{se $\tilde{d} < \chi^2_{\alpha,\,k-2}$.}
+                \end{cases}
+                \]
+                \end{defn}
+        \subsection{Dati con densità continua}
+            \begin{defn}
+                Sia $Y_1,\, \ldots,\, Y_{n}$ un campione aleatorio estratto da una distribuzione continua $F$; sia inoltre 
+                $F_0$ una distribuzione continua \underline{assegnata}. Stabiliamo sulla base del campione il seguente 
+                test d'ipotesi: \[
+                    \begin{cases}
+                        H_0 : & F = F_0; \\
+                        H_1 : & F \neq F_0.
+                    \end{cases}
+                .\] Possiamo affrontare il problema suddividendo l'insieme dei possibili valori della variabile aleatoria 
+                $Y_j$ nell'ipotesi $\mathbb{H}_0$ in $k$ intervalli disgiunti: \[
+                (y_0,\,y_1],\, \ldots,\, (y_{k-1},\,y_k]
+                ;\] possiamo considerare i $k$ intervalli come le classi in cui suddivideremo l'osservazione.
+                Le probabilità con cui le osservazioni assumono valori in queste classi sono definite come:
+                \begin{align*}
+                    p_i = P\left(Y_j \in (y_{i-1},\,y_i]\right) & & \text{per } i \in [1,\,k]
+                ,\end{align*}
+                e sotto l'ipotesi nulla $\mathbb{H}_0$ questa probabilità vale:
+                \begin{align*}
+                    p_i^0 = P_{\mathbb{H}_0}\left(Y_{j} \in (y_{i-1},\,y_i]\right) = F_0(y_i) -F_0(y_{i-1})
+                    & & \text{per } i \in [1,\,k]
+                .\end{align*}
+                Concludiamo riformulando il problema iniziale come un test d'ipotesi del tipo: \[
+                    \begin{cases}
+                        H_0 : & \forall i \in [1,\,k] \,:\, p_i = p_i^0; \\
+                        H_1 : & \exists i \in [1,\,k] \,:\, p_i \neq p_i^0.
+                    \end{cases}
+                \] Possiamo analizzare queste ipotesi con un test $\chi^2$ di buon adattamento 
+                (§\ref{sec:Chi2_buon_adattamento}).
+            \end{defn}
+    \section{Test $\chi^2$ di indipendenza}
+        \begin{defn}
+            Consideriamo una popolazione nella quale ogni elemento possa essere classificato in base a due caratteristiche 
+            o criteri, chiamati $X \in [1,\,r]$ e $Y \in [1,\,s]$. Selezionando a caso $n$ individui della popolazione, 
+            consideriamo le corrispondenti caratteristiche $(X_i,\,Y_i)$ per $i\in [1,\,n]$: anche se in genere le 
+            caratteristiche $X_i$ e $Y_i$ sono correlate, possiamo assumere i vettori $(X_i,\,Y_i)$ indipendenti.
+
+            Verifichiamo dunque l'indipendenza delle due caratteristiche $X_i$ e $Y_i$, adottando come campione aleatorio 
+            la successione di vettori $(X_1,\,Y_1),\, \ldots,\, (X_n,\,Y_n)$ e denotiamo le densità di probabilità come:
+            \begin{align*}
+                p_{i,\,j} \coloneqq P(X=i,\,Y=j),\, p_i\coloneqq P(X=i),\, q_j\coloneqq P(Y=j)
+            ;\end{align*}
+            sulla base del campione vogliamo verificare le seguenti ipotesi: \[
+                \begin{cases}
+                    H_0 : & \forall i \in [1,\,r] \,\forall j \in [1,\,s] \,:\, p_{i,\,j} = p_iq_j; \\
+                    H_1 : & \exists i \in [1,\,r] \,\exists j \in [1,\,s] \,:\, p_{i,\,j} \neq p_iq_j.
+                \end{cases}
+            \] Per costruire la statistica test definiamo i seguenti elementi:
+            \begin{itemize}
+                \item $N_{i,\,j}$ il numero degli elementi dal campione, che sono uguali a $(i,\,j)$, ovvero la frequenza 
+                    di $(i,\,j)$ nel campione;
+                \item $N_i \coloneqq \sum_{j=1}^{s} N_{i,\,j}$ il numero delle $X_1,\, \ldots,\, X_{n}$ che sono 
+                    uguali a $i$, ovvero la frequenza di $i$ tra le variabili aleatorie $X_1,\, \ldots,\, X_{n}$;
+                \item $M_j \coloneqq \sum_{i=1}^{r} N_{i,\,j}$ il numero delle $Y_1,\, \ldots,\, Y_{n}$ che sono 
+                    uguali a $j$, ovvero la frequenza di $j$ tra le variabili aleatorie $Y_1,\, \ldots,\, Y_{n}$;
+                \item $\hat{p}_i \coloneqq N_i \slash n$, $\hat{q}_j \coloneqq M_j \slash n$.
+            \end{itemize}
+            Se utilizziamo la segiente statistica test: \[
+                D_n^* \coloneqq \sum_{j=1}^{s} \sum_{i=1}^{r} \frac{(N_{i,\,j} - n \hat{p}_i\hat{q}_j)^2}{n\hat{p}_i\hat{q}_j}
+            ,\] possiamo dimostrare che con $n$ ``grande'' e sotto l'ipotesi $\mathbb{H}^0$ vale: \[
+            D_n^* \sim \chi^2\left((r-1) \times (s-1)\right) \implies P_{\mathbb{H}^0}\left(D_n^* 
+                \geq \chi^2_{\alpha,\, (r-1) \times (s-1)}\right) \simeq \alpha
+            .\] 
+        \end{defn}
+        \begin{proof}
+            Consideriamo ciascuna coppia $(i,\,j)$, a cui corrisponde $N_{i,\,j}$ che rappresenta il numero di 
+            elementi del campione uguali a $(i,\,j)$; possiamo rappresentare la distribuzione di questa variabile 
+            aleatoria come una binomiale: \[
+                N_{i,\,j} \sim \mathcal{B}i(n,\,p_{i,\,j})
+            ,\] dove abbiamo usato il parametro $p_{i,\,j} = P(X=i,\,Y=j)$ definito in precedenza.
+
+            Possiamo calcolare il valore atteso della frequenza di $(i,\,j)$ come: \[
+                \text{E}(N_{i,\,j}) = n\cdot p_{i,\,j} \underset{\mathbb{H}_0}{=} n \cdot p_i q_j = nP(X=i)P(Y=j)
+            .\] Deduciamo che per un valore grande di $(N_{i,\,j} - np_iq_j)^2$ rifiuteremo l'ipotesi nulla di 
+            indipendenza; poiché $p_i$ e $q_j$ sono incognite, calcoliamo una loro stima tramite 
+            $\hat{p}_i$ e $\hat{q}_j$.
+
+            Considerata la statistica test $D_n^*$, le condizioni di accettazione e rifiuto del test sono determinate 
+            come: \[
+                \begin{cases}
+                    \text{rifiutiamo } H_0 & 
+                    \text{se $d^* \geq \chi^2_{\alpha,\,(r-1)\times (s-1)}$;} \\
+                    \text{accettiamo } H_0 & 
+                    \text{se $d^* < \chi^2_{\alpha,\,(r-1)\times (s-1)}$.}
+                \end{cases}
+            \] Possiamo determinare il p\nbdash value di questo test come \[
+            P_{\mathbb{H}_0}(D_n^* \geq d^*) \sim P(\chi^2((r-1)\times (s-1)))
+            .\qedhere\] 
+        \end{proof}
