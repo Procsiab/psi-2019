@@ -9,7 +9,7 @@ Le dispense sono state realizzate assistendo alle lezioni e integrando le conosc
 
 ## Dov'è il mio PDF?
 
-Questa repository è diversa dalle altre in cui ho pubblicato PDP compilato e file .lix: infatti qui ho usato direttamente il compilatore `latexmk` e ho spezzato il progetto nel modo seguente:
+Questa repository è diversa dalle altre in cui ho pubblicato PDF compilato e file .lyx: infatti qui ho usato direttamente il compilatore `latexmk` e ho spezzato il progetto nel modo seguente:
 
 - `main.tex`: file principale, contenente preambolo, pagina del titolo e inclusione dei file per i capitoli;
 - `chap*.tex`: file relativi ai capitoli, contengono unicamente il contenuto di ciascun capitolo;
@@ -21,9 +21,9 @@ In questo modo la gestione del progetto è più facile (posso lavorare su un cap
 
 Questa repository non contiene il PDF perché esso è generato da un sistema di continuous delivery, per avere sempre una versione compilata e aggiornata del PDF a partire dal sorgente.
 
-Il sistema di integrazione pubblica PDF compilati a [questo](https://book.procsiab.cf) indirizzo, dove saranno presenti anche i documenti compilati dalle altre repository pubbliche.
+Il sistema di integrazione pubblica PDF compilati a questo [indirizzo](https://book.procsiab.cf), dove saranno presenti anche i documenti compilati dalle altre repository pubbliche.
 
-Ho scelto *Drone* per l'integrazione perché facile da mettere in funzione tramite container Docker; l'immagine che viene usata come base invece è un'installazione personalizzata di TexLive su ARMv7 (trovate [qui](https://github.com/Procsiab/texlive-rpi-it) il Dockerfile).
+Ho scelto *Drone* per l'integrazione perché facile da mettere in funzione tramite container Docker; l'immagine che viene usata come base invece è un'installazione personalizzata di TexLive su ARMv7 (trovate qui il [Dockerfile](https://github.com/Procsiab/texlive-rpi-it)).
 
 ### Chi fa da sè...
 
@@ -36,4 +36,4 @@ Potete usare `make all` per ottenere il file PDF nella cartella omonima. I requi
 
 Nel branch `devel` piazzerò il lavoro in corso degli appunti, mentre tutti i capitoli ultimati saranno accessibili dal branch `master`.
 
-Il branch `devel` ospiterà in ogni caso anche tutto il codice del branch `master`, ma il file *src/main.tex* in esso è impostato per compilare solamente il capitolo in corso.
+Il branch `devel` ospiterà in ogni caso anche tutto il codice del branch `master`, ma il file *src/main.tex* è impostato per compilare solamente il capitolo in corso.
