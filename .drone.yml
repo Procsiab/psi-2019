@@ -1,14 +1,11 @@
 ---
 kind: pipeline
+type: docker
 name: default
-
-platform:
-  os: linux
-  arch: arm
 
 steps:
 - name: compile
-  image: docker.io/procsiab/texlive-rpi-it
+  image: docker.io/procsiab/texlive-it:latest-amd64
   commands:
   - make all
 
@@ -20,7 +17,7 @@ steps:
     key:
       from_secret: astro-drone-key
     port: 22
-    target: /srv/fs-data/
+    target: /srv/book/
     source: pdf/psi-2019.pdf
     strip_components: 1
   when:
@@ -29,12 +26,18 @@ steps:
     status:
     - success
 
-volumes:
-- name: files
-  host:
-    path: /srv/fs-data
+- name: debug
+  image: docker.io/busybox:latest
+  commands:
+  - cat pdf/main.log
+  when:
+    branch:
+    - master
+    status:
+    - failure
+
 ---
 kind: signature
-hmac: e27d3e41e7bfb3c5fbea981fd68f3db71315bd62f6d76698f09017b35ebdaee9
+hmac: eab85fdff5c694978eff2b6adc0ad15a575873bedc135aa8d00155160e0fa07c
 
 ...
