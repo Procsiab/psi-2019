@@ -4,11 +4,11 @@
 \chapter{Verifica d'ipotesi}
     \section{Ipotesi statistica}
         \begin{defn}
-            Data una popolazione con distribuzione con distribuzione $F_\vartheta$ determinata da un o più 
-            parametri incogniti $\vec{\vartheta}$, chiamiamo \emph{ipotesi statistica} un'affermazione 
-            su un o più parametri della popolazione.
+            Data una popolazione con distribuzione $F_\vartheta$ determinata da un o più  parametri 
+            incogniti $\vec{\vartheta}$, chiamiamo \emph{ipotesi statistica} un'affermazione 
+            su $\vec{\vartheta}$.
 
-            Se scegliamo $\vartheta \in \Theta_0 \subset \Theta$ e indichiamo con $\Theta$ lo spazio dei 
+            Se scegliamo un parametro $\vartheta \in \Theta_0 \subset \Theta$ e indichiamo con $\Theta$ lo spazio dei 
             parametri, allora indichiamo l'\emph{ipotesi nulla} come: \[
                 H_0 \,:\, \vartheta \in \Theta_0
             ;\] se $\Theta_0$ si riduce a un punto abbiamo un'ipotesi semplice, altrimenti diremo che essa 
@@ -16,13 +16,17 @@
 
             Indichiamo la negazione dell'ipotesi semplice tramite: \[
                 H_1 \,:\, \vartheta \in \Theta_1
-            ,\] dove abbiamo indicato il complementare dello spazio dei campioni tramite 
+            ,\] dove abbiamo indicato il complementare dello spazio dei parametri tramite 
             $\Theta_1 \coloneqq \Theta\backslash \Theta_0$, e la chiamiamo \emph{ipotesi alternativa}.
         \end{defn}
+        \begin{obsv}
+            Lo spazio dei parametri è costituito dall'unione dei due sottoinsiemi di ipotesi 
+            $\Theta = \Theta_0 \cup \Theta_1$ ; inoltre essi devono essere disgiunti $\Theta_0 \cup \Theta_1 = \text{\O}$.
+        \end{obsv}
     \section{Test}
         \begin{defn}[Verifica d'ipotesi]
             Supponiamo di avere una popolazione con distribuzione $F_\vartheta$ dipendente dal parametro 
-            incognito $\vartheta$, e vogliamo verificare l'ipotesi nulla $H_0$ sulla distribuzione.
+            incognito $\vartheta$, e di voler verificare l'ipotesi nulla $H_0$ sulla distribuzione.
             Un \emph{test per la verifica dell'ipotesi} $H_0$ è la procedura che permette di determinare se 
             i valori di un campione aleatorio sono compatibili con l'ipotesi formulata: in caso affermativo 
             \emph{accettiamo} l'ipotesi introdotta, altrimenti la \emph{rifiutiamo}.
@@ -31,6 +35,18 @@
             Accettare un'ipotesi non significa assumere che essa sia vera, ma vuol dire che basandoci sui 
             dati a disposizione non possiamo escluderla.
         \end{note}
+        \begin{defn}[Errore di test]
+            Consideriamo un test d'ipotesi con ipotesi nulla $H_0$; in tal caso possiamo avere solo due tipi 
+            di errore:
+            \begin{itemize}
+                \item commettiamo errore di $\mathbf{I}$ specie quando i dati ci portano a rifiutare $H_0$ 
+                    anche se in realtà essa è vera;
+                \item commettiamo errore di $\mathbf{II}$ specie quando i dati ci portano ad accettare (non rifiutare) 
+                    $H_0$ anche se in realtà essa è falsa.
+            \end{itemize}
+            Dato che la verifica di ipotesi mostra la compatibilità dell'ipotesi con i dati a disposizione, 
+            l'errore di $\mathbf{I}$ specie è considerato \underline{più grave} di quello di $\mathbf{II}$ specie.
+        \end{defn}
         \begin{defn}[Regione critica]
             Sia dato un campione aleatorio $X_1,\, \ldots,\, X_{n} = \vec{X}$ estratto da una popolazione sulla 
             quale formuliamo un test con ipotesi nulla $H_0$; chiamiamo \emph{regione critica} e la indichiamo 
@@ -53,56 +69,16 @@
             regione critica del test; quest'ultima può essere ottenuta insieme al livello di significatività 
             $\alpha$ conoscendo la distribuzione dello stimatore $d_n(\vec{X})$ quando $H_0$ è vera.
         \end{obsv}
-        \begin{defn}[Errore di test]
-            Consideriamo un test d'ipotesi con ipotesi nulla $H_0$; in tal caso possiamo avere solo due tipi 
-            di errore:
-            \begin{itemize}
-                \item commettiamo errore di $\mathbf{I}$ specie quando i dati ci portano a rifiutare $H_0$ 
-                    anche se in realtà essa è vera;
-                \item commettiamo errore di $\mathbf{II}$ specie quando i dati ci portano ad accettare $H_0$ 
-                    anche se in realtà essa è falsa.
-            \end{itemize}
-            Dato che la verifica di ipotesi mostra la compatibilità dell'ipotesi con i dati a disposizione, 
-            l'errore di $\mathbf{I}$ specie è più grave di quello di $\mathbf{II}$ specie.
-        \end{defn}
         \subsection{Livello di significatività}
             \begin{defn}
                 Consideriamo un test con ipotesi nulla $H_0$; chiamiamo \emph{livello di significatività} la 
-                soglia per la probabilità di errore di $\mathbf{I}$ specie, che indichiamo con $\alpha$: \[
+                soglia per la \underline{probabilità} di errore di $\mathbf{I}$ specie, che indichiamo con $\alpha$: \[
                     P(\mathbf{I}\text{ specie}) 
                     = P_\vartheta\big((X_1,\, \ldots,\, X_{n}) \in C\big) \leq \alpha
                 .\] La relazione precedente vale per ogni $\vartheta$ che soddisfa 
                 $H_0\,:\, \vartheta \in \Theta_0$, inoltre possiamo chiamarla test di regione critica $C$ 
                 di livello di significatività $\alpha$.
             \end{defn}
-        \subsection{Funzione di potenza}
-            \begin{defn}
-                Chiamiamo \emph{funzione di potenza} per un test di regione critica $C$ la funzione del 
-                parametro incognito $\vartheta$ definita come: \[
-                    \pi(\vartheta) \coloneqq P_\vartheta(\vec{X} \in C)
-                .\] Se $\vartheta \in \Theta_1$ questa funzione rappresenta la probabilità di prendere la 
-                decisione giusta sull'ipotesi; altrimenti, per $\vartheta \in \Theta_0$ la funzione di 
-                potenza rappresenta la probabilità di errore di $\mathbf{I}$ specie.
-            \end{defn}
-            \begin{obsv}[Massima potenza]
-                Per costruire un test di livello di significatività $\alpha$ con la potenza massima, data la 
-                statistica test $D_n$, imponiamo: \[
-                    \alpha = P_{\vartheta_0}(D_n > t)
-                ;\] indichiamo la soluzione come $d_{n,\,\alpha}|_{\vartheta=\vartheta_0}$, il quantile di 
-                ordine $\alpha$ della distribuzione della statistica test $D_n$ quando $\vartheta=\vartheta_0$.
-            \end{obsv}
-            \begin{defn}[Curva operativa]
-                Chiamiamo \emph{curva operativa} il grafico della seguente funzione, che indica la 
-                probabilità di errore di $\mathbf{II}$ specie per $\vartheta \in \Theta_1$: \[
-                    \beta(\vartheta) \coloneqq 1 - \pi(\vartheta)
-                .\] 
-            \end{defn}
-            \begin{obsv}
-                Per valutare la probabilità di errore di $\mathbf{II}$ specie, dobbiamo calcolare la potenza 
-                come funzione del parametro incognito: \[
-                    \pi(\vartheta) = P_\vartheta(D_n > d_{n,\,\alpha}|_{\vartheta=\vartheta_0})
-                .\]
-            \end{obsv}
         \subsection{Ampiezza}
             \begin{defn}
                 Chiamiamo \emph{ampiezza} del test o della regione critica l'estremo superiore delle 
@@ -112,17 +88,10 @@
                 .\] Diremo quindi che un test è di livello di significatività $\alpha$ solo se la sua ampiezza 
                 è minore o uguale alla significatività ($\alpha_* \leq \alpha$).
             \end{defn}
-        \subsection{Statistica test}
-        Consideriamo la statistica $D_n = d-n(X_1,\, \ldots,\, X_{n})$, e definiamo l'intervallo 
-        $C(t) = \{\vec{x} \in \mathbb{R}_n \,:\, d_n(\vec{x}) > t\}$; al variare di $t$ otteniamo una famiglia 
-        di test statistici, definiti dalla regione critica $C(t)$.
-
-        Allora chiamiamo \emph{statistica test} la statistica $D_n$, e per ogni $t = \bar{t}$ fissiamo 
-        un test di regione critica $C(\bar{t})$.
         \subsection{\emph{p}\nbdash value}
             \begin{defn}
                 Considerando una famiglia di test al variare del livello di significatività $\alpha$, 
-                chiamiamo \emph{p\nbdash value} l'estremo inferiore della significatività per il quale 
+                chiamiamo \emph{p\nbdash value} l'estremo inferiore della significatività, per il quale 
                 bisognerebbe rifiutare l'ipotesi nulla coi dati a disposizione.
             \end{defn}
             \begin{obsv}
@@ -133,6 +102,42 @@
                     \alpha(d_*) = P_{\vartheta_0}(D_n > d_*)
                 .\] 
             \end{obsv}
+        \subsection{Funzione di potenza}
+            \begin{defn}\label{defn:Funzione_potenza}
+                Chiamiamo \emph{funzione di potenza} per un test di regione critica $C$ la funzione del 
+                parametro incognito $\vartheta$ definita come: \[
+                    \pi(\vartheta) \coloneqq P_\vartheta(\vec{X} \in C)
+                .\] Se $\vartheta \in \Theta_1$ questa funzione rappresenta la probabilità di prendere la 
+                decisione giusta sull'ipotesi, ovvero $1 - \pi(\vartheta)=P(\mathbf{II}\text{ specie})$; altrimenti, 
+                per $\vartheta \in \Theta_0$ la funzione di potenza rappresenta proprio 
+                $\pi(\vartheta)=P(\mathbf{I}\text{ specie})$.
+            \end{defn}
+            \begin{obsv}[Massima potenza]
+                Per costruire un test di livello di significatività $\alpha$ con la potenza massima, data la 
+                statistica test $D_n$, imponiamo: \[
+                    \alpha = P_{\vartheta_0}(D_n > t)
+                ;\] indichiamo la soluzione come $d_{n,\,\alpha}|_{\vartheta=\vartheta_0}$, il quantile di 
+                ordine $\alpha$ della distribuzione della statistica test $D_n$ quando $\vartheta=\vartheta_0$.
+            \end{obsv}
+            \begin{defn}[Curva operativa]
+                Chiamiamo \emph{curva operativa} (OC) il grafico della seguente funzione, che indica la 
+                probabilità di errore di $\mathbf{II}$ specie per $\vartheta \in \Theta_1$: \[
+                    \beta(\vartheta) \coloneqq 1 - \pi(\vartheta)
+                .\] 
+            \end{defn}
+            \begin{obsv}
+                Per valutare la probabilità di errore di $\mathbf{II}$ specie, dobbiamo calcolare la potenza 
+                come funzione del parametro incognito: \[
+                    \pi(\vartheta) = P_\vartheta(D_n > d_{n,\,\alpha}|_{\vartheta=\vartheta_0})
+                .\]
+            \end{obsv}
+        \subsection{Statistica test}
+            Consideriamo la statistica $D_n = d-n(X_1,\, \ldots,\, X_{n})$, e definiamo l'intervallo 
+            $C(t) = \{\vec{x} \in \mathbb{R}_n \,:\, d_n(\vec{x}) > t\}$; al variare di $t$ otteniamo una famiglia 
+            di test statistici, definiti dalla regione critica $C(t)$.
+
+            Allora chiamiamo \emph{statistica test} la statistica $D_n$, e per ogni $t = \bar{t}$ fissiamo 
+            un test di regione critica $C(\bar{t})$.
     \section{Test per media di popolazione normale}
         \subsection{\emph{Z}\nbdash test}
             \begin{defn}[Bilatero]
@@ -148,7 +153,7 @@
                     C \coloneqq \big\{(X_1,\, \ldots,\, X_{n}) \,:\, |\overline{X}_n -\mu_0| > c\big\}
                 ,\] per una opportuna costante $c$.
 
-                Impostiamo il livello di significatività $\alpha$ per il test individuando il valore di $c$ 
+                Impostiamo il livello di significatività $\alpha$ per il test, individuando il valore di $c$ 
                 che rende pari ad $\alpha$ la probabilità di errore di $\mathbf{I}$ specie: \[
                     \alpha = P_{\mu_0}(|\overline{X}_n -\mu_0| > c)
                 .\] Indicando con $Z\sim \mathcal{N}(0,\,1)$ una variabile aleatoria normale standard, sapendo 
@@ -170,9 +175,9 @@
                 di rifiuto e accettazione: \[
                     \begin{cases}
                         \text{rifiutiamo } H_0 & 
-                        \text{se $\left|\frac{\overline{X}_n -\mu_0}{\sigma /\sqrt{n}}\right| > z_{\alpha /2}$;} \\
+                        \text{se $\left|\frac{\sqrt{n}\left(\overline{X}_n -\mu_0\right)}{\sigma}\right| > z_{\alpha /2}$;} \\
                         \text{accettiamo } H_0 & 
-                        \text{se $\left|\frac{\overline{X}_n -\mu_0}{\sigma /\sqrt{n}}\right| \leq z_{\alpha /2}$.}
+                        \text{se $\left|\frac{\sqrt{n}\left(\overline{X}_n -\mu_0\right)}{\sigma}\right| \leq z_{\alpha /2}$.}
                     \end{cases}
                 \]
             \end{defn}
@@ -181,32 +186,38 @@
                 incognita e varianza $\sigma^2$ nota; fissata una costante $\mu_0$, vogliamo verificare 
                 l’ipotesi nulla seguente contro l’alternativa: \[
                 \begin{cases}
-                    H_0 : & \mu = \mu_0; \\
-                    H_1 : & \mu \geq \mu_0.
+                    H_0 : & \mu \leq \mu_0; \\
+                    H_1 : & \mu > \mu_0.
                 \end{cases}
-                \] Dato che lo stimatore puntuale per $\mu$ è la media campionaria $\overline{X}_n$, costruiamo 
-                la regione critica del test nel modo seguente: \[
-                    C \coloneqq \big\{(X_1,\, \ldots,\, X_{n}) \,:\, \overline{X}_n -\mu_0 > c\big\}
-                ,\] per una opportuna costante $c$, tale che il test abbia significatività $\alpha$:
-                \begin{align*}
-                    \alpha &= P_{\mu_0}\left(\frac{\overline{X}_n -\mu_0}{\sigma /\sqrt{n}} 
-                    > \frac{\sqrt{n}}{\sigma}\cdot c\right)
-                    = P\left(Z > \frac{\sqrt{n}}{\sigma}\cdot c\right) \\
-                    &= 2\,P\left(Z > \frac{\sqrt{n}}{\sigma}\cdot c\right)
-                .\end{align*}
-                Come nella definizione dello \emph{Z}\nbdash test bilatero, otteniamo tale valore di $c$: \[
-                    c = z_{\alpha /2} \cdot\sigma /\sqrt{n}
-                .\] Osserviamo che le condizioni di accettazione e rifiuto sono analoghe a quelle del test 
-                bilatero, senza valore assoluto.
+                \] Dato che lo stimatore per $\mu$ è un intervallo, devo fare considerazioni aggiuntive rispetto a prima.
+
+                Prendiamo il caso in cui rifiutiamo l'ipotesi nulla, ovvero se vale $\Theta_0 = (-\infty,\mu_0]$; 
+                se si ha per il parametro vero $\mu < \mu_0$, allora scriviamo una correzione sulla 
+                statistica test normale standard: \[
+                Z_n = \frac{\sqrt{n}(\bar{X} - \mu)}{\sigma} + \frac{\sqrt{n}(\mu - \mu_0)}{\sigma} 
+                \eqqcolon Z_n^{\ast}(\mu) + \frac{\sqrt{n}(\bar{X} - \mu)}{\sigma}
+                ,\] dove $Z_n^{\ast}(\mu) \sim \mathcal{N}(0,1)$ e per definizione $\mu < \mu_0 \implies Z_n^{\ast} < 0$.
+
+                Possiamo scrivere la probabilità sotto $\mu$ di rifiutare l'ipotesi nulla usando la 
+                Definizione~\ref{defn:Funzione_potenza}: \[
+                \pi(\mu) = P_{\mu}\left(Z_n > z_{\alpha}\right) = 
+                P_{\mu}\left(Z_n^{\ast}(\mu) > z_{\alpha}-\frac{\sqrt{n}(\mu-\mu_0)}{\sigma}\right) = 
+                1-\Phi\bigg(z_{\alpha}-\underset{\bigstar}{\underbrace{\frac{\sqrt{n}(\mu-\mu_0)}{\sigma}}}\bigg)
+                .\] Per ottenere la probabilità di rifiutare $H_0$ calcoliamo l'estremo superiore della $\pi(\mu)$: \[
+                \underset{\mu<\mu_0}{\text{sup}}\left[P_{\mu} \left(X_n = 1\right)\right] = 
+                \underset{\mu<\mu_0}{\text{sup}}\left[ \pi(\mu) \right] = \pi(\mu_0) = 1 - \Phi(z_{\alpha}) = \alpha
+                .\] Nella precedente relazione teniamo conto del fatto che $1-\Phi$ è decrescente, mentre il termine $\bigstar$ raggiunge il massimo quando si annulla per $\mu=\mu_0$ e a quel punto $\Phi$ dipenderà solo da $z_{\alpha}$.
             \end{defn}
             \begin{obsv}
                 Nel caso di test unilaterale con ipotesi: \[
                     \begin{cases}
-                        H_0 : & \mu = \mu_0; \\
+                        H_0 : & \mu \geq \mu_0; \\
                         H_1 : & \mu < \mu_0.
                     \end{cases}
-                ,\] le condizioni di accettazione e rifiuto risultano analoghe a quelle del test bilatero, senza 
-                valore assoluto e con le disuguaglianze invertite.
+                ,\] le condizioni di accettazione e rifiuto risultano invertite rispetto al test unilaterale 
+                definito sopra, ovvero rifiuto $H_0$ a livello $\alpha$ se: \[
+                Z_n \coloneqq \frac{\sqrt{n}(\bar{m}_n - \mu_0)}{\sigma} < -z_{\alpha}
+                .\] 
             \end{obsv}
         \subsection{\emph{t}\nbdash test}\label{sec:t_test}
             \begin{defn}[Bilatero]

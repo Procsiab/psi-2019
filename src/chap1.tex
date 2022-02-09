@@ -15,7 +15,7 @@
         \end{defn}
         \section{Eventi}\label{sec:Eventi}
         \begin{defn}
-            I sotto-insiemi dello spazio campionario e le loro combinazioni (in termini di eventi elementari) tramite operatori logici di unione ($\cup$), intersezione ($\cap$) e negazione ($^{\text{C}}$) sono chiamati \emph{eventi} (non sono più elementari).
+            I sottoinsiemi dello spazio campionario e le loro combinazioni (in termini di eventi elementari) tramite operatori logici di unione ($\cup$), intersezione ($\cap$) e negazione ($^{\text{C}}$) sono chiamati \emph{eventi} (non sono più elementari).
         \end{defn}
         \begin{obsv}
             Gli eventi \emph{elementari} sono rappresentati da sottoinsiemi di $\Omega$ di cardinalità 1: un evento elementare $E$ è definito come $\{\omega_E\} \in \Omega \land |\{\omega_E\}| = 1$.
@@ -23,7 +23,7 @@
         \begin{defn}
             Gli eventi $E_i$ possono essere rappresentati con sottoinsiemi dello spazio campionario $\Omega$, dunque essi formano una \emph{famiglia} o \emph{collezione} di sottoinsiemi di $\Omega$, che indichiamo con $\mathscr{F}$.
 
-            Questo implica che un evento che faccia parte di questa famiglia di sottoinsiemi contenga lo spazio campionario ($E \in \mathscr{F} \implies E \subset \Omega$).
+            Questo implica che un evento che faccia parte di questa famiglia di sottoinsiemi sia contenuto nello spazio campionario ($E \in \mathscr{F} \implies E \subset \Omega$).
 
             Diremo che si è \emph{verificato} un evento $E$ nel contesto di un esperimento aleatorio, se almeno uno degli esiti è contenuto in esso ($\omega \in E$).
         \end{defn}
@@ -57,13 +57,13 @@
         \end{defn}
     \section{Spazio di probabilità}
         \begin{defn}\label{defn:Probabilità_impostazione_assiomatica}
-            Sia dato uno spazio probabilizabile $(\Omega,\,\mathscr{F})$; chiamiamo \emph{probabilità} su $(\Omega,\,\mathscr{F})$ una funzione $P$ su $\mathscr{F}$ tale che:
+            Sia dato uno spazio probabilizzabile $(\Omega,\,\mathscr{F})$; chiamiamo \emph{probabilità} su $(\Omega,\,\mathscr{F})$ una funzione $P$ su $\mathscr{F}$ tale che:
             \begin{enumerate}
                 \item $\forall E \in \mathscr{F}\,:\,P(E) \geq 0$;
                 \item $P(\Omega) = 1$;
-                \item $\forall h,k\,:\,h \neq k \implies \forall E \in \mathscr{F}\,:\,E_h \cap E_k = 0$ ($\sigma$\nbdash additività o \emph{additività completa}).
+                \item $\forall h,k\,:\,h \neq k \implies \forall E \in \mathscr{F}\,:\,E_h \cap E_k = \text{\O}$ ($\sigma$\nbdash additività o \emph{additività completa}).
             \end{enumerate}
-            La terna $(\Omega,\,\mathscr{F},\,P)$ si chiama \emph{spazio di probabilità} (impostazione assiomatica).
+        La terna $(\Omega,\,\mathscr{F},\,P)$, con $\mathscr{F}$ $\sigma$\nbdash algebra, si chiama \emph{spazio di probabilità} (impostazione assiomatica).
         \end{defn}
         \begin{prty}\label{prty:Spazio_di_probabilità}
             Sia $(\Omega,\,\mathscr{F},\,P)$ uno spazio di probabilità; allora vale:
@@ -85,7 +85,7 @@
         \end{proof}
     \section{Definizione assiomatica di Probabilità}
         \begin{defn}
-            Se assegnamo a ogni evento in uno spazio di probabilità $E_k \in (\Omega,\,\mathscr{F},\,P)$ un valore $x = P(E_k)$, chiamiamo probabilità dell'evento $E$; esso deve rispettare i seguenti assiomi, dedotti dalla Definizione~\ref{defn:Probabilità_impostazione_assiomatica}:
+            Se assegnamo a ogni evento in uno spazio di probabilità $E_k \in (\Omega,\,\mathscr{F},\,P)$ un valore $x = P(E_k)$ che chiamiamo probabilità dell'evento $E$, esso deve rispettare i seguenti assiomi, dedotti dalla Definizione~\ref{defn:Probabilità_impostazione_assiomatica}:
             \begin{enumerate}[\indent I)]
                 \item $0 \leq P(E_k) \leq 1$;
                 \item $P(\Omega) = 1$;
@@ -125,6 +125,10 @@
                     P(E \cup F) + P(E \cap F) &= \overset{P(E)}{\overbrace{P(E \cap F^{\text{C}}) + P(E \cup F)}} + \overset{P(F)}{\overbrace{P(E \cup F) + P(E^{\text{C}} \cap F)}} \\ {}&= P(E) + P(F)
                 .
                 \end{align*}
+                Riordinando i termini, segue:
+                \[
+                    P(E \cup F) = P(E) + P(F) - P(E \cap F)
+                .\] 
                 Per ottenere le semplificazioni evidenziate con le graffe abbiamo usato le proprietà delle operazioni tra eventi (§~\ref{sec:Eventi}). \qedhere
             \end{enumerate}
         \end{proof}
@@ -132,8 +136,8 @@
     \begin{prty}\label{prty:Spazi_numerabili}
         Sia $\Omega$ uno spazio campionario \underline{numerabile} e  $\{\omega_1,\,\omega_2,\,\ldots\}$ una numera\-zione dei suoi punti (eventi elementari); scegliamo come $\sigma$\nbdash algebra  $\mathscr{F}$ l'insieme di tutti i sottoinsiemi (\emph{insieme delle parti}) dello spazio campionario  $\mathscr{P}(\Omega)$; si ha che:
             \begin{enumerate}
-                \item Ogni probabilità $P({\omega_k})$ di un evento $E_k = \{\omega_k\} \in \mathscr{F}$ su uno spazio probabiliz\-zabile $(\Omega,\,\mathscr{F})$ individua una successione di numeri reali $p_1,\,p_2,\,\ldots$ che soddisfano la Proprietà~\ref{prty:Spazi_numerabili} se scriviamo che $\forall k \in [1,\,\infty)\,\:\,P({\omega_k}) = p_k$;
-                \item Data una successione $p_1,\,p_2,\,\ldots$ che soddisfa la Proprietà~\ref{prty:Spazi_numerabili} esiste un'unica probabilità su $(\Omega,\,\mathscr{F})$ tale che  $P({\omega_k}) = p_k$ per ogni  $k$; essa è data da: \[
+                \item Ogni probabilità $P({\omega_k})$ di un evento $E_k = \{\omega_k\} \in \mathscr{F}$ su uno spazio probabiliz\-zabile $(\Omega,\,\mathscr{F})$ individua una successione di numeri reali $p_1,\,p_2,\,\ldots$ che soddisfano la Proprietà~\ref{prty:Proprietà_funzione_probabilità} se scriviamo che $\forall k \in [1,\,\infty)\,\:\,P({\omega_k}) = p_k$;
+                \item Data una successione $p_1,\,p_2,\,\ldots$ che soddisfa la Proprietà~\ref{prty:Proprietà_funzione_probabilità} esiste un'unica probabilità su $(\Omega,\,\mathscr{F})$ tale che  $P({\omega_k}) = p_k$ per ogni  $k$; essa è data da: \[
                         \forall E \subset \Omega\,:\,P(E) = \sum_{k\,:\,\omega_k \in E} p_k
                 .\] 
             \end{enumerate}
@@ -162,8 +166,8 @@
             Prendiamo l'evento $E \in \mathscr{F}$; dalle considerazioni fatte sopra abbiamo la seguente implicazione:  \[
                 \Omega = \bigcup_{k=1}^{n} F_k \land E \subset \Omega \implies E = E \cap \Omega = \bigcup_{k=1}^{n} (E \cap F_k)
             .\] 
-            Inoltre, poiché gli eventi $F_1,\,\ldots,\,F_n$ sono disgiunti a coppie, la precedente $\bigcup_{k=1}^{n} (E \cap F_k)$ è un'unione disgiunta e applicando il punto $(2)$ della Proprietà~\ref{prty:Spazio_di_probabilità} otteniamo: \[
-                P(E) = \sum_{k=1}^{n} P(E \cap F_k) = \sum_{k=1}^{n} P(E|F_k) \cdot P(F_k)
+            Inoltre, poiché le partizioni $F_1,\,\ldots,\,F_n$ sono \emph{disgiunte a coppie}, la precedente $\bigcup_{k=1}^{n} (E \cap F_k)$ è un'unione disgiunta, e applicando il punto $(2)$ della Proprietà~\ref{prty:Spazio_di_probabilità} ($\bigstar$) e l'Equazione~\ref{eq:Formula_probabilità_condizionata} ($\ast$) otteniamo: \[
+                P(E) = P\left(\bigcup_{k=1}^{n} (E \cap F_k)\right) \overset{\bigstar}{=} \sum_{k=1}^{n} P(E \cap F_k) \overset{\ast}{=} \sum_{k=1}^{n} P(E|F_k) \cdot P(F_k)
             .\] 
             Abbiamo così ottenuto la formula \eqref{eq:Formula_probabilità_totali}.
         \end{proof}
@@ -213,7 +217,7 @@
             .\] 
         \end{defn}
         \begin{obsv}
-            Se due eventi $E$ ed $F$, presi dallo stesso spazio di probabilità, sono indipendenti allora valgono le seguenti uguaglianze:
+            Se due eventi $E$ ed $F$, presi dallo stesso spazio di probabilità, sono indipendenti, allora valgono le seguenti uguaglianze:
             \begin{itemize}
                 \item $P(E|F) = P(E)$;
                 \item $P(F|E) = P(F)$.
@@ -279,7 +283,7 @@
     \begin{defn}[Serie]
         Data una successione $\{a_{n}\}$, se sommiamo gli infiniti termini otteniamo una \emph{serie}, definita come $\sum_{n=0}^{\infty} a_n$ (serie di a con n da 0 a infinito).
 
-        Si dice somma parziale $n$\nbdash esima di una serie $s_{n}=\sum_{i=0}^{\infty} a_i\,n \in \mathbb{N}$ (la serie $\sum_{i=0}^{\infty} a_n$ converge, diverge o è irregolare se la successione delle sue somme parziali converge, diverge o è irregolare).
+        Si dice somma parziale $n$\nbdash esima di una serie $s_{n}=\sum_{n=0}^{\infty} a_i,\,n \in \mathbb{N}$ (la serie $\sum_{n=0}^{\infty} a_n$ converge, diverge o è irregolare se la successione delle sue somme parziali converge, diverge o è irregolare).
 
         Si dice somma di una serie il limite, se esiste finito, della successione delle sue somme parziali: $\lim_{n \to \infty} s_n = s$
 
@@ -293,7 +297,7 @@
         La somma della serie con ragione $q \in (0,\,1)$ vale: \[
             \sum_{i=0}^{n} q^{i} = \begin{cases}
                 \frac{1}{1-q} & \text{se $|q| < 1$}; \\
-                +\infty & \text{se $q \geq 1$}; \\
+                +\infty & \text{se $q > 1$}; \\
                 \text{indeterminata} & \text{altrimenti}
             \end{cases}
         .\] 

@@ -41,7 +41,7 @@
             \end{enumerate}
             Osserviamo che la conoscenza della funzione di ripartizione di $X$ ci permette di calcolare le probabilità di eventi ad essa associati.
             \begin{prty}\label{prty:Funzione_ripartizione}
-                Sia $X$ una variabile aleatoria definita sullo spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$ e la sua funzione di ripartizione $F_X(x) = P(X \leq x)$; allora possiamo affermare che:
+                Sia $X$ una variabile aleatoria definita sullo spazio di probabilità $(\Omega,\,\mathscr{F},\,P)$ e la sua funzione di ripartizione $F_X(x) = P(X \leq x)$; allora possiamo affermare che:
                 \begin{itemize}
                     \item $F_X(x)$ è una funzione \emph{monotona non decrescente};
                     \item $F_X(x)$ è \emph{continua} da destra: $\forall x_0 \in \mathbb{R} \,:\, \lim_{x \downarrow x_0} F_X(x) = F_X(x_0)$;
@@ -54,12 +54,12 @@
         \end{obsv}
     \section{Variabili aleatorie discrete}
     \begin{defn}\label{defn:Variabili_aleatorie_discrete}
-            La variabile aleatoria $X$ definita su uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$ è una variabile aleatoria \emph{discreta} se assume con probabilità 1 i valori all'interno di un insieme $S$ al più numerabile: \[
+            La variabile aleatoria $X$ definita su uno spazio di probabilità $(\Omega,\,\mathscr{F},\,P)$ è una variabile aleatoria \emph{discreta} se assume con probabilità 1 i valori all'interno di un insieme $S$ al più numerabile: \[
                 P(X \in S) = 1
             .\] 
         \end{defn}
         \begin{defn}\label{defn:Densità_discreta}
-            Sia $X$ una variabile aleatoria \underline{discreta} su uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; allora chiamiamo \emph{densità discreta} di $X$ la funzione definita come segue: \[
+            Sia $X$ una variabile aleatoria \underline{discreta} su uno spazio di probabilità $(\Omega,\,\mathscr{F},\,P)$; allora chiamiamo \emph{densità discreta} di $X$ la funzione definita come segue: \[
                 p_X(x) \coloneqq P(X = x)
             .\]
         \end{defn}
@@ -136,7 +136,7 @@
                 .\] 
             \end{defn}
             \begin{obsv}
-                La variabile aleatoria costante di valore 1 si indica come una variabile aleatoria con densità bernoulliana di parametro 0 ($X \equiv 0 \implies X \sim \mathcal{B}e(0)$); la variabile aleatoria costante di valore 0 si indica come una variabile aleatoria con densità bernoulliana di parametro 1 ($X \equiv 1 \implies X \sim \mathcal{B}e(1)$).
+                La variabile aleatoria costante di valore 1 si indica come una variabile aleatoria con densità bernoulliana di parametro 0 ($X \equiv 1 \implies X \sim \mathcal{B}e(0)$); la variabile aleatoria costante di valore 0 si indica come una variabile aleatoria con densità bernoulliana di parametro 1 ($X \equiv 0 \implies X \sim \mathcal{B}e(1)$).
             \end{obsv}
         \subsection{Geometrica}
             \begin{defn}
@@ -240,7 +240,7 @@
             \end{obsv}
     \section{Variabili aleatorie continue}
         \begin{defn}\label{defn:Variabile_aleatoria_continua}
-            Consideriamo una variabile aleatoria $X$ definita su uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; essa è chiamata variabile aleatoria \emph{assolutamente continua} se esiste una funzione $f_X\,:\, \mathbb{R} \mapsto \mathbb{R^+}$, che sia integrabile e la primitiva della funzione di ripartizione di $X$; inoltre deve essere possibile scrivere $F_X(x)$ nel modo seguente:
+            Consideriamo una variabile aleatoria $X$ definita su uno spazio di probabilità $(\Omega,\,\mathscr{F},\,P)$; essa è chiamata variabile aleatoria \emph{assolutamente continua} se esiste una funzione $f_X\,:\, \mathbb{R} \mapsto \mathbb{R^+}$, che sia integrabile e la primitiva della funzione di ripartizione di $X$; inoltre deve essere possibile scrivere $F_X(x)$ nel modo seguente:
             \begin{equation}
                 F_X(x) = \int_{-\infty}^{x} f_X(s)\, ds 
             \end{equation}
@@ -339,7 +339,7 @@
             .\] Se definiamo $\bar{F}(t) \coloneqq P(T > t)$ otteniamo: \[
                 \bar{F}(t + s) = \bar{F}(t) \cdot \bar{F}(s)
             .\] L'unica funzione che risolve questa equazione funzionale è $e^{\alpha t}$; allora la funzione di ripartizione si ricava dalla proprietà $P(T \leq t) = 1 - e^{\alpha t}$ per $t \geq 0$, e osservando che $\alpha < 0$ otteniamo la funzione di ripartizione di $T$: \[
-            F_T(t) = \begin{cases}
+            \bar{F}_T(t) = \begin{cases}
                 0 & \text{se $t < 0$;} \\
                 1 - e^{-\mu t} & \text{se $t \geq 0 \land \mu > 0$.}
             \end{cases}
@@ -356,7 +356,7 @@
             \end{defn}
         \subsection{Normale Standard}
             \begin{defn}
-                Consideriamo una variabile aleatoria $Z$ che sia \underline{assolutamente} continua su uno spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$; diremo che $Z$ ha \emph{densità normale standard} se la sua densità vale:
+                Consideriamo una variabile aleatoria $Z$ che sia \underline{assolutamente} continua su uno spazio di probabilità $(\Omega,\,\mathscr{F},\,P)$; diremo che $Z$ ha \emph{densità normale standard} se la sua densità vale:
                 \begin{align}\label{eq:Densità_normale_standard} 
                     \varphi(z) = \frac{1}{\sqrt{2\pi}} \cdot e^{-z^2/2} & &\forall z \in \mathbb{R}
                 .\end{align}
@@ -393,7 +393,7 @@
             \end{proof}
         \subsection{Gaussiana}
             \begin{note}
-                Per comprendere le proposizioni seguenti, fare riferimento alle sezioni §~\ref{sec:Valore_atteso} e §~\ref{sec:Varianza}.
+                Per comprendere le proposizioni seguenti, fare riferimento alle successive sezioni §~\ref{sec:Funzioni_variabili_aleatorie}, §~\ref{sec:Valore_atteso} e §~\ref{sec:Varianza}.
             \end{note}
             \begin{defn}\label{defn:Gaussiana}
                 Consideriamo una variabile aleatoria con densità normale $Z \sim \mathcal{N}(0,\,1)$, un numero $\sigma > 0$ e un altro $\mu \in \mathbb{R}$; se definiamo $X \coloneqq \sigma Z + \mu$, dalle Proprietà~\ref{prty:Valore_atteso} e Proprietà~\ref{prty:Varianza} segue che:
@@ -403,13 +403,13 @@
                 .\end{gather*}
                 Inoltre per la Definizione~\ref{defn:Funzioni_variabili_aleatorie_continue} $X$ risulta assolutamente continua, con densità:
                 \begin{align}\label{eq:Densità_Gaussiana}
-                    f_X(x) = \varphi \left(\frac{x-\mu}{\sigma}\right)\cdot \frac{1}{\sigma} = \frac{1}{\sqrt{w\pi\sigma^2}} \cdot e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}^2\right)} & & \forall x \in \mathbb{R}
+                    f_X(x) = \varphi \left(\frac{x-\mu}{\sigma}\right)\cdot \frac{1}{\sigma} = \frac{1}{\sqrt{2\pi\sigma^2}} \cdot e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2} & & \forall x \in \mathbb{R}
                 .\end{align}
                 Una variabile aleatoria $X$ con densità \eqref{eq:Densità_Gaussiana} è detta \emph{gaussiana di parametri $\mu$ e $\sigma^2$}, e si indica come: \[
                     X \sim \mathcal{N}(\mu,\,\sigma^2)
                 .\] 
             \end{defn}
-    \section{Funzioni di variabili aleatorie}
+    \section{Funzioni di variabili aleatorie}\label{sec:Funzioni_variabili_aleatorie}
         \begin{defn}[discreta]\label{defn:Funzioni_variabili_aleatorie_discrete}
             Consideriamo una variabile aleatoria discreta $X$ con densità $p_X(x)$; valga inoltre $P(X \in S) = 1$, dove $S = \{x_k \,:\, k \in I\}$ e $I \subset Z$.
 
@@ -429,7 +429,7 @@
         \end{obsv}
         \begin{defn}[continua]\label{defn:Funzioni_variabili_aleatorie_continue}
             Consideriamo una variabile aleatoria assolutamente continua $X$ con densità $f_X(x)$; valga inoltre $S \in \mathbb{R} \,:\, P(X \in S) = 1$, $g(x)$ sia differenziabile con continuità su $S$ e $\forall x \in S \,:\, g^{\prime} \neq 0$.
-            
+
             Sia $g^{-1}(x)$ la funzione inversa di $g(x)$ e valga $g(S) = \{g(x) \,:\, x \in S\}$; allora $Y = g(X)$ è una variabile aleatoria assolutamente continua con densità: \[
                 f_Y(y) = \begin{cases}
                     f_X(g^{-1}(y)) \cdot \left|(g^{-1}(y))^{\prime}\right| & \text{se $y \in g(S)$;} \\
@@ -466,9 +466,9 @@
 
             Se vale: \[
                 \sum_{k \in I} g(x_k)  \cdot p_X(x_k)
-            ,\] allora la funzione $Y$ ammette valore atteso ed esso vale:
+            ,\] allora la funzione $T$ ammette valore atteso ed esso vale:
             \begin{equation}\label{eq:Valore_atteso_funzione_discreta}
-                \text{E}(Y) = \sum_{k \in I} g(x_k) \cdot p_X(x_k)
+                \text{E}(T) = \sum_{k \in I} g(x_k) \cdot p_X(x_k)
             .\end{equation}
         \end{defn}
         \begin{defn}[continua]
@@ -481,14 +481,14 @@
             .\end{equation}
         \end{defn}
         \begin{prty}\label{prty:Valore_atteso}
-            Sia $X$ una variabile aleatoria definita sullo spazio di probabilità $(\Omega,\,\mathbb{F},\,P)$.
+            Sia $X$ una variabile aleatoria definita sullo spazio di probabilità $(\Omega,\,\mathscr{F},\,P)$.
             \begin{enumerate}
                 \item $P(X = c) = 1 \implies \text{E}(X) = c$ (\emph{coerenza});\label{itm:Coerenza_valore_atteso}
                 \item sia $X$ una variabile aleatoria e $B \subset \mathbb{R} \,:\, \{X \in B\} \in \mathscr{F}$; allora vale $\text{E}(\mathbf{F}_B(X)) = P(X \in B)$;
                 \item sia $X$ una variabile aleatoria che ammette valore atteso $\text{E}(X)$ e $\alpha$ una costante, allora vale: $\text{E}(\alpha \cdot X) = \alpha \cdot \text{E}(X)$ (\emph{linearità});\label{itm:Linearità_valore_atteso_prodotto}
                 \item sia $X$ una variabile aleatoria e $g(),\, h()$ due funzioni tali che esistano i loro valori attesi $\text{E}(g(X)),\, \text{E}(h(X))$; allora vale: $\text{E}(g(X)+h(X)) = \text{E}(g(X)) + \text{E}(h(X))$ (\emph{linearità});\label{itm:Linearità_valore_atteso_somma}
                 \item sia $X$ una variabile aleatoria tale che $P(X > 0) = 1$ ed esista il suo valore atteso $\text{E}(X)$, allora esso vale $\text{E}(X) \geq 0$; se inoltre il valore atteso è nullo, allora otteniamo $P(X = 0) = 1$ (\emph{positività});\label{itm:Positività_valore_atteso}
-                \item $a,\,b \in \mathbb{R} \,:\, P(a \leq X \leq B) = 1 \implies a \leq \text{E}(X) \leq b$ (\emph{internalità});\label{itm:Internalità_valore_atteso}
+                \item $a,\,b \in \mathbb{R} \,:\, P(a \leq X \leq b) = 1 \implies a \leq \text{E}(X) \leq b$ (\emph{internalità});\label{itm:Internalità_valore_atteso}
                 \item siano $g(),\,h()$ funzioni reali che ammettano valore atteso $\text{E}(g(x)),\,\text{E}(h(X))$; allora vale: $P(h(X) \geq g(X)) = 1 \implies \text{E}(h(X)) \geq \text{E}(g(X))$.
             \end{enumerate}
         \end{prty}
@@ -505,7 +505,7 @@
                     \text{E}(g(X) + h(X)) &= \text{E}(X^2 + 2X) = \int_{\mathbb{R}} (x^2 + 2x) \cdot f_X(x)\, dx = \int_{\mathbb{R}} x^2 \cdot f_X(x),\, dx + \int_{\mathbb{R}} 2x \cdot f_X(x),\, dx \\
                                           &= \text{E}(X^2) + \text{E}(2X) = \text{E}(g(X)) + \text{E}(h(X))
                 .\end{align*}
-                \item Supponiamo $X$ discreta; poiché $P(X \geq 0)=1$ allora $\forall x < 0 p_X(x) = 0$ da cui otteniamo: \[
+                \item Supponiamo $X$ discreta; poiché $P(X \geq 0)=1$ allora $\forall x < 0\,:\,p_X(x) = 0$ da cui otteniamo: \[
                     \text{E}(X) = \sum_{k \,:\, x_k \geq 0} x_k \cdot p_X(x_k) \geq 0
                 .\] Si dimostra analogamente il caso di $X$ assolutamente continua.
                 \item Sapendo che: \[
@@ -542,7 +542,7 @@
             \hfill
             \begin{enumerate}
                 \item Se $P(X = c) = 1$ allora deve valere (per il punto \eqref{itm:Coerenza_valore_atteso} della Proprietà~\ref{prty:Valore_atteso} e poi dalla Definizione~\ref{defn:Varianza}): \[
-                    \text{E}(X) = c \land \text{Bar}(X) = \text{E}((c-c)^2) = \text{E}(0) = 0
+                    \text{E}(X) = c \land \text{Var}(X) = \text{E}((c-c)^2) = \text{E}(0) = 0
                 .\] Al contrario, dato che $P(X -\text{E}(X))^2 \geq 0$: \[
                 \text{Var}(X) = \text{E}((X - \text{E}(X))^2) = 0 \implies P((X - \text{E}(X))^2 = 0) = 1 \iff P(X = \text{E}(X)) = 1
                 .\]
@@ -587,13 +587,25 @@
                 \mathbf{1}_{(-\infty,\,\varepsilon]}(|X - \text{E}(X)|) + \mathbf{1}_{(\varepsilon,\,+\infty)}(|X - \text{E}(X)|) \equiv 1
             ;\] segue che:
             \begin{align*}
-                \text{Var}(X) &= \text{E}((X - \text{E}(X))^2) \\
-                              &= \text{E}(X - \text{E}(X))^2 \cdot \mathbf{1}_{(-\infty,\,\varepsilon]}(|X - \text{E}(X)|) + \text{E}(X - \text{E}(X))^2 \cdot \mathbf{1}_{(\varepsilon,\,+\infty)}(|X - \text{E}(X)|) \\
+                \text{Var}(X) &= \left(\text{E}(X - \text{E}(X)^2\right) \\
+                              &= \text{E}(X - \text{E}(X))^2 \cdot \mathbf{1}_{[-\infty,\,\varepsilon]}(|X - \text{E}(X)|) + \text{E}(X - \text{E}(X))^2 \cdot \mathbf{1}_{(\varepsilon,\,+\infty)}(|X - \text{E}(X)|) \\
                               &\geq \text{E}(X - \text{E}(X))^2 \cdot \mathbf{1}_{(\varepsilon,\,+\infty)}(|X - \text{E}(X)|) \geq \text{E}(\varepsilon^2 \cdot \mathbf{1}_{(\varepsilon,\,+\infty)}(|X - \text{E}(X)|)) \\
                               &= \varepsilon^2 \cdot P(|X - \text{E}(X)| > \varepsilon)
             .\end{align*}
             Spostando $\varepsilon^2$ a sinistra nella precedente, si ottiene proprio \eqref{eq:Disuguaglianza_Chebychev}.
         \end{proof}
+    \section{Disuguaglianza di Markov}
+        \begin{defn}
+            Sia $X$ una variabile aleatoria che ammette momento $r$\nbdash esimo finito $\mathbb{E}[X]^r<+\infty$ $(r>0)$; allora per qualunque $\varepsilon > 0$ otteniamo:
+            \begin{equation}\label{eq:Disuguaglianza_Markov}
+                P\{|X|\geq \varepsilon\} \leq \frac{\mathbb{E}[|X|^r]}{\varepsilon^r}
+            .\end{equation}
+        \end{defn}
+        \begin{obsv}
+            L'Equazione~\ref{eq:Disuguaglianza_Chebychev} si può ottenere come caso particolare dell'Equazione~\ref{eq:Disuguaglianza_Markov} per $r=2$ e $\tilde{X}=X-\mathbb{E}[X]$: \[
+                P\{|X - \mathbb{E}[X]| \geq \varepsilon\} = \mathbb{P}\{|\tilde{X}| \geq \varepsilon\} \leq \frac{\mathbb{E}[|\tilde{X}|^2]}{\varepsilon^2} = \frac{\text{Var}(X)}{\varepsilon^2}
+            .\] 
+        \end{obsv}
     \section{Standardizzazione di variabile aleatoria}
         \begin{defn}
             Consideriamo una variabile aleatoria $X$ non costante che ammetta media $\mu = \text{E}(X)$ e varianza $\sigma^2 = \text{Var}(X) > 0$; definiamo una variabile aleatoria $Y$ nel modo seguente:
@@ -604,7 +616,7 @@
                 \text{E}(Y) = \text{E}\left(\frac{X - \mu}{\sigma}\right) = \frac{\text{E}(X) - \mu}{\sigma} = 0
             .\] Per le proprietà della varianza infine: \[
             \text{Var}(Y) = \text{Var}\left(\frac{X - \mu}{\sigma}\right) = \frac{\text{Var}(X - \mu)}{\sigma^2} = \frac{\text{Var}(X)}{\sigma^2} = 1
-        .\] Con la trasformazione appena compiuta abbiamo ottenuto una variabile aleatoria con densità normale standard $Y \sim \mathcal{U}(0,\,1)$; chiamiamo $Y$ la \emph{standardizzata} di $X$ e la trasformazione per ricavarla \emph{standardizzazione}.
+        .\] Con la trasformazione appena compiuta abbiamo ottenuto una variabile aleatoria con densità normale standard $Y \sim \mathcal{N}(0,\,1)$; chiamiamo $Y$ la \emph{standardizzata} di $X$ e la trasformazione per ricavarla \emph{standardizzazione}.
         \end{defn}
         \begin{obsv}
             La funzione di ripartizione di $X$ è legata a quella della sua standardizzata $Y$ nel modo seguente:
@@ -624,7 +636,7 @@
         \begin{obsv}
             Il Teorema~\ref{thm:Teorema_DeMoivre_Laplace} offre un'approssimazione per la densità binomiale, nel caso di un $n$ grande e un $p$ distante da 0 o 1, nel suo insieme di definizione.
 
-            L'approssimazione gaussiana dalle binomiale risulta ``buona'' se vale una delle seguenti condizioni:
+            L'approssimazione gaussiana della binomiale risulta ``buona'' se vale una delle seguenti condizioni:
             \begin{gather*}
                 n \cdot p > 5 \land n(1-p) > 5, \\
                 n \cdot p (1 - p) > 10.
@@ -638,7 +650,7 @@
             La Definizione~\ref{defn:Momento} ci permette di affermare che, presa una variabile aleatoria $X$ che ammetta media e varianza, la prima sia data dal momento primo di $X$, e la seconda dalla differenza tra il momento secondo e il quadrato del  momento primo di $X$.
         \end{obsv}
         \begin{prty}
-            Sia $X$ una variabile aleatoria che ammette momento $k$\nbdash esimo per qualche $k \geq 2$; allora $X$ ammette momento $h$\nbdash esimo per ogni $h \in [1,\,k)$.
+            Sia $X$ una variabile aleatoria che ammette momento $k$\nbdash esimo per qualche $k \geq 2$; allora $X$ ammette momento $h$\nbdash esimo per ogni $h \in [1,\,k]$.
         \end{prty}
         \begin{proof}
             Per ipotesi sappiamo che $\text{E}(|X|^k)$ è un numero finito, per cui si ha:
@@ -651,7 +663,7 @@
             .\end{align*}
             Quindi deduciamo che $|X|^{k-1}\mathbf{1}_{(1,\,+\infty)}(|X|)$ ha media finita; inoltre poiché vale:
             \begin{gather*}
-                |X^k| = |X|^{k-1} \cdot \mathbf{1}_{[]0,\,1} (|X|) + |X|^{k-1}\cdot\mathbf{1}_{(1,\,+\infty)} (|X|) \\,
+                |X^k| = |X|^{k-1} \cdot \mathbf{1}_{[0,\,1]} (|X|) + |X|^{k-1}\cdot\mathbf{1}_{(1,\,+\infty)} (|X|), \\
                 |X|^{k-1}\cdot\mathbf{1}_{[0,\,1]} (|X|) \leq 1,
             \end{gather*}
             segue che anche $|X|^k$ abbia media finita; abbiamo appena mostrato che: \[
@@ -668,7 +680,7 @@
         \end{defn}
         \begin{prty}
             Sia $X$ una variabile aleatoria che ammette funzione generatrice dei momenti $m_X$; allora esistono tutti i momenti di $X$ e si ha: \[
-                \text{E}(X) = m_X^{\prime}(0),\, \text{E}(X^2) = m_X^{\prime\prime},\, \ldots
+                \text{E}(X) = m_X^{\prime}(0),\, \text{E}(X^2) = m_X^{\prime\prime}(0),\, \ldots
             .\] 
         \end{prty}
         \begin{proof}
@@ -700,7 +712,7 @@
             \end{enumerate}
         \end{prty}
         \begin{defn}[Intensità di rottura]
-            Sia $X$ una variabile aleatoria assolutamente continua tale che $P(Z > 0) = 1$, e abbia densità $f_X(x)$ e funzione di ripartizione $F_X(x)$; allora definiamo \emph{intensità di rottura} la funzione:
+            Sia $X$ una variabile aleatoria assolutamente continua tale che $P(X > 0) = 1$, e abbia densità $f_X(x)$ e funzione di ripartizione $F_X(x)$; allora definiamo \emph{intensità di rottura} la funzione:
             \begin{align}\label{eq:Intensità_rottura}
                 \lambda(t) \coloneqq \frac{f_X(t)}{1 - F_X(t)} & & \forall t>0 \,:\, F_X(t) \neq 1
             .\end{align}
@@ -708,7 +720,7 @@
         \begin{obsv}
             La probabilità che un apparecchio funzionante si guasti entro un tempo $dt$ è data da:
             \begin{align*}
-                P(t < X \leq t + dt | X > t) &= \frac{P(\{t < X \leq t + dt\} \cap \{Z > t\})}{P(X > t)} \\
+                P(t < X \leq t + dt | X > t) &= \frac{P(\{t < X \leq t + dt\} \cap \{X > t\})}{P(X > t)} \\
                                              &= \frac{P(X \in (t,\, t+dt])}{P(X > t)} \\
                                              &\simeq \frac{f_X(t)}{1 - F_X(t)} \cdot dt = \lambda(t)\cdot dt
             .\end{align*}
@@ -735,9 +747,11 @@
                 &= -\left[\ln \left(1 - F_X(t)\right) - \cancel{\ln \left(1 - F_X(0)\right)}\right] \\
                 &= - \ln \left(1 - F_X(t)\right)
             ,\end{align*}
-            da cui invertendo si ottiene (per $t > 0$): \[
-                1 - F_X(t) = e^{- \int_{0}^{t} \lambda(s)\, ds}
-            .\]
+            da cui invertendo si ottiene (per $t > 0$):
+            \begin{align*}
+                1 - F_X(t) &= e^{- \int_{0}^{t} \lambda(s)\, ds} \\
+                F_X(t) &= 1 - e^{- \int_{0}^{t} \lambda(s)\, ds}
+            .\end{align*}
         \end{obsv}
     \section{Distribuzione di Weibull}
         \begin{defn}\label{defn:Distribuzione_Weibull}
@@ -752,7 +766,7 @@
                 \item $\beta = 1 \implies \lambda(t) \text{costante}$;
                 \item $\beta > 1 \implies t \rightarrow \lambda(t)\, \text{cresce}$.
             \end{itemize}
-            Inoltre, per una variabile aleatoria assolutamente continua $X$ con valori $t \in (0,\,+\infty)$, otteniamo densità e funzione di ripartizione nel modo seguente:
+            Inoltre, per una variabile aleatoria assolutamente continua $X$ con valori $t \in (0,\,+\infty)$, otteniamo funzione di ripartizione e densità nel modo seguente:
             \begin{gather*}
                 F_X(t) = 1 - e^{-\alpha t^{\beta}}, \\
                 f_X(t) = \alpha\beta \cdot t^{\beta - 1}\cdot e^{-\alpha t^{\beta}}.

@@ -45,9 +45,12 @@
             chiamiamo \emph{stima} il valore della statistica $\hat{K}_n$ in corrispondenza 
             della realizzazione $(x_1,\, \ldots,\, x_{n})$: \[
                 \hat{k}_n = d_n(x_1,\, \ldots,\, x_{n})
-            ;\] mentre lo stimatore è una statistica (quindi una variabile aleatoria), 
-            la stima è un valore numerico.
+            .\]
         \end{defn}
+        \begin{obsv}
+            Mentre lo stimatore è una statistica (quindi una variabile aleatoria), 
+            la stima è un valore numerico.
+        \end{obsv}
     \section{Errore quadratico medio}
     \begin{defn}
         Sia dato uno stimatore $D_n = d_n(X_1,\, \ldots,\, X_{n})$ di $k(\vartheta)$ che ammette 
@@ -68,12 +71,12 @@
         tuttavia possiamo trovarne uno che minimizzi l'errore quadratico medio per una 
         \underline{classe ristretta} di stimatori.
     \end{obsv}
-        \begin{defn}[Distorsione]
+        \begin{defn}[Distorsione]\label{defn:Distorsione}
             Sia $D_n = d_n(X_1,\, \ldots,\, X_{n})$ uno stimatore di $k(\vartheta)$ che ammette media; 
             chiamiamo la \emph{distorsione} di $D_n$ la funzione di $\vartheta$ definita come segue:
             \begin{equation}\label{eq:Distorsione}
-                b_{\vartheta}(d_n) \coloneqq 
-                \text{E}_{\vartheta}\left[d_n(X_1,\, \ldots,\, X_{n}) - k(\vartheta)\right]
+                b_{\vartheta}(D_n) \coloneqq 
+                \text{E}_{\vartheta}\left[d_n(X_1,\, \ldots,\, X_{n})\right] - k(\vartheta)
             .\end{equation}
             Una notazione alternativa è la seguente: \[
                 \text{bias}_{\vartheta}(D_n) \coloneqq 
@@ -84,32 +87,38 @@
         \begin{defn}
             Uno stimatore $D_n = d_n(X_1,\, \ldots,\, X_{n})$ si dice \emph{non distorto} oppure 
             \emph{corretto} per $k(\vartheta)$ se vale: \[
-                \forall \vartheta \,:\, b_{\vartheta}(d_n) = 0
+                \forall \vartheta \,:\, \text{bias}_{\vartheta}(d_n) = 0
             .\]
         \end{defn}
-        \begin{prty}
+        \begin{prty}\label{prty:MLE_varianza_bias}
             Se $D_n = d_n(X_1,\, \ldots,\, X_{n})$ è uno stimatore di $k(\vartheta)$ basato sul campione 
-             $X_1,\, \ldots,\, X_{n}$ che ammette momento secondo finito, allora abbiamo: \[
-                 r_{\vartheta}(d_n,\, k(\vartheta)) = 
-                 \text{Var}_{\vartheta}[d_n(X_1,\, \ldots,\, X_{n})] + (b_{\vartheta}(d_n))^2
+             $X_1,\, \ldots,\, X_{n}$ che ammette momento secondo finito, allora possiamo scrivere l'errore quadratico 
+             medio come: \[
+                \scriptstyle MSE \textstyle_{\vartheta}(D_n) = 
+                \text{Var}_{\vartheta}(D_n) + \left(\text{bias}_{\vartheta}(D_n)\right)^2
              ;\] allora se $D_n$ è uno stimatore non distorto per $k(\vartheta)$ otteniamo: \[
-                b_{\vartheta}(d_n) = 0 \implies r_{\vartheta}(d_n,\, k(\vartheta)) = 
+                \text{bias}_{\vartheta}(D_n) = 0 \implies \scriptstyle MSE \textstyle_{\vartheta}(D_n) = 
                 \text{Var}_{\vartheta}[d_n(\vec{X})]
              ,\] cioè l'errore quadratico medio coincide con la varianza dello stimatore.
         \end{prty}
         \begin{proof}
-            Tenendo a mente che $D_n = d_n(X_1,\, \ldots,\, X_{n}) = d_n(\vec{X})$, possiamo scrivere:
+            Partendo dalla scrittura dell'errore quadratico medio (\ref{eq:Errore_quadratico_medio}) abbiamo:
             \begin{align*}
-                r_{\vartheta}(d_n,\, k(\vartheta)) &= \text{E}_{\vartheta}[D_n -k(\vartheta)^2] \\
-                &= \text{E}_{\vartheta}\big[(D_n - \text{E}_{\vartheta}[D_n] + \underset{b_{\vartheta}(d_n)}{\underbrace{\text{E}_{\vartheta}[D_n] - k(\vartheta)}})^2\big] \\
-                &= \text{E}_{\vartheta}\big[(D_n - \text{E}_{\vartheta}[D_n] + b_{\vartheta}(d_n))^2\big] \\
-                &= \text{E}_{\vartheta}\big[(D_n - \text{E}_{\vartheta}[D_n])^2\big] +
-                \big(b_{\vartheta}(d_n)\big)^2 +
-                \underset{=\, 0}{\underbrace{2\,b_{\vartheta}(d_n) \cdot \text{E}_{\vartheta}\big[d_n(\vec{X}) - \text{E}_{\vartheta}[d_n(\vec{X})]\big]}} \\
-                &= \text{Var}_{\vartheta}\big[d_n(\vec{X})\big] + \big(b_{\vartheta}(d_n)\big)^2
-            .\qedhere\end{align*}
+                \scriptstyle \text{MSE} \textstyle_{\vartheta}(D_n) &= 
+                \text{E}_{\vartheta} \left[(D_n - \text{E}_{\vartheta}[D_n] + \text{E}_{\vartheta}[D_n] - d_{\vartheta})^2\right]\\
+                &= \underset{\bigstar}{\underbrace{\text{E}_{\vartheta} \left[(D_n - \text{E}_{\vartheta}[D_n])^2\right]}} +
+                \underset{\blacktriangle}{\underbrace{\left(\text{E}_{\vartheta} [D_n] - d_n\right)^2}} + 
+                2 \cdot \underset{\blacksquare}{\underbrace{\cancel{\text{E}_{\vartheta} [D_n - \text{E}_{\vartheta} [D_n]]}}} \cdot (\text{E}_{\vartheta}[D_n] - d_n)\\
+                &= \underset{\bigstar}{\underbrace{\text{Var}_{\vartheta}(D_n)}} + \underset{\blacktriangle}{\underbrace{\text{bias}_{\vartheta}(D_n)^2}}
+            .\end{align*}
+            Nella dimostrazione abbiamo usato rispettivamente per $\bigstar$ la Definizione~\ref{defn:Varianza}, 
+            per $\blacktriangle$ la Definizione~\ref{defn:Distorsione} e infine per $\blacksquare$ abbiamo 
+            un termine che si annulla, infatti dalle Proprietà~\ref{prty:Valore_atteso} (per questo esempio mettiamo da parte la scrittura in funzione del parametro $\vartheta$):
+            \[
+                \mathbb{E}[D - \mathbb{E}[D]] = \mathbb{E}[D] - \mathbb{E}[\mathbb{E}[D]] = 
+                \mathbb{E}[D] - \mathbb{E}[D] = 0
+            .\]
         \end{proof}
-    \pagebreak % Interrompi pagina, evita di lasciare il titolo separato dal testo
     \section{Proprietà asintotiche degli stimatori}
         \subsection{Non distorsione}
             \begin{defn}
@@ -128,12 +137,18 @@
             \begin{defn}
                 Una successione di stimatori $(D_n)_n = (d_n(X_1,\, \ldots,\, X_{n}))_n$ è detta \emph{debolmente consistente} per $k(\vartheta)$ se vale: \[
                     \forall \varepsilon > 0 \,:\, \lim_{n \to \infty} 
-                    P_{\vartheta}(|D_n - k(\vartheta)| > \varepsilon) \rightarrow 0
+                    P_{\vartheta}\left\{|D_n - k(\vartheta)| \geq \varepsilon\right\} \rightarrow 0
+                .\] 
+            \end{defn}
+        \subsection{Consistenza forte}
+            \begin{defn}
+                Una successione di stimatori $(D_n)_n = (d_n(X_1,\, \ldots,\, X_{n}))_n$ è detta \emph{fortemente consistente} per $k(\vartheta)$ se vale: \[
+                    \forall \vartheta \in \Theta \,:\, P_{\vartheta}\left\{\lim_{n \to \infty} D_n =k(\vartheta)\right\} = 1
                 .\] 
             \end{defn}
         \subsection{Consistenza in media quadratica}
             \begin{defn}
-                Una successione di stimatori $(D_n)_n ) (d_n(X_1,\, \ldots,\, X_{n}))_n$ è detta 
+                Una successione di stimatori $(D_n)_n = (d_n(X_1,\, \ldots,\, X_{n}))_n$ è detta 
                 \emph{consistente in media quadratica} per $k(\vartheta)$ se vale: \[
                     \forall \vartheta \,:\, \lim_{n \to \infty} \left[r_{\vartheta}(d_n,\, k(\vartheta))
                     = \text{E}_{\vartheta}[(D_n - k(\vartheta))^2]\right] \rightarrow 0
@@ -143,17 +158,30 @@
                 Data una successione di campioni $X_1,\, X_2,\, \ldots$ e una successione di stimatori 
                 di $k(\vartheta)$ $(D_n)_n = (d_n(X_1,\, \ldots,\, X_{n}))_n$ allora si ha:
                 \begin{enumerate}
-                    \item $b_{\vartheta}(d_n) \rightarrow 0 \land \text{Var}_{\vartheta}[D_n] \rightarrow 0 
-                        \iff r_{\vartheta}(d_n,\, k(\vartheta)) = \text{Var}_{\vartheta}[D_n] + 
-                        (b_{\vartheta}(d_n))^2 \rightarrow 0$;
+                    \item $\text{bias}_{\vartheta}(D_n) \rightarrow 0 \land \text{Var}_{\vartheta}[D_n] \rightarrow 0 
+                        \iff \scriptstyle \text{MSE} \textstyle_{\vartheta}(D_n) \rightarrow 0$;
                     \item se  $(D_n)_n$ è consistente in media quadratica, allora è consistente.
                 \end{enumerate}
             \end{prty}
+            \begin{proof}
+                \hfill
+                \begin{enumerate}
+                    \item Segue dalla Proprietà~\ref{prty:MLE_varianza_bias};
+                    \item Sfruttando l'Equazione~\ref{eq:Disuguaglianza_Markov} affermiamo
+                        che: \[
+                        P\left\{|D_n - d_{\vartheta}| \geq \varepsilon\right\} \leq \frac{1}{\varepsilon^2} \mathbb{E}[|D_n - d_{\varepsilon}|^2]
+                    ;\]
+                    la disuguaglianza più esterna si verifica dato che, per la consistenza in 
+                    media quadratica tende a $0$ il termine $\mathbb{E}[|D_n - d_{\varepsilon}|^2] \rightarrow 0$.
+                \end{enumerate}
+            \end{proof}
         \subsection{Normalità asintotica}
             \begin{defn}
                 Una successione di stimatori $(D_n)_n ) (d_n(X_1,\, \ldots,\, X_{n}))_n$ è detta 
                 \emph{asintoticamente normale} per $k(\vartheta)$ se essa è consistente e 
-                la distribuzione asintotica degli stimatori e normale.
+                la distribuzione asintotica degli stimatori è normale (secondo il Teorema~\ref{thm:Teorema_limite_centrale}): \[
+                    \lim_{n \rightarrow +\infty} P_{\vartheta}\left\{\sqrt{n} \frac{D_n - k(\vartheta)}{h(\vartheta)} \leq x\right\} = \Phi(x)
+                .\] Se esiste una funzione $h(\vartheta)$ per cui l'equazione precedente è verificata, allora la successione degli stimatori ha \emph{varianza asintotica} $h(\vartheta)^2$.
             \end{defn}
     \section{Proprietà della media campionaria}
     \begin{note}
@@ -164,10 +192,10 @@
             Sia $X_1,\, \ldots,\, X_{n}$ un campione aleatorio estratto da $F$; chiamiamo 
             \emph{media campionaria} la statistica definita come:
             \begin{align}\label{eq:Media_campionaria_statistica}
-                \overline{X}_n \coloneqq \frac{X_1,\, \ldots,\, X_{n}}{n} & & \forall n \in \mathbb{N},\, n > 0
+                \overline{X}_n \coloneqq \frac{X_1 + \ldots + X_{n}}{n} & & \forall n \in \mathbb{N},\, n > 0
             .\end{align}
         \end{defn}
-        \begin{prty}
+        \begin{prty}\label{prty:media_campionaria}
             Indicando con $\mu,\, \sigma^2$ la media e la varianza di una popolazione di cui $\overline{X}_n$ 
             sia la statistica per un campione $X_1,\, \ldots,\, X_{n}$, allora possiamo affermare che:
             \begin{enumerate}
@@ -197,7 +225,10 @@
                 .\]
             \end{enumerate}
         \end{proof}
-    \section{Varianza campionaria}
+        \begin{note}
+            Dalle Proprietà~\ref{prty:media_campionaria} e dal Teorema~\ref{thm:Legge_grandi_numeri_forte} possiamo affermare che la \emph{media empirica}, come la media campionaria, sia uno stimatore non distorto e inoltre fortemente consistente della media.
+        \end{note}
+    \section{Proprietà della varianza campionaria}
         \begin{defn}\label{defn:Varianza_campionaria}
             Sia $X_1,\, \ldots,\, X_{n}$ un campione estratto da $F$; allora chiamiamo 
             \emph{varianza campionaria} la statistica definita come:
@@ -209,7 +240,7 @@
                 S_n \coloneqq  \sqrt{S_n^2}
             .\]
         \end{defn}
-        \begin{prty}
+        \begin{prty}\label{prty:varianza_campionaria}
             Indicando con $\mu,\, \sigma^2$ la media e la varianza di una popolazione di cui $S_n^2$ 
             sia la statistica per un campione $X_1,\, \ldots,\, X_{n}$, allora possiamo affermare che:
             \begin{enumerate}
@@ -221,7 +252,7 @@
         \begin{proof}
             \hfill
             \begin{enumerate}
-                \item Riscriviamo la definizione \eqref{eq:Varianza_campionaria} nel modo seguente: \[
+                \item Riscriviamo la Definizione~\eqref{eq:Varianza_campionaria} nel modo seguente: \[
                         S_n^2 = \frac{1}{n-1} \cdot \sum_{i=1}^{n} \left[X_i^2 - n\, \overline{X}^2\right] 
                         \implies (n-1)\cdot S_n^2 = \sum_{i=1}^{n} \left[X_i^2 - n\, \overline{X}^2\right]
                     .\] Prendiamo il valore atteso di entrambi i membri della precedente equazione, e 
@@ -243,6 +274,141 @@
                 \item Dimostriamo questa equazione in modo analogo alla precedente. \qedhere
             \end{enumerate}
         \end{proof}
+        \begin{note}
+            Dalle Proprietà~\ref{prty:varianza_campionaria} e dal Teorema~\ref{thm:Legge_grandi_numeri_forte} possiamo 
+            affermare che la \emph{varianza empirica}, al contrario della varianza campionaria, sia uno stimatore 
+            distorto (per $n$ fissato). La varianza campionaria usa il fattore $\frac{1}{n-1}$ per correggere la distorsione.
+        \end{note}
+    \section{Massima verosimiglianza}
+        \begin{defn}[Verosimiglianza]
+            Sia $F_\vartheta$ una densità (discreta o continua) dipendente da uno o più parametri incogniti 
+            $\vec{\vartheta}$; se $X_1,\, \ldots,\, X_{n}$ è un campione estratto dalla densità $F_\vartheta$, 
+            allora la densità del campione si ottiene come: \[
+                \forall \vec{x} = (x_1,\, \ldots,\, x_{n}) \,:\, 
+                \mathcal{L}(\vartheta,\, \vec{x}) \coloneqq \prod_{i=1}^{n} F_{\vartheta}(x_i)
+            .\] Supponiamo di osservare la realizzazione $X_1 = \tilde{x}_1,\, \ldots,\, X_n = \tilde{x}_n$ e 
+            consideriamo la funzione di $\vartheta$ detta \emph{verosimiglianza del campione}, definita come:
+            \begin{align}\label{eq:Verosimiglianza_campione}
+                \mathcal{L}(\vartheta,\, \tilde{\vec{x}}) = \prod_{i=1}^{n} F_\vartheta(\tilde{x}_i)
+                & & \text{per } \tilde{\vec{x}} = (\tilde{x}_1,\, \ldots,\, \tilde{x}_n)
+            .\end{align}
+        \end{defn}
+        \begin{obsv}
+            Se il campione $X_1,\, \ldots,\, X_{n}$ è costituito da variabili aleatorie discrete, allora 
+            la verosimiglianza \eqref{eq:Verosimiglianza_campione} del campione vale:
+            \begin{align*}
+                \mathcal{L}(\vartheta,\, \tilde{\vec{x}}) &= \prod_{i=1}^{n} F_\vartheta(\tilde{x}_i) =
+                \prod_{i=1}^{n} P_\vartheta(X_i = \tilde{x}_i) \\
+                &= P_\vartheta(X_1=\tilde{x}_i \cap \dotsm \cap X_n=\tilde{x}_n)
+            .\end{align*}
+            Se il campione $X_1,\, \ldots,\, X_{n}$ è costituito da variabili aleatorie continue, allora 
+            la verosimiglianza \eqref{eq:Verosimiglianza_campione} del campione può essere interpretata 
+            come la probabilità di osservare la realizzazione 
+            $\tilde{\vec{x}} = (\tilde{x}_1,\, \ldots,\, \tilde{x}_{n})$ per ogni valore fissato di $\vartheta$.
+        \end{obsv}
+        \begin{defn}[MLE]\label{defn:MLE}
+            Chiamiamo \emph{stima di massima verosimiglianza} quel valore $\hat{\vartheta}_n$ 
+            che massimizza la verosimiglianza \eqref{eq:Verosimiglianza_campione} per ogni realizzazione 
+            del campione $\vec{x} = (x_1,\, \ldots,\, x_{n})$, e la indichiamo con:
+            \begin{equation}\label{eq:Stima_massima_verosimiglianza}
+                \hat{\vartheta}_n \coloneqq \max_{\substack{\vartheta}} \big[\mathcal{L}(\vartheta,\, \vec{x})\big] =
+                \max_{\substack{\vartheta}} \left[\,\prod_{i=1}^{n} F_\vartheta(x_i)\right]
+            .\end{equation}
+            Il corrispondente stimatore è detto stimatore di massima verosimiglianza o \emph{MLE}, e si 
+            indica come:
+            \begin{align}\label{eq:MLE}
+                \hat{\Theta}_n = d_n(X_1,\, \ldots,\, X_{n})
+                & & \text{per } \hat{\vartheta}_n = d_n(x_1,\, \ldots,\, x_{n})
+            .\end{align}
+        \end{defn}
+        \begin{obsv}[Log-verosimiglianza]
+            Dal punto di vista operativo, sfruttando il fatto che $\mathcal{L}(\vartheta,\,\vec{x})$ e 
+            $\ln(\mathcal{L}(\vartheta,\,\vec{x}))$ assumono massimo nello stesso valore, 
+            otteniamo la stima massimizzata della verosimiglianza cercando il massimo della funzione 
+            \emph{log\nbdash verosimiglianza}: \[
+                \ln \big(\mathcal{L}(\vartheta,\, \vec{x})\big) \overset{\ast}{=} \sum_{i=1}^{n} \ln(F_{\vartheta}(x_i))
+            .\] L'uguaglianza $\ast$ sfrutta il fatto che il logaritmo di un prodotto (MLE), come da 
+            Definizione~\ref{defn:MLE}, sia uguale alla somma dei logaritmi dei termini.
+        \end{obsv}
+        \begin{prty}[Invarianza degli MLE]
+            Supponiamo di voler stimare una caratteristica $k(\vartheta)$; se 
+            $\hat{\Theta} = d_n(X_1,\, \ldots,\, X_{n})$ è l'MLE di $\vartheta$ basato sul campione 
+            $X_1,\, \ldots,\, X_{n}$ estratto da $F_\vartheta$, allora l'MLE di $k(\vartheta)$ risulta: \[
+                \forall k(\circ) \,:\, \hat{K}_n \coloneqq k(\hat{\Theta}_n) = 
+                k\big(d_n(X_1,\, \ldots,\, X_{n})\big)
+            ,\] dove $k(\circ)$ è una funzione qualunque.
+        \end{prty}
+        \begin{thm}\label{thm:Successione_MLE}
+            Se la densità $F_\vartheta$ soddisfa ``opportune condizioni di regolarità'' e la successione 
+            degli MLE di $\vartheta$ è indicata come:
+            \begin{align*}
+                \hat{\Theta}_n = d_n(X_1,\, \ldots,\, X_{n}) & & \text{per } n \in \mathbb{N},\, n>0
+            ,\end{align*}
+            e $k(\vartheta)$ è una funzione differenziabile di $\vartheta$, allora possiamo affermare le 
+            seguenti proprietà sulla successione $(k(\hat{\Theta}_n))_n$ degli MLE di $k(\vartheta)$:
+            \emph{
+            \begin{enumerate}
+                \item asintoticamente non distorta: \[
+                        \lim_{n \to \infty} \text{E}_{\vartheta}[k(\hat{\Theta}_n)] = k(\vartheta)
+                ;\]
+                \item consistente in media quadratica: \[
+                        \lim_{n \to \infty} \text{E}_{\vartheta}\left[\big(k(\hat{\Theta}_n) - k(\vartheta)\big)^2\right] = 0
+                ;\]
+            \item asintoticamente normale, con media $k(\vartheta)$ e varianza: \[
+                    \frac{\sigma^2(\vartheta)}{n} = \frac{(k^{\prime}(\vartheta))^2}
+                    {n\, \text{E}_{\vartheta}\left[\left(\frac{\partial}{\partial \vartheta} \cdot 
+                    \ln\big(F_\vartheta (X_1)\big)\right)^2\right]}
+            .\] 
+            \end{enumerate}
+            }
+        \end{thm}
+        \begin{note}
+            Il Teorema~\ref{thm:Successione_MLE} non si applica al caso di una popolazione con densità 
+            che hanno insieme di definizione dipendente dal parametro $\vartheta$: questo infatti viola le 
+            ``opportune condizioni di regolarità'' accennate nel teorema.
+        \end{note}
+    \section{Metodo dei momenti}
+        \begin{defn}
+            Sia $X_1,\, \ldots,\, X_{n}$ un campione aleatorio estratto da una densità $F_{\vec{\vartheta}}(x)$ 
+            (continua o discreta), con $\vec{\vartheta}$ vettore di parametri incogniti.
+
+            Supponiamo che esistano finiti i primi $k$ momenti della densità $F_{\vec{\vartheta}}(x)$, e 
+            indichiamo con $m_F(j)$ il momento $j$\nbdash esimo di $F_{\vec{\vartheta}}(x)$; esso 
+            sarà una funzione del parametro $\vec{\vartheta}$: \[
+                m_F(j) = \text{E}_{\vartheta}[X_1^{j}] = \begin{cases}
+                    \int_{-\infty}^{\infty} x^j\cdot F_{\vec{\vartheta}}(x)\, dx & \text{se $X_1$ è assolutamente continua;} \\
+                    \sum_{h} x_n^j\cdot F_{\vec{\vartheta}}(x_h) & \text{se $X_1$ è discreta.}
+                \end{cases}
+            \] Osserviamo che $m_F(j)$ è una caratteristica della popolazione, poiché essa è la media 
+            in corrispondenza di un valore di $\vec{\vartheta}$; possiamo indicarlo con: \[
+                \forall j \in [1,\, \ldots,\, k] \,:\, m_F(j) = m_j(\vec{\vartheta})
+            .\] Eguagliamo i primi $k$ momenti campionari ai corrispondenti $k$ momenti della popolazione:
+            \begin{equation*}
+                \begin{cases}
+                    \frac{1}{n} \cdot \sum_{i=1}^{n} X_i = m_1(\vartheta_1,\, \ldots,\, \vartheta_k); \\
+                    \frac{1}{n} \cdot \sum_{i=1}^{n} X_i^2 = m_2(\vartheta_1,\, \ldots,\, \vartheta_k); \\
+                    \hspace{5.5em}\vdots \\
+                    \frac{1}{n} \cdot \sum_{i=1}^{n} X_i^k = m_k(\vartheta_1,\, \ldots,\, \vartheta_k).
+                \end{cases}
+            \end{equation*}
+            Otteniamo un sistema di $k$ equazioni nelle incognite $\vartheta_1,\, \ldots,\, \vartheta_k$.
+            Supponiamo che questo sistema abbia una soluzione indicata come 
+            $\vec{\Theta} = (\hat{\Theta}_1,\, \ldots,\, \hat{\Theta}_k)$, dove ciascun $\hat{\Theta}_i$ è una 
+            funzione di $X_1,\, \ldots,\, X_n$ (per opportune funzioni $d_i(\vec{X})$):
+            \begin{equation*}
+                \begin{cases}
+                    \hat{\Theta}_1 = d_1(X_1,\, \ldots,\, X_{n}); \\
+                    \hat{\Theta}_2 = d_2(X_1,\, \ldots,\, X_{n}); \\
+                    \hspace{1.8em}\vdots \\
+                    \hat{\Theta}_k = d_k(X_1,\, \ldots,\, X_{n}).
+                \end{cases}
+            \end{equation*}
+            Lo stimatore $\vec{\Theta}$ che soddisfa le proprietà enunciate è chiamato 
+            \emph{stimatore del metodo dei momenti}, mentre il valore: \[
+                (\hat{\vartheta}_1 = d_1(\vec{x}),\, \ldots,\, \hat{\vartheta}_k = d_k(\vec{x}))
+            ,\] in corrispondenza della realizzazione $X_1 = x_1,\, \ldots,\, X_n = x_n$ è chiamato 
+            \emph{stima dei momenti} di $\vec{\vartheta}$.
+        \end{defn}
     \section{Distribuzioni delle statistiche di popolazioni normali}
         \begin{thm}\label{thm:Distribuzione_congiunta_statistiche_normale}
             Sia dato un campione $X_1,\, \ldots,\, X_{n}$ estratto da una popolazione normale 
@@ -302,135 +468,6 @@
                 \frac{S_{n,\,X}^2}{S_{m,\,Y}^2} \sim \mathcal{F}(n-1,\, m-1)
             .\qedhere\]
         \end{proof}
-    \section{Metodo dei momenti}
-        \begin{defn}
-            Sia $X_1,\, \ldots,\, X_{n}$ un campione aleatorio estratto da una densità $F_{\vec{\vartheta}}(x)$ 
-            (continua o discreta), con $\vec{\vartheta}$ vettore di parametri incogniti.
-
-            Supponiamo che esistano finiti i primi $k$ momenti della densità $F_{\vec{\vartheta}}(x)$, e 
-            indichiamo con $m_F(j)$ il momento $j$\nbdash esimo di $F_{\vec{\vartheta}}(x)$; esso 
-            sarà una funzione del parametro $\vec{\vartheta}$: \[
-                m_F(j) = \text{E}_{\vartheta}[X_1^{j}] = \begin{cases}
-                    \int_{-\infty}^{\infty} x^j\cdot F_{\vec{\vartheta}}(x)\, dx & \text{se $X_1$ è assolutamente continua;} \\
-                    \sum_{h} x_n^j\cdot F_{\vec{\vartheta}}(x_h) & \text{se $X_1$ è discreta.}
-                \end{cases}
-            \] Osserviamo che $m_F(j)$ è una caratteristica della popolazione, poiché essa è la media 
-            in corrispondenza di un valore di $\vec{\vartheta}$; possiamo indicarlo con: \[
-                \forall j \in [1,\, \ldots,\, k] \,:\, m_F(j) = m_j(\vec{\vartheta})
-            .\] Eguagliamo i primi $k$ momenti campionari ai corrispondenti $k$ momenti della popolazione:
-            \begin{equation*}
-                \begin{cases}
-                    \frac{1}{n} \cdot \sum_{i=1}^{n} X_i = m_1(\vartheta_1,\, \ldots,\, \vartheta_k); \\
-                    \frac{1}{n} \cdot \sum_{i=1}^{n} X_i^2 = m_2(\vartheta_1,\, \ldots,\, \vartheta_k); \\
-                    \hspace{5.5em}\vdots \\
-                    \frac{1}{n} \cdot \sum_{i=1}^{n} X_i^k = m_k(\vartheta_1,\, \ldots,\, \vartheta_k).
-                \end{cases}
-            \end{equation*}
-            Otteniamo un sistema di $k$ equazioni nelle incognite $\vartheta_1,\, \ldots,\, \vartheta_k$. Se 
-            supponiamo che questo sistema abbia una soluzione indicata come 
-            $\vec{\Theta} = (\hat{\Theta}_1,\, \ldots,\, \hat{\Theta}_k)$, dove ciascun $\hat{\Theta}_i$ è una 
-            funzione di $X_1,\, \ldots,\, X_n$ (per opportune funzioni $d_i(\vec{X})$):
-            \begin{equation*}
-                \begin{cases}
-                    \hat{\Theta}_1 = d_1(X_1,\, \ldots,\, X_{n}); \\
-                    \hat{\Theta}_2 = d_2(X_1,\, \ldots,\, X_{n}); \\
-                    \hspace{1.8em}\vdots \\
-                    \hat{\Theta}_k = d_k(X_1,\, \ldots,\, X_{n}).
-                \end{cases}
-            \end{equation*}
-            Lo stimatore $\vec{\Theta}$ che soddisfa le proprietà enunciate è chiamato 
-            \emph{stimatore del metodo dei momenti}, mentre il valore: \[
-                (\hat{\vartheta}_1 = d_1(\vec{x}),\, \ldots,\, \hat{\vartheta}_k = d_k(\vec{x}))
-            ,\] in corrispondenza della realizzazione $X_1 = x_1,\, \ldots,\, X_n = x_n$ è chiamato 
-            \emph{stima dei momenti} di $\vec{\vartheta}$.
-        \end{defn}
-    \section{Massima verosimiglianza}
-        \begin{defn}[Verosimiglianza]
-            Sia $F_\vartheta$ una densità (discreta o continua) dipendente da uno o più parametri incogniti 
-            $\vec{\vartheta}$; se $X_1,\, \ldots,\, X_{n}$ è un campione estratto dalla densità $F_\vartheta$, 
-            allora la densità del campione si ottiene come: \[
-                \forall \vec{x} = (x_1,\, \ldots,\, x_{n}) \,:\, 
-                \mathcal{L}(\vartheta,\, \vec{x}) \coloneqq \prod_{i=1}^{n} F_{\vartheta}(x_i)
-            .\] Supponiamo di osservare la realizzazione $X_1 = \tilde{x}_1,\, \ldots,\, X_n = \tilde{x}_n$ e 
-            consideriamo la funzione di $\vartheta$ detta \emph{verosimiglianza del campione}, definita come:
-            \begin{align}\label{eq:Verosimiglianza_campione}
-                \mathcal{L}(\vartheta,\, \tilde{\vec{x}}) = \prod_{i=1}^{n} F_\vartheta(\tilde{x}_i)
-                & & \text{per } \tilde{\vec{x}} = (\tilde{x}_1,\, \ldots,\, \tilde{x}_n)
-            .\end{align}
-        \end{defn}
-        \begin{obsv}
-            Se il campione $X_1,\, \ldots,\, X_{n}$ è costituito da variabili aleatorie discrete, allora 
-            la verosimiglianza \eqref{eq:Verosimiglianza_campione} del campione vale:
-            \begin{align*}
-                \mathcal{L}(\vartheta,\, \tilde{\vec{x}}) &= \prod_{i=1}^{n} F_\vartheta(\tilde{x}_i) =
-                \prod_{i=1}^{n} P_\vartheta(X_i = \tilde{x}_i) \\
-                &= P_\vartheta(X_1=\tilde{x}_i \cap \dotsm \cap X_n=\tilde{x}_n)
-            .\end{align*}
-            Se il campione $X_1,\, \ldots,\, X_{n}$ è costituito da variabili aleatorie continue, allora 
-            la verosimiglianza \eqref{eq:Verosimiglianza_campione} del campione può essere interpretata 
-            come la probabilità di osservare la realizzazione 
-            $\tilde{\vec{x}} = (\tilde{x}_1,\, \ldots,\, \tilde{x}_{n})$ per ogni valore fissato di $\vartheta$.
-        \end{obsv}
-        \begin{defn}[MLE]
-            Chiamiamo \emph{stima di massima verosimiglianza} quel valore $\hat{\vartheta}_n$ 
-            che massimizza la verosimiglianza \eqref{eq:Verosimiglianza_campione} per ogni realizzazione 
-            del campione $\vec{x} = (x_1,\, \ldots,\, x_{n})$, e la indichiamo con:
-            \begin{equation}\label{eq:Stima_massima_verosimiglianza}
-                \hat{\vartheta}_n \coloneqq \max_{\substack{\vartheta}} \big[\mathcal{L}(\vartheta,\, \vec{x})\big] =
-                \max_{\substack{\vartheta}} \left[\,\prod_{i=1}^{n} F_\vartheta(x_i)\right]
-            .\end{equation}
-            Il corrispondente stimatore è detto stimatore di massima verosimiglianza o \emph{MLE}, e si 
-            indica come:
-            \begin{align}\label{eq:MLE}
-                \hat{\Theta}_n = d_n(X_1,\, \ldots,\, X_{n})
-                & & \text{per } \hat{\vartheta}_n = d_n(x_1,\, \ldots,\, x_{n})
-            .\end{align}
-        \end{defn}
-        \begin{obsv}[Log-verosimiglianza]
-            Dal punto di vista operativo, sfruttando il fatto che $\mathcal{L}(\vartheta,\,\vec{x})$ e 
-            $\ln(\mathcal{L}(\vartheta,\,\vec{x}))$ assumono massimo nello stesso valore, 
-            otteniamo la stima massimizzata della verosimiglianza cercando il massimo della funzione 
-            \emph{log\nbdash verosimiglianza}: \[
-                \ln \big(\mathcal{L}(\vartheta,\, \vec{x})\big)
-            .\]
-        \end{obsv}
-        \begin{prty}[Invarianza degli MLE]
-            Supponiamo di voler stimare una caratteristica $k(\vartheta)$; se 
-            $\hat{\Theta} = d_n(X_1,\, \ldots,\, X_{n})$ è l'MLE di $\vartheta$ basato sul campione 
-            $X_1,\, \ldots,\, X_{n}$ estratto da $F_\vartheta$, allora l'MLE di $k(\vartheta)$ risulta: \[
-                \forall k(\circ) \,:\, \hat{K}_n \coloneqq k(\hat{\Theta}_n) = 
-                k\big(d_n(X_1,\, \ldots,\, X_{n})\big)
-            ,\] dove $k(\circ)$ è una funzione qualunque.
-        \end{prty}
-        \begin{thm}\label{thm:Successione_MLE}
-            Se la densità $F_\vartheta$ soddisfa ``opportune condizioni di regolarità'' e la successione 
-            degli MLE di $\vartheta$ è indicata come:
-            \begin{align*}
-                \hat{\Theta}_n = d_n(X_1,\, \ldots,\, X_{n}) & & \text{per } n \in \mathbb{N},\, n>0
-            ,\end{align*}
-            e $k(\vartheta)$ è una funzione differenziabile di $\vartheta$, allora possiamo affermare le 
-            seguenti proprietà sulla successione $(k(\hat{\Theta}_n))_n$ degli MLE di $k(\vartheta)$:
-            \emph{
-            \begin{enumerate}
-                \item asintoticamente non distorta: \[
-                        \lim_{n \to \infty} \text{E}_{\vartheta}[k(\hat{\Theta}_n)] = k(\vartheta)
-                ;\]
-                \item consistente in media quadratica: \[
-                        \lim_{n \to \infty} \text{E}_{\vartheta}\left[\big(k(\hat{\Theta}_n) - k(\vartheta)\big)^2\right] = 0
-                ;\]
-            \item asintoticamente normale, con media $k(\vartheta)$ e varianza: \[
-                    \frac{\sigma^2(\vartheta)}{n} = \frac{(k^{\prime}(\vartheta))^2}
-                    {n\, \text{E}_{\vartheta}\left[\left(\frac{\partial}{\partial \vartheta} \cdot 
-                    \ln\big(F_\vartheta (X_1)\big)\right)^2\right]}
-            .\] 
-            \end{enumerate}
-            }
-        \end{thm}
-        \begin{note}
-            Il Teorema~\ref{thm:Successione_MLE} non si applica al caso di una popolazione con densità 
-            che hanno insieme di definizione dipendente dal parametro $\vartheta$: questo infatti viola le 
-            ``opportune condizioni di regolarità'' accennate nel teorema.
-        \end{note}
     \section{Intervalli di confidenza}
         \begin{defn}
             Sia $X_1,\, \ldots,\, X_{n}$ un campione aleatorio estratto da una popolazione con densità 
@@ -465,27 +502,27 @@
             dato che non trattiamo alcuna variabile aleatoria.
         \end{note}
         \begin{defn}[Intervallo illimitato superiormente]
-            Consideriamo una statistica $D_1 = d_1(X_1,\, \ldots,\, X_{n})$ tale che valga: \[
-                \forall \vartheta \,:\, P_\vartheta(D_1 < k(\vartheta)) = 1-\alpha
+            Consideriamo una statistica $D^\prime = d^\prime(X_1,\, \ldots,\, X_{n})$ tale che valga: \[
+                \forall \vartheta \,:\, P_\vartheta(D^\prime \leq k(\vartheta)) = 1-\alpha
             ;\] allora possiamo affermare che:
             \begin{itemize}
                 \item chiamiamo intervallo di confidenza \emph{unilatero illimitato superiormente} per 
-                    $k(\vartheta)$ all'$(1-\alpha)\cdot 100\%$ la quantità $(D_1,\, +\infty)$;
-                \item se abbiamo la realizzazione $\vec{x}$ e $\bar{d}_1 = d_1(\vec{x})$ allora chiamiamo 
-                    l'intervallo reale $(\bar{d}_1,\, +\infty)$ \emph{stima intervallare unilatera};
-                \item con confidenza $1-\alpha$ diremo che vale $k(\vartheta) \in (\bar{d}_1,\, +\infty)$.
+                    $k(\vartheta)$ all'$(1-\alpha)\cdot 100\%$ la quantità $(D^\prime,\, +\infty)$;
+                \item se abbiamo la realizzazione $\vec{x}$ e $\bar{d}^\prime = d^\prime(\vec{x})$ allora chiamiamo 
+                    l'intervallo reale $(\bar{d}^\prime,\, +\infty)$ \emph{stima intervallare unilatera};
+                \item con confidenza $1-\alpha$ diremo che vale $k(\vartheta) \in (\bar{d}^\prime,\, +\infty)$.
             \end{itemize}
         \end{defn}
         \begin{defn}[Intervallo illimitato inferiormente]
-            Consideriamo una statistica $D_2 = d_1(X_1,\, \ldots,\, X_{n})$ tale che valga: \[
-                \forall \vartheta \,:\, P_\vartheta(k(\vartheta) < D_2) = 1-\alpha
+            Consideriamo una statistica $D^\prime = d^\prime(X_1,\, \ldots,\, X_{n})$ tale che valga: \[
+                \forall \vartheta \,:\, P_\vartheta(k(\vartheta) < D^\prime) = 1-\alpha
             ;\] allora possiamo affermare che:
             \begin{itemize}
                 \item chiamiamo intervallo di confidenza \emph{unilatero illimitato inferiormente} per 
-                    $k(\vartheta)$ all'$(1-\alpha)\cdot 100\%$ la quantità $(-\infty,\, D_2)$;
-                \item se abbiamo la realizzazione $\vec{x}$ e $\bar{d}_2 = d_2(\vec{x})$ allora chiamiamo 
-                    l'intervallo reale $(-\infty,\, \bar{d}_1)$ \emph{stima intervallare unilatera};
-                \item con confidenza $1-\alpha$ diremo che vale $k(\vartheta) \in (-\infty,\, \bar{d}_2)$.
+                    $k(\vartheta)$ all'$(1-\alpha)\cdot 100\%$ la quantità $(-\infty,\, D^\prime)$;
+                \item se abbiamo la realizzazione $\vec{x}$ e $\bar{d}^\prime = d^\prime(\vec{x})$ allora chiamiamo 
+                    l'intervallo reale $(-\infty,\, \bar{d}^\prime)$ \emph{stima intervallare unilatera};
+                \item con confidenza $1-\alpha$ diremo che vale $k(\vartheta) \in (-\infty,\, \bar{d}^\prime)$.
             \end{itemize}
         \end{defn}
     \section{Quantità pivotale}
@@ -513,7 +550,6 @@
             \big(d_1(X_1,\, \ldots,\, X_{n}),\, d_2(X_1,\, \ldots,\, X_{n})\big)
         .\]
         \end{obsv}
-        \pagebreak % Interrompi pagina, evita di lasciare il titolo separato dal testo
     \section{Esempi di intervalli notevoli}
         \subsection{Media di popolazioni normali}
             \begin{defn}
@@ -533,7 +569,7 @@
                 Nelle prossime proprietà, assumiamo sempre di considerare un campione $X_1,\, \ldots,\, X_{n}$ 
                 estratto da una popolazione normale di media $\mu$ e varianza $\sigma^2$.
             \end{note}
-            \begin{prty}[Intervallo bilatero con $\mu =\,?,\, \sigma^2 = \sigma^2_0$]
+            \begin{prty}[\textbf{Intervallo bilatero con} $\boldsymbol{\mu =\,?,\, \sigma^2 = \sigma^2_0}$]
                 Se il campione è costituito da variabili aleatorie indipendenti identicamente distribuite, 
                 con densità $\mathcal{N}(\mu,\, \sigma^2_0)$ allora la media campionaria vale 
                 $\overline{X}_n\sim \mathcal{N}(\mu,\, \sigma^2_0 /n)$.
@@ -555,7 +591,7 @@
                     \overline{x}_n +z_{\alpha /2}\cdot \frac{\sigma_0}{\sqrt{n}}\right)
                 .\] 
             \end{prty}
-            \begin{prty}[Intervallo unilaterale con $\mu =\,?,\, \sigma^2 = \sigma^2_0$]
+            \begin{prty}[\textbf{Intervallo unilaterale con} $\boldsymbol{\mu =\,?,\, \sigma^2 = \sigma^2_0}$]
                 Consideriamo la relazione seguente: \[
                     P(Z > z_\alpha) = P(Z < -z_\alpha) = \alpha
                 ,\] e tramite la quantità pivotale $Q = \frac{(\overline{X}_n -\mu)\cdot \sqrt{n}}{\sigma_0} \sim \mathcal{N}(0,\,1)$ si ha per ogni $\mu$:
@@ -574,7 +610,7 @@
                     \left(-\infty,\, \overline{X}_n +\frac{\sigma_0}{\sqrt{n}\cdot z_\alpha}\right)
                 .\end{align*}
             \end{prty}
-            \begin{prty}[Intervallo bilatero con $\mu =\,?,\, \sigma^2 =\,?$]
+            \begin{prty}[\textbf{Intervallo bilatero con} $\boldsymbol{\mu =\,?,\, \sigma^2 =\,?}$]
                 In questo caso, l'intervallo costruito in precedenza per la media incognita e la varianza nota 
                 sarà basato su una quantità pivotale contenente una incognita, dato che 
                 $\sigma^2 \neq \sigma^2_0$.
@@ -594,11 +630,11 @@
                 .\end{align*}
                 In corrispondenza della realizzazione $\overline{X}_n = \overline{x}_n,\, S_n = s_n$ possiamo 
                 scrivere la stima intervallare al cui interno $\mu$ è contenuto con confidenza $1-\alpha$: \[
-                    \mu \in \left(\overline{x}_n -\frac{S_n}{\sqrt{n}}\cdot t_{\alpha /2,\,n-1},\, 
-                    \overline{x}_n +\frac{S_n}{\sqrt{n}}\cdot t_{\alpha /2,\,n-1}\right)
+                    \mu \in \left(\overline{x}_n -\frac{s_n}{\sqrt{n}}\cdot t_{\alpha /2,\,n-1},\, 
+                    \overline{x}_n +\frac{s_n}{\sqrt{n}}\cdot t_{\alpha /2,\,n-1}\right)
                 .\] 
             \end{prty}
-            \begin{prty}[Intervallo unilaterale con $\mu =\,?,\, \sigma^2 =\,?$]
+            \begin{prty}[\textbf{Intervallo unilaterale con} $\boldsymbol{\mu =\,?,\, \sigma^2 =\,?}$]
                 Osserviamo che, comunque fissati $\mu,\, \sigma^2$ si ha:
                 \begin{align*}
                     1-\alpha = P_{(\mu,\, \sigma^2)}\left(\frac{(\overline{X}_n -\mu)\cdot \sqrt{n}}{S_n} 
@@ -630,41 +666,41 @@
                 Nelle prossime proprietà, assumiamo sempre di considerare un campione $X_1,\, \ldots,\, X_{n}$ 
                 estratto da una popolazione normale di media $\mu$ e varianza $\sigma^2$.
             \end{note}
-            \begin{prty}[Intervallo bilatero con $\mu =\,?,\, \sigma^2 =\,?$]
+            \begin{prty}[\textbf{Intervallo bilatero con} $\boldsymbol{\mu =\,?,\, \sigma^2 =\,?}$]
                 Dato che le variabili aleatorie del campione sono normali indipendenti identicamente 
                 distribuite, consideriamo la seguente quantità pivotale: \[
                     Q = \frac{(n-1)\cdot S_n^2}{\sigma^2} \sim \chi^2(n-1)
                 ,\] e per ogni $\mu,\, \sigma^2$ fissati otteniamo:
                 \begin{align*}
-                    1-\alpha &= P_{(\mu,\,\sigma^2)}\left(\chi^2_{1-\alpha /2,\,n-1} 
-                    < \frac{(n-1)\cdot S_n^2}{\sigma^2} < \chi^2_{\alpha /2,\,n-1}\right) \\
-                    &= P_{(\mu,\,\sigma^2)}\left(\frac{(n-1)\cdot S_n^2}{\chi^2_{\alpha /2,\,n-1}} 
-                    < \sigma^2 < \frac{(n-1)\cdot S_n^2}{\chi^2_{1-\alpha /2,\,n-1}}\right)
+                    1-\alpha &= P_{\sigma^2}\left(\chi^2_{1-\alpha /2,\,n-1} < \frac{(n-1) \cdot S_n^2}{\sigma^2} 
+                    < \chi^2_{\alpha /2,\,n-1}\right) \\
+                    &= P_{\sigma^2}\left(\frac{(n-1)\,S_n^2}{\chi^2_{\alpha /2,\,n-1}} > \sigma^2 
+                    > \frac{(n-1)\,S_n^2}{\chi^2_{1-\alpha /2,\,n-1}}\right)
                 .\end{align*}
                 Deduciamo che l'intervallo di confidenza di livello $1-\alpha$ per $\sigma^2$ è definito come: \[
-                    \left(\frac{(n-1)\cdot S_n^2}{\chi^2_{\alpha /2,\,n-1}},\, 
-                    \frac{(n-1)\cdot S_n^2}{\chi^2_{1-\alpha /2,\,n-1}}\right)
-                .\] 
+                    \sigma^2 \in \left(\frac{(n-1) \cdot S_n^2}{\chi^2_{\alpha /2,\,n-1}},\, 
+                    \frac{(n-1) \cdot S_n^2}{\chi^2_{1-\alpha /2,\,n-1}}\right)
+                .\]
             \end{prty}
-            \begin{prty}[Intervallo bilatero con $\mu = \mu_0,\, \sigma^2 =\,?$]
+            \begin{prty}[\textbf{Intervallo bilatero con} $\boldsymbol{\mu = \mu_0,\, \sigma^2 =\,?}$]
                 Dato che le variabili aleatorie sono normali indipendenti identicamente distribuite, adottiamo 
                 la seguente quantità pivotale: \[
                     Q = \frac{\sum_{i=1}^{n} (X_i - \mu_0)^2}{\sigma^2} \sim \chi^2(n)
                 ,\] e per ogni $\sigma^2$ fissato otteniamo (indicando con 
                 $T_n^2 \coloneqq \sum_{i=1}^{n} (X_i-\mu_0)^2$):
                 \begin{align*}
-                    1-\alpha &= P_{\sigma^2}\left(\chi^2_{1-\alpha /2,\,n} < \frac{n\,T_n^2}{\sigma^2} 
+                    1-\alpha &= P_{\sigma^2}\left(\chi^2_{1-\alpha /2,\,n} < \frac{T_n^2}{\sigma^2} 
                     < \chi^2_{\alpha /2,\,n}\right) \\
-                    &= P_{\sigma^2}\left(\frac{n\,T_n^2}{\chi^2_{\alpha /2,\,n}} < \sigma^2 
-                    < \frac{n\,T_n^2}{\chi^2_{1-\alpha /2,\,n}}\right)
+                    &= P_{\sigma^2}\left(\frac{T_n^2}{\chi^2_{1-\alpha /2,\,n}} > \sigma^2 
+                    > \frac{T_n^2}{\chi^2_{\alpha /2,\,n}}\right)
                 .\end{align*}
                 Deduciamo che l'intervallo di confidenza di livello $1-\alpha$ per $\sigma^2$ è definito come: \[
-                    \left(\frac{n\,T_n^2}{\chi^2_{\alpha /2,\,n}},\, 
-                    \frac{n\,T_n^2}{\chi^2_{1-\alpha /2,\,n}}\right)
+                    \sigma^2 \in \left(\frac{T_n^2}{\chi^2_{\alpha /2,\,n}},\, 
+                    \frac{T_n^2}{\chi^2_{1-\alpha /2,\,n}}\right)
                 .\]
             \end{prty}
         \subsection{Media di popolazioni esponenziali}
-            \begin{defn}[Intervallo bilatero con $\vartheta =\,?$]
+            \begin{defn}[\textbf{Intervallo bilatero con} $\boldsymbol{\vartheta =\,?}$]
                 Consideriamo un campione $X_1,\, \ldots,\, X_{n}$ tale che $X_i \sim \mathcal{E}(1 /\vartheta)$ 
                 dove $\vartheta$ è incognita; sappiamo che la media di tale variabili aleatorie è $\vartheta$, 
                 e possiamo dimostrare che il suo MLE è la media campionaria $\overline{X}_n$.
@@ -687,7 +723,7 @@
                 \hspace{-1.7em};\end{align*}
                 abbiamo ottenuto esattamente la generatrice dei momenti di una variabile aleatoria con densità 
                 $\chi^2(2n)$, ed essa non dipende da $\vartheta$.
-                
+
                 Per ogni $\vartheta > 0$ fissato otteniamo:
                 \begin{align*}
                     1-\alpha &= P_\vartheta\left(\chi^2_{1-\alpha /2,\,2n} < \frac{2}{\vartheta}\cdot 
@@ -697,12 +733,12 @@
                 .\end{align*}
                 Deduciamo che l'intervallo di confidenza di livello $1-\alpha$ per $\vartheta$ è definito 
                 come: \[
-                    \left(\frac{2\sum_{i=1}^{n} X_i}{\chi^2_{\alpha /2,\,2n}},\, 
+                    \theta \in \left(\frac{2\sum_{i=1}^{n} X_i}{\chi^2_{\alpha /2,\,2n}},\, 
                     \frac{2\sum_{i=1}^{n} X_i}{\chi^2_{1-\alpha /2,\,2n}}\right)
                 .\]
             \end{defn}
         \subsection{Differenza tra medie di popolazioni normali}
-            \begin{defn}[Intervallo bilatero con $\mu_1=\mu_2=\,?,\, \sigma^2_1 = \sigma^2_{1,\,0},\, \sigma^2_2 = \sigma^2_{2,\,0}$]
+            \begin{defn}[\textbf{Intervallo bilatero con} $\boldsymbol{\mu_1=\mu_2=\,?,\, \sigma^2_1 = \sigma^2_{1,\,0},\, \sigma^2_2 = \sigma^2_{2,\,0}}$]
                 \hfill \\
                 Consideriamo due campioni $X_1,\, \ldots,\, X_{n}$ e $Y_1,\, \ldots,\, Y_{m}$ estratti da 
                 due popolazioni normali differenti, aventi media e varianza rispettivamente 
@@ -733,13 +769,33 @@
                 Deduciamo che l'intervallo di confidenza di livello $1-\alpha$ per $\mu_1-\mu_2$ è definito 
                 come: \[
                     \left(\overline{X}-\overline{Y}-z_{\alpha /2}\cdot \sqrt{\frac{\sigma^2_1}{n}+ \frac{\sigma^2_2}{m}},\, \overline{X}-\overline{Y}+z_{\alpha /2}\cdot \sqrt{\frac{\sigma^2_1}{n} +\frac{\sigma^2_2}{m}}\,\right)
-                .\] 
+                .\]
             \end{defn}
-        %\subsection{Rapporto tra varianze di popolazioni normali}
-            %TODO: Completare sezione
-        %\subsection{Intervalli di confidenza asintotici}
-            %TODO: Completare sezione
-        \subsection{Intervalli di confidenza per proporzione}
+        \subsection{Intervalli di confidenza asintotici}
+            \begin{prty}
+                Siano $X_1,\, \ldots,\, X_{n}$ variabili aleatorie indipendenti identicamente distribuite, 
+                tali per cui $\text{E}[X_1]=\mu$ e $\text{Var}(X_1)=\sigma^2$ siano incognite; 
+                sia $\bar{X}_n$ la media incognita e $S_n^2$ la varianza empirica corretta. 
+                Infine valga la seguente espressione: \[
+                T_n \coloneqq \frac{\sqrt{n}(\bar{X}_n - \mu)}{S_n}
+                .\] Se le variabili aleatorie $X_i$ \underline{non} sono gaussiane, $T_n$ \underline{non} 
+                ha distribuzione $t$\nbdash Student.
+            \end{prty}
+            \begin{thm}[Pivot asintotico]\label{thm:Pivot_asintotico}
+                Dal Teorema~\ref{thm:Teorema_limite_centrale} e dal Teorema~\ref{thm:Legge_grandi_numeri_debole} possiamo affermare che: \[
+                S_n \simeq \sigma \, \vee \, \frac{\sqrt{n}(\bar{X}_n - \mu)}{\sigma} \simeq \mathcal{N}(0,1)
+                ;\] allora per $n$ abbastanza grande, ``consideriamo'' $T_n \simeq \mathcal{N}(0,1)$.
+            \end{thm}
+            \begin{defn}
+                Usando il Teorema~\ref{thm:Pivot_asintotico} definiamo il seguente intervallo di livello $1-\alpha$  \emph{asintotico} per la media $\mu$:  \[
+                \lim_{n\rightarrow +\infty} P\left\{ \bar{X}_n - z_{\alpha/2}\cdot \frac{S_n}{\sqrt{n}} \leq \mu \leq
+                \bar{X}_n + z_{\alpha/2}\cdot \frac{S_n}{\sqrt{n}}\right\} = 1-\alpha
+                ;\] \[
+                \mu \in \left( \bar{X}_n - z_{\alpha/2}\cdot \frac{S_n}{\sqrt{n}}, 
+                \bar{X}_n + z_{\alpha/2}\cdot \frac{S_n}{\sqrt{n}}\right)
+                .\] Con questo intervallo possiamo stimare con un intervallo la media di una popolazione i.i.d. con media e varianza finite e incognite, in modo asintotico.
+            \end{defn}
+        \subsection{Intervalli di confidenza per campioni grandi}
             \begin{defn}
                 Consideriamo una popolazione di oggetti, ognuno dei quali soddisfa dei requisiti con 
                 probabilità incognita $p$ in modo indipendente gli uni dagli altri; se di $n$ oggetti 
@@ -748,7 +804,7 @@
                     X \sim \mathcal{B}i(np,\,np(1-p)) \implies
                     \frac{X - np}{\sqrt{np(1-p)}} \sim \mathcal{N}(0,\,1)
                 ;\end{align*}
-                per ogni $p$ otteniamo la confidenza scrivendo: \[
+                per ogni $p$ otteniamo la confidenza sfruttando il Teorema~\ref{thm:Pivot_asintotico}: \[
                     1-\alpha = P_{p}\left(-z_{\alpha /2} < \frac{X -np}{\sqrt{np(1-p)}} < z_{\alpha /2}\right)
                 .\]
                 Per usare la precedente relazione per definire un intervallo di confidenza, indichiamo 
@@ -764,8 +820,8 @@
                     &= P_{p}\left(\hat{p}- z_{\alpha /2}\cdot \sqrt{\hat{p}(1-\hat{p}) /n} < 
                     p < \hat{p}+ z_{\alpha /2}\cdot \sqrt{\hat{p}(1-\hat{p}) /n}\right)
                 .\end{align*}
-                L'ultima relazione fornisce un intervallo approssimato per $p$: \[
-                    \left(\hat{p}- z_{\alpha /2}\cdot \sqrt{n\hat{p}(1-\hat{p}) /2},\, 
-                    \hat{p}+ z_{\alpha /2}\cdot \sqrt{n\hat{p}(1-\hat{p}) /2}\right)
-                .\] 
+                L'ultima relazione fornisce un intervallo approssimato per $p$, che possiamo riscrivere considerando la varianza empirica $S=\sqrt{p(1-p)}$: \[
+                    p \in \left(\hat{p}- z_{\alpha /2}\cdot \frac{S}{\sqrt{n}},\, 
+                    \hat{p}+ z_{\alpha /2}\cdot \frac{S}{\sqrt{n}}\right) \cap [0,1]
+                .\]
             \end{defn}

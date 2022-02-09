@@ -217,7 +217,7 @@
         \subsection{Distribuzione Chi-Quadro}
             \begin{defn}\label{defn:Distribuzione_chi_quadro}
                 Prendiamo una successione $Z_1,\, \ldots,\, Z_{n}$ di variabili aleatorie gaussiane standard indipendenti; allora la somma dei loro quadrati $X \coloneqq Z^2_1 + \ldots + Z^2_{n}$ è una variabile aleatoria chiamata \emph{chi-quadro} con $n$ gradi di libertà, e si indica come: \[
-                    X \sim \chi^2(n)
+                    X \sim \chi^2(n) \equiv \chi^2_n
                 .\]
             \end{defn}
             \begin{obsv}[Riproducibilità]
@@ -245,14 +245,14 @@
                              &= \left(\frac{1}{1-2t}\right)^{n /2} = \left(\frac{1 /2}{1 /2 -t}\right)^{n /2} & & \text{dal caso $n=1$}
                 .\end{align}
             \end{prty}
-            \begin{defn}[Relazioen tra gamma e chi-quadro]\label{defn:Relazione_gamma_chi_quadro}
+            \begin{defn}[Relazione tra gamma e chi-quadro]\label{defn:Relazione_gamma_chi_quadro}
                 La densità Gamma di parametri $\alpha = n /2$ e $\lambda = 1 /2$  con $n \geq 1$ intero, è anche indicata come densità \emph{chi-quadro} con $n$ gradi di libertà.
 
                 Possiamo provarlo direttamente dal risultato della Proprietà~\ref{prty:Generatrice_momenti_chi_quadro}: infatti la generatrice dei momenti della distribuzione chi-quadro ad $n$ gradi di libertà \eqref{eq:Generatrice_momenti_chi_quadro} corrisponde alla generatrice della distribuzione Gamma nel caso indicato sopra \eqref{eq:Generatrice_momenti_Gamma}.
             \end{defn}
         \subsection{Distribuzione \emph{t}}
             \begin{defn}
-                Consideriamo le variabili aleatorie indipendenti $Z \sim \mathcal{N}(0,\,1)$ e $C_n \sim \chi^2(n)$; allora la variabile aleatoria definita come segue:
+                Consideriamo le variabili aleatorie \underline{indipendenti} $Z \sim \mathcal{N}(0,\,1)$ e $C_n \sim \chi^2(n)$; allora la variabile aleatoria definita come segue:
                 \begin{equation}\label{eq:Distribuzione_t}
                     T_n \coloneqq \frac{Z}{\sqrt{C_n /n}}
                 .\end{equation}
